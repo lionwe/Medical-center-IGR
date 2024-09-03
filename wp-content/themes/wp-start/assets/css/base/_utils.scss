@@ -1,0 +1,12 @@
+.interaction-disabled{
+		pointer-events: none;
+		cursor: default;
+		user-select: none;
+		touch-action: none;
+		-webkit-user-drag: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+}
+
+
