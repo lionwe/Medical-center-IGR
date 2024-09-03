@@ -6,5 +6,7 @@ import "./utils";
 import './swiper'
 import './popup'
 import './accordeon'
+import './events/click'
+import './events/load'
 
 import "../css/main.scss";
