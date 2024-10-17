@@ -4,17 +4,23 @@
 }
 
 .backdrop{
-	--_show-speed: 1000ms;
+	--_open: 1000ms;
+	--_close: 1000ms;
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
 	top: 0;
 	left: 0;
 	background-color: rgba(0, 0, 0, .5);
-	transition: background-color var(--_show-speed), opacity var(--_show-speed);
-	&:not(.show){
-			opacity: 0;
-			pointer-events: none;
+	transition-duration: var(--_open);
+	opacity: 0;
+	visibility: hidden;
+	&[open]{
+		opacity: 1;
+		visibility: visible;
+	}
+	&[close]{
+		transition-duration: var(--_close);
 	}
 }
 
