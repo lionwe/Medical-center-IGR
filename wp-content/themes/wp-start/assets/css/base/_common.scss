@@ -25,31 +25,21 @@
 }
 
 .accordeon{
-	--_content-height: 0px;
-	&__title{
-		color: #000;
-		display: inline-block;
-		cursor: pointer;
-		transition: background-color 0.3s, color 0.3s;
-		padding: 1rem 2rem;
-		background-color: #4367;
-		border-radius: 1rem;
-		&:hover{
-			background-color: #454324;
-			color: white;
+	--_contentHeight: auto;
+	--_pps: 200;
+	.content{
+		height: 0;
+		overflow: hidden;
+		transition: height var(--_ts, 3.5s) ease;
+	}
+	&[open]{
+		.content{
+			height: var(--_contentHeight);
 		}
 	}
-	&__content{ 
-		--_pixelsPerSeccond: 300; 
-		--_transition-speed: 1s;
-		max-width: 400px;
-		height: 0px;
-		overflow: hidden;
-		transition: height var(--_transition-speed, 1s) linear;
-	}
-	&.show{
-		.accordeon__content{
-			height: var(--_content-height);
+	&[autoHeight]{
+		.content{
+			height: auto;
 		}
 	}
 }

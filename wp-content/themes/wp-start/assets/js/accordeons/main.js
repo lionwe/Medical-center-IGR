@@ -9,7 +9,7 @@ export class Accordeon {
       });
     } else {
       this.content = params.content || ".content";
-      this.triggerElements = params.triggerElements || ".heading";
+      this.triggerElements = params.triggerElements || ".heading, .heading *";
       this.selector = selector;
       this.element = document.querySelector(this.selector);
       this.on = params.on;

@@ -1,4 +1,4 @@
-import { getProp, setProp } from "../events/main";
+import { getProp } from "../events/main";
 export class Popup {
   constructor(selector = "", settings = {}) {
     if (!selector) return;
@@ -84,34 +84,24 @@ export class Popup {
     this.on?.open?.bind(this)();
   }
   close() {
-		if (!this.canAvtion) return;
+    if (!this.canAvtion) return;
     console.log("Popup closed:", this.selector);
-		this.canAvtion = false;
+    this.canAvtion = false;
     this.element.setAttribute("close", "");
     this.element.removeAttribute("open");
-		setTimeout(() => {
+    setTimeout(() => {
       this.canAvtion = true;
     }, this.animations.open);
     this.on?.open?.bind(this)();
   }
   toggle() {
-		if(!this.canAvtion) return;
+    if (!this.canAvtion) return;
     console.log("Popup toggled:", this.selector);
-		this.canAvtion = false;
-		this.element.hasAttribute("open") ? this.close() : this.open();
-		setTimeout(() => {
-			this.canAvtion = true;
-		}, this.animations.open);
-		this.on?.toggle?.bind(this)();
+    this.canAvtion = false;
+    this.element.hasAttribute("open") ? this.close() : this.open();
+    setTimeout(() => {
+      this.canAvtion = true;
+    }, this.animations.open);
+    this.on?.toggle?.bind(this)();
   }
 }
-
-const test = new Popup(".backdrop.test", {
-  closeOnResize: true,
-  openButtons: ".open-test",
-  on: {
-    init: function () {
-      // this.open();
-    },
-  },
-});

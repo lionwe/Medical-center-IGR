@@ -44,7 +44,7 @@ var Accordeon = /*#__PURE__*/function () {
       });
     } else {
       this.content = params.content || ".content";
-      this.triggerElements = params.triggerElements || ".heading";
+      this.triggerElements = params.triggerElements || ".heading, .heading *";
       this.selector = selector;
       this.element = document.querySelector(this.selector);
       this.on = params.on;
@@ -434,15 +434,6 @@ var Popup = /*#__PURE__*/function () {
   }]);
   return Popup;
 }();
-var test = new Popup(".backdrop.test", {
-  closeOnResize: true,
-  openButtons: ".open-test",
-  on: {
-    init: function init() {
-      // this.open();
-    }
-  }
-});
 
 /***/ }),
 

@@ -318,32 +318,20 @@ summary {
 }
 
 .accordeon {
-  --_content-height: 0px;
+  --_contentHeight: auto;
+  --_pps: 200;
 }
-.accordeon__title {
-  color: #000;
-  display: inline-block;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  padding: 1rem 2rem;
-  background-color: rgba(68, 51, 102, 0.4666666667);
-  border-radius: 1rem;
-}
-.accordeon__title:hover {
-  background-color: #454324;
-  color: white;
-}
-.accordeon__content {
-  --_pixelsPerSeccond: 300;
-  --_transition-speed: 1s;
-  max-width: 400px;
-  height: 0px;
+.accordeon .content {
+  height: 0;
   overflow: hidden;
-  transition: height 1s linear;
-  transition: height var(--_transition-speed, 1s) linear;
+  transition: height 3.5s ease;
+  transition: height var(--_ts, 3.5s) ease;
 }
-.accordeon.show .accordeon__content {
-  height: var(--_content-height);
+.accordeon[open] .content {
+  height: var(--_contentHeight);
+}
+.accordeon[autoHeight] .content {
+  height: auto;
 }
 
 .burger {
