@@ -27,6 +27,7 @@
 //     @content;
 //   }
 // }
+
 @mixin before($absolute: false) {
   @if ($absolute) {
     position: relative;
@@ -88,11 +89,11 @@
   $minVal: convert-to-rem($minVal);
   $maxVal: convert-to-rem($maxVal);
 
-  $minViewportWidth: 23.4375rem;
-  $maxViewportWidth: 90rem;
+  $minViewportWidth: convert-to-rem(375px);
+  $maxViewportWidth: convert-to-rem(1440px);
 
   $slope: math.div(($maxVal - $minVal), ($maxViewportWidth - $minViewportWidth)); // Використовуємо math.div
-  $base: $minVal - ($slope * 23.4375rem);
+  $base: $minVal - ($slope * $minViewportWidth);
 
   @return clamp(#{$minVal}, calc(#{$base} + #{$slope * 100vw}), #{$maxVal});
 }
