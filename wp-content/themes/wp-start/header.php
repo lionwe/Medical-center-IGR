@@ -15,7 +15,6 @@
 
 <body>
 
-	<main>
 		<header class="header">
 			<div class="container">
 				<nav class="main-nav">

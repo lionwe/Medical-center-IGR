@@ -3,18 +3,16 @@
 //@import 'themes/module';
 //@import 'pages/module';
 
-@import '/node_modules/modern-normalize/modern-normalize.css';
-
+@import "utils/mixins";
 @import "base/variables";
 @import "base/fonts";
 @import "base/utils";
-@import "base/common"; 
-@import "utils/mixins";
+@import "base/common";
 @import "vendors/hamburgers";
+@import "vendors/accordeon";
 
 @import "layout/pageHeader";
 
-@import 'components/heroSection';
+@import 'components/main';
 
 @import "layout/pageFooter";
-

@@ -6,8 +6,7 @@ Template Name: Home
 
 <?php get_header(); ?>
 
-<?php get_template_part("sections/heroSection");?>
-
-
+<main id="home">
+</main>
 
 <?php get_footer(); ?>

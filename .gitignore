@@ -63,5 +63,6 @@ wp-config.php
 
 
 node_modules/ 
+dist/
 
 

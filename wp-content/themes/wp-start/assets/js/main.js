@@ -4,7 +4,6 @@ import "./utils";
 
 import "./swipers/main";
 import "./popups/main";
-import "./accordeons/main";
 import "./events/main";
 
 import "../css/main.scss";

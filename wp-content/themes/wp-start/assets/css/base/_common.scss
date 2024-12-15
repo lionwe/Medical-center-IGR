@@ -1,45 +1,25 @@
-.container {
-  width: 83%;
-	margin: 0 auto;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
 }
 
-.backdrop{
-	--_open: 1000ms;
-	--_close: 1000ms;
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, .5);
-	transition-duration: var(--_open);
-	opacity: 0;
-	visibility: hidden;
-	&[open]{
-		opacity: 1;
-		visibility: visible;
-	}
-	&[close]{
-		transition-duration: var(--_close);
-	}
+section {
+  width: 100vw;
+
+  &>.container {
+    width: calc(100vw - var(--_section-offset));
+    margin-inline: auto;
+    height: 100%;
+  }
 }
 
-.accordeon{
-	--_contentHeight: auto;
-	--_pps: 200;
-	.content{
-		height: 0;
-		overflow: hidden;
-		transition: height var(--_ts, 3.5s) ease;
-	}
-	&[open]{
-		.content{
-			height: var(--_contentHeight);
-		}
-	}
-	&[autoHeight]{
-		.content{
-			height: auto;
-		}
-	}
+main {
+  width: 100vw;
+  overflow: hidden;
+  display: grid;
+  gap: var(--_section-gap);
+  grid-auto-rows: max-content;
 }

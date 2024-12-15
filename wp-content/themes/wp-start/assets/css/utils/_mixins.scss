@@ -1,38 +1,105 @@
-@mixin transition($props...) {
-  $transitions: ();
-  @each $prop in $props {
-    $transitions: append($transitions, #{$prop} $duration $timing-function, comma);
-  }
-  transition: $transitions;
-}
+@use "sass:math"; // Імпорт бібліотеки math
 
-@mixin hover($args...) {
-  $transition-props: ();
+@mixin hover {
+  cursor: pointer;
 
-  @each $arg in $args {
-    $property: null;
-    $start-value: null;
-    $end-value: null;
-
-    @if length($arg) == 3 {
-      $property: nth($arg, 1);
-      $start-value: nth($arg, 2);
-      $end-value: nth($arg, 3);
-    } @else if length($arg) == 2 {
-      $property: nth($arg, 1);
-      $start-value: nth($arg, 2);
-      $end-value: null;
-    }
-
-    @if $property {
-      $transition-props: append($transition-props, $property);
-
-      #{$property}: $start-value;
-      &:hover, &:focus {
-        #{$property}: $end-value;
-      }
+  @media (hover: hover) {
+    &:hover {
+      @content;
     }
   }
 
-  @include transition($transition-props...);
+  @media (hover: none) {
+    &:active {
+      @content;
+    }
+  }
 }
+
+@mixin mobile($max: 992px) {
+  @media screen and (max-width: $max) {
+    @content;
+  }
+}
+
+// @mixin tablet($min: 768px, $max: 992px) {
+//   @media screen and (min-width: $min) and (max-width: $max) {
+//     @content;
+//   }
+// }
+@mixin before($absolute: false) {
+  @if ($absolute) {
+    position: relative;
+  }
+
+  &::before {
+    @if ($absolute) {
+      position: absolute;
+    }
+
+    content: '';
+    @content;
+  }
+}
+
+@mixin after($absolute: false) {
+  @if ($absolute) {
+    position: relative;
+  }
+
+  &::after {
+    @if ($absolute) {
+      position: absolute;
+    }
+
+    content: '';
+    @content;
+  }
+}
+
+@mixin desktop($min: 992px) {
+  @media screen and (min-width: $min) {
+    @content;
+  }
+}
+
+@function convert-to-rem($value) {
+  @if unitless($value) {
+    // Якщо це просто число, вважаємо, що воно в px, і конвертуємо в rem
+    @return $value * 1rem;
+  }
+
+  @else if unit($value)=='px' {
+    // Конвертуємо px в rem (1rem = 16px)
+    @return math.div($value, 16px) * 1rem;
+  }
+
+  @else if unit($value)=='rem' {
+    // Якщо вже в rem, повертаємо значення без змін
+    @return $value;
+  }
+
+  @else {
+    @error "Одиниця #{$value} не підтримується. Використовуйте number, px або rem.";
+  }
+}
+
+@function Clamp($minVal, $maxVal) {
+  $minVal: convert-to-rem($minVal);
+  $maxVal: convert-to-rem($maxVal);
+
+  $minViewportWidth: 23.4375rem;
+  $maxViewportWidth: 90rem;
+
+  $slope: math.div(($maxVal - $minVal), ($maxViewportWidth - $minViewportWidth)); // Використовуємо math.div
+  $base: $minVal - ($slope * 23.4375rem);
+
+  @return clamp(#{$minVal}, calc(#{$base} + #{$slope * 100vw}), #{$maxVal});
+}
+
+// Usage
+// .element {
+//   	font-size: Clamp(16px, 24px); 
+// or font-size: Clamp(1rem, 1.5rem); 
+// or font-size: Clamp(16, 24); - 16rem to 24rem
+// }

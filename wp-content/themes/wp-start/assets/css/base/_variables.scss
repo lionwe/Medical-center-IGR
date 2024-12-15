@@ -1,5 +1,17 @@
-$white-color: #FFF;
-$black-color: #000;
+$section-gap: Clamp(2rem, 7.5rem);
+$section-offset: Clamp(1rem, 8rem);
 
-$duration: 200ms;
-$timing-function: ease-in-out;
+:root {
+  // Gaps
+  --_section-gap: #{$section-gap};
+  --_section-offset: #{$section-offset};
+
+  // Colors
+  // --color-primary: #3498db;
+  // --color-secondary: #2ecc71;
+  // --color-accent: #e74c3c;
+  // --color-background: #f4f4f4;
+  // --color-text: #333333;
+  // --color-heading: #000000;
+  // --color-border: #dddddd;
+}
