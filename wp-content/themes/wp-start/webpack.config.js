@@ -9,8 +9,7 @@ module.exports = {
     main: "./assets/js/main.js",
   },
   output: {
-    filename: "js/[name].[contenthash].js", // Додаємо хеш для кешування
-    chunkFilename: "js/[name].[contenthash].js", // Для динамічних імпортів
+    filename: "js/[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -77,33 +76,13 @@ module.exports = {
     ],
   },
   optimization: {
-    splitChunks: {
-      chunks: "all", // Включаємо розбиття коду для всіх модулів
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
-          priority: -10,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
-    },
-    runtimeChunk: "single", // Виділяємо runtime в окремий файл
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "css/[name].[contenthash].css", // Додаємо хеш для кешування
+      filename: "css/[name].bundle.css",
     }),
   ],
   devtool: "source-map",
-  resolve: {
-    extensions: [".js", ".scss"], // Додаємо автоматичне розпізнавання розширень
-  },
 };
