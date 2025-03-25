@@ -31,7 +31,7 @@ function get_image($name)
     echo get_template_directory_uri() . "/assets/images/" . $name;
 }
 
-function translate_and_output($string_key, $group = 'Main Page')
+function getPhrase($string_key, $group = 'Main Page')
 {
     global $strings_to_translate, $strings_to_translate_privacy;
 
@@ -62,48 +62,6 @@ if (function_exists('pll_register_string')) {
     }
 }
 
-function send_message_to_telegram($contact_form)
-{
-    $form_id = $contact_form->id();
-    $telegram_token = '';
-    $chat_id = '';
-    $message = '';
-
-    if ($form_id === 'formId') {
-
-        $submission = WPCF7_Submission::get_instance();
-        if ($submission) {
-            $posted_data = $submission->get_posted_data();
-            $message .= '<b>Контактные данные клиента:</b>' . PHP_EOL;
-            $message .= PHP_EOL;
-            $message .= '<b>Номер телфона:</b> ' . $posted_data['number'] . PHP_EOL;
-            $message .= PHP_EOL;
-        }
-    } elseif ($form_id === 'formId') {
-
-        $submission = WPCF7_Submission::get_instance();
-        if ($submission) {
-            $posted_data = $submission->get_posted_data();
-            $message .= '<b>Контактные данные клиента:</b>' . PHP_EOL;
-            $message .= PHP_EOL;
-            $message .= '<b>Номер телфона:</b> ' . $posted_data['number'] . PHP_EOL;
-            $message .= PHP_EOL;
-        }
-    }
-
-    if (!empty($telegram_token) && !empty($chat_id) && !empty($message)) {
-        $url = 'https://api.telegram.org/bot' . $telegram_token . '/sendMessage';
-        $params = array(
-            'chat_id' => $chat_id,
-            'text' => $message,
-            'parse_mode' => 'HTML'
-        );
-
-        $query_string = http_build_query($params);
-        $request_url = $url . '?' . $query_string;
-        wp_remote_get($request_url);
-    }
-}
 
 function svg_upload_allow($mimes)
 {
@@ -134,5 +92,27 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
     }
 
     return $data;
-} 
+}
+
+function getHomePageID()
+{
+
+	// Отримуємо ID стандартної головної сторінки
+	$default_home_id = get_option('page_on_front');
+
+	// Перевіряємо, чи встановлений Polylang і чи існують необхідні функції
+	if (function_exists('pll_current_language') && function_exists('pll_get_post')) {
+		// Визначаємо поточну мову
+		$current_lang = pll_current_language();
+
+		// Отримуємо ID перекладеної сторінки
+		$translated_home_id = pll_get_post($default_home_id, $current_lang);
+
+		// Повертаємо перекладений ID, якщо він існує, інакше стандартний
+		return $translated_home_id ? $translated_home_id : $default_home_id;
+	}
+
+	// Якщо Polylang не встановлений, повертаємо стандартний ID
+	return $default_home_id;
+}
 

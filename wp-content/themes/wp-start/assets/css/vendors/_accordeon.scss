@@ -6,7 +6,6 @@
 
   .content {
     min-height: 0;
-    height: 0;
     overflow: hidden;
     transition: height var(--_ts, 3.5s) ease;
   }

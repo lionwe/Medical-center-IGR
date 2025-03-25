@@ -1,10 +1,7 @@
-$section-gap: Clamp(2rem, 7.5rem);
-$section-offset: Clamp(1rem, 8rem);
-
 :root {
   // Gaps
-  --_section-gap: #{$section-gap};
-  --_section-offset: #{$section-offset};
+  --_section-gap: #{Clamp(2rem, 7.5rem)};
+  --_section-offset: #{Clamp(1rem, 8rem)};
 
   // Colors
   // --color-primary: #3498db;

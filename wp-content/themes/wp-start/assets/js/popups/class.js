@@ -1,4 +1,7 @@
-import { getProp } from "../events/main";
+function getProp(element, property, default_value = "") {
+  return getComputedStyle(element).getPropertyValue(property) || default_value;
+}
+
 export class Popup {
   constructor(selector = "", settings = {}) {
     if (!selector) return;

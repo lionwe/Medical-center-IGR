@@ -1,4 +1,5 @@
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -6,19 +7,17 @@
   }
 }
 
-section {
+:where(section, header, footer) {
   width: 100vw;
 
   &>.container {
-    width: calc(100vw - var(--_section-offset));
+    width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
     margin-inline: auto;
     height: 100%;
   }
 }
 
 main {
-  width: 100vw;
-  overflow: hidden;
   display: grid;
   gap: var(--_section-gap);
   grid-auto-rows: max-content;

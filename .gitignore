@@ -64,5 +64,8 @@ wp-config.php
 
 node_modules/ 
 dist/
+plugins/
+*.zip
+.DS_Store
 
 
