@@ -69,3 +69,5 @@ dist/
 .DS_Store
 
 
+
+local-xdebuginfo.php
