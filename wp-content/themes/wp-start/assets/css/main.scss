@@ -1,18 +1,13 @@
-//@import 'utils/module';
-//@import 'vendors/module';
-//@import 'themes/module';
-//@import 'pages/module';
+@use "utils/mixins";
+@use "base/variables";
+@use "base/fonts";
+@use "base/utils";
+@use "base/common";
+@use "vendors/hamburgers";
+@use "vendors/accordeon";
 
-@import "utils/mixins";
-@import "base/variables";
-@import "base/fonts";
-@import "base/utils";
-@import "base/common";
-@import "vendors/hamburgers";
-@import "vendors/accordeon";
+@use "layout/pageHeader";
 
-@import "layout/pageHeader";
+@use 'components/main';
 
-@import 'components/main';
-
-@import "layout/pageFooter";
+@use "layout/pageFooter";

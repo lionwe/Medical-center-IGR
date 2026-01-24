@@ -27,7 +27,15 @@ module.exports = {
               },
             },
           },
-          "sass-loader",
+                    {
+            loader: "sass-loader",
+            options: {
+              api: "modern",
+              sassOptions: {
+                silenceDeprecations: ["legacy-js-api"],
+              },
+            },
+          },
         ],
       },
       {
