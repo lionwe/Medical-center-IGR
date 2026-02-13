@@ -5,74 +5,112 @@ add_filter('upload_mimes', 'svg_upload_allow');
 add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 
-function enqueue_scripts_and_styles(){
+require get_template_directory() . '/includes/post-types.php';
+
+
+function enqueue_scripts_and_styles()
+{
 
     wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css'); // R
 
     wp_enqueue_script('main-js', get_template_directory_uri() . '/dist/js/main.bundle.js', array(), null, true);
     wp_localize_script('main-js', 'params', array(
-			'template_directory_url' => get_template_directory_uri(),
-			'ajax_url' => admin_url('admin-ajax.php'),
-			'page_template' => get_page_template_slug() ? get_page_template_slug() : ''
-		));
+        'template_directory_url' => get_template_directory_uri(),
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'page_template' => get_page_template_slug() ? get_page_template_slug() : ''
+    ));
 }
 
-function theme_setup(){
+function theme_setup()
+{
     show_admin_bar(false);
-    register_nav_menu('menu-header', 'Main menu');
+    register_nav_menus(array(
+        'menu-header' => 'Header',
+        'menu-footer' => 'Footer',
+    ));
 
     add_theme_support('custom-logo');
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
 }
 
-function get_image($name)
+// ============================================
+// ACF Options Page
+// ============================================
+add_action('acf/init', function () {
+    if (function_exists('acf_add_options_page')) {
+        acf_add_options_page(array(
+            'page_title' => 'Налаштування сайту',
+            'menu_title' => 'Налаштування',
+            'menu_slug' => 'site-options',
+            'capability' => 'manage_options',
+            'redirect' => false,
+            'position' => 65,
+            'icon_url' => 'dashicons-admin-generic',
+            'update_button' => __('Зберегти налаштування', 'dzherela-hels'),
+            'updated_message' => __('Налаштування оновлені', 'dzherela-hels')
+        ));
+    }
+});
+
+// ============================================
+// Helpers & SVG
+// ============================================
+
+function get_picture($args = [])
 {
-    echo get_template_directory_uri() . "/assets/images/" . $name;
-}
+    $defaults = [
+        'name' => '',
+        'src' => '',
+        'alt' => '',
+        'class' => '',
+        'lazy' => true,
+    ];
+    $args = wp_parse_args($args, $defaults);
 
-function getPhrase($string_key, $group = 'Main Page')
-{
-    global $strings_to_translate, $strings_to_translate_privacy;
+    $img_src = $args['src'];
+    $is_asset = false;
 
-    $strings = $group === 'Privacy Policy' ? $strings_to_translate_privacy : $strings_to_translate;
+    if (!empty($args['name'])) {
+        $img_src = get_template_directory_uri() . "/assets/images/" . $args['name'];
+        $is_asset = true;
+    }
 
-    if (function_exists('pll__')) {
-        echo pll__($strings[$string_key], $group);
+    if (empty($img_src))
+        return;
+
+    $alt = 'alt="' . esc_attr($args['alt']) . '"';
+    $class = $args['class'] ? 'class="' . esc_attr($args['class']) . '"' : '';
+    $loading = $args['lazy'] ? 'loading="lazy"' : '';
+
+    if ($is_asset) {
+        // Check for WebP variant for theme assets
+        $path_parts = pathinfo($args['name']);
+        $webp_name = $path_parts['filename'] . '.webp';
+        // Note: checking file existence on every load might be expensive, 
+        // relying on convention that if using get_picture with name, webp exists.
+        // For now, output generic structure.
+        $webp_src = get_template_directory_uri() . "/assets/images/" . $webp_name;
+
+        echo '<picture>';
+        // Assuming webp exists if requested via this function for assets
+        echo '<source srcset="' . esc_url($webp_src) . '" type="image/webp">';
+        echo '<img src="' . esc_url($img_src) . '" ' . $alt . ' ' . $class . ' ' . $loading . '>';
+        echo '</picture>';
     } else {
-        echo $strings[$string_key];
+        // Fallback or external URL
+        echo '<img src="' . esc_url($img_src) . '" ' . $alt . ' ' . $class . ' ' . $loading . '>';
     }
 }
-
-$strings_to_translate = array(
-    '' => '',
-);
-
-$strings_to_translate_privacy = array(
-    '' => '',
-);
-
-if (function_exists('pll_register_string')) {
-    foreach ($strings_to_translate as $string_key => $string_value) {
-        pll_register_string($string_key, $string_value, 'Main Page');
-    }
-
-    foreach ($strings_to_translate_privacy as $string_key => $string_value) {
-        pll_register_string($string_key, $string_value, 'Privacy Policy');
-    }
-}
-
 
 function svg_upload_allow($mimes)
 {
     $mimes['svg'] = 'image/svg+xml';
-
     return $mimes;
 }
 
 function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
 {
-
     if (version_compare($GLOBALS['wp_version'], '5.1.0', '>=')) {
         $dosvg = in_array($real_mime, ['image/svg', 'image/svg+xml']);
     } else {
@@ -80,9 +118,7 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
     }
 
     if ($dosvg) {
-
         if (current_user_can('manage_options')) {
-
             $data['ext'] = 'svg';
             $data['type'] = 'image/svg+xml';
         } else {
@@ -90,29 +126,57 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
             $data['type'] = false;
         }
     }
-
     return $data;
 }
 
 function getHomePageID()
 {
+    $default_home_id = get_option('page_on_front');
 
-	// Отримуємо ID стандартної головної сторінки
-	$default_home_id = get_option('page_on_front');
+    if (function_exists('pll_current_language') && function_exists('pll_get_post')) {
+        $current_lang = pll_current_language();
+        $translated_home_id = pll_get_post($default_home_id, $current_lang);
+        return $translated_home_id ? $translated_home_id : $default_home_id;
+    }
 
-	// Перевіряємо, чи встановлений Polylang і чи існують необхідні функції
-	if (function_exists('pll_current_language') && function_exists('pll_get_post')) {
-		// Визначаємо поточну мову
-		$current_lang = pll_current_language();
-
-		// Отримуємо ID перекладеної сторінки
-		$translated_home_id = pll_get_post($default_home_id, $current_lang);
-
-		// Повертаємо перекладений ID, якщо він існує, інакше стандартний
-		return $translated_home_id ? $translated_home_id : $default_home_id;
-	}
-
-	// Якщо Polylang не встановлений, повертаємо стандартний ID
-	return $default_home_id;
+    return $default_home_id;
 }
 
+// ============================================
+// GUTENBERG DISABLE (NUCLEAR OPTION)
+// ============================================
+
+// 1. Disable Editor Interface
+add_filter('use_block_editor_for_post', '__return_false', 10);
+add_filter('use_block_editor_for_post_type', '__return_false', 10);
+add_filter('use_widgets_block_editor', '__return_false');
+
+// 2. Remove Frontend Assets (Styles & Scripts)
+add_action('wp_enqueue_scripts', function () {
+    // Remove Gutenberg styles
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+    wp_dequeue_style('wc-blocks-style'); // Woocommerce blocks if present
+
+    // Remove "Global Styles" (theme.json bloat)
+    wp_dequeue_style('global-styles');
+
+    // Remove Classic Theme styles (SVG filters in body)
+    wp_dequeue_style('classic-theme-styles');
+}, 100);
+
+// 3. Remove SVG Filters from Body (Critical for clean DOM)
+remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+remove_action('in_admin_header', 'wp_global_styles_render_svg_filters');
+
+// 4. Disable Standard Gallery Styles
+add_filter('use_default_gallery_style', '__return_false');
+
+// ============================================
+// FIX: Output Buffering Zlib Conflict
+// ============================================
+remove_action('shutdown', 'wp_ob_end_flush_all', 1);
+add_action('shutdown', function () {
+    while (@ob_end_flush())
+        ;
+});

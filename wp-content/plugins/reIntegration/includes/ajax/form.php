@@ -1,7 +1,7 @@
 <?php
 
 define("allowed_tags", [
-	'a' => ['href' => [], 'title' => []],
+	'a' => ['href' => [], 'title' => [], 'target' => []], // Додав target на всяк випадок
 	'b' => [],
 	'strong' => [],
 	'em' => [],
@@ -9,6 +9,14 @@ define("allowed_tags", [
 	'i' => [],
 	'br' => [],
 	'p' => [],
+	'img' => [
+		'src' => [],
+		'alt' => [],
+		'loading' => [],
+		'class' => [],
+		'width' => [],
+		'height' => []
+	],
 	'input' => ['type' => [], 'name' => [], 'value' => [], 'placeholder' => [], 'class' => [], 'id' => [], "required" => [], "data-mask" => [], "data-min-length" => [], "data-max-length" => [], "data-error-message" => []],
 	'textarea' => ['name' => [], 'placeholder' => [], 'class' => [], 'id' => [], "required" => []],
 	'select' => ['name' => []],
@@ -19,7 +27,7 @@ define("allowed_tags", [
 	'ul' => ['class' => [], 'id' => []],
 	'ol' => ['class' => [], 'id' => []],
 	'li' => ['class' => [], 'id' => []],
-	'form' => ['action' => [], 'method' => [], 'id' => []],
+	'form' => ['action' => [], 'method' => [], 'id' => [], 'novalidate' => []], 
 	'button' => ['type' => [], 'class' => []],
 ]);
 

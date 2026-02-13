@@ -36,6 +36,18 @@ wp-config.php
 /.htaccess
 
 # All plugins
+# ---------------------------------------------------
+# 1.Ignore
+/wp-content/plugins/*
+
+# 2. Plugins
+!/wp-content/plugins/reIntegration/
+!/wp-content/plugins/reIntegrationSheets/
+!/wp-content/plugins/reIntegrationTelegram/
+# ---------------------------------------------------
+
+
+# All plugins
 #
 # Note: If you wish to whitelist plugins,
 # uncomment the next line
@@ -71,3 +83,4 @@ dist/
 
 
 local-xdebuginfo.php
+/wp-content/mu-plugins/
