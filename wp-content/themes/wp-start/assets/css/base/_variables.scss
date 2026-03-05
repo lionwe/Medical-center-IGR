@@ -5,12 +5,35 @@
   --_section-gap: #{Clamp(2rem, 7.5rem)};
   --_section-offset: #{Clamp(1rem, 8rem)};
 
-  // Colors
-  // --color-primary: #3498db;
-  // --color-secondary: #2ecc71;
-  // --color-accent: #e74c3c;
-  // --color-background: #f4f4f4;
-  // --color-text: #333333;
-  // --color-heading: #000000;
-  // --color-border: #dddddd;
+  :root {
+    // --- Сині відтінки (Blues) ---
+    --color-blue-900: #1A3B67;
+    --color-blue-900-rgb: 26, 59, 103;
+  
+    --color-blue-800: #0A3F7F;
+    --color-blue-800-rgb: 10, 63, 127;
+  
+    --color-blue-600: #265E95;
+    --color-blue-600-rgb: 38, 94, 149;
+  
+    --color-blue-300: #79B7E4;
+    --color-blue-300-rgb: 121, 183, 228;
+  
+    // --- Бежевий (Beige / Sand) ---
+    --color-beige: #E6C0A3;
+    --color-beige-rgb: 230, 192, 163;
+  
+    // --- Нейтральні (Neutrals) ---
+    --color-white: #FFFFFF;
+    --color-white-rgb: 255, 255, 255;
+  
+    --color-black: #0C0B0B;
+    --color-black-rgb: 12, 11, 11;
+  
+    --color-gray-dark: #43474B;
+    --color-gray-dark-rgb: 67, 71, 75;
+  
+    --color-gray-light: #CAD5DA;
+    --color-gray-light-rgb: 202, 213, 218;
+  }
 }
