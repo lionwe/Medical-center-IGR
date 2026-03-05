@@ -1,14 +1,12 @@
-// Google Fonts: Montserrat (400 Regular, 500 Medium, 600 SemiBold, 700 Bold)
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@use "../utils/mixins" as *;
 
 // Headings and Body text use Montserrat font family
-// Variables assumption based on the image:
-// $font-family-heading: 'Montserrat', sans-serif;
-// $font-family-base: 'Montserrat', sans-serif;
-// $fw-regular: 400;
-// $fw-medium: 500;
-// $fw-semibold: 600;
-// $fw-bold: 700;
+$font-family-heading: 'Montserrat', sans-serif;
+$font-family-base: 'Montserrat', sans-serif;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
 
 // H1: 52px size, 42px line-height (Medium)
 h1,

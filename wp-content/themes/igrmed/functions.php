@@ -1,6 +1,6 @@
 <?php
-add_action('wp_enqueue_scripts', 'enqueue_scripts_and_styles');
-add_action('after_setup_theme', 'theme_setup');
+add_action('wp_enqueue_scripts', 'igrmed_enqueue_assets');
+add_action('after_setup_theme', 'igrmed_theme_setup');
 add_filter('upload_mimes', 'svg_upload_allow');
 add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
@@ -8,26 +8,50 @@ add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 require get_template_directory() . '/includes/post-types.php';
 
 
-function enqueue_scripts_and_styles()
+function igrmed_enqueue_assets(): void
 {
+    $css_file = get_template_directory() . '/dist/css/main.bundle.css';
+    $js_file  = get_template_directory() . '/dist/js/main.bundle.js';
 
-    wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css'); // R
+    $css_ver = file_exists($css_file) ? filemtime($css_file) : null;
+    $js_ver  = file_exists($js_file)  ? filemtime($js_file)  : null;
 
-    wp_enqueue_script('main-js', get_template_directory_uri() . '/dist/js/main.bundle.js', array(), null, true);
-    wp_localize_script('main-js', 'params', array(
+    wp_enqueue_style(
+        'igrmed-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap',
+        [],
+        null
+    );
+
+    wp_enqueue_style(
+        'igrmed-main-style',
+        get_template_directory_uri() . '/dist/css/main.bundle.css',
+        ['igrmed-google-fonts'],
+        $css_ver
+    );
+
+    wp_enqueue_script(
+        'igrmed-main-js',
+        get_template_directory_uri() . '/dist/js/main.bundle.js',
+        [],
+        $js_ver,
+        true
+    );
+
+    wp_localize_script('igrmed-main-js', 'params', [
+        'ajax_url'               => admin_url('admin-ajax.php'),
+        'nonce'                  => wp_create_nonce('ajax-nonce'),
         'template_directory_url' => get_template_directory_uri(),
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'page_template' => get_page_template_slug() ? get_page_template_slug() : ''
-    ));
+    ]);
 }
 
-function theme_setup()
+function igrmed_theme_setup(): void
 {
     show_admin_bar(false);
-    register_nav_menus(array(
+    register_nav_menus([
         'menu-header' => 'Header',
         'menu-footer' => 'Footer',
-    ));
+    ]);
 
     add_theme_support('custom-logo');
     add_theme_support('title-tag');
@@ -47,8 +71,8 @@ add_action('acf/init', function () {
             'redirect' => false,
             'position' => 65,
             'icon_url' => 'dashicons-admin-generic',
-            'update_button' => __('Зберегти налаштування', 'dzherela-hels'),
-            'updated_message' => __('Налаштування оновлені', 'dzherela-hels')
+            'update_button' => __('Зберегти налаштування', 'igrmed'),
+            'updated_message' => __('Налаштування оновлені', 'igrmed')
         ));
     }
 });
@@ -177,6 +201,5 @@ add_filter('use_default_gallery_style', '__return_false');
 // ============================================
 remove_action('shutdown', 'wp_ob_end_flush_all', 1);
 add_action('shutdown', function () {
-    while (@ob_end_flush())
-        ;
+    while (@ob_end_flush());
 });

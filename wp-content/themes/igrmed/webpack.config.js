@@ -27,12 +27,12 @@ module.exports = {
               },
             },
           },
-                    {
+          {
             loader: "sass-loader",
             options: {
               api: "modern",
               sassOptions: {
-                silenceDeprecations: ["legacy-js-api"],
+                silenceDeprecations: ["legacy-js-api", "import"],
               },
             },
           },
