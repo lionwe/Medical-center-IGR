@@ -1,0 +1,23 @@
+@use "../utils/mixins" as *;
+
+:root {
+  // Gaps
+  --_section-gap: #{Clamp(2rem, 7.5rem)};
+  --_section-offset: #{Clamp(1rem, 8rem)};
+
+  // --- Сині відтінки (Blues) ---
+  --color-blue-900: #1A3B67;
+  --color-blue-800: #0A3F7F;
+  --color-blue-600: #265E95;
+  --color-blue-300: #79B7E4;
+
+  // --- Бежевий (Beige / Sand) ---
+  --color-beige: #E6C0A3;
+  --background-color: #f4f6fa;
+
+  // --- Нейтральні (Neutrals) ---
+  --color-white: #FFFFFF;
+  --color-black: #0C0B0B;
+  --color-gray-dark: #43474B;
+  --color-gray-light: #CAD5DA;
+}
