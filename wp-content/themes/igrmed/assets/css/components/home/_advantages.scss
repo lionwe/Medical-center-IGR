@@ -19,14 +19,42 @@
         mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 
-        svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        // Desktop SVG
+        &-desktop {
             display: block;
-            width: convert-to-rem(1429px);
-            height: convert-to-rem(1084px);
+
+            @include mobile {
+                display: none;
+            }
+
+            svg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: block;
+                width: convert-to-rem(1429px);
+                height: convert-to-rem(1084px);
+            }
+        }
+
+        // Mobile SVG
+        &-mobile {
+            display: none;
+
+            @include mobile {
+                display: block;
+            }
+
+            svg {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                display: block;
+                width: convert-to-rem(375px);
+                height: convert-to-rem(808px);
+            }
         }
     }
 
@@ -39,8 +67,12 @@
         margin-bottom: convert-to-rem(20px);
         text-align: center;
 
+        @include mobile {
+            text-align: left;
+        }
+
         h2 {
-            @include typography('Montserrat', $fw-medium, 32px, 1);
+            @include typography('Montserrat', $fw-medium, (22px, 32px), 1);
             color: var(--color-headings);
             display: inline-flex;
             align-items: center;
@@ -57,25 +89,60 @@
                 align-self: stretch;
             }
         }
-
-        @include mobile {
-            h2 {
-                @include typography('Montserrat', $fw-medium, 22px, 1);
-            }
-        }
     }
 
+    // Desktop list (grid)
     &__list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: convert-to-rem(12px);
         margin-bottom: convert-to-rem(20px);
+    }
+
+    // Mobile list (swiper wrapper)
+    &__list--swiper {
+        display: none !important;
+        overflow: hidden;
+        margin-bottom: convert-to-rem(14px);
 
         @include mobile {
-            grid-template-columns: 1fr;
+            display: block !important;
         }
     }
 
+    @include mobile {
+        &__list {
+            display: none;
+        }
+    }
+
+    // Swiper pagination
+    &__list-pagination {
+        display: none;
+        justify-content: center;
+        gap: convert-to-rem(3px);
+        margin-bottom: convert-to-rem(20px);
+
+        @include mobile {
+            display: flex;
+        }
+
+        .swiper-pagination-bullet {
+            width: convert-to-rem(6px);
+            height: convert-to-rem(6px);
+            border-radius: 50%;
+            background: var(--color-gray);
+            opacity: 1;
+            margin: 0 !important;
+            transition: background 0.3s;
+
+            &-active {
+                background: var(--color-primary-dark);
+            }
+        }
+    }
+
+    // Card
     &__item {
         display: flex;
         align-items: center;
@@ -87,10 +154,25 @@
         background: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(convert-to-rem(32px));
 
+        @include mobile {
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: convert-to-rem(197px);
+            padding: convert-to-rem(20px) convert-to-rem(12px);
+            gap: convert-to-rem(10px);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            background: rgba(255, 255, 255, 0.88);
+        }
+
         &-icon {
             flex-shrink: 0;
             width: convert-to-rem(67px);
             height: convert-to-rem(67px);
+
+            @include mobile {
+                margin-bottom: convert-to-rem(8px);
+            }
         }
 
         &-img {
@@ -109,6 +191,7 @@
         }
     }
 
+    // Statistics
     &__numbers {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -116,6 +199,8 @@
 
         @include mobile {
             grid-template-columns: 1fr;
+            padding-inline: convert-to-rem(40px);
+            margin-top: convert-to-rem(22px);
         }
     }
 
@@ -130,16 +215,28 @@
         background: rgba(255, 255, 255, 0.6);
         box-shadow: 0 convert-to-rem(8px) convert-to-rem(24px) 0 rgba(0, 0, 0, 0.08);
 
+        @include mobile {
+            justify-content: center;
+        }
+
         &-value {
-            @include typography('Montserrat', $fw-medium, 52px, 1);
-            color: #1A3B67;
+            @include typography('Montserrat', $fw-medium, (42px, 52px), 1);
+            color: var(--color-primary-dark);
             margin: 0;
+
+            @include mobile {
+                text-align: center;
+            }
         }
 
         &-text {
             @include typography('Montserrat', $fw-regular, 15px, 1);
-            color: #000000;
+            color: var(--color-text-main);
             margin: 0;
+
+            @include mobile {
+                text-align: center;
+            }
         }
     }
 }
