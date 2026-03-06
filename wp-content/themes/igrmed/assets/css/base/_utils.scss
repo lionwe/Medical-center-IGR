@@ -15,12 +15,17 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   min-height: 100vh;
+  background-color: var(--color-background-light);
+}
+
+body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: var(--background-color);
 }
+
 
 button {
   border: none;

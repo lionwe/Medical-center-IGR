@@ -1,9 +1,17 @@
+@use "../utils/mixins" as *;
+
 @media (prefers-reduced-motion: reduce) {
 
   *,
   *::before,
   *::after {
     transition: none !important;
+  }
+}
+
+:root {
+  @include mobile {
+    --_section-offset: 0.9375rem; // 15px on mobile
   }
 }
 
@@ -16,6 +24,7 @@
     height: 100%;
   }
 }
+
 
 main {
   display: grid;

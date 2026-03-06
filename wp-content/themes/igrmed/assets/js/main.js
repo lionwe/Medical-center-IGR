@@ -10,5 +10,10 @@ if (document.querySelector(".backdrop")) {
     console.error("Failed to load Popups module:", error);
   });
 }
+if (document.querySelector(".advantages")) {
+  import("./components/home/advantages").catch((error) => {
+    console.error("Failed to load advantages module:", error);
+  });
+}
 
 import "../css/main.scss";
