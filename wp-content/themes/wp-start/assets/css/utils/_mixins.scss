@@ -1,4 +1,6 @@
 @use "sass:math";
+@use "sass:list";
+@use "sass:meta";
 
 @mixin hover {
   cursor: pointer;
@@ -96,6 +98,66 @@
   $base: $minVal - ($slope * $minViewportWidth);
 
   @return clamp(#{$minVal}, calc(#{$base} + #{$slope * 100vw}), #{$maxVal});
+}
+
+@mixin typography($family, $weight, $size, $lh: normal, $ls: 0) {
+  font-family: $family;
+  font-weight: $weight;
+
+  // Font size: supports clamp for responsive values (min, max)
+  @if meta.type-of($size)=="list" and list.length($size)==2 {
+    font-size: Clamp(list.nth($size, 1), list.nth($size, 2));
+  }
+
+  @else {
+    font-size: convert-to-rem($size);
+  }
+
+  // Line height: supports clamp, normal keyword, or single value
+  @if meta.type-of($lh)=="list" and list.length($lh)==2 {
+    line-height: Clamp(list.nth($lh, 1), list.nth($lh, 2));
+  }
+
+  @else {
+    @if $lh ==normal or meta.type-of($lh)=="string" {
+      line-height: $lh;
+    }
+
+    @else {
+      @if math.is-unitless($lh) {
+        line-height: $lh;
+      }
+
+      @else {
+        line-height: convert-to-rem($lh);
+      }
+    }
+  }
+
+  letter-spacing: $ls;
+}
+
+
+
+
+@mixin gradient-border($radius, $border-width, $gradient) {
+  position: relative;
+  border-radius: $radius;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: $radius;
+    padding: $border-width;
+    background: $gradient;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+    z-index: 1;
+  }
 }
 
 // Usage

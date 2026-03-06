@@ -40,7 +40,7 @@ function theme_setup()
 add_action('acf/init', function () {
     if (function_exists('acf_add_options_page')) {
         acf_add_options_page(array(
-            'page_title' => 'Налаштування сайту',
+            'page_title' => 'Налаштування',
             'menu_title' => 'Налаштування',
             'menu_slug' => 'site-options',
             'capability' => 'manage_options',
@@ -51,6 +51,21 @@ add_action('acf/init', function () {
             'updated_message' => __('Налаштування оновлені', 'dzherela-hels')
         ));
     }
+});
+
+add_filter('acf/settings/save_json', function ($path) {
+    $path = get_stylesheet_directory() . '/acf-fields';
+
+    if (!file_exists($path)) {
+        wp_mkdir_p($path);
+    }
+
+    return $path;
+});
+
+add_filter('acf/settings/load_json', function ($paths) {
+    $paths[] = get_stylesheet_directory() . '/acf-fields';
+    return $paths;
 });
 
 // ============================================

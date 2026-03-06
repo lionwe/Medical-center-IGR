@@ -1,6 +1,7 @@
 @use "utils/mixins";
 @use "base/variables";
 @use "base/fonts";
+@use "base/button";
 @use "base/utils";
 @use "base/common";
 @use "vendors/hamburgers";
@@ -8,6 +9,6 @@
 
 @use "layout/pageHeader";
 
-@use 'components/main';
+@use "components/main";
 
 @use "layout/pageFooter";
