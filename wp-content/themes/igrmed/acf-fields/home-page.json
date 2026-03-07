@@ -281,6 +281,75 @@
                         "append": ""
                     }
                 ]
+            },
+            {
+                "key": "field_tab_services",
+                "label": "Наші послуги",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_services_title",
+                "label": "Заголовок секції",
+                "name": "home_services_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Текст заголовка h2 (наприклад: Наші послуги)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Наші послуги",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_services_posts",
+                "label": "Послуги для виведення",
+                "name": "home_services_posts",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "Оберіть послуги, які відображатимуться в секції",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "services"
+                ],
+                "taxonomy": [],
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "allow_in_bindings": 0,
+                "elements": [
+                    "featured_image"
+                ]
             }
         ],
         "location": [
