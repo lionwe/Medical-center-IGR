@@ -72,8 +72,8 @@
         }
 
         h2 {
-            @include typography('Montserrat', $fw-medium, (22px, 32px), 1);
-            color: var(--color-headings);
+            @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1);
+            color: var(--color-primary-dark);
             display: inline-flex;
             align-items: center;
             gap: convert-to-rem(10px);
@@ -184,7 +184,7 @@
 
         &-text {
             p {
-                @include typography('Montserrat', $fw-regular, 15px, 1);
+                @include typography($font-family-montserrat, $fw-regular, 15px, 1);
                 color: var(--color-primary-dark);
                 margin: 0;
             }
@@ -220,7 +220,7 @@
         }
 
         &-value {
-            @include typography('Montserrat', $fw-medium, (42px, 52px), 1);
+            @include typography($font-family-montserrat, $fw-medium, (42px, 52px), 1);
             color: var(--color-primary-dark);
             margin: 0;
 
@@ -230,7 +230,7 @@
         }
 
         &-text {
-            @include typography('Montserrat', $fw-regular, 15px, 1);
+            @include typography($font-family-montserrat, $fw-regular, 15px, 1);
             color: var(--color-text-main);
             margin: 0;
 

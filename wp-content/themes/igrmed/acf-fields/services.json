@@ -1,0 +1,53 @@
+[
+    {
+        "key": "group_services_card",
+        "title": "Послуга — картка",
+        "fields": [
+            {
+                "key": "field_service_icon",
+                "label": "Іконка (картка)",
+                "name": "service_icon",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Завантажте іконку для відображення на карточці послуги (SVG або PNG, рекомендований розмір 64×64 px)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "svg, png",
+                "allow_in_bindings": 0,
+                "preview_size": "thumbnail"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "services"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "side",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0,
+        "display_title": ""
+    }
+]
