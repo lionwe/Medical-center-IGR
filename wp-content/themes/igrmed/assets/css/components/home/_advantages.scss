@@ -152,7 +152,6 @@
         border-radius: convert-to-rem(18px);
         padding: convert-to-rem(40px) convert-to-rem(28px);
         background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(convert-to-rem(32px));
 
         @include mobile {
             flex-direction: column;
@@ -160,8 +159,6 @@
             min-height: convert-to-rem(197px);
             padding: convert-to-rem(20px) convert-to-rem(12px);
             gap: convert-to-rem(10px);
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
             background: rgba(255, 255, 255, 0.88);
         }
 
