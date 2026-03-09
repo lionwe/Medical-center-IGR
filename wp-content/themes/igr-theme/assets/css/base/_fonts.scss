@@ -56,6 +56,8 @@ h3,
   &.bold {
     font-weight: $fw-bold;
   }
+
+
 }
 
 // 16px (Regular/Semi bold)
@@ -75,6 +77,15 @@ h3,
 // 14px (Regular)
 .text-xs {
   @include typography($font-family-base, $fw-regular, 14px, 20px);
+
+  &.lh-100 {
+    @include typography($font-family-base, $fw-regular, 14px, 1, 0);
+  }
+
+  // 14px SemiBold, line-height 100%, letter-spacing 0
+  &.semibold {
+    @include typography($font-family-base, $fw-semibold, 14px, 1, 0);
+  }
 }
 
 // 12px (Regular)

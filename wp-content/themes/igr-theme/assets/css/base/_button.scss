@@ -1,0 +1,128 @@
+@use "../utils/mixins" as *;
+@use "./variables" as *;
+
+$_gradient-border: linear-gradient(
+  180deg,
+  var(--color-gradient-border-start) 0%,
+  var(--color-gradient-border-middle) 41.42%,
+  var(--color-gradient-border-end) 100%
+);
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: convert-to-rem(10px);
+
+  &__icon {
+    flex-shrink: 0;
+    width: convert-to-rem(22px);
+    height: convert-to-rem(22px);
+    background-color: currentColor;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  &__text {
+    position: relative;
+  }
+
+  &--primary {
+    gap: convert-to-rem(8px);
+    padding: convert-to-rem(10px) convert-to-rem(20px);
+    border-radius: convert-to-rem(100px);
+    background: transparent;
+    border: 1px solid currentColor;
+
+    .btn__text {
+      @include typography($font-family-base, $fw-regular, 14px, 18.9px);
+      color: inherit;
+      white-space: nowrap;
+    }
+
+    .btn__icon {
+      width: convert-to-rem(21px);
+      height: convert-to-rem(8px);
+    }
+  }
+
+  &--primary-dark {
+    gap: convert-to-rem(8px);
+    padding: convert-to-rem(20px);
+    border-radius: convert-to-rem(100px);
+    background: transparent;
+    border: 1px solid var(--color-primary-dark-blue);
+    color: var(--color-primary-dark-blue);
+
+    .btn__text {
+      @include typography($font-family-base, $fw-regular, 14px, 18.9px);
+      color: inherit;
+      white-space: nowrap;
+    }
+
+    .btn__icon {
+      width: convert-to-rem(21px);
+      height: convert-to-rem(8px);
+    }
+  }
+
+  &--social {
+    gap: convert-to-rem(8px);
+    padding: convert-to-rem(4px) convert-to-rem(24px);
+    border-radius: convert-to-rem(100px);
+    background: var(--color-white-10);
+    color: var(--color-white);
+    @include gradient-border(convert-to-rem(100px), convert-to-rem(1px), $_gradient-border);
+
+    .btn__text {
+      @include typography($font-family-base, $fw-regular, 14px, 18.9px);
+      color: inherit;
+      white-space: nowrap;
+    }
+
+    .btn__icon {
+      width: convert-to-rem(14px);
+      height: convert-to-rem(14px);
+    }
+
+    &.header__socials-link {
+      padding: convert-to-rem(4px);
+      width: convert-to-rem(28px);
+      height: convert-to-rem(28px);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--color-primary-dark-blue);
+      @include gradient-border(convert-to-rem(22px), convert-to-rem(1px), $_gradient-border);
+    }
+
+    &.hero__socials-link {
+      padding: convert-to-rem(4px) convert-to-rem(24px);
+      background-color: inherit;
+      color: var(--color-blue-900);
+      box-shadow:
+        0 17px 38px 0 rgba(0, 0, 0, 0.1),
+        0 69px 69px 0 rgba(0, 0, 0, 0.09),
+        0 156px 94px 0 rgba(0, 0, 0, 0.05),
+        0 277px 111px 0 rgba(0, 0, 0, 0.01),
+        0 433px 121px 0 rgba(0, 0, 0, 0);
+      @include gradient-border(convert-to-rem(100px), convert-to-rem(1px), $_gradient-border);
+
+      .btn__icon {
+        width: convert-to-rem(18px);
+        height: convert-to-rem(18px);
+      }
+    }
+  }
+}

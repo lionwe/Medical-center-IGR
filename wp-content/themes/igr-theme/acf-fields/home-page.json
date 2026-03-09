@@ -1,0 +1,167 @@
+[
+    {
+        "key": "group_home_options",
+        "title": "Home",
+        "fields": [
+            {
+                "key": "field_tab_home",
+                "label": "Home",
+                "name": "",
+                "type": "tab",
+                "placement": "top",
+                "selected": 1
+            },
+            {
+                "key": "field_home_hero_bg",
+                "label": "Фон Hero",
+                "name": "home_hero_bg",
+                "type": "image",
+                "wrapper": {
+                    "width": "50"
+                },
+                "return_format": "array",
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_home_hero_title",
+                "label": "Заголовок Hero",
+                "name": "home_hero_title",
+                "type": "text",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_home_hero_text",
+                "label": "Текст Hero",
+                "name": "home_hero_text",
+                "type": "textarea",
+                "rows": 4
+            },
+            {
+                "key": "field_home_hero_button",
+                "label": "Кнопка Hero",
+                "name": "home_hero_button",
+                "type": "link",
+                "return_format": "array"
+            },
+            {
+                "key": "field_hero_cards_group",
+                "label": "Інфо-картки під банером",
+                "name": "hero_cards",
+                "type": "group",
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_accordion_promo",
+                        "label": "Ліва картка - Акція",
+                        "type": "accordion",
+                        "open": 0,
+                        "multi_expand": 1,
+                        "endpoint": 0
+                    },
+                    {
+                        "key": "field_promo_title",
+                        "label": "Заголовок акції",
+                        "name": "promo_title",
+                        "type": "text"
+                    },
+                    {
+                        "key": "field_promo_badge",
+                        "label": "Бейдж (Знижка)",
+                        "name": "promo_badge",
+                        "type": "text"
+                    },
+                    {
+                        "key": "field_promo_subtitle",
+                        "label": "Підзаголовок",
+                        "name": "promo_subtitle",
+                        "type": "text"
+                    },
+                    {
+                        "key": "field_promo_text",
+                        "label": "Опис",
+                        "name": "promo_text",
+                        "type": "textarea",
+                        "rows": 3
+                    },
+                    {
+                        "key": "field_promo_link",
+                        "label": "Посилання (Кнопка)",
+                        "name": "promo_link",
+                        "type": "link",
+                        "return_format": "url"
+                    },
+                    {
+                        "key": "field_accordion_article",
+                        "label": "Центральна картка - Стаття",
+                        "type": "accordion",
+                        "open": 0,
+                        "multi_expand": 1,
+                        "endpoint": 0
+                    },
+                    {
+                        "key": "field_article_post",
+                        "label": "Вибір статті",
+                        "name": "article_post",
+                        "type": "post_object",
+                        "post_type": ["post"],
+                        "return_format": "object",
+                        "ui": 1
+                    },
+                    {
+                        "key": "field_article_read_time",
+                        "label": "Час читання",
+                        "name": "article_read_time",
+                        "type": "text"
+                    },
+                    {
+                        "key": "field_accordion_info",
+                        "label": "Права картка - Інфо",
+                        "type": "accordion",
+                        "open": 0,
+                        "multi_expand": 1,
+                        "endpoint": 0
+                    },
+                    {
+                        "key": "field_socials_title",
+                        "label": "Заголовок соцмереж",
+                        "name": "socials_title",
+                        "type": "text",
+                        "instructions": "Самі іконки та посилання автоматично підтягуються з налаштувань Site Options."
+                    },
+                    {
+                        "key": "field_schedule_title",
+                        "label": "Заголовок графіка",
+                        "name": "schedule_title",
+                        "type": "text"
+                    },
+                    {
+                        "key": "field_schedule_text",
+                        "label": "Графік",
+                        "name": "schedule_text",
+                        "type": "wysiwyg",
+                        "tabs": "visual",
+                        "toolbar": "basic",
+                        "media_upload": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "pages/home.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "active": true
+    }
+]

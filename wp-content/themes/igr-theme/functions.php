@@ -72,6 +72,17 @@ add_filter('acf/settings/load_json', function ($paths) {
 // Helpers & SVG
 // ============================================
 
+/**
+ * Повертає URL асету теми (svg, images тощо).
+ *
+ * @param string $path Відносний шлях від assets/, напр. 'svg/contact-arrow.svg'
+ * @return string
+ */
+function igr_asset_url(string $path): string
+{
+    return get_template_directory_uri() . '/assets/' . ltrim($path, '/');
+}
+
 function get_picture($args = [])
 {
     $defaults = [

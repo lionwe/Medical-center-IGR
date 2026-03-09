@@ -47,12 +47,6 @@ wp-config.php
 # ---------------------------------------------------
 
 
-# All plugins
-#
-# Note: If you wish to whitelist plugins,
-# uncomment the next line
-#/wp-content/plugins
-
 # All themes
 #
 # Note: If you wish to whitelist themes,
@@ -60,10 +54,7 @@ wp-config.php
 #/wp-content/themes
 
 
-
-
 .DS_Store
-
 
 
 *.zip
@@ -73,14 +64,19 @@ wp-config.php
 *.rar
 *.7z
 
+# History folders
+.history/
+history/
+History/
+**/.history/
+**/history/
+**/History/
 
-node_modules/ 
+node_modules/
 dist/
 /wp-content/plugins/akismet/
-*.zip
-.DS_Store
 
-
-
-local-xdebuginfo.php
-/wp-content/mu-plugins/
+# IDE settings
+.cursorrules
+.vscode/
+*.code-workspace

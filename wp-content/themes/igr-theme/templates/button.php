@@ -6,22 +6,22 @@
  * get_template_part('templates/button', null, [
  *   'text'      => 'Детальніше',
  *   'link'      => '#',
- *   'type'      => 'primary', // primary, secondary, social, glass
- *   'icon_name' => 'arrow',   // ACF field name without 'icon_' prefix
- *   'icon_url'  => '',        // direct URL override
- *   'target'    => '_self'
+ *   'type'      => 'primary', // primary, primary-dark, social
+ *   'icon_name'   => 'arrow',   // ACF field name without 'icon_' prefix
+ *   'icon_url'    => '',        // direct URL override
+ *   'target'      => '_self'
  * ]);
  */
 
-$text        = $args['text'] ?? '';
-$href        = $args['link'] ?? '#';
-$type        = $args['type'] ?? 'primary';
+$text        = $args['text']      ?? '';
+$href        = $args['link']      ?? '#';
+$type        = $args['type']      ?? 'primary';
 $icon_name   = $args['icon_name'] ?? null;
-$target      = $args['target'] ?? '_self';
-$class_extra = $args['class'] ?? '';
-$icon_url    = $args['icon_url'] ?? null;
+$icon_url    = $args['icon_url']  ?? null;
+$target      = $args['target']    ?? '_self';
+$class_extra = $args['class']     ?? '';
 
-// Get icon from ACF options unless direct icon_url was provided
+// Get icon from ACF options or direct URL
 if (!$icon_url && $icon_name) {
     $field_name = 'icon_' . $icon_name;
     $icon_val   = get_field($field_name, 'option');
@@ -31,7 +31,7 @@ if (!$icon_url && $icon_name) {
     } elseif (is_numeric($icon_val)) {
         $icon_url = wp_get_attachment_url((int) $icon_val);
     } else {
-        $icon_url = $icon_val;
+        $icon_url = $icon_val ?: null;
     }
 }
 
@@ -54,14 +54,23 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
         $attrs .= ' ' . esc_attr($attr) . '="' . esc_attr($value) . '"';
     }
 }
+
 ?>
 
 <<?php echo $tag; ?> class="<?php echo esc_attr($classes); ?>" <?php echo $attrs; ?>>
-    <?php if ($text && $type !== 'social' && $type !== 'glass') : ?>
+
+    <?php if ($text && $type !== 'social'): ?>
         <span class="btn__text"><?php echo esc_html($text); ?></span>
     <?php endif; ?>
 
-    <?php if ($icon_url) : ?>
-        <span class="btn__icon" style="--_icon-mask: url('<?php echo esc_url($icon_url); ?>');"></span>
+    <?php if ($icon_url): ?>
+        <?php if (!empty($args['icon_as_img'])): ?>
+        <span class="btn__icon btn__icon--img">
+            <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+        </span>
+        <?php else: ?>
+        <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+        <?php endif; ?>
     <?php endif; ?>
+
 </<?php echo $tag; ?>>
