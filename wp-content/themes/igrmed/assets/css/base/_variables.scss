@@ -17,6 +17,7 @@ $fw-bold: 700;
 
   // --- Основні кольори (Primary) ---
   --color-primary-dark: #1A3B67;
+  --color-primary-dark-blue: var(--color-primary-dark);
   --color-primary-dark-20: rgba(26, 59, 103, 0.2);
   --color-primary: #0A3F7F;
   --color-primary-light: #265E95;
@@ -37,10 +38,12 @@ $fw-bold: 700;
   --color-black: #0C0B0B;
   --color-black-012: rgba(12, 11, 11, 0.12);
   --color-gray-light: #CAD5DA;
+  --color-gray-light-1: var(--color-gray-light);
   --color-gray-light-03: rgba(202, 213, 218, 0.3);
   --color-gray-dark: #43474B;
   --color-gray: #D3D3D3;
   --color-nav-link: #170F49;
+  --color-blue-900: var(--color-primary-dark);
   --color-text-main: #000000;
   --color-headings: #000000;
   --color-text-gray: #43474B;
@@ -51,3 +54,5 @@ $fw-bold: 700;
   --color-gradient-border-middle: #818181;
   --color-gradient-border-end: #FFFFFF;
 }
+
+$font-family-base: $font-family-montserrat;

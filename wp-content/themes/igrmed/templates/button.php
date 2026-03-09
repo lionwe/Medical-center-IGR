@@ -20,6 +20,7 @@ $icon_name   = $args['icon_name'] ?? null;
 $icon_url    = $args['icon_url']  ?? null;
 $target      = $args['target']    ?? '_self';
 $class_extra = $args['class']     ?? '';
+$use_img_icon = !empty($args['icon_as_img']) && $type !== 'social';
 
 // Get icon from ACF options or direct URL
 if (!$icon_url && $icon_name) {
@@ -64,7 +65,7 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
     <?php endif; ?>
 
     <?php if ($icon_url): ?>
-        <?php if (!empty($args['icon_as_img'])): ?>
+        <?php if ($use_img_icon): ?>
         <span class="btn__icon btn__icon--img">
             <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
         </span>

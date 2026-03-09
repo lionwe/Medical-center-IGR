@@ -11,10 +11,10 @@ require get_template_directory() . '/includes/post-types.php';
 function igrmed_enqueue_assets(): void
 {
     $css_file = get_template_directory() . '/dist/css/main.bundle.css';
-    $js_file  = get_template_directory() . '/dist/js/main.bundle.js';
+    $js_file = get_template_directory() . '/dist/js/main.bundle.js';
 
     $css_ver = file_exists($css_file) ? filemtime($css_file) : null;
-    $js_ver  = file_exists($js_file)  ? filemtime($js_file)  : null;
+    $js_ver = file_exists($js_file) ? filemtime($js_file) : null;
 
     wp_enqueue_style(
         'igrmed-google-fonts',
@@ -39,8 +39,8 @@ function igrmed_enqueue_assets(): void
     );
 
     wp_localize_script('igrmed-main-js', 'params', [
-        'ajax_url'               => admin_url('admin-ajax.php'),
-        'nonce'                  => wp_create_nonce('ajax-nonce'),
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('ajax-nonce'),
         'template_directory_url' => get_template_directory_uri(),
     ]);
 }
@@ -201,5 +201,6 @@ add_filter('use_default_gallery_style', '__return_false');
 // ============================================
 remove_action('shutdown', 'wp_ob_end_flush_all', 1);
 add_action('shutdown', function () {
-    while (@ob_end_flush());
+    while (@ob_end_flush())
+        ;
 });
