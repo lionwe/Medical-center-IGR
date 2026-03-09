@@ -1,0 +1,100 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.services-section {
+    padding-top: convert-to-rem(40px);
+    padding-bottom: convert-to-rem(60px);
+    overflow: hidden;
+
+    &__header {
+        margin-bottom: convert-to-rem(24px);
+
+        h2 {
+            @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1);
+            color: var(--color-primary-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: convert-to-rem(10px);
+            margin: 0;
+
+            &::before {
+                content: '';
+                display: inline-block;
+                width: convert-to-rem(3px);
+                height: 1em;
+                background-color: var(--color-primary-dark);
+                flex-shrink: 0;
+                align-self: stretch;
+            }
+        }
+    }
+
+    // Grid: 4 columns desktop, 2 tablet, 1 mobile
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+
+        // Border-radius on corner cards only
+        // Top-left card
+        .service-card:first-child {
+            border-top-left-radius: convert-to-rem(12px);
+
+            .service-card__title {
+                max-width: convert-to-rem(156px);
+            }
+        }
+
+        // Top-right card (4th in a 4-col grid)
+        .service-card:nth-child(4) {
+            border-top-right-radius: convert-to-rem(12px);
+        }
+
+        // Bottom-left card
+        .service-card:nth-last-child(4):nth-child(4n+1),
+        .service-card:nth-last-child(3):nth-child(4n+1),
+        .service-card:nth-last-child(2):nth-child(4n+1),
+        .service-card:last-child:nth-child(4n+1) {
+            border-bottom-left-radius: convert-to-rem(12px);
+        }
+
+        // Bottom-right card
+        .service-card:last-child {
+            border-bottom-right-radius: convert-to-rem(12px);
+        }
+
+        // Last row: also give bottom-left radius to 1st card of last row
+        // Generic: last child that starts a row
+        .service-card:nth-child(4n+1):nth-last-child(-n+4) {
+            border-bottom-left-radius: convert-to-rem(12px);
+        }
+
+        @include mobile {
+            // Escape container padding so grid touches screen edges
+            margin-inline: calc(-1 * var(--_section-offset));
+            grid-template-columns: repeat(2, 1fr);
+
+            // Reset all border-radius
+            .service-card {
+                border-radius: 0;
+            }
+
+            // Re-apply corner radii for 2-col layout
+            .service-card:first-child {
+                border-top-left-radius: convert-to-rem(12px);
+            }
+
+            .service-card:nth-child(2) {
+                border-top-right-radius: convert-to-rem(12px);
+            }
+
+            .service-card:last-child {
+                border-bottom-right-radius: convert-to-rem(12px);
+            }
+
+            .service-card:nth-child(2n+1):nth-last-child(-n+2) {
+                border-bottom-left-radius: convert-to-rem(12px);
+            }
+        }
+    }
+}

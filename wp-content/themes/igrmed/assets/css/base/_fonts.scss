@@ -1,0 +1,79 @@
+@use "../utils/mixins" as *;
+
+// Headings and Body text use Montserrat font family
+$font-family-heading: 'Montserrat', sans-serif;
+$font-family-base: 'Montserrat', sans-serif;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// H1: 52px size, 42px line-height (Medium)
+h1,
+.h1 {
+  @include typography($font-family-heading,
+    $fw-medium,
+    (32px, 52px), // Адаптивний розмір шрифту
+    (38px, 42px)); // Адаптивна висота рядка
+}
+
+// H2: 32px size (Medium/Bold)
+h2,
+.h2 {
+  @include typography($font-family-heading,
+    $fw-medium,
+    (24px, 32px),
+    (30px, 40px));
+
+  &.bold {
+    font-weight: $fw-bold;
+  }
+}
+
+// H3: 24px size (Medium/Bold)
+h3,
+.h3 {
+  @include typography($font-family-heading,
+    $fw-medium,
+    (20px, 24px),
+    (26px, 32px));
+
+  &.bold {
+    font-weight: $fw-bold;
+  }
+}
+
+// --- Body Text ---
+
+// 18px (Regular/Bold)
+.text-lg {
+  @include typography($font-family-base, $fw-regular, 18px, 28px);
+
+  &.bold {
+    font-weight: $fw-bold;
+  }
+}
+
+// 16px (Regular/Semi bold)
+.text-md {
+  @include typography($font-family-base, $fw-regular, 16px, 24px);
+
+  &.semibold {
+    font-weight: $fw-semibold;
+  }
+}
+
+// 15px (Regular)
+.text-sm {
+  @include typography($font-family-base, $fw-regular, 15px, 24px);
+}
+
+// 14px (Regular)
+.text-xs {
+  @include typography($font-family-base, $fw-regular, 14px, 20px);
+}
+
+// 12px (Regular)
+.text-xxs {
+  @include typography($font-family-base, $fw-regular, 12px, 18px);
+}

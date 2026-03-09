@@ -80,3 +80,12 @@ dist/
 .cursorrules
 .vscode/
 *.code-workspace
+local-xdebuginfo.php
+/wp-content/mu-plugins/
+wp-content/uploads-webpc/plugins/webp-converter-for-media/assets/img/icon-test.png.webp
+wp-content/uploads-webpc/uploads/webp-converter-for-media-test.png.avif
+wp-content/uploads-webpc/uploads/webp-converter-for-media-test.png.webp
+.gitignore
+.gitignore
+wp-content/uploads-webpc/uploads/webp-converter-for-media-test.png2.webp
+wp-content/uploads-webpc/.htaccess
