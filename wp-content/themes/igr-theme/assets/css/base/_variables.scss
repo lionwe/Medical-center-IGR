@@ -1,0 +1,49 @@
+@use "../utils/mixins" as *;
+
+$font-family-base: "Montserrat", sans-serif;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+:root {
+  // Gaps
+  --_section-gap: #{Clamp(2rem, 7.5rem)};
+  --_section-offset: #{Clamp(0.938rem, 1.875rem)};
+
+  // --- Основні кольори (Primary) ---
+  --color-primary-dark-blue: #1A3B67;
+  --color-primary-dark-blue-20: rgba(26, 59, 103, 0.2);
+  --color-primary: #0A3F7F;
+  --color-primary-light: #265E95;
+  --color-secondary: #79B7E4;
+  --color-secondary-05: rgba(121, 183, 228, 0.5);
+  --color-blue-900: #1A3B67;
+
+  // --- Акцентні кольори (Accent) ---
+  --color-accent: #E6C0A3;
+  --color-accent-light: #FEE5D3;
+  --color-accent-light-05: rgba(254, 229, 211, 0.5);
+  --color-silver-03: rgba(255, 255, 255, 0.3);
+
+  // --- Нейтральні та Текст (Neutrals & Text) ---
+  --color-white: #FFFFFF;
+  --color-white-10: rgba(255, 255, 255, 0.1);
+  --color-white-05: rgba(255, 255, 255, 0.5);
+  --color-white-07: rgba(255, 255, 255, 0.7);
+  --color-black: #0C0B0B;
+  --color-black-012: rgba(12, 11, 11, 0.12);
+  --color-beige-1: #E6C0A3;
+  --color-gray-light-1: #CAD5DA;
+  --color-gray-light-03: rgba(202, 213, 218, 0.3);
+  --color-gray-dark: #43474B;
+  --color-nav-link: #170F49;
+  --color-gradient-border-start: #F2F2F2;
+  --color-gradient-border-middle: #818181;
+  --color-gradient-border-end: #FFFFFF;
+  --color-text-main: #000000;
+  --color-headings: #000000;
+  --color-text-gray: #43474B;
+  --color-gray-light: #CAD5DA;
+  --color-background-light: #f4f6fa;
+} 
