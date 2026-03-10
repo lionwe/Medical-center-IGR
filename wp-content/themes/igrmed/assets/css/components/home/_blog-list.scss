@@ -1,0 +1,129 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.blog-list {
+    padding-top: convert-to-rem(40px);
+    padding-bottom: convert-to-rem(40px);
+
+    @include desktop {
+        padding-top: convert-to-rem(80px);
+        padding-bottom: convert-to-rem(80px);
+    }
+
+    &__header {
+        margin-bottom: convert-to-rem(20px);
+    }
+
+    &__header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: convert-to-rem(20px);
+    }
+
+    &__title {
+        @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1);
+        color: var(--color-primary-dark);
+        display: inline-flex;
+        align-items: center;
+        gap: convert-to-rem(10px);
+        margin: 0;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: convert-to-rem(3px);
+            height: 1em;
+            background-color: var(--color-primary-dark);
+            flex-shrink: 0;
+            align-self: stretch;
+        }
+    }
+
+    &__more-desktop {
+        @include mobile {
+            display: none;
+        }
+    }
+
+    &__controls {
+        display: none;
+
+        @include mobile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: convert-to-rem(15px);
+            margin-top: convert-to-rem(20px);
+            margin-bottom: convert-to-rem(20px);
+        }
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: convert-to-rem(8px);
+        flex-shrink: 0;
+        min-width: convert-to-rem(128px); // 60px + 60px + 8px gap for two active buttons
+    }
+
+    &__grid {
+        display: none;
+
+        @media (min-width: 576px) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: convert-to-rem(20px);
+        }
+
+        @media (min-width: 992px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include desktop {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    &__slider {
+        display: none !important;
+
+        @include mobile {
+            display: block !important;
+        }
+
+        .swiper-slide {
+            height: auto;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    // Swiper pagination
+    &__pagination {
+        display: none;
+        justify-content: center;
+        gap: convert-to-rem(3px);
+        margin-top: convert-to-rem(20px);
+        margin-bottom: convert-to-rem(20px);
+
+        @include mobile {
+            display: flex;
+        }
+
+        .swiper-pagination-bullet {
+            width: convert-to-rem(6px);
+            height: convert-to-rem(6px);
+            border-radius: 50%;
+            background: var(--color-gray);
+            opacity: 1;
+            margin: 0 !important;
+            transition: background 0.3s;
+
+            &-active {
+                background: var(--color-primary-dark);
+            }
+        }
+    }
+}

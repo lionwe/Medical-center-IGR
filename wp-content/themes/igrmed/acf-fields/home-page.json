@@ -953,7 +953,7 @@
                     "id": ""
                 },
                 "post_type": [
-                    "post"
+                    "blog"
                 ],
                 "taxonomy": [],
                 "filters": [
