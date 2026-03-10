@@ -159,4 +159,57 @@ $_gradient-border: linear-gradient(180deg,
       cursor: default;
     }
   }
+
+  &--secondary {
+    gap: convert-to-rem(10px);
+    padding: convert-to-rem(10px) convert-to-rem(14px);
+    border-radius: convert-to-rem(100px);
+    background: transparent;
+    border: convert-to-rem(0.5px) solid var(--color-primary-dark);
+    color: var(--color-primary-dark);
+
+    .btn__text {
+      @include typography($font-family-base, $fw-regular, 14px, 1);
+      color: inherit;
+      white-space: nowrap;
+    }
+  }
+
+  &--readmore-v1 {
+    gap: convert-to-rem(10px);
+    padding: convert-to-rem(10px) convert-to-rem(14px);
+    border-radius: convert-to-rem(100px);
+    background: var(--color-primary-dark);
+    border: convert-to-rem(0.5px) solid rgba(0, 0, 0, 0.5);
+    color: var(--color-white);
+    width: 100%;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    .btn__text {
+      @include typography($font-family-base, $fw-regular, 14px, 1);
+      color: inherit;
+      white-space: nowrap;
+    }
+
+    .btn__icon-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: convert-to-rem(50px);
+      height: convert-to-rem(24px);
+      border-radius: convert-to-rem(100px);
+      background: var(--color-white);
+      border: convert-to-rem(0.5px) solid var(--color-black);
+      color: var(--color-black);
+
+      .btn__icon {
+        width: convert-to-rem(14px);
+        height: convert-to-rem(14px);
+        background-color: currentColor;
+      }
+    }
+  }
 }

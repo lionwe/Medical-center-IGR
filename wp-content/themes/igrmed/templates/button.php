@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Button Component
  *
@@ -65,12 +66,20 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
     <?php endif; ?>
 
     <?php if ($icon_url): ?>
-        <?php if ($use_img_icon): ?>
-        <span class="btn__icon btn__icon--img">
-            <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
-        </span>
-        <?php else: ?>
-        <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+        <?php if ($type === 'readmore-v1'): ?>
+            <span class="btn__icon-container">
+            <?php endif; ?>
+
+            <?php if ($use_img_icon): ?>
+                <span class="btn__icon btn__icon--img">
+                    <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+                </span>
+            <?php else: ?>
+                <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+            <?php endif; ?>
+
+            <?php if ($type === 'readmore-v1'): ?>
+            </span>
         <?php endif; ?>
     <?php endif; ?>
 
