@@ -2,11 +2,7 @@ import "./utils";
 import "./components/home/main";
 import "./mobile-menu";
 
-if (document.querySelector(".swiper")) {
-  import("./swipers/main").catch((error) => {
-    console.error("Failed to load Swiper module:", error);
-  });
-}
+import "./swipers/main";
 if (document.querySelector(".backdrop")) {
   import("./popups/main").catch((error) => {
     console.error("Failed to load Popups module:", error);

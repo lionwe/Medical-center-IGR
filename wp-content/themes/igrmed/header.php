@@ -245,7 +245,8 @@
                                         <span
                                             class="header__cta-text"><?php esc_html_e("Зв'язатись з нами", 'igr-theme'); ?></span>
                                         <span class="header__cta-icon">
-                                            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow-circle.svg'); ?>"
+                                            <span class="header__cta-icon-circle" aria-hidden="true"></span>
+                                            <img class="header__cta-icon-arrow" src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg'); ?>"
                                                 alt="">
                                         </span>
                                     </a>
@@ -306,7 +307,8 @@
                     <a href="#contact" class="header__cta header__mobile-menu-cta">
                         <span class="header__cta-text"><?php esc_html_e("Зв'язатись з нами", 'igr-theme'); ?></span>
                         <span class="header__cta-icon">
-                            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow-circle.svg'); ?>"
+                            <span class="header__cta-icon-circle" aria-hidden="true"></span>
+                            <img class="header__cta-icon-arrow" src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg'); ?>"
                                 alt="">
                         </span>
                     </a>

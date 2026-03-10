@@ -21,3 +21,9 @@ if (document.querySelector(".blog-list")) {
         console.error("Failed to load blog-list swiper:", error);
     });
 }
+
+if (document.querySelector(".js-hero-swiper")) {
+    import("./hero-swiper").catch((error) => {
+        console.error("Failed to load hero swiper:", error);
+    });
+}
