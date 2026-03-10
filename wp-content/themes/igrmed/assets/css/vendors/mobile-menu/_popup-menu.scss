@@ -1,0 +1,204 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.header {
+  &__mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    padding: convert-to-rem(24px);
+    background:
+    radial-gradient(
+      80% 60% at 110% -10%,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(146, 186, 226, 0.2) 24%,
+      rgba(40, 92, 150, 0.1) 44%,
+      rgba(10, 63, 127, 0) 72%
+    ),
+    radial-gradient(
+      75% 60% at -10% 110%,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(130, 172, 216, 0.16) 23%,
+      rgba(28, 76, 132, 0.08) 42%,
+      rgba(13, 20, 30, 0) 72%
+    ),
+    linear-gradient(
+      to bottom right,
+      rgba(13, 20, 30, 1) 0%,
+      rgba(10, 63, 127, 1) 100%
+    );
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: none;
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    @include mobile {
+      display: none;
+
+      &.is-open {
+        display: flex;
+      }
+    }
+  }
+}
+
+.header__mobile-menu {
+  &-content {
+    width: 95%;
+    padding-top: convert-to-rem(53px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: convert-to-rem(53px);
+    margin-top: auto;
+  }
+
+  &-cta {
+    order: 2;
+    margin: 0;
+    color: var(--color-white) !important;
+  }
+
+  &-info {
+    order: 3;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(14px);
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      width: Clamp(180px, 225px);
+      max-width: 100%;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.35);
+      margin: convert-to-rem(10px) auto 0;
+    }
+  }
+
+  &-info-row {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(8px);
+  }
+
+  &-info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: convert-to-rem(24px);
+    height: convert-to-rem(24px);
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--color-gray-light-03);
+    @include gradient-border(
+      convert-to-rem(24px),
+      convert-to-rem(1px),
+      linear-gradient(180deg, #f2f2f2 0%, #818181 41.42%, #ffffff 100%)
+    );
+  }
+
+  &-info-icon-image {
+    position: relative;
+    z-index: 2;
+    width: convert-to-rem(13px);
+    height: convert-to-rem(13px);
+    object-fit: contain;
+    display: block;
+  }
+
+  &-info-text {
+    @include typography($font-family-montserrat, $fw-regular, 12px, 20px);
+    color: var(--color-white);
+    text-align: left;
+  }
+
+  &-info-phones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: convert-to-rem(8px);
+    flex-wrap: wrap;
+  }
+
+  &-info-dot {
+    color: var(--color-white);
+    line-height: 1;
+  }
+
+  &-info-link {
+    text-decoration: none;
+  }
+
+  &-socials {
+    order: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: convert-to-rem(5px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &-socials-item {
+    display: inline-flex;
+  }
+
+  &-socials .header__socials-link {
+    width: convert-to-rem(46px);
+    height: convert-to-rem(46px);
+    padding: 0;
+    color: var(--color-white);
+  }
+
+  &-socials .header__socials-link .btn__icon {
+    width: convert-to-rem(20px);
+    height: convert-to-rem(20px);
+  }
+
+  .nav-list {
+    order: 1;
+    margin: 0;
+    padding: 0;
+    width: 130px;
+    flex-direction: column;
+    align-items: center;
+    gap: convert-to-rem(18px);
+
+    .menu-item {
+      width: 100%;
+      padding-right: 0;
+      padding-bottom: 0;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      text-align: center;
+
+      &:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      }
+    }
+
+    a {
+      display: block;
+      padding: 0 0 convert-to-rem(20px) 0;
+      text-align: center;
+      color: var(--color-white);
+    }
+  }
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
+}

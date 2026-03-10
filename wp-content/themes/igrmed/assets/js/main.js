@@ -1,5 +1,6 @@
 import "./utils";
 import "./components/home/main";
+import "./mobile-menu";
 
 if (document.querySelector(".swiper")) {
   import("./swipers/main").catch((error) => {

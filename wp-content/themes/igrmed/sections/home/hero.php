@@ -15,23 +15,6 @@ if (is_array($hero_button)) {
 	$hero_button_target = $hero_button['target'] ?? '_self';
 }
 
-$resolve_media_url = static function ($value): string {
-	if (is_array($value) && !empty($value['url'])) {
-		return (string) $value['url'];
-	}
-
-	if (is_numeric($value)) {
-		$url = wp_get_attachment_url((int) $value);
-		return $url ? (string) $url : '';
-	}
-
-	if (is_string($value)) {
-		return $value;
-	}
-
-	return '';
-};
-
 $promo_title = '';
 $promo_badge = '';
 $promo_subtitle = '';
@@ -76,18 +59,20 @@ $social_fields = [
 	'instagram' => ['link' => 'link_instagram', 'icon' => 'icon_instagram', 'label' => 'Instagram'],
 	'facebook' => ['link' => 'link_facebook', 'icon' => 'icon_facebook', 'label' => 'Facebook'],
 	'tiktok' => ['link' => 'link_tiktok', 'icon' => 'icon_tiktok', 'label' => 'TikTok'],
+	'telegram' => ['link' => 'link_telegram', 'icon' => 'icon_telegram', 'label' => 'Telegram'],
 ];
 
 foreach ($social_fields as $social => $config) {
+	$icon_value = get_field($config['icon'], 'option');
+	$icon_url = is_array($icon_value) && !empty($icon_value['url']) ? $icon_value['url'] : (is_numeric($icon_value) ? wp_get_attachment_url((int) $icon_value) : ($icon_value ?: ''));
 	$link = (string) get_field($config['link'], 'option');
-	if ($link === '') {
+
+	if ($link === '' && $icon_url === '') {
 		continue;
 	}
 
-	$icon_value = get_field($config['icon'], 'option');
-	$icon_url = $resolve_media_url($icon_value);
 	$social_items[] = [
-		'link' => $link,
+		'link' => $link !== '' ? $link : '#',
 		'icon_url' => $icon_url,
 		'label' => $config['label'],
 	];
