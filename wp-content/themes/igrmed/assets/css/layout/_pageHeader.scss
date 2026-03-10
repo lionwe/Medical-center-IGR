@@ -443,6 +443,120 @@ $_header-cta-gradient: linear-gradient(
       display: none;
     }
   }
+
+  // --- Mobile icon buttons (44×44) ---
+  &__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: convert-to-rem(44px);
+    height: convert-to-rem(44px);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__search-btn-bar {
+    @extend .header__icon-btn;
+    display: none;
+    background: rgba(214, 214, 214, 0.3);
+    color: var(--color-primary-dark-blue);
+    z-index: 1001;
+    @include gradient-border(50%, convert-to-rem(1px), linear-gradient(180deg, #F2F2F2 0%, #818181 41.42%, #FFFFFF 100%));
+
+    @include mobile {
+      display: flex;
+    }
+  }
+
+  &__search-btn-icon {
+    width: convert-to-rem(22px);
+    height: convert-to-rem(22px);
+    display: block;
+  }
+
+  &__burger {
+    @extend .header__icon-btn;
+    display: none;
+    background-color: var(--color-primary-dark-blue);
+    z-index: 1001;
+    @include gradient-border(50%, convert-to-rem(1px), linear-gradient(180deg, #F2F2F2 0%, #818181 41.42%, #FFFFFF 100%));
+
+    @include mobile {
+      display: flex;
+    }
+  }
+
+  &__burger-icon {
+    display: block;
+    width: convert-to-rem(25px);
+    height: convert-to-rem(13px);
+    color: var(--color-white);
+  }
+
+  &__burger-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &__burger-line {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease;
+  }
+
+  &__burger.is-active &__burger-line {
+    &--1 {
+      transform: translateY(6px) rotate(45deg);
+    }
+    &--2 {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    &--3 {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    &--4 {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+
+  &__mobile-bar {
+    display: contents;
+
+    @include mobile {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: convert-to-rem(12px);
+      margin-left: auto;
+    }
+  }
+
+  &__lang--bar {
+    display: none;
+
+    @include mobile {
+      display: inline-flex;
+    }
+  }
+
+  &__mobile-spacer {
+    display: none;
+    flex: 1;
+    min-width: 0;
+
+    @include mobile {
+      display: block;
+    }
+  }
 }
 
 .nav-list {
