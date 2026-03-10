@@ -111,12 +111,6 @@
             color: var(--color-primary-dark);
         }
 
-        .hero__card-title {
-            @include typography($font-family-montserrat, $fw-medium, 32px, 1, 0);
-            text-align: center;
-            text-transform: uppercase;
-        }
-
         .hero__card-badge {
             @include typography($font-family-montserrat, $fw-medium, 42px, 1, 0);
             text-align: center;
@@ -150,7 +144,6 @@
         border: 1px solid var(--color-white-05);
         border-radius: convert-to-rem(22px);
 
-        .hero__card-title,
         .hero__card-subtitle {
             @include typography($font-family-montserrat, $fw-semibold, 14px, 14px, 0.04em);
             font-style: normal;
@@ -171,7 +164,10 @@
     }
 
     &__card-title {
-        margin-bottom: convert-to-rem(10px);
+        @include typography($font-family-montserrat, $fw-semibold, 14px, 1, 0.04em);
+        margin: 0 0 convert-to-rem(10px);
+        font-style: normal;
+        color: var(--color-primary-dark);
     }
 
 
