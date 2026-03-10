@@ -1,12 +1,10 @@
 @use "../utils/mixins" as *;
 @use "./variables" as *;
 
-$_gradient-border: linear-gradient(
-  180deg,
-  var(--color-gradient-border-start) 0%,
-  var(--color-gradient-border-middle) 41.42%,
-  var(--color-gradient-border-end) 100%
-);
+$_gradient-border: linear-gradient(180deg,
+    var(--color-gradient-border-start) 0%,
+    var(--color-gradient-border-middle) 41.42%,
+    var(--color-gradient-border-end) 100%);
 
 .btn {
   display: inline-flex;
@@ -123,6 +121,42 @@ $_gradient-border: linear-gradient(
         width: convert-to-rem(18px);
         height: convert-to-rem(18px);
       }
+    }
+  }
+
+  &--carousel {
+    gap: convert-to-rem(10px);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    // Active state (default Swiper nav state unless disabled)
+    width: convert-to-rem(60px);
+    height: convert-to-rem(40px);
+    border-radius: convert-to-rem(100px);
+    border: convert-to-rem(0.5px) solid var(--color-primary-dark);
+    padding: convert-to-rem(10px) convert-to-rem(14px);
+    background: var(--color-primary-dark);
+    box-shadow: 0 convert-to-rem(4px) convert-to-rem(4px) 0 rgba(0, 0, 0, 0.25);
+    color: var(--color-white); // Icon gets white via currentColor
+
+    .btn__icon {
+      width: convert-to-rem(20px);
+      height: convert-to-rem(20px);
+      background-color: currentColor;
+    }
+
+    // Inactive state (disabled)
+    &.swiper-button-disabled {
+      width: convert-to-rem(48px);
+      height: convert-to-rem(30px);
+      background: transparent;
+      box-shadow: none;
+      color: var(--color-primary-dark); // Icon becomes dark blue
+      opacity: 1; // Preserve normal opacity rather than swiper's default dim
+      pointer-events: none; // Disable click
+      cursor: default;
     }
   }
 }

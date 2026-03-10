@@ -5,7 +5,7 @@
         "fields": [
             {
                 "key": "field_tab_home",
-                "label": "Home",
+                "label": "Hero",
                 "name": "",
                 "aria-label": "",
                 "type": "tab",
@@ -181,31 +181,11 @@
                         "append": ""
                     },
                     {
-                        "key": "field_promo_subtitle",
-                        "label": "Підзаголовок",
-                        "name": "promo_subtitle",
-                        "aria-label": "",
-                        "type": "text",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "maxlength": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": ""
-                    },
-                    {
                         "key": "field_promo_text",
-                        "label": "Опис",
+                        "label": "Підзаголовок та опис",
                         "name": "promo_text",
                         "aria-label": "",
-                        "type": "textarea",
+                        "type": "wysiwyg",
                         "instructions": "",
                         "required": 0,
                         "conditional_logic": 0,
@@ -214,11 +194,12 @@
                             "class": "",
                             "id": ""
                         },
-                        "rows": 3,
                         "default_value": "",
-                        "new_lines": "",
-                        "maxlength": "",
-                        "placeholder": ""
+                        "allow_in_bindings": 0,
+                        "tabs": "all",
+                        "toolbar": "basic",
+                        "media_upload": 0,
+                        "delay": 0
                     },
                     {
                         "key": "field_promo_link",
@@ -269,7 +250,7 @@
                             "id": ""
                         },
                         "post_type": [
-                            "post"
+                            "blog"
                         ],
                         "return_format": "object",
                         "ui": 1,
@@ -277,26 +258,6 @@
                         "allow_null": 0,
                         "multiple": 0,
                         "bidirectional_target": []
-                    },
-                    {
-                        "key": "field_article_read_time",
-                        "label": "Час читання",
-                        "name": "article_read_time",
-                        "aria-label": "",
-                        "type": "text",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "maxlength": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": ""
                     },
                     {
                         "key": "field_accordion_info",
@@ -843,6 +804,169 @@
                 "rows": 4,
                 "placeholder": "",
                 "new_lines": "wpautop"
+            },
+            {
+                "key": "field_tab_licenses",
+                "label": "Ліцензії та сертифікати",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_licenses_title",
+                "label": "Заголовок секції H2",
+                "name": "licenses_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ліцензії та сертифікати",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_licenses_bg",
+                "label": "Фон секції (Ліцензії)",
+                "name": "licenses_bg",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Формати: webp, jpg, png. Рекомендовано webp.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "webp, jpg, jpeg, png",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_licenses_gallery",
+                "label": "Галерея сертифікатів",
+                "name": "licenses_gallery",
+                "aria-label": "",
+                "type": "gallery",
+                "instructions": "Бажано завантажувати фото у форматі WebP для найкращої швидкості роботи сайту.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min": "",
+                "max": "",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "webp, jpg, jpeg, png",
+                "insert": "append",
+                "preview_size": "medium",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_tab_blog",
+                "label": "Блог",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_blog_title",
+                "label": "Заголовок секції H2",
+                "name": "blog_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Блог",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_blog_posts",
+                "label": "Картки блогу для виведення",
+                "name": "blog_posts",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "Оберіть статті блогу, які відображатимуться в секції",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "post"
+                ],
+                "taxonomy": [],
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "allow_in_bindings": 0,
+                "elements": [
+                    "featured_image"
+                ]
             }
         ],
         "location": [
