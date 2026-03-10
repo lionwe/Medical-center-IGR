@@ -90,12 +90,12 @@
                 <nav class="header__nav" aria-label="<?php esc_attr_e('Main navigation', 'igr-theme'); ?>">
                     <div class="header__logo">
                         <?php if (has_custom_logo()): ?>
-                        <?php the_custom_logo(); ?>
+                            <?php the_custom_logo(); ?>
                         <?php else: ?>
-                        <a href="<?php echo esc_url(home_url('/')); ?>"
-                            aria-label="<?php esc_attr_e('Homepage', 'igr-theme'); ?>">
-                            <span class="header__logo-text"><?php bloginfo('name'); ?></span>
-                        </a>
+                            <a href="<?php echo esc_url(home_url('/')); ?>"
+                                aria-label="<?php esc_attr_e('Homepage', 'igr-theme'); ?>">
+                                <span class="header__logo-text"><?php bloginfo('name'); ?></span>
+                            </a>
                         <?php endif; ?>
                     </div>
                     <div class="header__mobile-bar">
@@ -105,10 +105,10 @@
                                     <div class="header__top-container">
                                         <div class="header__top-info">
                                             <?php if ($header_address !== ''): ?>
-                                            <div class="header__address-block">
-                                                <?php if ($header_address_icon_url !== ''): ?>
-                                                <span class="header__info-icon">
-                                                    <?php
+                                                <div class="header__address-block">
+                                                    <?php if ($header_address_icon_url !== ''): ?>
+                                                        <span class="header__info-icon">
+                                                            <?php
                                                             get_picture([
                                                                 'src' => $header_address_icon_url,
                                                                 'alt' => $header_address_icon_alt,
@@ -116,19 +116,19 @@
                                                                 'lazy' => false,
                                                             ]);
                                                             ?>
-                                                </span>
-                                                <?php endif; ?>
+                                                        </span>
+                                                    <?php endif; ?>
 
-                                                <span
-                                                    class="header__address"><?php echo esc_html($header_address); ?></span>
-                                            </div>
+                                                    <span
+                                                        class="header__address"><?php echo esc_html($header_address); ?></span>
+                                                </div>
                                             <?php endif; ?>
 
                                             <?php if ($header_phone_1_url !== '' || $header_phone_2_url !== ''): ?>
-                                            <div class="header__phones-block">
-                                                <?php if ($header_phone_icon_url !== ''): ?>
-                                                <span class="header__info-icon">
-                                                    <?php
+                                                <div class="header__phones-block">
+                                                    <?php if ($header_phone_icon_url !== ''): ?>
+                                                        <span class="header__info-icon">
+                                                            <?php
                                                             get_picture([
                                                                 'src' => $header_phone_icon_url,
                                                                 'alt' => $header_phone_icon_alt,
@@ -136,38 +136,38 @@
                                                                 'lazy' => false,
                                                             ]);
                                                             ?>
-                                                </span>
-                                                <?php endif; ?>
-
-                                                <ul class="header__phones-list">
-                                                    <?php if ($header_phone_1_url !== ''): ?>
-                                                    <li class="header__phones-item">
-                                                        <a class="header__phone"
-                                                            href="<?php echo esc_url($header_phone_1_url); ?>"
-                                                            target="<?php echo esc_attr($header_phone_1_target); ?>">
-                                                            <?php echo esc_html($header_phone_1_label !== '' ? $header_phone_1_label : $header_phone_1_url); ?>
-                                                        </a>
-                                                    </li>
+                                                        </span>
                                                     <?php endif; ?>
 
-                                                    <?php if ($header_phone_2_url !== ''): ?>
-                                                    <li class="header__phones-item">
-                                                        <a class="header__phone"
-                                                            href="<?php echo esc_url($header_phone_2_url); ?>"
-                                                            target="<?php echo esc_attr($header_phone_2_target); ?>">
-                                                            <?php echo esc_html($header_phone_2_label !== '' ? $header_phone_2_label : $header_phone_2_url); ?>
-                                                        </a>
-                                                    </li>
-                                                    <?php endif; ?>
-                                                </ul>
-                                            </div>
+                                                    <ul class="header__phones-list">
+                                                        <?php if ($header_phone_1_url !== ''): ?>
+                                                            <li class="header__phones-item">
+                                                                <a class="header__phone"
+                                                                    href="<?php echo esc_url($header_phone_1_url); ?>"
+                                                                    target="<?php echo esc_attr($header_phone_1_target); ?>">
+                                                                    <?php echo esc_html($header_phone_1_label !== '' ? $header_phone_1_label : $header_phone_1_url); ?>
+                                                                </a>
+                                                            </li>
+                                                        <?php endif; ?>
+
+                                                        <?php if ($header_phone_2_url !== ''): ?>
+                                                            <li class="header__phones-item">
+                                                                <a class="header__phone"
+                                                                    href="<?php echo esc_url($header_phone_2_url); ?>"
+                                                                    target="<?php echo esc_attr($header_phone_2_target); ?>">
+                                                                    <?php echo esc_html($header_phone_2_label !== '' ? $header_phone_2_label : $header_phone_2_url); ?>
+                                                                </a>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    </ul>
+                                                </div>
                                             <?php endif; ?>
 
                                             <?php if ($header_schedule !== ''): ?>
-                                            <div class="header__schedule-block">
-                                                <?php if ($header_clock_icon_url !== ''): ?>
-                                                <span class="header__info-icon">
-                                                    <?php
+                                                <div class="header__schedule-block">
+                                                    <?php if ($header_clock_icon_url !== ''): ?>
+                                                        <span class="header__info-icon">
+                                                            <?php
                                                             get_picture([
                                                                 'src' => $header_clock_icon_url,
                                                                 'alt' => $header_clock_icon_alt,
@@ -175,21 +175,21 @@
                                                                 'lazy' => false,
                                                             ]);
                                                             ?>
-                                                </span>
-                                                <?php endif; ?>
+                                                        </span>
+                                                    <?php endif; ?>
 
-                                                <span
-                                                    class="header__schedule"><?php echo wp_kses_post($header_schedule); ?></span>
-                                            </div>
+                                                    <span
+                                                        class="header__schedule"><?php echo wp_kses_post($header_schedule); ?></span>
+                                                </div>
                                             <?php endif; ?>
                                         </div>
 
                                         <?php if (!empty($header_social_items)): ?>
-                                        <ul class="header__socials"
-                                            aria-label="<?php esc_attr_e('Social links', 'igr-theme'); ?>">
-                                            <?php foreach ($header_social_items as $item): ?>
-                                            <li class="header__socials-item">
-                                                <?php
+                                            <ul class="header__socials"
+                                                aria-label="<?php esc_attr_e('Social links', 'igr-theme'); ?>">
+                                                <?php foreach ($header_social_items as $item): ?>
+                                                    <li class="header__socials-item">
+                                                        <?php
                                                         get_template_part('templates/button', null, [
                                                             'link' => $item['link'],
                                                             'type' => 'social',
@@ -202,9 +202,9 @@
                                                             ],
                                                         ]);
                                                         ?>
-                                            </li>
-                                            <?php endforeach; ?>
-                                        </ul>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@
                                                 placeholder="<?php esc_attr_e('Пошук', 'igr-theme'); ?>">
                                             <span class="header__search-btn" aria-hidden="true">
                                                 <?php if ($header_search_icon_url !== ''): ?>
-                                                <?php
+                                                    <?php
                                                     get_picture([
                                                         'src' => $header_search_icon_url,
                                                         'alt' => '',
@@ -311,10 +311,10 @@
                 </a>
                 <div class="header__mobile-menu-info">
                     <?php if ($header_address !== ''): ?>
-                    <div class="header__mobile-menu-info-row">
-                        <?php if ($header_address_icon_url !== ''): ?>
-                        <span class="header__mobile-menu-info-icon">
-                            <?php
+                        <div class="header__mobile-menu-info-row">
+                            <?php if ($header_address_icon_url !== ''): ?>
+                                <span class="header__mobile-menu-info-icon">
+                                    <?php
                                     get_picture([
                                         'src' => $header_address_icon_url,
                                         'alt' => $header_address_icon_alt,
@@ -322,17 +322,17 @@
                                         'lazy' => false,
                                     ]);
                                     ?>
-                        </span>
-                        <?php endif; ?>
-                        <span class="header__mobile-menu-info-text"><?php echo esc_html($header_address); ?></span>
-                    </div>
+                                </span>
+                            <?php endif; ?>
+                            <span class="header__mobile-menu-info-text"><?php echo esc_html($header_address); ?></span>
+                        </div>
                     <?php endif; ?>
 
                     <?php if ($header_phone_1_url !== '' || $header_phone_2_url !== ''): ?>
-                    <div class="header__mobile-menu-info-row">
-                        <?php if ($header_phone_icon_url !== ''): ?>
-                        <span class="header__mobile-menu-info-icon">
-                            <?php
+                        <div class="header__mobile-menu-info-row">
+                            <?php if ($header_phone_icon_url !== ''): ?>
+                                <span class="header__mobile-menu-info-icon">
+                                    <?php
                                     get_picture([
                                         'src' => $header_phone_icon_url,
                                         'alt' => $header_phone_icon_alt,
@@ -340,34 +340,34 @@
                                         'lazy' => false,
                                     ]);
                                     ?>
-                        </span>
-                        <?php endif; ?>
-                        <div class="header__mobile-menu-info-phones">
-                            <?php if ($header_phone_1_url !== ''): ?>
-                            <span class="header__mobile-menu-info-dot" aria-hidden="true">·</span>
-                            <a class="header__mobile-menu-info-text header__mobile-menu-info-link"
-                                href="<?php echo esc_url($header_phone_1_url); ?>"
-                                target="<?php echo esc_attr($header_phone_1_target); ?>">
-                                <?php echo esc_html($header_phone_1_label !== '' ? $header_phone_1_label : $header_phone_1_url); ?>
-                            </a>
+                                </span>
                             <?php endif; ?>
-                            <?php if ($header_phone_2_url !== ''): ?>
-                            <span class="header__mobile-menu-info-dot" aria-hidden="true">·</span>
-                            <a class="header__mobile-menu-info-text header__mobile-menu-info-link"
-                                href="<?php echo esc_url($header_phone_2_url); ?>"
-                                target="<?php echo esc_attr($header_phone_2_target); ?>">
-                                <?php echo esc_html($header_phone_2_label !== '' ? $header_phone_2_label : $header_phone_2_url); ?>
-                            </a>
-                            <?php endif; ?>
+                            <div class="header__mobile-menu-info-phones">
+                                <?php if ($header_phone_1_url !== ''): ?>
+                                    <span class="header__mobile-menu-info-dot" aria-hidden="true">·</span>
+                                    <a class="header__mobile-menu-info-text header__mobile-menu-info-link"
+                                        href="<?php echo esc_url($header_phone_1_url); ?>"
+                                        target="<?php echo esc_attr($header_phone_1_target); ?>">
+                                        <?php echo esc_html($header_phone_1_label !== '' ? $header_phone_1_label : $header_phone_1_url); ?>
+                                    </a>
+                                <?php endif; ?>
+                                <?php if ($header_phone_2_url !== ''): ?>
+                                    <span class="header__mobile-menu-info-dot" aria-hidden="true">·</span>
+                                    <a class="header__mobile-menu-info-text header__mobile-menu-info-link"
+                                        href="<?php echo esc_url($header_phone_2_url); ?>"
+                                        target="<?php echo esc_attr($header_phone_2_target); ?>">
+                                        <?php echo esc_html($header_phone_2_label !== '' ? $header_phone_2_label : $header_phone_2_url); ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
                     <?php endif; ?>
 
                     <?php if ($header_schedule !== ''): ?>
-                    <div class="header__mobile-menu-info-row">
-                        <?php if ($header_clock_icon_url !== ''): ?>
-                        <span class="header__mobile-menu-info-icon">
-                            <?php
+                        <div class="header__mobile-menu-info-row">
+                            <?php if ($header_clock_icon_url !== ''): ?>
+                                <span class="header__mobile-menu-info-icon">
+                                    <?php
                                     get_picture([
                                         'src' => $header_clock_icon_url,
                                         'alt' => $header_clock_icon_alt,
@@ -375,17 +375,17 @@
                                         'lazy' => false,
                                     ]);
                                     ?>
-                        </span>
-                        <?php endif; ?>
-                        <span class="header__mobile-menu-info-text"><?php echo wp_kses_post($header_schedule); ?></span>
-                    </div>
+                                </span>
+                            <?php endif; ?>
+                            <span class="header__mobile-menu-info-text"><?php echo wp_kses_post($header_schedule); ?></span>
+                        </div>
                     <?php endif; ?>
                 </div>
                 <?php if (!empty($header_social_items)): ?>
-                <ul class="header__mobile-menu-socials" aria-label="<?php esc_attr_e('Social links', 'igr-theme'); ?>">
-                    <?php foreach ($header_social_items as $item): ?>
-                    <li class="header__mobile-menu-socials-item">
-                        <?php
+                    <ul class="header__mobile-menu-socials" aria-label="<?php esc_attr_e('Social links', 'igr-theme'); ?>">
+                        <?php foreach ($header_social_items as $item): ?>
+                            <li class="header__mobile-menu-socials-item">
+                                <?php
                                 get_template_part('templates/button', null, [
                                     'link' => $item['link'],
                                     'type' => 'social',
@@ -398,9 +398,9 @@
                                     ],
                                 ]);
                                 ?>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 <?php endif; ?>
             </div>
         </div>
