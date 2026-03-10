@@ -1,0 +1,74 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.licenses-certificates {
+    padding-top: convert-to-rem(80px);
+    padding-bottom: convert-to-rem(80px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--color-bg-light);
+
+    @include mobile {
+        padding-top: convert-to-rem(40px);
+        padding-bottom: convert-to-rem(40px);
+    }
+
+    &__header {
+        margin-bottom: convert-to-rem(20px);
+        text-align: center;
+    }
+
+    &__title {
+        @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1);
+        color: var(--color-primary-dark);
+        display: inline-flex;
+        align-items: center;
+        gap: convert-to-rem(10px);
+        margin: 0;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: convert-to-rem(3px);
+            height: 1em;
+            background-color: var(--color-primary-dark);
+            flex-shrink: 0;
+            align-self: stretch;
+        }
+    }
+
+    &__slider-wrapper {
+        position: relative;
+    }
+
+    &__slider {
+        margin-bottom: convert-to-rem(20px);
+    }
+
+    &__slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    &__img {
+        width: 100%;
+        height: convert-to-rem(390px);
+        object-fit: contain;
+        border-radius: convert-to-rem(12px);
+
+        @include mobile {
+            height: auto;
+            max-height: convert-to-rem(350px);
+        }
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: convert-to-rem(10px);
+    }
+}

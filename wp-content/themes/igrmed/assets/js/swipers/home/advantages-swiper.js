@@ -1,16 +1,23 @@
 import Swiper from 'swiper';
 import { Pagination } from 'swiper/modules';
 
-const wrapper = document.querySelector('.advantages__list--swiper');
+export default class AdvantagesSwiper {
+    constructor() {
+        this.wrapper = document.querySelector('.advantages__list--swiper');
+        if (this.wrapper) {
+            this.init();
+        }
+    }
 
-if (wrapper) {
-    new Swiper(wrapper, {
-        modules: [Pagination],
-        slidesPerView: 1.4,
-        spaceBetween: 12,
-        pagination: {
-            el: '.advantages__list-pagination',
-            clickable: true,
-        },
-    });
+    init() {
+        new Swiper(this.wrapper, {
+            modules: [Pagination],
+            slidesPerView: 1.4,
+            spaceBetween: 12,
+            pagination: {
+                el: '.advantages__list-pagination',
+                clickable: true,
+            },
+        });
+    }
 }
