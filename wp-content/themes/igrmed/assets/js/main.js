@@ -1,4 +1,5 @@
 import "./utils";
+import "./components/home/main";
 
 if (document.querySelector(".swiper")) {
   import("./swipers/main").catch((error) => {
@@ -8,11 +9,6 @@ if (document.querySelector(".swiper")) {
 if (document.querySelector(".backdrop")) {
   import("./popups/main").catch((error) => {
     console.error("Failed to load Popups module:", error);
-  });
-}
-if (document.querySelector(".advantages")) {
-  import("./components/home/advantages").catch((error) => {
-    console.error("Failed to load advantages module:", error);
   });
 }
 
