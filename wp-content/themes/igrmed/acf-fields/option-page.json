@@ -1,699 +1,601 @@
-[
-    {
-        "key": "group_site_options_v2",
-        "title": "Глобальні налаштування",
-        "fields": [
-            {
-                "key": "field_tab_contacts_v2",
-                "label": "Контакти",
-                "name": "",
-                "aria-label": "",
-                "type": "tab",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "placement": "top",
-                "endpoint": 0,
-                "selected": 0
+{
+    "key": "group_site_options",
+    "title": "Site Options",
+    "fields": [
+        {
+            "key": "field_69ab2a3c20173",
+            "label": "Головна інформація",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_phone_1_v2",
-                "label": "Номер телефону 1",
-                "name": "phone_1",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "translations": "copy",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_phone_1",
+            "label": "Phone 1",
+            "name": "phone_1",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_phone_2_v2",
-                "label": "Номер телефону 2",
-                "name": "phone_2",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "translations": "copy",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+            "return_format": "array",
+            "allow_in_bindings": 0,
+            "allow_archives": 0
+        },
+        {
+            "key": "field_phone_2",
+            "label": "Phone 2",
+            "name": "phone_2",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_address_main_v2",
-                "label": "Адреса",
-                "name": "address_main",
-                "aria-label": "",
-                "type": "textarea",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "rows": 2,
-                "new_lines": "br",
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": ""
+            "return_format": "array",
+            "allow_in_bindings": 0,
+            "allow_archives": 0
+        },
+        {
+            "key": "field_address_main",
+            "label": "Address Main",
+            "name": "address_main",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_email_main_v2",
-                "label": "Email",
-                "name": "email_main",
-                "aria-label": "",
-                "type": "email",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "default_value": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_schedule",
+            "label": "Графік",
+            "name": "schedule",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_tab_socials_v2",
-                "label": "Соцмережі (Посилання)",
-                "name": "",
-                "aria-label": "",
-                "type": "tab",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "placement": "top",
-                "endpoint": 0,
-                "selected": 0
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_schedule_2",
+            "label": "Графік 2",
+            "name": "schedule_2",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_social_facebook_url",
-                "label": "Facebook URL",
-                "name": "social_facebook",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "default_value": "",
-                "placeholder": ""
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_tab_icons",
+            "label": "Іконки",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_social_instagram_url",
-                "label": "Instagram URL",
-                "name": "social_instagram",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "default_value": "",
-                "placeholder": ""
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_icon_address",
+            "label": "Іконка адреси",
+            "name": "icon_address",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_social_tiktok_url",
-                "label": "TikTok URL",
-                "name": "social_tiktok",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "default_value": "",
-                "placeholder": ""
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_phone",
+            "label": "Іконка телефону",
+            "name": "icon_phone",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_social_telegram_url",
-                "label": "Telegram URL",
-                "name": "social_telegram",
-                "aria-label": "",
-                "type": "url",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "default_value": "",
-                "placeholder": ""
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_clock",
+            "label": "Іконка годинника",
+            "name": "icon_clock",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_tab_header_v2",
-                "label": "Хедер",
-                "name": "",
-                "aria-label": "",
-                "type": "tab",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "placement": "top",
-                "endpoint": 0,
-                "selected": 0
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_search",
+            "label": "Лупа",
+            "name": "icon_search",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_header_btn_text_v2",
-                "label": "Текст кнопки (Записатись)",
-                "name": "header_btn_text",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_instagram",
+            "label": "Іконка Instagram",
+            "name": "icon_instagram",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_header_btn_anchor_v2",
-                "label": "Якір кнопки (без #)",
-                "name": "header_btn_anchor",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "default_value": "",
-                "prepend": "#",
-                "maxlength": "",
-                "placeholder": "",
-                "append": ""
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_facebook",
+            "label": "Іконка Facebook",
+            "name": "icon_facebook",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_tab_footer_v2",
-                "label": "Футер",
-                "name": "",
-                "aria-label": "",
-                "type": "tab",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "placement": "top",
-                "endpoint": 0,
-                "selected": 0
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_tiktok",
+            "label": "Іконка TikTok",
+            "name": "icon_tiktok",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_footer_copyright",
-                "label": "Копірайт та Ліцензія",
-                "name": "footer_copyright",
-                "aria-label": "",
-                "type": "textarea",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "rows": 3,
-                "default_value": "",
-                "new_lines": "",
-                "maxlength": "",
-                "placeholder": ""
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_calendar",
+            "label": "Іконка календаря",
+            "name": "icon_calendar",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_privacy_policy_page_v2",
-                "label": "Політика Конфіденційності",
-                "name": "privacy_policy_page",
-                "aria-label": "",
-                "type": "post_object",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "page"
-                ],
-                "return_format": "url",
-                "taxonomy": [],
-                "allow_null": 0,
-                "multiple": 0,
-                "ui": 1,
-                "bidirectional_target": []
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_clock_2",
+            "label": "Іконка годинника 2",
+            "name": "icon_clock_2",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_developer_credit_v2",
-                "label": "Made by",
-                "name": "developer_credit",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_plus",
+            "label": "Іконка плюс",
+            "name": "icon_plus",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_tab_schedule_v2",
-                "label": "Графік роботи",
-                "name": "",
-                "aria-label": "",
-                "type": "tab",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "placement": "top",
-                "endpoint": 0,
-                "selected": 0
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_icon_telegram",
+            "label": "Іконка Telegram",
+            "name": "icon_telegram",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_schedule_repeater",
-                "label": "Дні роботи",
-                "name": "schedule_days",
-                "aria-label": "",
-                "type": "textarea",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "translations": "copy",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "rows": "",
-                "placeholder": "",
-                "new_lines": ""
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_tab_footer",
+            "label": "Футер",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_6974117e39af4",
-                "label": "Години роботи",
-                "name": "schedule_hours",
-                "aria-label": "",
-                "type": "textarea",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "translations": "copy",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "rows": "",
-                "placeholder": "",
-                "new_lines": ""
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_footer_copyright",
+            "label": "Копірайт та Ліцензія",
+            "name": "footer_copyright",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_tab_icons_v2",
-                "label": "Іконки (SVG)",
-                "name": "",
-                "aria-label": "",
-                "type": "tab",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "placement": "top",
-                "endpoint": 0,
-                "selected": 0
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_privacy_policy_page",
+            "label": "Політика Конфіденційності",
+            "name": "privacy_policy_page",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_icon_facebook",
-                "label": "Facebook",
-                "name": "icon_facebook",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "return_format": "url",
-                "mime_types": "svg",
-                "preview_size": "medium",
-                "library": "all",
-                "min_width": 0,
-                "min_height": 0,
-                "min_size": 0,
-                "max_width": 0,
-                "max_height": 0,
-                "max_size": 0
+            "post_type": [
+                "page"
+            ],
+            "return_format": "url",
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_developer_credit",
+            "label": "Made by",
+            "name": "developer_credit",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_icon_tiktok",
-                "label": "TikTok",
-                "name": "icon_tiktok",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "return_format": "url",
-                "mime_types": "svg",
-                "preview_size": "medium",
-                "library": "all",
-                "min_width": 0,
-                "min_height": 0,
-                "min_size": 0,
-                "max_width": 0,
-                "max_height": 0,
-                "max_size": 0
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_tab_links",
+            "label": "Соцмережі (Лінки)",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_icon_instagram",
-                "label": "Instagram",
-                "name": "icon_instagram",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "translations": "copy",
-                "return_format": "url",
-                "mime_types": "svg",
-                "preview_size": "medium",
-                "library": "all",
-                "min_width": 0,
-                "min_height": 0,
-                "min_size": 0,
-                "max_width": 0,
-                "max_height": 0,
-                "max_size": 0
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_link_instagram",
+            "label": "Посилання Instagram",
+            "name": "link_instagram",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_695fb0e530a95",
-                "label": "Telegram",
-                "name": "icon_telegram",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "url",
-                "library": "all",
-                "translations": "copy",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "svg",
-                "preview_size": "medium"
+            "default_value": "",
+            "placeholder": "https:\/\/instagram.com\/...",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_link_facebook",
+            "label": "Посилання Facebook",
+            "name": "link_facebook",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
             },
-            {
-                "key": "field_icon_address_v2",
-                "label": "Адреса",
-                "name": "icon_address",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "url",
-                "library": "all",
-                "translations": "copy",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "svg",
-                "preview_size": "medium"
+            "default_value": "",
+            "placeholder": "https:\/\/facebook.com\/...",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_link_tiktok",
+            "label": "Посилання TikTok",
+            "name": "link_tiktok",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
             },
+            "default_value": "",
+            "placeholder": "https:\/\/tiktok.com\/...",
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
             {
-                "key": "field_icon_phone_v2",
-                "label": "Телефон",
-                "name": "icon_phone",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "url",
-                "library": "all",
-                "translations": "copy",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "svg",
-                "preview_size": "medium"
-            },
-            {
-                "key": "field_icon_clock_1_v2",
-                "label": "Годинник 1",
-                "name": "icon_clock_1",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "url",
-                "library": "all",
-                "translations": "copy",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "svg",
-                "preview_size": "medium"
-            },
-            {
-                "key": "field_icon_calendar_v2",
-                "label": "Календар",
-                "name": "icon_calendar",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "url",
-                "library": "all",
-                "translations": "copy",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "svg",
-                "preview_size": "medium"
-            },
-            {
-                "key": "field_icon_clock_2_v2",
-                "label": "Годинник 2",
-                "name": "icon_clock_2",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "url",
-                "library": "all",
-                "translations": "copy",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "svg",
-                "preview_size": "medium"
-            },
-            {
-                "key": "field_icon_plus_v2",
-                "label": "Плюсик",
-                "name": "icon_plus",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "33",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "url",
-                "library": "all",
-                "translations": "copy",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "svg",
-                "preview_size": "medium"
+                "param": "options_page",
+                "operator": "==",
+                "value": "site-options"
             }
-        ],
-        "location": [
-            [
-                {
-                    "param": "options_page",
-                    "operator": "==",
-                    "value": "site-options"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": "",
-        "show_in_rest": 0,
-        "display_title": "",
-        "pll_display_field_instructions": 1
-    }
-]
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1772825249
+}

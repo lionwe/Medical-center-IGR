@@ -96,7 +96,7 @@ function get_picture($args = [])
     $is_asset = false;
 
     if (!empty($args['name'])) {
-        $img_src = get_template_directory_uri() . "/assets/images/" . $args['name'];
+        $img_src = get_template_directory_uri() . "/assets/img/" . $args['name'];
         $is_asset = true;
     }
 
@@ -114,7 +114,7 @@ function get_picture($args = [])
         // Note: checking file existence on every load might be expensive, 
         // relying on convention that if using get_picture with name, webp exists.
         // For now, output generic structure.
-        $webp_src = get_template_directory_uri() . "/assets/images/" . $webp_name;
+        $webp_src = get_template_directory_uri() . "/assets/img/" . $webp_name;
 
         echo '<picture>';
         // Assuming webp exists if requested via this function for assets
