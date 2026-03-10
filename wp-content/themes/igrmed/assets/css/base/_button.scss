@@ -167,11 +167,16 @@ $_gradient-border: linear-gradient(180deg,
     background: transparent;
     border: convert-to-rem(0.5px) solid var(--color-primary-dark);
     color: var(--color-primary-dark);
+    flex-shrink: 0;
 
     .btn__text {
-      @include typography($font-family-base, $fw-regular, 14px, 1);
+      @include typography($font-family-base, $fw-regular, (12px, 14px), 1);
       color: inherit;
       white-space: nowrap;
+    }
+
+    @include mobile {
+      padding: convert-to-rem(8px) convert-to-rem(10px);
     }
   }
 
@@ -189,9 +194,13 @@ $_gradient-border: linear-gradient(180deg,
     justify-content: center;
 
     .btn__text {
-      @include typography($font-family-base, $fw-regular, 14px, 1);
+      @include typography($font-family-base, $fw-regular, (12px, 14px), 1);
       color: inherit;
       white-space: nowrap;
+    }
+
+    @include mobile {
+      padding: convert-to-rem(8px) convert-to-rem(12px);
     }
 
     .btn__icon-container {

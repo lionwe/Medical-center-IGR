@@ -11,17 +11,14 @@
     }
 
     &__header {
+        margin-bottom: convert-to-rem(20px);
+    }
+
+    &__header-content {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: convert-to-rem(20px);
         gap: convert-to-rem(20px);
-        flex-wrap: wrap;
-
-        @include mobile {
-            flex-direction: column;
-            align-items: flex-start;
-        }
     }
 
     &__title {
@@ -43,13 +40,41 @@
         }
     }
 
+    &__more-desktop {
+        @include mobile {
+            display: none;
+        }
+    }
+
+    &__controls {
+        display: none;
+
+        @include mobile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: convert-to-rem(15px);
+            margin-top: convert-to-rem(20px);
+            margin-bottom: convert-to-rem(20px);
+        }
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: convert-to-rem(8px);
+        flex-shrink: 0;
+        min-width: convert-to-rem(128px); // 60px + 60px + 8px gap for two active buttons
+    }
+
     &__grid {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: convert-to-rem(20px);
+        display: none;
 
         @media (min-width: 576px) {
+            display: grid;
             grid-template-columns: repeat(2, 1fr);
+            gap: convert-to-rem(20px);
         }
 
         @media (min-width: 992px) {
@@ -58,6 +83,47 @@
 
         @include desktop {
             grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    &__slider {
+        display: none !important;
+
+        @include mobile {
+            display: block !important;
+        }
+
+        .swiper-slide {
+            height: auto;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    // Swiper pagination
+    &__pagination {
+        display: none;
+        justify-content: center;
+        gap: convert-to-rem(3px);
+        margin-top: convert-to-rem(20px);
+        margin-bottom: convert-to-rem(20px);
+
+        @include mobile {
+            display: flex;
+        }
+
+        .swiper-pagination-bullet {
+            width: convert-to-rem(6px);
+            height: convert-to-rem(6px);
+            border-radius: 50%;
+            background: var(--color-gray);
+            opacity: 1;
+            margin: 0 !important;
+            transition: background 0.3s;
+
+            &-active {
+                background: var(--color-primary-dark);
+            }
         }
     }
 }
