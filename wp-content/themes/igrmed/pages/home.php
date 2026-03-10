@@ -10,6 +10,8 @@ Template Name: Home
     <?php get_template_part('sections/home/hero'); ?>
     <?php get_template_part('sections/home/advantages'); ?>
     <?php get_template_part('sections/home/services'); ?>
+    <?php get_template_part('sections/home/why-choose-us'); ?>
+
 </main>
 
 <?php get_footer(); ?>
