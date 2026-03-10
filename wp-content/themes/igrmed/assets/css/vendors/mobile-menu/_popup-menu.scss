@@ -8,7 +8,7 @@
     z-index: 1;
     align-items: center;
     justify-content: center;
-    padding: convert-to-rem(24px);
+    padding: clamp(12px, 4.53vh - 18.2px, 24px);
     background:
     radial-gradient(
       80% 60% at 110% -10%,
@@ -54,12 +54,18 @@
 .header__mobile-menu {
   &-content {
     width: 95%;
-    padding-top: convert-to-rem(53px);
+    padding-top: clamp(20px, 12.45vh - 63px, 53px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: convert-to-rem(53px);
     margin-top: auto;
+  }
+
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(24px, 10.94vh - 49px, 53px);
   }
 
   &-cta {
@@ -73,17 +79,17 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: convert-to-rem(14px);
+    gap: clamp(10px, 1.51vh - 0.07px, 14px);
     position: relative;
 
     &::after {
       content: "";
       display: block;
-      width: Clamp(180px, 225px);
+      width: clamp(180px, 16.98vh + 66.5px, 225px);
       max-width: 100%;
       height: 1px;
       background-color: rgba(255, 255, 255, 0.35);
-      margin: convert-to-rem(10px) auto 0;
+      margin: clamp(6px, 1.51vh - 4.07px, 10px) auto 0;
     }
   }
 
@@ -142,12 +148,10 @@
   }
 
   &-socials {
-    order: 4;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: convert-to-rem(5px);
-    margin: 0;
     padding: 0;
     list-style: none;
   }
@@ -160,6 +164,7 @@
     width: convert-to-rem(46px);
     height: convert-to-rem(46px);
     padding: 0;
+    margin-top: clamp(12px, 4.15vh - 15.7px, 23px);
     color: var(--color-white);
   }
 
@@ -175,7 +180,7 @@
     width: 130px;
     flex-direction: column;
     align-items: center;
-    gap: convert-to-rem(18px);
+    gap: clamp(12px, 2.26vh - 3.1px, 18px);
 
     .menu-item {
       width: 100%;
@@ -192,7 +197,7 @@
 
     a {
       display: block;
-      padding: 0 0 convert-to-rem(20px) 0;
+      padding: 0 0 clamp(12px, 3.02vh - 8.15px, 20px) 0;
       text-align: center;
       color: var(--color-white);
     }

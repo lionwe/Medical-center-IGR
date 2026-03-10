@@ -134,7 +134,7 @@ if (is_string($hero_bg) && $hero_bg !== '') {
 					<article class="hero__card hero__card--promo">
 						<div class="hero__card-header">
 							<?php if ($promo_title !== ''): ?>
-								<h3 class="hero__card-title"><?php echo wp_kses_post($promo_title); ?></h3>
+								<h4 class="hero__card-title"><?php echo wp_kses_post($promo_title); ?></h4>
 							<?php endif; ?>
 
 							<?php if ($promo_badge !== ''): ?>
@@ -166,7 +166,7 @@ if (is_string($hero_bg) && $hero_bg !== '') {
 
 					<article class="hero__card hero__card--article">
 						<?php if ($article_title !== ''): ?>
-							<h3 class="hero__card-title"><?php echo wp_kses_post($article_title); ?></h3>
+							<h4 class="hero__card-title"><?php echo wp_kses_post($article_title); ?></h4>
 						<?php endif; ?>
 
 						<?php if ($article_read_time !== ''): ?>
@@ -183,7 +183,7 @@ if (is_string($hero_bg) && $hero_bg !== '') {
 					<article class="hero__card hero__card--info">
 						<div class="hero__card-inner">
 							<?php if ($socials_title !== ''): ?>
-								<h3 class="hero__card-title"><?php echo wp_kses_post($socials_title); ?></h3>
+								<h4 class="hero__card-title"><?php echo wp_kses_post($socials_title); ?></h4>
 							<?php endif; ?>
 
 							<?php if (!empty($social_items)): ?>

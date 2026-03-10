@@ -299,17 +299,18 @@
         </div>
         <div class="header__mobile-menu" data-mobile-menu aria-hidden="true">
             <div class="header__mobile-menu-content">
-                <div class="header__mobile-menu-nav">
-                    <?php get_template_part('templates/navigation', null, array('location' => 'menu-header')); ?>
-                </div>
-                <a href="#contact" class="header__cta header__mobile-menu-cta">
-                    <span class="header__cta-text"><?php esc_html_e("Зв'язатись з нами", 'igr-theme'); ?></span>
-                    <span class="header__cta-icon">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow-circle.svg'); ?>"
-                            alt="">
-                    </span>
-                </a>
-                <div class="header__mobile-menu-info">
+                <div class="header__mobile-menu-inner">
+                    <div class="header__mobile-menu-nav">
+                        <?php get_template_part('templates/navigation', null, array('location' => 'menu-header')); ?>
+                    </div>
+                    <a href="#contact" class="header__cta header__mobile-menu-cta">
+                        <span class="header__cta-text"><?php esc_html_e("Зв'язатись з нами", 'igr-theme'); ?></span>
+                        <span class="header__cta-icon">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow-circle.svg'); ?>"
+                                alt="">
+                        </span>
+                    </a>
+                    <div class="header__mobile-menu-info">
                     <?php if ($header_address !== ''): ?>
                         <div class="header__mobile-menu-info-row">
                             <?php if ($header_address_icon_url !== ''): ?>
@@ -380,6 +381,7 @@
                             <span class="header__mobile-menu-info-text"><?php echo wp_kses_post($header_schedule); ?></span>
                         </div>
                     <?php endif; ?>
+                    </div>
                 </div>
                 <?php if (!empty($header_social_items)): ?>
                     <ul class="header__mobile-menu-socials" aria-label="<?php esc_attr_e('Social links', 'igr-theme'); ?>">

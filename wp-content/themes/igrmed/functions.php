@@ -81,6 +81,14 @@ add_action('acf/init', function () {
 // Helpers & SVG
 // ============================================
 
+function reading_time($content)
+{
+    $words_per_minute = 120;
+    $word_count = str_word_count(strip_tags($content));
+    $minutes = (int) ceil($word_count / $words_per_minute);
+    return max(1, $minutes);
+}
+
 function get_picture($args = [])
 {
     $defaults = [
