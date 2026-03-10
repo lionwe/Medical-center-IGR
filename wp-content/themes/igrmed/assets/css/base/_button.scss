@@ -1,12 +1,10 @@
 @use "../utils/mixins" as *;
 @use "./variables" as *;
 
-$_gradient-border: linear-gradient(
-  180deg,
-  var(--color-gradient-border-start) 0%,
-  var(--color-gradient-border-middle) 41.42%,
-  var(--color-gradient-border-end) 100%
-);
+$_gradient-border: linear-gradient(180deg,
+    var(--color-gradient-border-start) 0%,
+    var(--color-gradient-border-middle) 41.42%,
+    var(--color-gradient-border-end) 100%);
 
 .btn {
   display: inline-flex;
@@ -63,8 +61,8 @@ $_gradient-border: linear-gradient(
     padding: convert-to-rem(20px);
     border-radius: convert-to-rem(100px);
     background: transparent;
-    border: 1px solid var(--color-primary-dark-blue);
-    color: var(--color-primary-dark-blue);
+    border: 1px solid var(--color-primary-dark);
+    color: var(--color-primary-dark);
 
     .btn__text {
       @include typography($font-family-base, $fw-regular, 14px, 18.9px);
@@ -103,14 +101,14 @@ $_gradient-border: linear-gradient(
       height: convert-to-rem(28px);
       border-radius: 50%;
       background: transparent;
-      color: var(--color-primary-dark-blue);
+      color: var(--color-primary-dark);
       @include gradient-border(convert-to-rem(22px), convert-to-rem(1px), $_gradient-border);
     }
 
     &.hero__socials-link {
       padding: convert-to-rem(4px) convert-to-rem(24px);
       background-color: inherit;
-      color: var(--color-blue-900);
+      color: var(--color-primary-dark);
       box-shadow:
         0 17px 38px 0 rgba(0, 0, 0, 0.1),
         0 69px 69px 0 rgba(0, 0, 0, 0.09),
