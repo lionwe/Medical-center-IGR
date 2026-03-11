@@ -37,6 +37,12 @@ $_gradient-border: linear-gradient(180deg,
     position: relative;
   }
 
+  &--icon-only {
+    .btn__text {
+      display: none;
+    }
+  }
+
   &--primary {
     gap: convert-to-rem(8px);
     padding: convert-to-rem(10px) convert-to-rem(20px);
@@ -54,6 +60,10 @@ $_gradient-border: linear-gradient(180deg,
       width: convert-to-rem(21px);
       height: convert-to-rem(8px);
     }
+  }
+
+  &--primary.btn--icon-only {
+    padding: convert-to-rem(10px) convert-to-rem(20px);
   }
 
   &--primary-dark {
@@ -160,6 +170,51 @@ $_gradient-border: linear-gradient(180deg,
     }
   }
 
+  &--carousel-glass {
+    width: convert-to-rem(56px);
+    height: convert-to-rem(56px);
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: none;
+    color: rgba(26, 59, 103, 1);
+
+    .btn__icon {
+      width: convert-to-rem(26px);
+      height: convert-to-rem(26px);
+      background-color: currentColor;
+      transform: scale(1.12);
+      transition: transform 0.25s ease;
+    }
+
+    &.is-prev .btn__icon {
+      transform: rotate(180deg) scale(1.12);
+    }
+
+    &.swiper-button-disabled {
+      width: convert-to-rem(56px);
+      height: convert-to-rem(56px);
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      color: var(--color-white);
+      opacity: 1;
+      pointer-events: none;
+      cursor: default;
+
+      .btn__icon {
+        width: convert-to-rem(16px);
+        height: convert-to-rem(16px);
+        transform: scale(1);
+      }
+
+      &.is-prev .btn__icon {
+        transform: rotate(180deg) scale(1);
+      }
+    }
+  }
+
   &--secondary {
     gap: convert-to-rem(10px);
     padding: convert-to-rem(10px) convert-to-rem(14px);
@@ -220,5 +275,42 @@ $_gradient-border: linear-gradient(180deg,
         background-color: currentColor;
       }
     }
+  }
+}
+
+.btn-split {
+  display: inline-flex;
+  align-items: center;
+  gap: convert-to-rem(14px);
+  border: convert-to-rem(0.5px) solid currentColor;
+  border-radius: convert-to-rem(100px);
+  padding: convert-to-rem(10px) convert-to-rem(32px);
+  color: inherit;
+
+  &__text {
+    @include typography($font-family-base, $fw-semibold, (12px,14px), 1, 0);
+    margin: 0;
+    color: inherit;
+    white-space: nowrap;
+  }
+}
+
+.btn-group--glass-circle {
+  position: relative;
+  width: convert-to-rem(146px);
+  height: convert-to-rem(146px);
+  border-radius: 50%;
+  border: 1px solid rgba(202, 213, 218, 1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(convert-to-rem(12px));
+  -webkit-backdrop-filter: blur(convert-to-rem(12px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: convert-to-rem(8px);
+
+  @include mobile {
+    width: convert-to-rem(100px);
+    height: convert-to-rem(100px);
   }
 }

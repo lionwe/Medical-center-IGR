@@ -22,6 +22,7 @@ $icon_url    = $args['icon_url']  ?? null;
 $target      = $args['target']    ?? '_self';
 $class_extra = $args['class']     ?? '';
 $use_img_icon = !empty($args['icon_as_img']) && $type !== 'social';
+$is_primary_split = !empty($args['primary_split']) && $type === 'primary' && $text !== '';
 
 // Get icon from ACF options or direct URL
 if (!$icon_url && $icon_name) {
@@ -58,6 +59,27 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
 }
 
 ?>
+
+<?php if ($is_primary_split): ?>
+    <?php
+    $split_button_classes = $classes . ' btn--icon-only';
+    ?>
+    <div class="btn-split btn-split--primary">
+        <span class="btn-split__text"><?php echo esc_html($text); ?></span>
+        <<?php echo $tag; ?> class="<?php echo esc_attr($split_button_classes); ?>" <?php echo $attrs; ?>>
+            <?php if ($icon_url): ?>
+                <?php if ($use_img_icon): ?>
+                    <span class="btn__icon btn__icon--img">
+                        <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+                    </span>
+                <?php else: ?>
+                    <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+                <?php endif; ?>
+            <?php endif; ?>
+        </<?php echo $tag; ?>>
+    </div>
+    <?php return; ?>
+<?php endif; ?>
 
 <<?php echo $tag; ?> class="<?php echo esc_attr($classes); ?>" <?php echo $attrs; ?>>
 

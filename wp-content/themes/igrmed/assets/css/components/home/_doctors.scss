@@ -1,0 +1,249 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.doctors {
+    position: relative;
+    overflow: hidden;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    &__bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+
+    &__wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: convert-to-rem(110px) 0 convert-to-rem(68px) 0;
+        color: var(--color-white);
+    }
+
+    &__title {
+        @include typography($font-family-montserrat, $fw-medium, (28px, 42px), 1, 0);
+        color: var(--color-white);
+        margin: 0 0 convert-to-rem(20px);
+    }
+
+    &__actions {
+        margin-top: convert-to-rem(24px);
+
+        .btn--primary.btn--icon-only {
+            background: var(--color-white);
+            border-color: var(--color-white);
+            color: var(--color-black);
+        }
+    }
+
+    &__slider-clip {
+        position: relative;
+        overflow: visible;
+        margin-top: convert-to-rem(24px);
+        margin-inline: auto;
+    }
+
+    &__slider.swiper {
+        width: 100%;
+        height: convert-to-rem(500px);
+        overflow: hidden;
+        @include mobile {
+            height: convert-to-rem(455px);
+        }
+    }
+
+    .swiper-wrapper {
+        align-items: flex-end;
+    }
+
+    &__slide.swiper-slide {
+        width: convert-to-rem(213px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @include mobile {
+            width: convert-to-rem(119px);
+            transition: none;
+        }
+    }
+
+    &__slide-image-wrap {
+        flex-shrink: 0;
+        position: relative;
+        border-radius: convert-to-rem(12px);
+        overflow: hidden;
+        aspect-ratio: 213 / 253;
+        width: 100%;
+        transition:
+            aspect-ratio 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 0.3s ease;
+        box-shadow: none;
+
+        @include mobile {
+            aspect-ratio: 119 / 127;
+            height: convert-to-rem(127px);
+        }
+    }
+
+    &__slide-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &__slide-more {
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1, 0);
+        position: absolute;
+        left: 50%;
+        bottom: convert-to-rem(30px);
+        transform: translate(-50%, convert-to-rem(8px));
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: convert-to-rem(8px) convert-to-rem(22px);
+        border-radius: convert-to-rem(100px);
+        border: none;
+        background: var(--color-primary-dark);
+        color: var(--color-white);
+        text-decoration: none;
+        white-space: nowrap;
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+
+        @include mobile {
+            width: convert-to-rem(43px);
+            height: convert-to-rem(43px);
+            padding: 0;
+            border-radius: 50%;
+            font-size: 0;
+            line-height: 0;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: convert-to-rem(-5px);
+                border-radius: 50%;
+                border: convert-to-rem(0.5px) solid rgba(255, 255, 255, 1);
+                pointer-events: none;
+            }
+        }
+    }
+
+    &__slide-more-text {
+        display: inline;
+    }
+
+    &__slide-more-icon {
+        width: convert-to-rem(20px);
+        height: convert-to-rem(20px);
+        display: none;
+
+        @include mobile {
+            display: block;
+        }
+    }
+
+    @include mobile {
+        &__slide-more-text {
+            display: none;
+        }
+    }
+
+    &__slide-title {
+        @include typography($font-family-montserrat, $fw-semibold, 16px, 1, 0);
+        flex-shrink: 0;
+        margin: 0 0 convert-to-rem(10px);
+        color: var(--color-white);
+    }
+
+    &__slide-spec {
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1, 0);
+        flex-shrink: 0;
+        margin: 0 0 convert-to-rem(8px);
+        color: var(--color-white);
+    }
+
+    &__slide-excerpt {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 1.4, 0);
+        display: none;
+        flex-shrink: 0;
+        margin: 0 0 convert-to-rem(20px);
+        color: var(--color-white);
+        // FIX: фіксована ширина одразу — не залежить від анімації слайду
+        width: convert-to-rem(330px);
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        overflow: hidden;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        @include mobile {
+            width: convert-to-rem(230px);
+        }
+    }
+
+    .swiper-slide-active {
+        width: convert-to-rem(330px);
+        opacity: 1;
+
+      
+
+        .doctors__slide-excerpt {
+            // FIX: display: -webkit-box тепер тут — line-clamp без нього не працює
+            display: -webkit-box;
+        }
+
+        .doctors__slide-more {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+        }
+
+        .doctors__slide-image-wrap {
+            aspect-ratio: 330 / 330;
+            box-shadow: none;
+
+            @include mobile {
+                height: convert-to-rem(273px);
+            }
+        }
+    }
+
+    &__slider-nav {
+        position: absolute;
+        left: 62%;
+        top: 70%;
+        margin-top: 0;
+        z-index: 2;
+
+        .btn {
+            pointer-events: auto;
+        }
+        @include mobile {
+            left: 80%;
+            top: 90%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}

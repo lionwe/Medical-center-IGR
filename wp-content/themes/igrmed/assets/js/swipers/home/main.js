@@ -27,3 +27,12 @@ if (document.querySelector(".js-hero-swiper")) {
         console.error("Failed to load hero swiper:", error);
     });
 }
+
+if (document.querySelector(".js-doctors-swiper")) {
+    import("./doctors-swiper").then(({ default: DoctorsSwiper }) => {
+        new DoctorsSwiper();
+    }).catch((error) => {
+        console.error("Failed to load doctors swiper:", error);
+    });
+}
+
