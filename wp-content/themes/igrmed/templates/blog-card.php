@@ -17,7 +17,9 @@ if (!$image_url) {
 }
 
 $date      = get_the_date('j F, Y');
-$read_time = '3 хв на прочитання'; // Fallback per user instructions
+$post_obj  = get_post($post_id);
+$minutes   = (function_exists('reading_time') && $post_obj) ? reading_time($post_obj->post_content) : 3;
+$read_time = sprintf(__('%d хв на прочитання', 'igrmed'), $minutes);
 ?>
 
 <article <?php post_class('blog-card'); ?>>
