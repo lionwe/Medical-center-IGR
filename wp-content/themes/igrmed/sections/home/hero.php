@@ -227,7 +227,7 @@ $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_
 
                         <div class="hero__card-body">
                             <?php if ($article_title !== ''): ?>
-                                <h4 class="hero__card-title"><?php echo wp_kses_post($article_title); ?></h4>
+                                <h4 class="hero__card-title hero__card-title--article"><?php echo wp_kses_post($article_title); ?></h4>
                             <?php endif; ?>
 
                             <?php if ($article_post instanceof WP_Post): ?>
@@ -255,7 +255,7 @@ $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_
                         <article class="hero__card hero__card--info swiper-slide">
                         <div class="hero__card-inner">
                             <?php if ($socials_title !== ''): ?>
-                                <h4 class="hero__card-title"><?php echo wp_kses_post($socials_title); ?></h4>
+                                <h4 class="hero__card-title hero__card-title--info"><?php echo wp_kses_post($socials_title); ?></h4>
                             <?php endif; ?>
 
                             <?php if (!empty($social_items)): ?>
