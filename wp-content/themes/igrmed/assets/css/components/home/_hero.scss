@@ -41,7 +41,7 @@
         background: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary-dark-20) 100%);
         color: var(--color-white);
         border-radius: convert-to-rem(22px);
-        @include mobile {
+        @include mobile{
                 flex-direction: column;
                 text-align: left;
                 align-items: flex-start;
@@ -71,7 +71,7 @@
         background: var(--color-primary-dark);
         border-radius: convert-to-rem(100px);
         padding: convert-to-rem(3px) convert-to-rem(20px);
-        @include mobile {
+        @include mobile{
             padding: 1px 0;
         }
     }
@@ -82,7 +82,7 @@
         text-align: center;
         margin: 0;
 
-        @include mobile {
+        @include mobile{
             white-space: nowrap;
             padding: 0;
 
@@ -104,9 +104,14 @@
 
     &__cards-row {
         display: flex;
+        align-items: stretch;
         gap: convert-to-rem(14px);
         flex: 1 1 0;
         min-width: 0;
+    }
+
+    &__cards-pagination {
+        display: none;
     }
 
     // Card base
@@ -120,6 +125,10 @@
         padding: convert-to-rem(16px);
         text-align: left;
         backdrop-filter: blur(22px);
+    }
+
+    &__card.swiper-slide {
+        height: auto;
     }
 
     &__card-header {
@@ -142,7 +151,7 @@
     }
 
     &__card-title {
-        @include typography($font-family-base, $fw-medium, 18px, 1, 0);
+        @include typography($font-family-base, $fw-semibold, 14px, 1, 0);
         margin: 0 0 convert-to-rem(10px);
         font-style: normal;
         color: var(--color-primary-dark);
@@ -153,6 +162,16 @@
         margin: 0;
         text-align: center;
         text-transform: uppercase;
+    }
+
+    &__card-title--article {
+        @include typography($font-family-base, $fw-medium, 14px, 1, 0);
+        margin: 0 0 convert-to-rem(10px);
+    }
+
+    &__card-title--info {
+        @include typography($font-family-base, $fw-semibold, 14px, 1, 0.04em);
+        margin: 0 0 convert-to-rem(12px);
     }
 
     &__card-badge {
@@ -193,7 +212,7 @@
     &__card-inner {
         max-width: convert-to-rem(200px);
 
-        @include mobile {
+        @include mobile{
             max-width: none;
         }
     }
@@ -201,7 +220,7 @@
     // Card modifier: promo
     &__card--promo {
         flex: 0 1 45%;
-        padding: convert-to-rem(16px) convert-to-rem(38px);
+        padding: Clamp(16px, 24px) Clamp(22px, 38px);
         background: var(--color-white-05);
         border: 1px solid var(--color-white-05);
 
@@ -246,7 +265,7 @@
 
     // Card modifier: info
     &__card--info {
-        padding: convert-to-rem(25px) convert-to-rem(32px);
+        padding: Clamp(16px, 24px) Clamp(22px, 38px);
         background: var(--color-accent-light-05);
         border: 1px solid var(--color-white-05);
 
@@ -261,7 +280,7 @@
     &__card-meta-wrap {
         display: flex;
         align-items: center;
-        padding: convert-to-rem(11px) convert-to-rem(13px);
+        padding: convert-to-rem(11px) convert-to-rem(10px);
         border-radius: convert-to-rem(22px);
         margin-bottom: convert-to-rem(22px);
         @include gradient-border(
@@ -382,7 +401,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@include mobile{
     .hero {
         &__middle {
             display: block;
@@ -421,8 +440,8 @@
         .swiper-pagination-bullet {
             width: convert-to-rem(8px);
             height: convert-to-rem(8px);
-            background: var(--color-primary-dark);
-            opacity: 0.35;
+            background: var(--color-white);
+            opacity: 1;
         }
 
         .swiper-pagination-bullet-active {
