@@ -53,15 +53,6 @@
         }
     }
 
-    &__top-actions {
-        display: flex;
-        align-items: center;
-        gap: convert-to-rem(14px);
-        border: 0.5px solid var(--color-white);
-        border-radius: convert-to-rem(100px);
-        padding: convert-to-rem(11px) convert-to-rem(32px);
-    }
-
     &__top-container {
         display: flex;
         justify-content: space-between;
