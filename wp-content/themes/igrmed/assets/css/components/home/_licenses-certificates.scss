@@ -8,6 +8,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-color: var(--color-bg-light);
+    overflow: hidden;
 
     @include mobile {
         padding-top: convert-to-rem(40px);
