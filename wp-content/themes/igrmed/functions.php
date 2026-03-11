@@ -84,7 +84,8 @@ add_action('acf/init', function () {
 function reading_time($content)
 {
     $words_per_minute = 120;
-    $word_count = str_word_count(strip_tags($content));
+    $clean_content = strip_tags($content);
+    $word_count = preg_match_all('/[\p{L}\p{N}]+/u', $clean_content);
     $minutes = (int) ceil($word_count / $words_per_minute);
     return max(1, $minutes);
 }
@@ -209,6 +210,5 @@ add_filter('use_default_gallery_style', '__return_false');
 // ============================================
 remove_action('shutdown', 'wp_ob_end_flush_all', 1);
 add_action('shutdown', function () {
-    while (@ob_end_flush())
-        ;
+    while (@ob_end_flush());
 });
