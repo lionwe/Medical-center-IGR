@@ -178,7 +178,11 @@ $_gradient-border: linear-gradient(180deg,
     border-radius: 50%;
     background: transparent;
     box-shadow: none;
-    color: rgba(26, 59, 103, 1);
+    color: var(--color-primary-dark);
+
+    &:not(.swiper-button-disabled) {
+      color: var(--color-primary-dark);
+    }
 
     .btn__icon {
       width: convert-to-rem(26px);
