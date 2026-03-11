@@ -2,48 +2,439 @@
 @use "../base/variables" as *;
 
 .footer {
-  padding: convert-to-rem(24px) 0;
-  background: var(--color-gray-light, #f5f5f5);
+  position: relative;
+  overflow: hidden;
+  min-height: convert-to-rem(1208px); // Згідно з висотою SVG
+  background-color: var(--color-background-light);
+  /* Градієнт та інші загальні стилі будуть додані пізніше згідно з ТЗ */
 
-  &__inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: convert-to-rem(16px);
-    row-gap: convert-to-rem(12px);
-  }
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 2; // Поверх карти, але під контентом
+    pointer-events: none;
 
-  &__copyright {
-    @include typography($font-family-base, $fw-regular, 14px, 1.5);
-    color: var(--color-gray-700, #374151);
-  }
-
-  &__privacy {
-    @include typography($font-family-base, $fw-regular, 14px, 1.5);
-    color: var(--color-primary-dark-blue);
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
-  &__developer {
-    @include typography($font-family-base, $fw-regular, 14px, 1.5);
-    color: var(--color-gray-600, #4b5563);
+  &__top {
+    position: relative;
+    height: convert-to-rem(600px);
+    width: 100%;
+    padding-top: convert-to-rem(100px);
+    padding-bottom: convert-to-rem(20px);
+  }
+
+  &__map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; // Найнижчий шар
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+    }
+  }
+
+  &__top-container {
+    width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
+    margin-inline: auto;
+    position: relative;
+    z-index: 3; // Поверх всього
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: convert-to-rem(-36px);
+    gap: convert-to-rem(30px);
+    height: 100%;
+  }
+
+  &__contacts-block {
+    position: absolute;
+    left: 41%; // Вирівняно з нижньою колонкою "Графік"
+    bottom: 0; // ідеальне вирівнювання з нижнім краєм форми
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+  }
+
+  &__phones-title {
+    @include typography($font-family-montserrat-alternates, $fw-medium, 15px, 1);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: convert-to-rem(17px);
+  }
+
+  &__phones {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(14px);
+  }
+
+  &__phone {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(7px);
+
+    a {
+      @include typography($font-family-montserrat-alternates, $fw-medium, 42px, 1);
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__phone-icon {
+    width: convert-to-rem(28px);
+    height: convert-to-rem(28px);
+    flex-shrink: 0;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  &__form-block {
+    width: convert-to-rem(447px);
+    min-height: convert-to-rem(419px);
+    max-width: 100%;
+    background: linear-gradient(0deg, #1A3B67, #1A3B67);
+    border: 1px solid #1A3B67;
+    backdrop-filter: blur(32px);
+    border-radius: convert-to-rem(20px);
+    padding: convert-to-rem(50px) convert-to-rem(27px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 4; // Вище ніж &__bg (z-index: 2) та &__top-container (z-index: 3)
+  }
+
+  &__form-title {
+    @include typography($font-family-montserrat, $fw-medium, 42px, 1.1);
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: convert-to-rem(20px);
+  }
+
+  &__form-wrapper {
+    width: 100%;
+  }
+
+  &__bottom {
+    padding-top: convert-to-rem(120px);
+    width: 100%;
+    position: relative;
+    z-index: 3;
+  }
+
+  &__bottom-container {
+    width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
+    margin-inline: auto;
+    position: relative;
+    z-index: 3;
+  }
+
+  &__bottom-row {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: convert-to-rem(68px);
+  }
+
+  &__col--menu {
+    flex: 0 0 calc(41% - #{convert-to-rem(68px)});
+    max-width: calc(41% - #{convert-to-rem(68px)});
+  }
+
+  &__col-title {
+    @include typography($font-family-montserrat, $fw-semibold, 14px, 1);
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    margin-bottom: convert-to-rem(10px);
+  }
+
+  &__menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: convert-to-rem(28px);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    a {
+      @include typography($font-family-montserrat, $fw-semibold, 14px, 1.5);
+      color: #ffffff;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__schedule-text {
+
+    strong:first-of-type,
+    b:first-of-type {
+      @include typography($font-family-montserrat, $fw-semibold, 14px, 1);
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      margin-bottom: convert-to-rem(10px);
+      display: block; // Робимо блоковим як заголовок
+
+      // Прибираємо стандартний перенос строки, якщо він іде одразу після заголовка в WYSIWYG
+      &+br {
+        display: none;
+      }
+    }
+  }
+
+  &__text {
+    @include typography($font-family-montserrat-alternates, $fw-medium, 14px, 1);
+    letter-spacing: 0.04em;
+    color: #ffffff;
+
+    p {
+      margin-bottom: convert-to-rem(7px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__contacts-note {
+    @include typography($font-family-montserrat, $fw-light, 14px, 1);
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    display: block; // щоб перенеслось на новий рядок
   }
 
   &__socials {
     display: flex;
-    align-items: center;
-    gap: convert-to-rem(8px);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    margin-left: auto;
+    flex-direction: column;
+    gap: convert-to-rem(7px);
+
+    a {
+      @include typography($font-family-montserrat, $fw-medium, 14px, 1);
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 
-  &__socials-item {
+  &__bottom-title-row {
+    position: relative;
+    margin-top: convert-to-rem(75px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__main-title {
+    @include typography($font-family-montserrat, $fw-medium, 120px, 1);
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  &__logo-bg {
+    position: absolute;
+    left: -2%;
+    top: 10%;
+    transform: translateY(-50%);
+    width: convert-to-rem(553px);
+    height: convert-to-rem(308px);
+    object-fit: contain; // Запобігає деформації SVG логотипа
+    z-index: 1;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); // filter drop-shadow замість box-shadow використовується для SVG щоб тінь падала від контуру форми, а не квадратної рамки
+    pointer-events: none;
+  }
+
+  &__copyright-row {
+    margin-top: convert-to-rem(22px);
+    padding-bottom: convert-to-rem(40px); // відступ від нижнього краю екрану
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: convert-to-rem(20px);
+    position: relative;
+    z-index: 3;
+  }
+
+  &__copyright-text {
+    @include typography($font-family-montserrat, $fw-medium, 14px, 1.5);
+    color: #ffffff;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__copyright-privacy a {
+    @include typography($font-family-montserrat, $fw-medium, 14px, 1.5);
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__copyright-dev {
+    @include typography($font-family-montserrat, $fw-medium, 12px, 1);
+    color: #ffffff;
+    letter-spacing: 0.06em;
+
+    a,
+    .footer__developer-name {
+      color: #ffffff;
+      text-decoration: underline;
+      text-decoration-style: solid;
+      transition: opacity 0.3s ease;
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+/* 
+  Стилі для форми, які будуть застосовані після вставки HTML коду форми в адмінку (див. повідомлення).
+*/
+.footer-form {
+  display: flex;
+  flex-direction: column;
+
+  &__group {
+    margin-bottom: convert-to-rem(10px);
+    width: 100%;
+  }
+
+  &__input {
+    width: 100%;
+    height: convert-to-rem(41px);
+    padding: convert-to-rem(12px) convert-to-rem(14px);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(195, 195, 195, 0.5);
+    border-radius: convert-to-rem(100px);
+    @include typography($font-family-montserrat, $fw-light, 14px, 1);
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s ease, background 0.3s ease;
+
+    &::placeholder {
+      @include typography($font-family-montserrat, $fw-light, 14px, 1);
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      opacity: 1;
+    }
+
+    &:focus {
+      border-color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  &__button-wrapper {
+    margin-top: convert-to-rem(14px);
+    /* Щоб разом з margin-bottom від input вийшло 24px від останнього поля */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__button {
+    width: 100%;
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid #ffffff;
+    border-radius: convert-to-rem(100px);
+    padding: convert-to-rem(4px);
+    gap: convert-to-rem(10px);
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    .btn__text {
+      @include typography($font-family-montserrat, $fw-medium, 14px, 1);
+      color: #ffffff;
+    }
+
+    .btn__icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: convert-to-rem(35px);
+      height: convert-to-rem(35px);
+      background: #ffffff;
+      border-radius: 50%;
+      flex-shrink: 0;
+
+      img {
+        width: convert-to-rem(14px);
+        height: convert-to-rem(14px);
+        object-fit: contain;
+      }
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.footer-form__success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  padding: convert-to-rem(20px) 0;
+
+  &__content {
+    text-align: center;
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-medium, 24px, 1.2);
+    color: #ffffff;
+    margin-bottom: convert-to-rem(10px);
+    text-transform: uppercase;
+  }
+
+  &__text {
+    @include typography($font-family-montserrat, $fw-light, 16px, 1);
+    color: #ffffff;
   }
 }

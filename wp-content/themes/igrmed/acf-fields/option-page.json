@@ -663,15 +663,33 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "34",
+                    "width": "17",
                     "class": "",
                     "id": ""
                 },
                 "default_value": "",
                 "maxlength": "",
-                "placeholder": "",
+                "placeholder": "Наприклад: RECIPE",
                 "prepend": "",
                 "append": ""
+            },
+            {
+                "key": "field_developer_link",
+                "label": "Посилання на recipe agency",
+                "name": "developer_link",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "17",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "https://...",
+                "allow_in_bindings": 0
             },
             {
                 "key": "field_tab_links",

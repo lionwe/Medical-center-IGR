@@ -18,7 +18,7 @@ function igrmed_enqueue_assets(): void
 
     wp_enqueue_style(
         'igrmed-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Montserrat:wght@300;400;500;600;700&display=swap',
         [],
         null
     );
