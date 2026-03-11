@@ -4,13 +4,16 @@
 .footer {
   position: relative;
   overflow: hidden;
-  min-height: convert-to-rem(1208px); // Згідно з висотою SVG
+  min-height: convert-to-rem(1208px); // SVG
   background-color: var(--color-background-light);
-  /* Градієнт та інші загальні стилі будуть додані пізніше згідно з ТЗ */
+  display: flow-root;
 
   &__bg {
     position: absolute;
     inset: 0;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 2; // Поверх карти, але під контентом
     pointer-events: none;
 
@@ -32,7 +35,9 @@
   &__map {
     position: absolute;
     inset: 0;
-    width: 100%;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
     height: 100%;
     z-index: 1; // Найнижчий шар
 
@@ -45,8 +50,6 @@
   }
 
   &__top-container {
-    width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
-    margin-inline: auto;
     position: relative;
     z-index: 3; // Поверх всього
     display: flex;
@@ -59,8 +62,8 @@
 
   &__contacts-block {
     position: absolute;
-    left: 41%; // Вирівняно з нижньою колонкою "Графік"
-    bottom: 0; // ідеальне вирівнювання з нижнім краєм форми
+    left: 41%;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     width: max-content;
@@ -70,7 +73,7 @@
     @include typography($font-family-montserrat-alternates, $fw-medium, 15px, 1);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #ffffff;
+    color: var(--color-white);
     margin-bottom: convert-to-rem(17px);
   }
 
@@ -88,7 +91,7 @@
     a {
       @include typography($font-family-montserrat-alternates, $fw-medium, 42px, 1);
       letter-spacing: 0.04em;
-      color: #ffffff;
+      color: var(--color-white);
       text-decoration: none;
       transition: opacity 0.3s ease;
 
@@ -110,8 +113,8 @@
     width: convert-to-rem(447px);
     min-height: convert-to-rem(419px);
     max-width: 100%;
-    background: linear-gradient(0deg, #1A3B67, #1A3B67);
-    border: 1px solid #1A3B67;
+    background: linear-gradient(0deg, var(--color-primary-dark), var(--color-primary-dark));
+    border: 1px solid var(--color-primary-dark);
     backdrop-filter: blur(32px);
     border-radius: convert-to-rem(20px);
     padding: convert-to-rem(50px) convert-to-rem(27px);
@@ -123,7 +126,7 @@
 
   &__form-title {
     @include typography($font-family-montserrat, $fw-medium, 42px, 1.1);
-    color: #ffffff;
+    color: var(--color-white);
     text-align: center;
     margin-bottom: convert-to-rem(20px);
   }
@@ -140,8 +143,6 @@
   }
 
   &__bottom-container {
-    width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
-    margin-inline: auto;
     position: relative;
     z-index: 3;
   }
@@ -161,7 +162,7 @@
   &__col-title {
     @include typography($font-family-montserrat, $fw-semibold, 14px, 1);
     letter-spacing: 0.04em;
-    color: #ffffff;
+    color: var(--color-white);
     margin-bottom: convert-to-rem(10px);
   }
 
@@ -175,7 +176,7 @@
 
     a {
       @include typography($font-family-montserrat, $fw-semibold, 14px, 1.5);
-      color: #ffffff;
+      color: var(--color-white);
       text-decoration: none;
       transition: opacity 0.3s ease;
 
@@ -191,11 +192,10 @@
     b:first-of-type {
       @include typography($font-family-montserrat, $fw-semibold, 14px, 1);
       letter-spacing: 0.04em;
-      color: #ffffff;
+      color: var(--color-white);
       margin-bottom: convert-to-rem(10px);
-      display: block; // Робимо блоковим як заголовок
+      display: block;
 
-      // Прибираємо стандартний перенос строки, якщо він іде одразу після заголовка в WYSIWYG
       &+br {
         display: none;
       }
@@ -205,7 +205,7 @@
   &__text {
     @include typography($font-family-montserrat-alternates, $fw-medium, 14px, 1);
     letter-spacing: 0.04em;
-    color: #ffffff;
+    color: var(--color-white);
 
     p {
       margin-bottom: convert-to-rem(7px);
@@ -219,8 +219,8 @@
   &__contacts-note {
     @include typography($font-family-montserrat, $fw-light, 14px, 1);
     letter-spacing: 0.04em;
-    color: #ffffff;
-    display: block; // щоб перенеслось на новий рядок
+    color: var(--color-white);
+    display: block;
   }
 
   &__socials {
@@ -231,7 +231,7 @@
     a {
       @include typography($font-family-montserrat, $fw-medium, 14px, 1);
       letter-spacing: 0.04em;
-      color: #ffffff;
+      color: var(--color-white);
       text-decoration: none;
       text-transform: uppercase;
       transition: opacity 0.3s ease;
@@ -253,7 +253,7 @@
 
   &__main-title {
     @include typography($font-family-montserrat, $fw-medium, 120px, 1);
-    color: #ffffff;
+    color: var(--color-white);
     text-align: center;
     text-transform: uppercase;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -269,15 +269,15 @@
     transform: translateY(-50%);
     width: convert-to-rem(553px);
     height: convert-to-rem(308px);
-    object-fit: contain; // Запобігає деформації SVG логотипа
+    object-fit: contain;
     z-index: 1;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); // filter drop-shadow замість box-shadow використовується для SVG щоб тінь падала від контуру форми, а не квадратної рамки
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     pointer-events: none;
   }
 
   &__copyright-row {
     margin-top: convert-to-rem(22px);
-    padding-bottom: convert-to-rem(40px); // відступ від нижнього краю екрану
+    padding-bottom: convert-to-rem(40px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -289,7 +289,7 @@
 
   &__copyright-text {
     @include typography($font-family-montserrat, $fw-medium, 14px, 1.5);
-    color: #ffffff;
+    color: var(--color-white);
 
     p {
       margin: 0;
@@ -298,7 +298,7 @@
 
   &__copyright-privacy a {
     @include typography($font-family-montserrat, $fw-medium, 14px, 1.5);
-    color: #ffffff;
+    color: var(--color-white);
     text-decoration: underline;
     text-decoration-style: solid;
     transition: opacity 0.3s ease;
@@ -310,12 +310,12 @@
 
   &__copyright-dev {
     @include typography($font-family-montserrat, $fw-medium, 12px, 1);
-    color: #ffffff;
+    color: var(--color-white);
     letter-spacing: 0.06em;
 
     a,
     .footer__developer-name {
-      color: #ffffff;
+      color: var(--color-white);
       text-decoration: underline;
       text-decoration-style: solid;
       transition: opacity 0.3s ease;
@@ -328,7 +328,7 @@
 }
 
 /* 
-  Стилі для форми, які будуть застосовані після вставки HTML коду форми в адмінку (див. повідомлення).
+  Form styles
 */
 .footer-form {
   display: flex;
@@ -347,14 +347,14 @@
     border: 1px solid rgba(195, 195, 195, 0.5);
     border-radius: convert-to-rem(100px);
     @include typography($font-family-montserrat, $fw-light, 14px, 1);
-    color: #ffffff;
+    color: var(--color-white);
     outline: none;
     transition: border-color 0.3s ease, background 0.3s ease;
 
     &::placeholder {
       @include typography($font-family-montserrat, $fw-light, 14px, 1);
       letter-spacing: -0.01em;
-      color: #ffffff;
+      color: var(--color-white);
       opacity: 1;
     }
 
@@ -366,7 +366,6 @@
 
   &__button-wrapper {
     margin-top: convert-to-rem(14px);
-    /* Щоб разом з margin-bottom від input вийшло 24px від останнього поля */
     display: flex;
     justify-content: center;
     width: 100%;
@@ -378,7 +377,7 @@
     align-items: center;
     justify-content: center;
     background: transparent;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
     border-radius: convert-to-rem(100px);
     padding: convert-to-rem(4px);
     gap: convert-to-rem(10px);
@@ -387,7 +386,7 @@
 
     .btn__text {
       @include typography($font-family-montserrat, $fw-medium, 14px, 1);
-      color: #ffffff;
+      color: var(--color-white);
     }
 
     .btn__icon-wrapper {
@@ -396,7 +395,7 @@
       justify-content: center;
       width: convert-to-rem(35px);
       height: convert-to-rem(35px);
-      background: #ffffff;
+      background: var(--color-white);
       border-radius: 50%;
       flex-shrink: 0;
 
@@ -428,13 +427,13 @@
 
   &__title {
     @include typography($font-family-montserrat, $fw-medium, 24px, 1.2);
-    color: #ffffff;
+    color: var(--color-white);
     margin-bottom: convert-to-rem(10px);
     text-transform: uppercase;
   }
 
   &__text {
     @include typography($font-family-montserrat, $fw-light, 16px, 1);
-    color: #ffffff;
+    color: var(--color-white);
   }
 }

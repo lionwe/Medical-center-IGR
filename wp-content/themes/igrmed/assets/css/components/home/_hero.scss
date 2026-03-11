@@ -5,6 +5,7 @@
 .hero {
     position: relative;
     min-height: 100dvh;
+    overflow: hidden;
 
     // Layout elements
     &__bg {
@@ -30,7 +31,7 @@
         justify-content: center;
         text-align: center;
         gap: convert-to-rem(14px);
-        
+
     }
 
     &__top {
@@ -41,13 +42,14 @@
         background: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary-dark-20) 100%);
         color: var(--color-white);
         border-radius: convert-to-rem(22px);
-        @include mobile{
-                flex-direction: column;
-                text-align: left;
-                align-items: flex-start;
-                gap: convert-to-rem(22px);
-                margin-bottom: clamp(24px, 2vh, 120px);
-                
+
+        @include mobile {
+            flex-direction: column;
+            text-align: left;
+            align-items: flex-start;
+            gap: convert-to-rem(22px);
+            margin-bottom: clamp(24px, 2vh, 120px);
+
         }
     }
 
@@ -71,7 +73,8 @@
         background: var(--color-primary-dark);
         border-radius: convert-to-rem(100px);
         padding: convert-to-rem(3px) convert-to-rem(20px);
-        @include mobile{
+
+        @include mobile {
             padding: 1px 0;
         }
     }
@@ -82,7 +85,7 @@
         text-align: center;
         margin: 0;
 
-        @include mobile{
+        @include mobile {
             white-space: nowrap;
             padding: 0;
 
@@ -190,7 +193,8 @@
         margin: 0;
 
         // WYSIWYG content elements
-        h3, h4 {
+        h3,
+        h4 {
             @include typography($font-family-base, $fw-medium, 18px, 1, 0);
             margin: 0 0 convert-to-rem(8px);
         }
@@ -212,7 +216,7 @@
     &__card-inner {
         max-width: convert-to-rem(200px);
 
-        @include mobile{
+        @include mobile {
             max-width: none;
         }
     }
@@ -233,14 +237,12 @@
             background: var(--color-white-10);
             padding: convert-to-rem(10px) convert-to-rem(24px);
             border-radius: convert-to-rem(100px);
-            @include gradient-border(
-                convert-to-rem(100px),
+            @include gradient-border(convert-to-rem(100px),
                 convert-to-rem(1px),
                 linear-gradient(180deg,
                     var(--color-gradient-border-start) 0%,
                     var(--color-gradient-border-middle) 41.42%,
-                    var(--color-gradient-border-end) 100%)
-            );
+                    var(--color-gradient-border-end) 100%));
         }
 
         .hero__card-subtitle {
@@ -283,14 +285,12 @@
         padding: convert-to-rem(11px) convert-to-rem(10px);
         border-radius: convert-to-rem(22px);
         margin-bottom: convert-to-rem(22px);
-        @include gradient-border(
-            convert-to-rem(22px),
+        @include gradient-border(convert-to-rem(22px),
             convert-to-rem(1px),
             linear-gradient(180deg,
                 var(--color-gradient-border-start) 0%,
                 var(--color-gradient-border-middle) 41.42%,
-                var(--color-gradient-border-end) 100%)
-        );
+                var(--color-gradient-border-end) 100%));
     }
 
     &__card-meta-row {
@@ -401,7 +401,7 @@
     }
 }
 
-@include mobile{
+@include mobile {
     .hero {
         &__middle {
             display: block;

@@ -4,6 +4,7 @@
 .blog-list {
     padding-top: convert-to-rem(40px);
     padding-bottom: convert-to-rem(40px);
+    overflow: hidden;
 
     @include desktop {
         padding-top: convert-to-rem(80px);

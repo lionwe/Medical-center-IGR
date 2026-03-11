@@ -25,54 +25,54 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
     <div class="footer__bg">
         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/footer-bg.svg" alt="" aria-hidden="true">
     </div>
-    <div class="footer__top">
-        <div class="footer__map">
-            <iframe src="<?php echo esc_url($map_src); ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+    <div class="container footer__container">
+        <div class="footer__top">
+            <div class="footer__map" aria-hidden="true">
+                <iframe src="<?php echo esc_url($map_src); ?>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
 
-        <div class="container footer__top-container">
-            <div class="footer__contacts-block">
-                <?php if ($footer_phones_title): ?>
-                    <h3 class="footer__phones-title"><?php echo esc_html($footer_phones_title); ?></h3>
-                <?php endif; ?>
-
-                <div class="footer__phones">
-                    <?php if ($phone_1): ?>
-                        <div class="footer__phone">
-                            <?php if ($icon_phone_url): ?>
-                                <img src="<?php echo esc_url($icon_phone_url); ?>" alt="" class="footer__phone-icon" width="28" height="28">
-                            <?php endif; ?>
-                            <a href="<?php echo esc_attr($phone_1['url'] ?? '#'); ?>"><?php echo esc_html($phone_1['title'] ?? ''); ?></a>
-                        </div>
+            <div class="footer__top-container">
+                <div class="footer__contacts-block">
+                    <?php if ($footer_phones_title): ?>
+                        <h3 class="footer__phones-title"><?php echo esc_html($footer_phones_title); ?></h3>
                     <?php endif; ?>
 
-                    <?php if ($phone_2): ?>
-                        <div class="footer__phone">
-                            <?php if ($icon_phone_url): ?>
-                                <img src="<?php echo esc_url($icon_phone_url); ?>" alt="" class="footer__phone-icon" width="28" height="28">
-                            <?php endif; ?>
-                            <a href="<?php echo esc_attr($phone_2['url'] ?? '#'); ?>"><?php echo esc_html($phone_2['title'] ?? ''); ?></a>
+                    <div class="footer__phones">
+                        <?php if ($phone_1): ?>
+                            <div class="footer__phone">
+                                <?php if ($icon_phone_url): ?>
+                                    <img src="<?php echo esc_url($icon_phone_url); ?>" alt="" class="footer__phone-icon" width="28" height="28">
+                                <?php endif; ?>
+                                <a href="<?php echo esc_attr($phone_1['url'] ?? '#'); ?>"><?php echo esc_html($phone_1['title'] ?? ''); ?></a>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($phone_2): ?>
+                            <div class="footer__phone">
+                                <?php if ($icon_phone_url): ?>
+                                    <img src="<?php echo esc_url($icon_phone_url); ?>" alt="" class="footer__phone-icon" width="28" height="28">
+                                <?php endif; ?>
+                                <a href="<?php echo esc_attr($phone_2['url'] ?? '#'); ?>"><?php echo esc_html($phone_2['title'] ?? ''); ?></a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="footer__form-block">
+                    <?php if ($footer_form_title): ?>
+                        <h2 class="footer__form-title"><?php echo esc_html($footer_form_title); ?></h2>
+                    <?php endif; ?>
+
+                    <?php if ($footer_form_shortcode): ?>
+                        <div class="footer__form-wrapper">
+                            <?php echo do_shortcode($footer_form_shortcode); ?>
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
-
-            <div class="footer__form-block">
-                <?php if ($footer_form_title): ?>
-                    <h2 class="footer__form-title"><?php echo esc_html($footer_form_title); ?></h2>
-                <?php endif; ?>
-
-                <?php if ($footer_form_shortcode): ?>
-                    <div class="footer__form-wrapper">
-                        <?php echo do_shortcode($footer_form_shortcode); ?>
-                    </div>
-                <?php endif; ?>
-            </div>
         </div>
-    </div>
 
-    <div class="footer__bottom">
-        <div class="container footer__bottom-container">
+        <div class="footer__bottom">
             <div class="footer__bottom-row">
                 <!-- Меню -->
                 <div class="footer__col footer__col--menu">
