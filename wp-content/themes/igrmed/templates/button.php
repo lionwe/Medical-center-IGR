@@ -7,7 +7,7 @@
  * get_template_part('templates/button', null, [
  *   'text'      => 'Детальніше',
  *   'link'      => '#',
- *   'type'      => 'primary', // primary, primary-dark, social
+ *   'type'      => 'primary', // primary, primary-dark, social, carousel, carousel-glass
  *   'icon_name'   => 'arrow',   // ACF field name without 'icon_' prefix
  *   'icon_url'    => '',        // direct URL override
  *   'target'      => '_self'
@@ -23,6 +23,7 @@ $target      = $args['target']    ?? '_self';
 $class_extra = $args['class']     ?? '';
 $use_img_icon = !empty($args['icon_as_img']) && $type !== 'social';
 $is_primary_split = !empty($args['primary_split']) && $type === 'primary' && $text !== '';
+$carousel_group = $args['carousel_group'] ?? null;
 
 // Get icon from ACF options or direct URL
 if (!$icon_url && $icon_name) {
@@ -36,6 +37,43 @@ if (!$icon_url && $icon_name) {
     } else {
         $icon_url = $icon_val ?: null;
     }
+}
+
+if ($type === 'carousel' && is_array($carousel_group) && !empty($carousel_group)) {
+    $render_carousel_control = static function (array $control) use ($icon_url): void {
+        $control_icon_url = (string) ($control['icon_url'] ?? $icon_url ?? '');
+        $control_class = trim((string) ($control['class'] ?? ''));
+        $control_label = trim((string) ($control['aria_label'] ?? ''));
+        $attributes = $control['attributes'] ?? [];
+
+        if (!is_array($attributes)) {
+            $attributes = [];
+        }
+
+        if ($control_label !== '' && !isset($attributes['aria-label'])) {
+            $attributes['aria-label'] = $control_label;
+        }
+
+        $attrs = 'type="button"';
+        foreach ($attributes as $attr => $value) {
+            $attrs .= ' ' . esc_attr((string) $attr) . '="' . esc_attr((string) $value) . '"';
+        }
+        ?>
+        <button class="<?php echo esc_attr(trim('btn btn--carousel ' . $control_class)); ?>" <?php echo $attrs; ?>>
+            <?php if ($control_icon_url !== ''): ?>
+                <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($control_icon_url); ?>'); mask-image: url('<?php echo esc_url($control_icon_url); ?>');"></span>
+            <?php endif; ?>
+        </button>
+        <?php
+    };
+
+    foreach ($carousel_group as $control) {
+        if (!is_array($control)) {
+            continue;
+        }
+        $render_carousel_control($control);
+    }
+    return;
 }
 
 // Build CSS classes

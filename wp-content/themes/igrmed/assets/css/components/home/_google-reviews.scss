@@ -1,0 +1,75 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.google-reviews {
+    overflow-x: hidden;
+
+    @include desktop {
+        padding: convert-to-rem(80px) 0;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(20px);
+
+        @include mobile {
+            gap: convert-to-rem(28px);
+        }
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: convert-to-rem(16px);
+
+        @include mobile {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    &__title {
+        @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1);
+        margin: 0;
+        color: var(--color-primary-dark);
+        display: inline-flex;
+        align-items: center;
+        gap: convert-to-rem(10px);
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: convert-to-rem(3px);
+            height: 1em;
+            background-color: var(--color-primary-dark);
+            flex-shrink: 0;
+            align-self: stretch;
+        }
+    }
+
+    &__header-right {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: convert-to-rem(12px);
+    }
+
+    &__nav {
+        display: inline-flex;
+        align-items: center;
+        gap: convert-to-rem(8px);
+    }
+
+    &__embed {
+        min-height: convert-to-rem(120px);
+        overflow-x: hidden;
+
+        iframe,
+        > div {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+}
