@@ -286,6 +286,31 @@ $_gradient-border: linear-gradient(180deg,
   }
 }
 
+// Common pagination bullets
+@mixin swiper-pagination-styles($bullet-color: var(--color-gray)) {
+  position: static !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: convert-to-rem(3px);
+  width: 100% !important;
+  transform: none !important;
+
+  .swiper-pagination-bullet {
+    width: convert-to-rem(6px);
+    height: convert-to-rem(6px);
+    border-radius: 50%;
+    background: $bullet-color;
+    opacity: 1;
+    margin: 0 !important;
+    transition: background 0.3s;
+
+    &-active {
+      background: var(--color-primary-dark);
+    }
+  }
+}
+
 .btn-split {
   display: inline-flex;
   align-items: center;
@@ -296,7 +321,7 @@ $_gradient-border: linear-gradient(180deg,
   color: inherit;
 
   &__text {
-    @include typography($font-family-base, $fw-semibold, (12px,14px), 1, 0);
+    @include typography($font-family-base, $fw-semibold, (12px, 14px), 1, 0);
     margin: 0;
     color: inherit;
     white-space: nowrap;

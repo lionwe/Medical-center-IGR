@@ -1,5 +1,6 @@
 @use "../../utils/mixins" as *;
 @use "../../base/variables" as *;
+@use "../../base/button" as *;
 
 .advantages {
 
@@ -119,26 +120,12 @@
     // Swiper pagination
     &__list-pagination {
         display: none;
-        justify-content: center;
-        gap: convert-to-rem(3px);
-        margin-bottom: convert-to-rem(20px);
+        @include swiper-pagination-styles;
+        margin-top: convert-to-rem(14px);
+        margin-bottom: 0;
 
         @include mobile {
-            display: flex;
-        }
-
-        .swiper-pagination-bullet {
-            width: convert-to-rem(6px);
-            height: convert-to-rem(6px);
-            border-radius: 50%;
-            background: var(--color-gray);
-            opacity: 1;
-            margin: 0 !important;
-            transition: background 0.3s;
-
-            &-active {
-                background: var(--color-primary-dark);
-            }
+            display: flex !important;
         }
     }
 
