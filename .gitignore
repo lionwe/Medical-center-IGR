@@ -91,3 +91,4 @@ wp-content/uploads-webpc/uploads/webp-converter-for-media-test.png2.webp
 wp-content/uploads-webpc/.htaccess
 .agents
 skills-lock.json
+local-xdebuginfo.php
