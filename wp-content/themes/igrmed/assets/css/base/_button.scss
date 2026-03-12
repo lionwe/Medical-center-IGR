@@ -146,7 +146,6 @@ $_gradient-border: linear-gradient(180deg,
     height: convert-to-rem(40px);
     border-radius: convert-to-rem(100px);
     border: convert-to-rem(0.5px) solid var(--color-primary-dark);
-    padding: convert-to-rem(10px) convert-to-rem(14px);
     background: var(--color-primary-dark);
     box-shadow: 0 convert-to-rem(4px) convert-to-rem(4px) 0 rgba(0, 0, 0, 0.25);
     color: var(--color-white); // Icon gets white via currentColor
@@ -154,19 +153,24 @@ $_gradient-border: linear-gradient(180deg,
     .btn__icon {
       width: convert-to-rem(20px);
       height: convert-to-rem(20px);
-      background-color: currentColor;
+      background-color: var(--color-white);
     }
 
     // Inactive state (disabled)
     &.swiper-button-disabled {
       width: convert-to-rem(48px);
       height: convert-to-rem(30px);
+      border-radius: convert-to-rem(100px);
       background: transparent;
       box-shadow: none;
-      color: var(--color-primary-dark); // Icon becomes dark blue
+      color: var(--color-primary-dark);
       opacity: 1; // Preserve normal opacity rather than swiper's default dim
       pointer-events: none; // Disable click
       cursor: default;
+
+      .btn__icon {
+        background-color: var(--color-primary-dark);
+      }
     }
   }
 
