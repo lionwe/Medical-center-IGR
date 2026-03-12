@@ -18,3 +18,9 @@ if (document.querySelector(".google-reviews")) {
         console.error("Failed to load google-reviews module:", error);
     });
 }
+
+if (document.querySelector(".cta")) {
+    import("./cta").catch((error) => {
+        console.error("Failed to load cta module:", error);
+    });
+}
