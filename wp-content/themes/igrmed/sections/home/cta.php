@@ -1,45 +1,66 @@
 <?php
 
 $form_shortcode = (string) get_field('form_shortcode', 'option');
+$home_page_id = getHomePageID();
 
 $resolve_image_url = static function ($value): string {
-    if (is_array($value)) {
-        return (string) ($value['url'] ?? '');
+    if (is_numeric($value)) {
+        $url = wp_get_attachment_image_url((int) $value, 'full');
+
+        return $url ? (string) $url : '';
     }
 
-    return (string) $value;
+    if (is_array($value)) {
+        if (!empty($value['url'])) {
+            return (string) $value['url'];
+        }
+
+        if (!empty($value['ID'])) {
+            $url = wp_get_attachment_image_url((int) $value['ID'], 'full');
+
+            return $url ? (string) $url : '';
+        }
+    }
+
+    return is_string($value) ? $value : '';
 };
 
-$cta_bg_url = $resolve_image_url(get_field('cta_bg', getHomePageID()));
-$cta_bg_mobile_url = $resolve_image_url(get_field('cta_bg_mobile', getHomePageID()));
+$cta_bg_url = $resolve_image_url(get_field('cta_bg', $home_page_id));
+$cta_bg_mobile_url = $resolve_image_url(get_field('cta_bg_mobile', $home_page_id));
 
 if ($cta_bg_mobile_url === '') {
-    $cta_bg_mobile_url = $resolve_image_url(get_field('cta_bg_moibile', getHomePageID()));
+    $cta_bg_mobile_url = $resolve_image_url(get_field('cta_bg_moibile', $home_page_id));
 }
 
-$style_parts = [];
-
-if ($cta_bg_url !== '') {
-    $style_parts[] = '--cta-bg:url(' . esc_url($cta_bg_url) . ')';
-}
-
-if ($cta_bg_mobile_url !== '') {
-    $style_parts[] = '--cta-bg-mobile:url(' . esc_url($cta_bg_mobile_url) . ')';
-}
-
-$style = '';
-
-if (!empty($style_parts)) {
-    $style = 'style="' . esc_attr(implode(';', $style_parts)) . '"';
+if ($cta_bg_mobile_url === '') {
+    $cta_bg_mobile_url = $cta_bg_url;
 }
 
 ?>
 
 <section id="cta" class="cta">
 
-    <div class="container cta__bg" <?php echo $style; ?>>
-
+    <div class="container">
         <div class="cta__wrapper">
+            <?php if ($cta_bg_url !== ''): ?>
+                <?php
+                get_picture([
+                    'src' => $cta_bg_url,
+                    'alt' => '',
+                    'class' => 'cta__bg-image cta__bg-image--desktop',
+                ]);
+                ?>
+            <?php endif; ?>
+
+            <?php if ($cta_bg_mobile_url !== ''): ?>
+                <?php
+                get_picture([
+                    'src' => $cta_bg_mobile_url,
+                    'alt' => '',
+                    'class' => 'cta__bg-image cta__bg-image--mobile',
+                ]);
+                ?>
+            <?php endif; ?>
 
             <div class="cta__window">
 
