@@ -316,27 +316,6 @@
                         "placeholder": "",
                         "prepend": "",
                         "append": ""
-                    },
-                    {
-                        "key": "field_schedule_text",
-                        "label": "Графік",
-                        "name": "schedule_text",
-                        "aria-label": "",
-                        "type": "wysiwyg",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "allow_in_bindings": 0,
-                        "tabs": "visual",
-                        "toolbar": "basic",
-                        "media_upload": 0,
-                        "delay": 0
                     }
                 ]
             },
@@ -425,7 +404,8 @@
                         "max_size": "",
                         "mime_types": "",
                         "allow_in_bindings": 0,
-                        "preview_size": "thumbnail"
+                        "preview_size": "thumbnail",
+                        "parent_repeater": "field_advantages_list"
                     },
                     {
                         "key": "field_adv_text",
@@ -446,7 +426,8 @@
                         "tabs": "all",
                         "toolbar": "basic",
                         "media_upload": 0,
-                        "delay": 0
+                        "delay": 0,
+                        "parent_repeater": "field_advantages_list"
                     }
                 ]
             },
@@ -491,7 +472,8 @@
                         "allow_in_bindings": 0,
                         "placeholder": "",
                         "prepend": "",
-                        "append": ""
+                        "append": "",
+                        "parent_repeater": "field_advantages_numbers"
                     },
                     {
                         "key": "field_adv_number_text",
@@ -512,7 +494,8 @@
                         "allow_in_bindings": 0,
                         "placeholder": "",
                         "prepend": "",
-                        "append": ""
+                        "append": "",
+                        "parent_repeater": "field_advantages_numbers"
                     }
                 ]
             },
@@ -583,7 +566,8 @@
                 "allow_in_bindings": 0,
                 "elements": [
                     "featured_image"
-                ]
+                ],
+                "bidirectional_target": []
             },
             {
                 "key": "field_tab_why_choose_us",
@@ -691,7 +675,8 @@
                         "tabs": "all",
                         "toolbar": "full",
                         "media_upload": 0,
-                        "delay": 0
+                        "delay": 0,
+                        "parent_repeater": "field_why_choose_us_list"
                     }
                 ]
             },
@@ -845,32 +830,6 @@
                 "append": ""
             },
             {
-                "key": "field_licenses_bg",
-                "label": "Фон секції (Ліцензії)",
-                "name": "licenses_bg",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "Формати: webp, jpg, png. Рекомендовано webp.",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "all",
-                "min_width": "",
-                "min_height": "",
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "webp, jpg, jpeg, png",
-                "allow_in_bindings": 0,
-                "preview_size": "medium"
-            },
-            {
                 "key": "field_licenses_gallery",
                 "label": "Галерея сертифікатів",
                 "name": "licenses_gallery",
@@ -898,6 +857,118 @@
                 "insert": "append",
                 "preview_size": "medium",
                 "allow_in_bindings": 0
+            },
+            {
+                "key": "field_tab_doctors",
+                "label": "Наші лікарі",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_doctors_title",
+                "label": "Заголовок секції",
+                "name": "doctors_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Текст заголовка (наприклад: Люди, які турбуються про вас)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Люди, які турбуються про вас",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_69b139828be00",
+                "label": "Фонове зображення секціїї",
+                "name": "doctors_bg",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Текст заголовка (наприклад: Люди, які турбуються про вас)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_doctors_button",
+                "label": "Кнопка зв'язку",
+                "name": "doctors_button",
+                "aria-label": "",
+                "type": "link",
+                "instructions": "Для кнопки 'Зв'язатись з нами'",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_doctors_posts",
+                "label": "Лікарі для виведення",
+                "name": "doctors_posts",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "Оберіть лікарів, які відображатимуться у слайдері",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "doctors"
+                ],
+                "post_status": "",
+                "taxonomy": "",
+                "filters": "",
+                "return_format": "object",
+                "min": "",
+                "max": "",
+                "allow_in_bindings": 0,
+                "elements": [
+                    "featured_image"
+                ],
+                "bidirectional": 0,
+                "bidirectional_target": []
             },
             {
                 "key": "field_tab_blog",
@@ -953,7 +1024,7 @@
                     "id": ""
                 },
                 "post_type": [
-                    "blog"
+                    "post"
                 ],
                 "taxonomy": [],
                 "filters": [
@@ -966,7 +1037,138 @@
                 "allow_in_bindings": 0,
                 "elements": [
                     "featured_image"
-                ]
+                ],
+                "bidirectional_target": []
+            },
+            {
+                "key": "field_69b29f4efd762",
+                "label": "Google Відгуки",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_69b29f84fd763",
+                "label": "Шорткод відгуків",
+                "name": "reviews_shortcode",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_69b29fc864292",
+                "label": "Тайтл секціїї",
+                "name": "reviews_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_69b2a9e847cdd",
+                "label": "CTA",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_69b2a9f9919d8",
+                "label": "Фонове зображення CTA",
+                "name": "cta_bg",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_69b2d2f915922",
+                "label": "Фонове зображення CTA мобільне",
+                "name": "cta_bg_moibile",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
             }
         ],
         "location": [
@@ -974,7 +1176,7 @@
                 {
                     "param": "page_template",
                     "operator": "==",
-                    "value": "pages\/home.php"
+                    "value": "pages/home.php"
                 }
             ]
         ],
