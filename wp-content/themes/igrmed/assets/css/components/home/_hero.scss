@@ -5,7 +5,7 @@
 // Block: hero
 .hero {
     position: relative;
-    min-height: 100dvh;
+    min-height: 100lvh;
     overflow: hidden;
 
     // Layout elements
@@ -33,6 +33,10 @@
         text-align: center;
         gap: convert-to-rem(14px);
 
+        @include mobile {
+            padding-top: clamp(32px, 8dvh, 96px);
+        }
+
     }
 
     &__top {
@@ -49,7 +53,7 @@
             text-align: left;
             align-items: flex-start;
             gap: convert-to-rem(22px);
-            margin-bottom: clamp(24px, 2vh, 120px);
+            margin-bottom: clamp(24px, 2lvh, 120px);
 
         }
     }
