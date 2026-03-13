@@ -50,7 +50,7 @@
   }
 
   &__window {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--color-black-005);
     border: 1px solid var(--color-gray-light);
     backdrop-filter: blur(32px);
     border-radius: convert-to-rem(22px);
@@ -63,17 +63,17 @@
       padding: convert-to-rem(20px) convert-to-rem(16px);
     }
   }
-}
-
-.cta-form,
+}.cta-form,
 .cta__window form {
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: convert-to-rem(14px);
   padding: convert-to-rem(107px) convert-to-rem(102px);
   color: var(--color-white);
 
   @include mobile {
+    gap: convert-to-rem(10px);
     padding: 0;
   }
 }
@@ -98,34 +98,40 @@
     }
   }
 
+  &__fields-row {
+    display: flex;
+    flex-direction: row;
+    gap: convert-to-rem(14px);
+    width: 100%;
+
+    @include mobile {
+      flex-direction: column;
+      gap: convert-to-rem(10px);
+    }
+
+    .cta-form__group {
+      flex: 1;
+      margin-bottom: 0;
+
+      @include mobile {
+        flex: none;
+        width: 100%;
+      }
+    }
+  }
+
   &__row {
     @include mobile {
       margin-bottom: convert-to-rem(14px);
     }
   }
 
-  &__fields-row {
-    display: flex;
-    gap: convert-to-rem(14px);
-    margin-bottom: convert-to-rem(14px);
-
-    @include mobile {
-      flex-direction: column;
-      margin-bottom: convert-to-rem(14px);
-    }
-
-    .cta-form__group {
-      margin-bottom: 0;
-    }
-  }
-
   &__group {
-    flex: 1;
-    margin-bottom: convert-to-rem(14px);
+    width: 100%;
+    margin-bottom: 0;
 
     @include mobile {
       margin-bottom: convert-to-rem(10px);
-      width: 100%;
 
       &:last-child {
         margin-bottom: 0;
@@ -208,20 +214,22 @@
   width: 100%;
   min-height: convert-to-rem(52px);
   border-radius: convert-to-rem(36px);
-  border: 1px solid rgba(195, 195, 195, 0.5);
+  border: 1px solid var(--color-gray-195-05);
   background: var(--color-silver-03);
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--color-black-06);
   padding: 0 convert-to-rem(20px);
 
   &::placeholder {
     @include typography($font-family-montserrat, $fw-light, 14px, 1, -0.01em);
-    color: var(--color-black-09);
+    color: var(--color-black-06);
   }
 
   @include mobile {
     min-height: convert-to-rem(41px);
     height: convert-to-rem(41px);
     padding: convert-to-rem(12px) convert-to-rem(14px);
+    background: var(--color-white-02);
+    color: var(--color-white);
     outline: none;
     transition: border-color 0.3s ease, background 0.3s ease;
 
@@ -229,6 +237,9 @@
       opacity: 1;
     }
 
-  
+    &:focus {
+      border-color: var(--color-white-08);
+      background: var(--color-white-03);
+    }
   }
 }
