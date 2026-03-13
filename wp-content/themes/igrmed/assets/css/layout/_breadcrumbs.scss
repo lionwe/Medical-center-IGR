@@ -1,0 +1,61 @@
+@use "../utils/mixins" as *;
+@use "../base/variables" as *;
+
+.breadcrumbs {
+    margin-top: convert-to-rem(132px);
+    margin-left: 110px;
+    margin-bottom: convert-to-rem(40px);
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: convert-to-rem(8px);
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: convert-to-rem(8px);
+
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1.45, 0);
+        vertical-align: middle;
+
+        color: var(--color-black);
+
+        @include mobile {
+            color: var(--color-text-light);
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: inherit;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &__separator {
+        color: var(--color-black);
+        opacity: 0.5;
+
+        @include mobile {
+            color: var(--color-text-light);
+        }
+    }
+
+    &__current {
+        color: var(--color-black);
+        opacity: 1;
+
+        @include mobile {
+            color: var(--color-text-light);
+        }
+    }
+}

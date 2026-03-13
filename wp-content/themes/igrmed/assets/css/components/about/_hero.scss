@@ -1,0 +1,57 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.about-hero {
+  background-image: url("../img/btadcrumbs-bg.webp");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% 441px;
+
+  &__wrapper {
+    display: flex;
+    gap: convert-to-rem(20px);
+    border-radius: convert-to-rem(22px);
+    padding: convert-to-rem(49px) convert-to-rem(107px);
+    background: var(--color-white-07);
+    border: 1px solid rgba(202, 213, 218, 1);
+  }
+  &__left {
+    margin-top: convert-to-rem(32px);
+
+    flex: 1 1 auto;
+    min-width: 0;
+
+    h2 {
+      @include typography($font-family-montserrat, $fw-medium, 18px, 22px, 0);
+      margin-top: convert-to-rem(32px);
+      margin-bottom: convert-to-rem(24px);
+    }
+
+    p {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
+      margin-bottom: convert-to-rem(16px);
+    }
+
+    ul,
+    ol {
+      margin-bottom: convert-to-rem(16px);
+      padding-left: convert-to-rem(20px);
+
+      li {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
+        margin-bottom: convert-to-rem(8px);
+      }
+    }
+  }
+  &__img {
+    flex: 0 1 Clamp(320px, 583px);
+    width: Clamp(320px, 583px);
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: convert-to-rem(12px);
+  }
+
+
+
+}
