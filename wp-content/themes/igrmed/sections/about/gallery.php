@@ -52,6 +52,32 @@ if (empty($slides)) {
 <section class="about-gallery">
     <div class="container">
         <div class="about-gallery__slider swiper js-about-gallery-swiper">
+            <div class="about-gallery__top">
+                <div class="about-gallery__top-text js-about-gallery-active-text">
+                    <?php echo wp_kses_post((string) ($slides[0]['text'] ?? '')); ?>
+                </div>
+
+                <div class="about-gallery__slider-nav">
+                    <?php
+                    get_template_part('templates/button', null, [
+                        'type' => 'carousel',
+                        'carousel_group' => [
+                            [
+                                'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-prev.svg',
+                                'class' => 'is-prev js-about-gallery-prev',
+                                'aria_label' => __('Попередній слайд', 'igrmed'),
+                            ],
+                            [
+                                'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg',
+                                'class' => 'js-about-gallery-next',
+                                'aria_label' => __('Наступний слайд', 'igrmed'),
+                            ],
+                        ],
+                    ]);
+                    ?>
+                </div>
+            </div>
+
             <div class="swiper-wrapper">
                 <?php foreach ($slides as $slide): ?>
                     <article class="about-gallery__slide swiper-slide">
@@ -81,31 +107,11 @@ if (empty($slides)) {
                         <?php endif; ?>
 
                         <?php if ($slide['text'] !== ''): ?>
-                            <div class="about-gallery__text"><?php echo wp_kses_post($slide['text']); ?></div>
+                            <div class="about-gallery__text js-about-gallery-slide-text"><?php echo wp_kses_post($slide['text']); ?></div>
                         <?php endif; ?>
                     </article>
                 <?php endforeach; ?>
             </div>
-        </div>
-
-        <div class="about-gallery__slider-nav">
-            <?php
-            get_template_part('templates/button', null, [
-                'type' => 'carousel',
-                'carousel_group' => [
-                    [
-                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-prev.svg',
-                        'class' => 'is-prev js-about-gallery-prev',
-                        'aria_label' => __('Попередній слайд', 'igrmed'),
-                    ],
-                    [
-                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg',
-                        'class' => 'js-about-gallery-next',
-                        'aria_label' => __('Наступний слайд', 'igrmed'),
-                    ],
-                ],
-            ]);
-            ?>
         </div>
     </div>
 </section>

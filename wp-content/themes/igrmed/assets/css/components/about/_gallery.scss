@@ -5,6 +5,7 @@
   padding-block: convert-to-rem(40px);
 
   &__slider {
+    position: relative;
     overflow: hidden;
     height: convert-to-rem(500px);
 
@@ -17,13 +18,60 @@
     }
   }
 
+  &__top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    width: convert-to-rem(680px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: convert-to-rem(20px);
+    pointer-events: none;
+
+    @include mobile {
+      position: static;
+      width: 100%;
+      margin-bottom: convert-to-rem(12px);
+      pointer-events: auto;
+    }
+  }
+
+  &__top-text {
+    flex: 1;
+    min-width: 0;
+    pointer-events: none;
+    opacity: 1;
+    transform: translateX(0);
+    will-change: transform, opacity;
+
+    &.is-animating {
+      animation: about-gallery-text-slide-in 0.45s ease;
+    }
+
+    h2 {
+      @include typography($font-family-montserrat, $fw-medium, 70px, 1, 0);
+      color: var(--color-gray-light-04);
+      margin: 0;
+    }
+
+    p {
+      @include typography($font-family-montserrat, $fw-medium, 22px, 1, 0);
+      color: var(--color-primary-dark);
+      margin: 0;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
   &__slider-nav {
-    margin-top: convert-to-rem(20px);
-    margin-left: auto;
-    width: fit-content;
     display: flex;
     align-items: center;
     gap: convert-to-rem(8px);
+    pointer-events: auto;
   }
 
   &__slide {
@@ -32,6 +80,7 @@
     justify-content: flex-end;
     gap: convert-to-rem(12px);
     height: 100%;
+    position: relative;
     flex-shrink: 0;
     width: convert-to-rem(330px);
     transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,13 +127,18 @@
   }
 
   &__text {
-    @include typography($font-family-montserrat, $fw-regular, 15px, 1.4, 0);
-    color: var(--color-primary-dark);
-    display: -webkit-box;
-    overflow: hidden;
-    line-clamp: 3;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    display: none;
+  }
+}
+
+@keyframes about-gallery-text-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(convert-to-rem(30px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
