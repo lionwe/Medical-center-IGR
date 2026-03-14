@@ -7,13 +7,9 @@ export default class AboutGallerySwiper {
         if (!this.wrapper) {
             return;
         }
-
-        const syncLayout = (swiper) => {
-            requestAnimationFrame(() => {
-                swiper.update();
-                swiper.slideTo(swiper.activeIndex, 0, false);
-            });
-        };
+        const section = this.wrapper.closest(".about-gallery") || document;
+        const prevButton = section.querySelector(".js-about-gallery-prev");
+        const nextButton = section.querySelector(".js-about-gallery-next");
 
         this.swiper = new Swiper(this.wrapper, {
             modules: [Navigation],
@@ -22,40 +18,14 @@ export default class AboutGallerySwiper {
             watchOverflow: true,
             observer: true,
             observeParents: true,
-            initialSlide: 0,
             speed: 450,
             spaceBetween: 20,
             slideToClickedSlide: true,
             slidesPerGroup: 1,
             navigation: {
-                prevEl: ".js-about-gallery-prev",
-                nextEl: ".js-about-gallery-next",
+                prevEl: prevButton,
+                nextEl: nextButton,
                 disabledClass: "swiper-button-disabled",
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                    spaceBetween: 12,
-                },
-                768: {
-                    slidesPerView: "auto",
-                    spaceBetween: 16,
-                },
-                992: {
-                    slidesPerView: "auto",
-                    spaceBetween: 20,
-                },
-            },
-            on: {
-                init(swiper) {
-                    syncLayout(swiper);
-                },
-                slideChangeTransitionStart(swiper) {
-                    syncLayout(swiper);
-                },
-                resize(swiper) {
-                    syncLayout(swiper);
-                },
             },
         });
     }

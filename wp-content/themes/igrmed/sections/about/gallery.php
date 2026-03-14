@@ -88,21 +88,22 @@ if (empty($slides)) {
             </div>
         </div>
 
-        <div class="about-gallery__slider-nav btn-group--glass-circle">
+        <div class="about-gallery__slider-nav">
             <?php
             get_template_part('templates/button', null, [
                 'type' => 'carousel',
-                'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-carousel-active.svg',
-                'class' => 'is-prev js-about-gallery-prev',
-                'attributes' => ['aria-label' => __('Попередній слайд', 'igrmed')],
-            ]);
-            ?>
-            <?php
-            get_template_part('templates/button', null, [
-                'type' => 'carousel',
-                'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-carousel-active.svg',
-                'class' => 'js-about-gallery-next',
-                'attributes' => ['aria-label' => __('Наступний слайд', 'igrmed')],
+                'carousel_group' => [
+                    [
+                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-prev.svg',
+                        'class' => 'is-prev js-about-gallery-prev',
+                        'aria_label' => __('Попередній слайд', 'igrmed'),
+                    ],
+                    [
+                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg',
+                        'class' => 'js-about-gallery-next',
+                        'aria_label' => __('Наступний слайд', 'igrmed'),
+                    ],
+                ],
             ]);
             ?>
         </div>
