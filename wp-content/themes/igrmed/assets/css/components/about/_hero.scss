@@ -4,7 +4,7 @@
 .about-hero {
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 441px;
 
   &__wrapper {
     position: relative;
@@ -13,19 +13,9 @@
     gap: convert-to-rem(20px);
     border-radius: convert-to-rem(22px);
     padding: convert-to-rem(49px) convert-to-rem(107px);
-    background: transparent;
+    background: var(--color-white-07);
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 100vw;
-      transform: translateX(-50%);
-      background: var(--color-white-07);
-      z-index: -1;
-    }
+   
 
     @include mobile {
       flex-direction: column;
