@@ -102,20 +102,37 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
     <?php
     $split_button_classes = $classes . ' btn--icon-only';
     ?>
-    <div class="btn-split btn-split--primary">
-        <span class="btn-split__text"><?php echo esc_html($text); ?></span>
-        <<?php echo $tag; ?> class="<?php echo esc_attr($split_button_classes); ?>" <?php echo $attrs; ?>>
-            <?php if ($icon_url): ?>
-                <?php if ($use_img_icon): ?>
-                    <span class="btn__icon btn__icon--img">
-                        <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
-                    </span>
-                <?php else: ?>
-                    <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+    <?php if ($tag === 'a'): ?>
+        <a class="btn-split btn-split--primary" <?php echo $attrs; ?>>
+            <span class="btn-split__text"><?php echo esc_html($text); ?></span>
+            <span class="<?php echo esc_attr($split_button_classes); ?>" aria-hidden="true">
+                <?php if ($icon_url): ?>
+                    <?php if ($use_img_icon): ?>
+                        <span class="btn__icon btn__icon--img">
+                            <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+                        </span>
+                    <?php else: ?>
+                        <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+                    <?php endif; ?>
                 <?php endif; ?>
-            <?php endif; ?>
-        </<?php echo $tag; ?>>
-    </div>
+            </span>
+        </a>
+    <?php else: ?>
+        <div class="btn-split btn-split--primary">
+            <span class="btn-split__text"><?php echo esc_html($text); ?></span>
+            <<?php echo $tag; ?> class="<?php echo esc_attr($split_button_classes); ?>" <?php echo $attrs; ?>>
+                <?php if ($icon_url): ?>
+                    <?php if ($use_img_icon): ?>
+                        <span class="btn__icon btn__icon--img">
+                            <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+                        </span>
+                    <?php else: ?>
+                        <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </<?php echo $tag; ?>>
+        </div>
+    <?php endif; ?>
     <?php return; ?>
 <?php endif; ?>
 
