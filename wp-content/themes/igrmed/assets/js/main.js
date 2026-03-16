@@ -1,6 +1,6 @@
 import "./utils";
 import "./components/home/main";
-import "./mobile-menu";
+import "./ui/main";
 
 import "./swipers/main";
 import "./components/forms/main";

@@ -9,14 +9,19 @@ $_header-cta-gradient: linear-gradient(
 );
 
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 10110;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+
+  &.is-hidden {
+    transform: translateY(-100%);
+  }
 
   @include mobile {
-    position: fixed;
     right: 0;
     isolation: isolate;
     z-index: 2147483647;
