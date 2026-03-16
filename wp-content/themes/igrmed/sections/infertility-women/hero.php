@@ -8,6 +8,7 @@ $right_text_pregnant = (string) get_field('right_text_pregnant');
 <section id="infertility-women-hero" class="infertility-women-hero" <?php echo $hero_style; ?>>
     <div class="container">
         <?php get_template_part('templates/breadcrumbs'); ?>
+        <?php get_template_part('templates/gradient-banner'); ?>
 
         <div class="infertility-women-hero__wrapper">
             <div class="infertility-women-hero__left">

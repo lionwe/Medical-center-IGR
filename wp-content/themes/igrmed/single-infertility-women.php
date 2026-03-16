@@ -8,7 +8,9 @@ get_header();
 ?>
 
 <main id="infertility-women">
+
     <?php get_template_part('sections/infertility-women/hero'); ?>
+
 
 </main>
 

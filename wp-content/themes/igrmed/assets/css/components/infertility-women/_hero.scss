@@ -35,7 +35,10 @@
     @include mobile {
       flex-direction: column;
       padding-top: convert-to-rem(30px);
-      padding-inline: 0;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-inline: var(--_section-offset);
     }
   }
 
@@ -74,6 +77,10 @@
       margin:  0 43px;
       padding: 0;
       list-style: none;
+    
+      @include mobile {
+        margin: 0 0;
+      }
     }
 
     li {
@@ -107,6 +114,9 @@
     p {
       @include typography($font-family-montserrat, $fw-regular, 15px, 1.5, 0);
       margin: 0 0 convert-to-rem(12px);
+      @include mobile {
+        margin: 0 0;
+      }
 
       &:last-child {
         margin-bottom: 0;
@@ -117,7 +127,9 @@
       margin: 0;
       padding: 0;
       list-style: none;
+      
     }
+
 
     li {
       @include typography($font-family-montserrat, $fw-regular, 15px, 1.5, 0);
@@ -153,13 +165,19 @@
     &__left {
       padding-right: 0;
       border-right: 0;
-      border-bottom: 1px solid rgba(217, 217, 217, 1);
+      border-bottom: 0;
       padding-bottom: convert-to-rem(16px);
     }
 
     &__right {
       padding-left: 0;
       padding-top: convert-to-rem(16px);
+    }
+
+    &__text {
+      li {
+        padding-left: convert-to-rem(37px);
+      }
     }
 
   }
