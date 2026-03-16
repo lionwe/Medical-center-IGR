@@ -529,4 +529,31 @@
 
 .footer--simple {
   background-color: var(--color-primary-dark);
+  min-height: auto;
+
+  .footer__top {
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .footer__bottom {
+    padding: convert-to-rem(70px) 0;
+  
+  }
+
+  .footer__bottom-title-row {
+    display: none;
+  }
+
+  .footer__copyright-row {
+    margin-top: convert-to-rem(12px);
+    padding-bottom: convert-to-rem(24px);
+  }
+
+  @include mobile {
+    .footer__bottom {
+      padding-top: convert-to-rem(20px);
+    }
+  }
 }
