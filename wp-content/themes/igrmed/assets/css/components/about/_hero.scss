@@ -2,10 +2,9 @@
 @use "../../base/variables" as *;
 
 .about-hero {
-  background-image: url("../img/btadcrumbs-bg.webp");
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: 100% 441px;
+  background-size: 100% 100%;
 
   &__wrapper {
     position: relative;

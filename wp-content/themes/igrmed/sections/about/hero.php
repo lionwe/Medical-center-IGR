@@ -1,8 +1,10 @@
 <?php
 $hero_about_left_text = (string) get_field('hero_about_left_text');
 $hero_about_img = get_field('hero_about_img');
+$hero_about_bg = get_field('hero_about_bg');
 
 $hero_about_img_url = '';
+$hero_about_bg_url = '';
 
 if (is_array($hero_about_img)) {
     $hero_about_img_url = (string) ($hero_about_img['url'] ?? '');
@@ -11,9 +13,19 @@ if (is_array($hero_about_img)) {
 } elseif (is_string($hero_about_img)) {
     $hero_about_img_url = $hero_about_img;
 }
+
+if (is_array($hero_about_bg)) {
+    $hero_about_bg_url = (string) ($hero_about_bg['url'] ?? '');
+} elseif (is_numeric($hero_about_bg)) {
+    $hero_about_bg_url = (string) wp_get_attachment_image_url((int) $hero_about_bg, 'full');
+} elseif (is_string($hero_about_bg)) {
+    $hero_about_bg_url = $hero_about_bg;
+}
+
+$about_hero_style = $hero_about_bg_url !== '' ? ' style="background-image: url(' . esc_url($hero_about_bg_url) . ');"' : '';
 ?>
 
-<section id="about-hero" class="about-hero">
+<section id="about-hero" class="about-hero"<?php echo $about_hero_style; ?>>
     <div class="container">
         <?php get_template_part('templates/breadcrumbs'); ?>
 
