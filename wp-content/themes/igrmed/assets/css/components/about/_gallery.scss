@@ -1,0 +1,154 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.about-gallery {
+  padding-block: convert-to-rem(40px);
+
+  &__slider {
+    position: relative;
+    overflow: hidden;
+    height: convert-to-rem(500px);
+
+    .swiper-wrapper {
+      align-items: flex-end;
+    }
+
+    @include mobile {
+      height: auto;
+    }
+  }
+
+  &__top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    width: convert-to-rem(680px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: convert-to-rem(20px);
+    pointer-events: none;
+
+    @include mobile {
+      position: static;
+      width: 100%;
+      margin-bottom: convert-to-rem(12px);
+      align-items: flex-start;
+      pointer-events: auto;
+    }
+  }
+
+  &__top-text {
+    flex: 1;
+    min-width: 0;
+    pointer-events: none;
+    opacity: 1;
+    transform: translateX(0);
+    will-change: transform, opacity;
+
+    &.is-animating {
+      animation: about-gallery-text-slide-in 0.45s ease;
+    }
+
+    h2 {
+      @include typography($font-family-montserrat, $fw-medium, 70px, 1, 0);
+      color: var(--color-gray-light-04);
+      margin: 0;
+    }
+
+    p {
+      @include typography($font-family-montserrat, $fw-medium, 22px, 1, 0);
+      color: var(--color-primary-dark);
+      margin: 0;
+    }
+
+    @include mobile {
+      display: block;
+
+      h2 {
+        @include typography($font-family-montserrat, $fw-medium, 36px, 1, 0);
+      }
+
+      p {
+        @include typography($font-family-montserrat, $fw-medium, 16px, 1.2, 0);
+      }
+    }
+  }
+
+  &__slider-nav {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(8px);
+    pointer-events: auto;
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: convert-to-rem(12px);
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+    width: convert-to-rem(330px);
+    transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.swiper-slide-active {
+      width: convert-to-rem(680px);
+    }
+
+    @include mobile {
+      width: 100%;
+      height: auto;
+      transition: none;
+
+      &.swiper-slide-active {
+        width: 100%;
+      }
+    }
+  }
+
+  &__image-wrap {
+    border-radius: convert-to-rem(16px);
+    overflow: hidden;
+    background: var(--color-white-05);
+    aspect-ratio: 11 / 10;
+    transition: aspect-ratio 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .swiper-slide-active & {
+      aspect-ratio: 68 / 50;
+    }
+
+    @include mobile {
+      aspect-ratio: 1 / 1;
+
+      .swiper-slide-active & {
+        aspect-ratio: 1 / 1;
+      }
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__text {
+    display: none;
+  }
+}
+
+@keyframes about-gallery-text-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(convert-to-rem(30px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
