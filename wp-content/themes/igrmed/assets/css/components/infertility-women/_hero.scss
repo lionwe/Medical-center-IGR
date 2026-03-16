@@ -1,0 +1,166 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.infertility-women-hero {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% 441px;
+
+  &__wrapper {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    gap: convert-to-rem(20px);
+    border-radius: convert-to-rem(22px);
+    @include gradient-border(
+      convert-to-rem(22px),
+      convert-to-rem(1px),
+      linear-gradient(180deg, #f2f2f2 0%, #818181 41.42%, #ffffff 100%)
+    );
+    padding: convert-to-rem(30px) convert-to-rem(36px);
+    background: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    box-shadow:
+      0 17px 38px 0 rgba(0, 0, 0, 0.1),
+      0 69px 69px 0 rgba(0, 0, 0, 0.09),
+      0 156px 94px 0 rgba(0, 0, 0, 0.05),
+      0 277px 111px 0 rgba(0, 0, 0, 0.01),
+      0 433px 121px 0 rgba(0, 0, 0, 0);
+
+  
+
+
+
+    @include mobile {
+      flex-direction: column;
+      padding-top: convert-to-rem(30px);
+      padding-inline: 0;
+    }
+  }
+
+  &__left,
+  &__right {
+    min-width: 0;
+  }
+
+  &__left {
+    flex: 0 1 50%;
+    padding-right: convert-to-rem(28px);
+    border-right: 1px solid rgba(217, 217, 217, 1);
+  }
+
+  &__right {
+    flex: 1 1 50%;
+    padding-left: convert-to-rem(28px);
+  }
+
+  &__left-title {
+
+    h2 {
+      @include typography($font-family-montserrat, $fw-medium, 24px, 1.2, 0);
+      margin: 0 0 convert-to-rem(14px) 0;
+    }
+    p {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 1.5, 0);
+      margin: 0 0 convert-to-rem(12px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul {
+      margin:  0 43px;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 1.5, 0);
+      position: relative;
+      padding-left: convert-to-rem(20px);
+      margin-bottom: convert-to-rem(10px);
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: convert-to-rem(10px);
+        height: convert-to-rem(10px);
+        border-radius: 50%;
+        background: rgba(230, 192, 163, 1);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__text {
+    h3{
+      margin-bottom: 20px;
+    }
+    p {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 1.5, 0);
+      margin: 0 0 convert-to-rem(12px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 1.5, 0);
+      position: relative;
+      padding-left: convert-to-rem(49px);
+      margin-bottom: convert-to-rem(10px);
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: convert-to-rem(25px);
+        height: convert-to-rem(26px);
+        border-radius: convert-to-rem(6px);
+        background: rgba(68, 115, 184, 0.3);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include mobile {
+    &__left,
+    &__right {
+      flex: 1 1 auto;
+      width: 100%;
+    }
+
+    &__left {
+      padding-right: 0;
+      border-right: 0;
+      border-bottom: 1px solid rgba(217, 217, 217, 1);
+      padding-bottom: convert-to-rem(16px);
+    }
+
+    &__right {
+      padding-left: 0;
+      padding-top: convert-to-rem(16px);
+    }
+
+  }
+}

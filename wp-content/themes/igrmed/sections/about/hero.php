@@ -25,7 +25,7 @@ if (is_array($hero_about_bg)) {
 $about_hero_style = $hero_about_bg_url !== '' ? ' style="background-image: url(' . esc_url($hero_about_bg_url) . ');"' : '';
 ?>
 
-<section id="about-hero" class="about-hero"<?php echo $about_hero_style; ?>>
+<section id="about-hero" class="about-hero" <?php echo $about_hero_style; ?>>
     <div class="container">
         <?php get_template_part('templates/breadcrumbs'); ?>
 
