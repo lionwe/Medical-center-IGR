@@ -12,4 +12,4 @@ Template Name: About
     <?php get_template_part('sections/about/gallery'); ?>
 </main>
 
-<?php get_footer(); ?>
+<?php get_footer('simple'); ?>
