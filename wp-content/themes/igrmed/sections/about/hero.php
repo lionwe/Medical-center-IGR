@@ -14,7 +14,6 @@ if (is_array($hero_about_img)) {
 ?>
 
 <section id="about-hero" class="about-hero">
-
     <div class="container">
         <?php get_template_part('templates/breadcrumbs'); ?>
 

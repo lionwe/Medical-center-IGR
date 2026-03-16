@@ -14,7 +14,7 @@
     }
 
     @include mobile {
-      height: convert-to-rem(300px);
+      height: auto;
     }
   }
 
@@ -34,6 +34,7 @@
       position: static;
       width: 100%;
       margin-bottom: convert-to-rem(12px);
+      align-items: flex-start;
       pointer-events: auto;
     }
   }
@@ -63,7 +64,15 @@
     }
 
     @include mobile {
-      display: none;
+      display: block;
+
+      h2 {
+        @include typography($font-family-montserrat, $fw-medium, 36px, 1, 0);
+      }
+
+      p {
+        @include typography($font-family-montserrat, $fw-medium, 16px, 1.2, 0);
+      }
     }
   }
 
@@ -91,6 +100,7 @@
 
     @include mobile {
       width: 100%;
+      height: auto;
       transition: none;
 
       &.swiper-slide-active {
