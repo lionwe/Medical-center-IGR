@@ -12,10 +12,14 @@ $_header-cta-gradient: linear-gradient(
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   z-index: 10110;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
+
+  > .container {
+    width: min(90rem - var(--_section-offset) * 2, calc(100% - var(--_section-offset) * 2));
+    margin-inline: auto;
+  }
 
   &.is-hidden {
     transform: translateY(-100%);
