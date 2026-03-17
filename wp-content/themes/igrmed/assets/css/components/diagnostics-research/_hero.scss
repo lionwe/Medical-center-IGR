@@ -1,0 +1,145 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.diagnostics-research-hero {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% 441px;
+
+  &__wrapper {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+    border-radius: convert-to-rem(22px);
+    @include gradient-border(
+      convert-to-rem(22px),
+      convert-to-rem(1px),
+      linear-gradient(180deg, #f2f2f2 0%, #818181 41.42%, #ffffff 100%)
+    );
+    padding: convert-to-rem(30px) convert-to-rem(36px);
+    background: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    box-shadow:
+      0 17px 38px 0 rgba(0, 0, 0, 0.1),
+      0 69px 69px 0 rgba(0, 0, 0, 0.09),
+      0 156px 94px 0 rgba(0, 0, 0, 0.05),
+      0 277px 111px 0 rgba(0, 0, 0, 0.01),
+      0 433px 121px 0 rgba(0, 0, 0, 0);
+
+    @include mobile {
+      flex-direction: column;
+      padding-top: convert-to-rem(30px);
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-inline: var(--_section-offset);
+      
+    }
+  }
+
+  &__left,
+  &__right {
+    min-width: 0;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(47px);
+    padding-right: convert-to-rem(28px);
+  }
+
+  &__right {
+    padding-left: convert-to-rem(28px);
+  }
+
+  &__title {
+    color: var(--color-text-main);
+    max-width: convert-to-rem(400px);
+  }
+
+  &__list {
+    list-style: none;
+    counter-reset: diagnostics-types;
+    margin: 0;
+    padding: 0;
+    column-count: 2;
+    column-gap: convert-to-rem(30px);
+    width: 100%;
+  }
+
+  &__item {
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
+    counter-increment: diagnostics-types;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(24px);
+    padding: convert-to-rem(4px) convert-to-rem(35px) convert-to-rem(12px) 0;
+    color: var(--color-text-main);
+    background-color: var(--color-white);
+    break-inside: avoid;
+    margin-bottom: convert-to-rem(12px);
+
+    &::before {
+      content: "(" counter(diagnostics-types, decimal-leading-zero) ")";
+      @include typography($font-family-montserrat, $fw-regular, 15px, 1, 0);
+      flex: 0 0 auto;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: convert-to-rem(6px);
+      height: 1px;
+      background: rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__img {
+    width: Clamp(355px, 456px);
+    aspect-ratio: 456 / 473;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: convert-to-rem(12px);
+    display: block;
+  }
+
+  @include mobile {
+    &__left,
+    &__right {
+      width: 100%;
+    }
+
+    &__left {
+      padding-right: 0;
+      border-right: 0;
+      border-bottom: 0;
+      padding-bottom: convert-to-rem(16px);
+    }
+
+    &__right {
+      padding-left: 0;
+      padding-top: convert-to-rem(16px);
+    }
+
+    &__img {
+      width: 100%;
+      aspect-ratio: auto;
+    }
+
+    &__list {
+      column-count: 1;
+      column-gap: 0;
+    }
+
+    &__item {
+      margin-bottom: convert-to-rem(10px);
+    }
+  }
+}
