@@ -830,6 +830,32 @@
                 "append": ""
             },
             {
+                "key": "field_licenses_bg",
+                "label": "Фонове зображення секції",
+                "name": "licenses_bg",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Формати: webp, jpg, png. Рекомендовано webp.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "webp, jpg, jpeg, png",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
                 "key": "field_licenses_gallery",
                 "label": "Галерея сертифікатів",
                 "name": "licenses_gallery",
@@ -1024,7 +1050,7 @@
                     "id": ""
                 },
                 "post_type": [
-                    "post"
+                    "blog"
                 ],
                 "taxonomy": [],
                 "filters": [

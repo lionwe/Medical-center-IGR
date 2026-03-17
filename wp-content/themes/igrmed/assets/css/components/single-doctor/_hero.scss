@@ -106,7 +106,7 @@
             0px convert-to-rem(156px) convert-to-rem(94px) 0px rgba(0, 0, 0, 0.05),
             0px convert-to-rem(277px) convert-to-rem(111px) 0px rgba(0, 0, 0, 0.01);
 
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 
         @include hover {
             transform: translateY(convert-to-rem(-3px));
@@ -114,20 +114,39 @@
             border-color: var(--color-primary-dark);
 
             svg,
-            img {
-                filter: brightness(0) invert(1);
+            .doctor-hero__social-icon {
+                color: var(--color-white);
+                background-color: currentColor;
             }
         }
 
         svg,
-        img {
+        img,
+        .doctor-hero__social-icon {
             width: convert-to-rem(23px);
             height: convert-to-rem(23px);
             object-fit: contain;
             display: block;
+        }
+
+        svg {
             color: var(--color-primary-dark-blue);
             fill: currentColor;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
+        }
+
+        .doctor-hero__social-icon {
+            background-color: var(--color-primary-dark-blue);
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: contain;
+            transition: background-color 0.3s ease;
+        }
+
+        img {
+            // No decorative transitions or filters allowed on img per Rule 6
+            transition: none;
+            filter: none;
         }
     }
 
@@ -198,7 +217,7 @@
             text-align: center;
 
             .doctor-hero__badge-value {
-                font-size: convert-to-rem(18px); // Smaller as requested
+                @include typography($font-family-montserrat, $fw-medium, 18px, 1.2, -0.02em);
             }
         }
     }
@@ -220,7 +239,8 @@
         height: convert-to-rem(500px);
         border-radius: convert-to-rem(12px);
         border: convert-to-rem(1px) solid var(--color-gray-dark);
-        overflow: hidden;
+        overflow: visible; // Allow badge to stick out
+        position: relative;
 
         @include mobile {
             width: 100%;
@@ -233,6 +253,52 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
+        border-radius: convert-to-rem(12px);
+        overflow: hidden;
+    }
+
+    &__schedule-badge {
+        position: absolute;
+        bottom: convert-to-rem(10px);
+        right: convert-to-rem(-30px);
+        width: fit-content;
+        min-height: convert-to-rem(92px);
+        border-radius: convert-to-rem(8px);
+        padding: convert-to-rem(20px) convert-to-rem(24px);
+        background: var(--color-white-03);
+        border: convert-to-rem(1px) solid var(--color-white-04);
+        box-shadow:
+            0px convert-to-rem(17px) convert-to-rem(38px) 0px rgba(0, 0, 0, 0.1),
+            0px convert-to-rem(69px) convert-to-rem(69px) 0px rgba(0, 0, 0, 0.09),
+            0px convert-to-rem(156px) convert-to-rem(94px) 0px rgba(0, 0, 0, 0.05),
+            0px convert-to-rem(277px) convert-to-rem(111px) 0px rgba(0, 0, 0, 0.01);
+        backdrop-filter: blur(convert-to-rem(18px));
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(10px);
+        z-index: 2;
+    }
+
+    &__schedule-title {
+        @include typography($font-family-montserrat, $fw-regular, 16px, 1.2);
+        color: var(--color-black);
+        text-align: center;
+    }
+
+    &__schedule-value {
+        width: 100%;
+        min-height: convert-to-rem(36px);
+        border-radius: convert-to-rem(20px);
+        background: var(--color-white-05);
+        padding: 8px 59.5px;
+        border: convert-to-rem(1px) solid #D7D7D7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1.45);
+        color: var(--color-black);
+        white-space: nowrap;
     }
 
     &__divider {
@@ -324,51 +390,6 @@
         }
     }
 
-    &__btn {
-        margin-top: auto;
-        width: 100%;
-        padding: convert-to-rem(5px);
-        border: convert-to-rem(0.5px) solid var(--color-primary-dark) !important;
-        color: var(--color-primary-dark) !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        gap: convert-to-rem(10px);
-
-        .btn-split__text {
-            @include typography($font-family-montserrat, $fw-semibold, 14px, 1.0);
-            color: inherit !important;
-        }
-
-        .btn--icon-only {
-            border: 1px solid var(--color-white) !important;
-            background: var(--color-white) !important;
-            color: var(--color-primary-dark) !important;
-            width: convert-to-rem(50px);
-            height: convert-to-rem(24px);
-            padding: 0;
-
-            .btn__icon {
-                background-color: var(--color-primary-dark) !important;
-                width: convert-to-rem(21px);
-                height: convert-to-rem(8px);
-            }
-        }
-
-        @include hover {
-            background: var(--color-primary-dark) !important;
-            color: var(--color-white) !important;
-
-            .btn--icon-only {
-                background: var(--color-white) !important;
-                border-color: var(--color-white) !important;
-
-                .btn__icon {
-                    background-color: var(--color-primary-dark) !important;
-                }
-            }
-        }
-    }
 
     &__content-wrapper {
         flex: 1;

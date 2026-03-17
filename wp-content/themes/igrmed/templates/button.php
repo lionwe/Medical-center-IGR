@@ -58,13 +58,13 @@ if ($type === 'carousel' && is_array($carousel_group) && !empty($carousel_group)
         foreach ($attributes as $attr => $value) {
             $attrs .= ' ' . esc_attr((string) $attr) . '="' . esc_attr((string) $value) . '"';
         }
-        ?>
+?>
         <button class="<?php echo esc_attr(trim('btn btn--carousel ' . $control_class)); ?>" <?php echo $attrs; ?>>
             <?php if ($control_icon_url !== ''): ?>
                 <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($control_icon_url); ?>'); mask-image: url('<?php echo esc_url($control_icon_url); ?>');"></span>
             <?php endif; ?>
         </button>
-        <?php
+<?php
     };
 
     foreach ($carousel_group as $control) {
@@ -103,7 +103,7 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
     $split_button_classes = $classes . ' btn--icon-only';
     ?>
     <?php if ($tag === 'a'): ?>
-        <a class="btn-split btn-split--primary" <?php echo $attrs; ?>>
+        <a class="btn-split btn-split--white" <?php echo $attrs; ?>>
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
             <span class="<?php echo esc_attr($split_button_classes); ?>" aria-hidden="true">
                 <?php if ($icon_url): ?>
@@ -118,7 +118,7 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
             </span>
         </a>
     <?php else: ?>
-        <div class="btn-split btn-split--primary">
+        <div class="btn-split btn-split--white">
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
             <<?php echo $tag; ?> class="<?php echo esc_attr($split_button_classes); ?>" <?php echo $attrs; ?>>
                 <?php if ($icon_url): ?>

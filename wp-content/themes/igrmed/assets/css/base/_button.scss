@@ -319,12 +319,64 @@ $_gradient-border: linear-gradient(180deg,
   border-radius: convert-to-rem(100px);
   padding: convert-to-rem(10px) convert-to-rem(32px);
   color: inherit;
+  transition: all 0.3s ease;
+  text-decoration: none;
 
   &__text {
-    @include typography($font-family-base, $fw-semibold, (12px, 14px), 1, 0);
+    @include typography($font-family-montserrat, $fw-semibold, 14px, 1.0);
     margin: 0;
     color: inherit;
     white-space: nowrap;
+  }
+
+  &--white {
+    // Current default styles from .btn-split are already "white" or currentColor based
+  }
+
+  &--dark {
+    margin-top: auto;
+    width: 100%;
+    padding: convert-to-rem(11.5px) convert-to-rem(32px);
+    border: convert-to-rem(0.5px) solid var(--color-primary-dark) !important;
+    color: var(--color-primary-dark) !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: convert-to-rem(10px);
+    border-radius: convert-to-rem(100px);
+    transition: background 0.3s ease, color 0.3s ease;
+
+    .btn--icon-only {
+      border: convert-to-rem(1px) solid var(--color-white) !important;
+      background: var(--color-white) !important;
+      color: var(--color-primary-dark) !important;
+      width: convert-to-rem(50px);
+      height: convert-to-rem(24px);
+      padding: 0;
+      border-radius: convert-to-rem(12px);
+      transition: all 0.3s ease;
+
+      .btn__icon {
+        background-color: var(--color-primary-dark) !important;
+        width: convert-to-rem(21px);
+        height: convert-to-rem(8px);
+        transition: background-color 0.3s ease;
+      }
+    }
+
+    @include hover {
+      background: var(--color-primary-dark) !important;
+      color: var(--color-white) !important;
+
+      .btn--icon-only {
+        background: var(--color-white) !important;
+        border-color: var(--color-white) !important;
+
+        .btn__icon {
+          background-color: var(--color-primary-dark) !important;
+        }
+      }
+    }
   }
 }
 
