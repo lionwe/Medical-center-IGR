@@ -1,0 +1,233 @@
+[
+    {
+        "key": "group_doctor_details",
+        "title": "Деталі про лікаря",
+        "fields": [
+            {
+                "key": "field_doctor_tab_general",
+                "label": "Основна інформація",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 1
+            },
+            {
+                "key": "field_doctor_specialization",
+                "label": "Спеціальність",
+                "name": "doctor_specialization",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Наприклад: Лікар-генетик вищої категорії",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "Лікар-генетик вищої категорії",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_doctor_experience",
+                "label": "Років стажу",
+                "name": "doctor_experience",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Тільки число або короткий текст (наприклад: 11)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "11",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_doctor_schedule",
+                "label": "Графік прийому",
+                "name": "doctor_schedule",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Дні та години прийому",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "ПН-ПТ 9:00-11:00",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_doctor_socials_fb",
+                "label": "Facebook (URL)",
+                "name": "doctor_facebook",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "Посилання на сторінку у Facebook",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": "https://www.facebook.com/..."
+            },
+            {
+                "key": "field_doctor_socials_insta",
+                "label": "Instagram (URL)",
+                "name": "doctor_instagram",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "Посилання на сторінку в Instagram",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": "https://www.instagram.com/..."
+            },
+            {
+                "key": "field_doctor_tab_content",
+                "label": "Описи та таби",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_doctor_about",
+                "label": "Про лікаря",
+                "name": "doctor_about",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "Блок з описом діяльності лікаря",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
+            },
+            {
+                "key": "field_doctor_education",
+                "label": "Освіта",
+                "name": "doctor_education",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "Дані про освіту та кваліфікацію",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
+            },
+            {
+                "key": "field_doctor_certificates",
+                "label": "Сертифікати",
+                "name": "doctor_certificates",
+                "aria-label": "",
+                "type": "gallery",
+                "instructions": "Завантажте фото сертифікатів та дипломів",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min": "",
+                "max": "",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "webp, jpg, jpeg, png",
+                "insert": "append",
+                "preview_size": "medium",
+                "allow_in_bindings": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "doctors"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Поля для детальної сторінки лікаря",
+        "show_in_rest": 1,
+        "display_title": ""
+    }
+]
