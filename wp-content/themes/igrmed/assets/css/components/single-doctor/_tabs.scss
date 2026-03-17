@@ -1,0 +1,205 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.doctor-hero {
+
+    // Divider
+    &__divider {
+        width: 100%;
+        height: convert-to-rem(1px);
+        background: var(--color-white);
+        border: none;
+        margin-top: convert-to-rem(46px);
+        margin-bottom: convert-to-rem(46px);
+
+        @include mobile {
+            margin-top: convert-to-rem(60px);
+            margin-bottom: convert-to-rem(20px);
+        }
+    }
+
+    // Bottom row
+    &__bottom {
+        display: flex;
+        gap: convert-to-rem(136px);
+        align-items: flex-start;
+
+        @include mobile {
+            flex-direction: column;
+            gap: convert-to-rem(40px);
+        }
+    }
+
+    &__left {
+        flex: 0 0 convert-to-rem(268px);
+        width: convert-to-rem(268px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: convert-to-rem(360px);
+
+        @include mobile {
+            width: 100%;
+            flex: 0 1 auto;
+            min-height: auto;
+            gap: convert-to-rem(30px);
+        }
+    }
+
+    // Tab navigation
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(8px);
+        width: 100%;
+
+        @include mobile {
+            flex-direction: row;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+
+    &__tab {
+        width: 100%;
+        max-width: convert-to-rem(240px);
+        height: convert-to-rem(34px);
+        border-radius: convert-to-rem(12px);
+        padding: convert-to-rem(8px) convert-to-rem(10px);
+        background: var(--color-white-05);
+        border: convert-to-rem(1px) solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: convert-to-rem(8px);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        @include mobile {
+            width: auto;
+            flex: 1 1 auto;
+            max-width: none;
+            white-space: nowrap;
+            justify-content: center;
+            padding: convert-to-rem(8px) convert-to-rem(12px);
+        }
+
+        &-text {
+            @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 1.2);
+            color: var(--color-black);
+            text-align: left;
+        }
+
+        &-arrow {
+            display: none;
+            width: convert-to-rem(31px);
+            height: convert-to-rem(8px);
+            flex-shrink: 0;
+            background-color: var(--color-black);
+            mask-image: url("../img/svg/tab-arrow.svg");
+            mask-repeat: no-repeat;
+            mask-size: contain;
+            mask-position: center;
+            transition: all 0.3s ease;
+        }
+
+        &.is-active {
+            background: transparent;
+            border-color: var(--color-black);
+
+            .doctor-hero__tab-arrow {
+                display: block;
+            }
+        }
+
+        @include hover {
+            &:not(.is-active) {
+                background: var(--color-white-07);
+            }
+        }
+    }
+
+    // CTA button
+    &__btn {
+        width: 100%;
+
+        @include mobile {
+            display: none;
+        }
+    }
+
+    // Content wrapper
+    &__content-wrapper {
+        flex: 1;
+        width: 100%;
+    }
+
+    &__tab-content {
+        display: none;
+
+        &.is-active {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+    }
+
+    // WYSIWYG
+    &__wysiwyg {
+        h2 {
+            @include typography($font-family-montserrat, $fw-medium, 24px, 1.2);
+            color: var(--color-black);
+            margin-bottom: convert-to-rem(20px);
+
+            @include mobile {
+                font-size: convert-to-rem(20px);
+            }
+        }
+
+        p {
+            @include typography($font-family-montserrat, $fw-regular, 16px, 1.5);
+            color: var(--color-black);
+            margin-bottom: convert-to-rem(15px);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        ul,
+        ol {
+            margin-bottom: convert-to-rem(15px);
+            padding-left: convert-to-rem(20px);
+
+            li {
+                @include typography($font-family-montserrat, $fw-regular, 16px, 1.5);
+                color: var(--color-black);
+                margin-bottom: convert-to-rem(8px);
+            }
+        }
+    }
+
+    // Certificates
+    &__certificates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(convert-to-rem(180px), 1fr));
+        gap: convert-to-rem(20px);
+    }
+
+    &__certificate-item {
+        border-radius: convert-to-rem(8px);
+        overflow: hidden;
+        border: convert-to-rem(1px) solid var(--color-gray-light);
+    }
+
+    &__certificate-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+    }
+}

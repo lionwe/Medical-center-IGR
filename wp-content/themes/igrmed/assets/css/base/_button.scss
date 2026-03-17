@@ -335,11 +335,11 @@ $_gradient-border: linear-gradient(180deg,
 
   &--dark {
     margin-top: auto;
-    width: 100%;
+    width: fit-content;
     padding: convert-to-rem(11.5px) convert-to-rem(32px);
-    border: convert-to-rem(0.5px) solid var(--color-primary-dark) !important;
-    color: var(--color-primary-dark) !important;
-    display: inline-flex !important;
+    border: convert-to-rem(0.5px) solid var(--color-primary-dark);
+    color: var(--color-primary-dark);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: convert-to-rem(10px);
@@ -376,6 +376,10 @@ $_gradient-border: linear-gradient(180deg,
           background-color: var(--color-primary-dark) !important;
         }
       }
+    }
+
+    @include mobile {
+      padding: convert-to-rem(12.5px) convert-to-rem(12px);
     }
   }
 }

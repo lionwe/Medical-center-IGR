@@ -1,0 +1,106 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.doctor-hero {
+    position: relative;
+    background-image:
+        url("../img/doctor-bg-gradient.svg"),
+        url("../img/bread-crumbs.webp");
+    background-size:
+        convert-to-rem(1380px) auto,
+        100% convert-to-rem(441px);
+    background-repeat: no-repeat;
+    background-position:
+        center convert-to-rem(80px),
+        center top;
+    padding-top: convert-to-rem(120px);
+
+    @include mobile {
+        padding-top: convert-to-rem(0px);
+
+        &>.container {
+            width: 100vw;
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    // Breadcrumbs mobile
+    &__breadcrumbs-mobile {
+        display: none;
+        margin-bottom: convert-to-rem(25px);
+
+        @include mobile {
+            display: block;
+
+            &>.container {
+                width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
+                margin-inline: auto;
+            }
+        }
+    }
+
+    // Container
+    &__container {
+        background: var(--color-white-07);
+        padding: convert-to-rem(23px) convert-to-rem(90px) convert-to-rem(100px) convert-to-rem(97px);
+        backdrop-filter: blur(convert-to-rem(9px));
+        position: relative;
+
+        @include gradient-border(convert-to-rem(8px),
+            convert-to-rem(2px),
+            linear-gradient(180deg, var(--color-gradient-border-start) 0%, var(--color-gradient-border-middle) 41.42%, var(--color-gradient-border-end) 100%));
+
+        @include mobile {
+            padding: convert-to-rem(10px);
+        }
+    }
+
+    // Top row
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: convert-to-rem(80px);
+        margin-bottom: convert-to-rem(46px);
+
+        @include mobile {
+            flex-direction: column;
+            gap: convert-to-rem(20px);
+            margin-bottom: convert-to-rem(20px);
+        }
+    }
+
+    // Info (left column)
+    &__info {
+        flex: 0 0 convert-to-rem(489px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: convert-to-rem(489px);
+
+        @include mobile {
+            flex: 0 1 auto;
+            width: 100%;
+        }
+    }
+
+    // Desktop breadcrumbs (inside container)
+    &__breadcrumbs {
+        margin-bottom: convert-to-rem(43px);
+
+        .breadcrumbs {
+            margin: 0;
+            padding: 0;
+
+            &__list {
+                justify-content: flex-start;
+            }
+        }
+
+        @include mobile {
+            display: none;
+        }
+    }
+}
