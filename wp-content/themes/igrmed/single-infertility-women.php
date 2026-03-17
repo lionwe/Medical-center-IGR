@@ -10,6 +10,7 @@ get_header();
 <main id="infertility-women">
 
     <?php get_template_part('sections/infertility-women/hero'); ?>
+    <?php get_template_part('sections/infertility-women/what-examinations'); ?>
 
 
 </main>

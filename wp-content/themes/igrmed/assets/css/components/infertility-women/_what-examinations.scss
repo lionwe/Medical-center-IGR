@@ -1,0 +1,155 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.what-examinations {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(14px);
+  }
+
+  &__title {
+    margin: 0;
+    max-width: convert-to-rem(490px);
+    color: var(--color-text-main);
+  }
+
+  &__cards {
+    display: flex;
+    align-items: stretch;
+    gap: convert-to-rem(20px);
+  }
+
+  &__card {
+    border-radius: convert-to-rem(16px);
+    padding: convert-to-rem(24px);
+    background-color: rgba(67, 114, 184, 0.08);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__card-title {
+    @include typography($font-family-montserrat, $fw-medium, (16px, 24px), 1.2, 0);
+    color: var(--color-text-main);
+    margin: 0 0 convert-to-rem(14px);
+    display: block;
+    width: 100%;
+    padding: convert-to-rem(8px) convert-to-rem(10px);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12);
+    border-radius: convert-to-rem(12px);
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(5, auto);
+    align-items: center;
+    row-gap: convert-to-rem(14px);
+    column-gap: convert-to-rem(16px);
+    align-content: start;
+    justify-content: start;
+    width: 100%;
+  }
+
+  &__item {
+    @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 1, 0);
+    display: flex;
+    align-items: center;
+    max-width: convert-to-rem(358px);
+    color: var(--color-text-main);
+    padding: convert-to-rem(6px) convert-to-rem(12px);
+    border: 1px solid rgba(230, 192, 163, 1);
+    border-radius: convert-to-rem(18px);
+  }
+
+  &__card--mom {
+    flex: 0 1 60%;
+
+    .what-examinations__card-title {
+      background: var(--color-accent-03);
+    }
+
+    .what-examinations__item {
+      position: relative;
+      padding-left: convert-to-rem(32px);
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: convert-to-rem(12px);
+        top: 50%;
+        transform: translateY(-50%);
+        width: convert-to-rem(10px);
+        height: convert-to-rem(10px);
+        border-radius: 50%;
+        background: rgba(230, 192, 163, 1);
+      }
+    }
+  }
+
+  &__card--dad {
+    flex: 0 1 40%;
+
+    .what-examinations__card-title {
+      background: var(--color-white-02);
+    }
+
+    .what-examinations__item {
+      position: relative;
+      padding-left: convert-to-rem(32px);
+      border: 1px solid rgba(38, 94, 149, 1);
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: convert-to-rem(12px);
+        top: 50%;
+        transform: translateY(-50%);
+        width: convert-to-rem(10px);
+        height: convert-to-rem(10px);
+        border-radius: 50%;
+        background: rgba(38, 94, 149, 1);
+      }
+    }
+  }
+
+  @include mobile {
+    &__item {
+      width: 100%;
+      max-width: none;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: convert-to-rem(14px);
+    }
+
+    &__cards {
+      flex-direction: column;
+    }
+
+    &__card {
+      width: 100vw;
+      border-radius: 22px;
+      margin-inline: calc(var(--_section-offset) * -1);
+      padding-inline: var(--_section-offset);
+    }
+
+    &__card--mom {
+      order: 1;
+      flex-basis: 100%;
+    }
+
+    &__card--dad {
+      order: 2;
+      flex-basis: 100%;
+    }
+  }
+}
+
