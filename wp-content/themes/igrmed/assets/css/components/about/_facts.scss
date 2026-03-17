@@ -2,7 +2,6 @@
 @use "../../base/variables" as *;
 
 .about-facts {
-  height: 100lvh;
   padding-block: convert-to-rem(40px);
 
   @include mobile {
@@ -25,7 +24,6 @@
     display: flex;
     flex-direction: column;
     gap: Clamp(30px, 70px);
-    flex: 0 0 clamp(280px, 32vw, 420px);
 
     @include mobile {
       flex: 1 1 auto;
@@ -92,7 +90,7 @@
 
   &__features {
     display: inline-flex;
-    gap: convert-to-rem(30px);
+    gap: convert-to-rem(20px);
     align-items: center;
     position: relative;
     z-index: 1;
@@ -113,7 +111,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: convert-to-rem(20px);
+    gap: convert-to-rem(10px);
 
     @include mobile {
       width: 100%;
@@ -150,6 +148,6 @@
   &__card-text {
     margin: 0;
     max-width: convert-to-rem(300px);
-    @include typography($font-family-montserrat, $fw-regular, 15px, 1, 0);
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
   }
 }
