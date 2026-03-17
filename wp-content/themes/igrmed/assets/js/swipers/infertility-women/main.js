@@ -1,0 +1,1 @@
+import "./advantages-preg-swiper";
