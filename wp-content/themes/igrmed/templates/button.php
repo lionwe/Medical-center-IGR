@@ -7,7 +7,7 @@
  * get_template_part('templates/button', null, [
  *   'text'      => 'Детальніше',
  *   'link'      => '#',
- *   'type'      => 'primary', // primary, primary-dark, social, carousel, carousel-glass
+ *   'type'      => 'primary', // primary, primary-dark, secondary, tertiary, social, carousel, carousel-glass
  *   'icon_name'   => 'arrow',   // ACF field name without 'icon_' prefix
  *   'icon_url'    => '',        // direct URL override
  *   'target'      => '_self'

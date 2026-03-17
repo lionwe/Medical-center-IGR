@@ -243,6 +243,27 @@ $_gradient-border: linear-gradient(180deg,
     }
   }
 
+  &--tertiary {
+    gap: convert-to-rem(10px);
+    padding: convert-to-rem(10px) convert-to-rem(14px);
+    border-radius: convert-to-rem(100px);
+    background: transparent;
+    border: convert-to-rem(0.5px) solid var(--color-primary-dark);
+    color: var(--color-primary-dark);
+    flex-shrink: 0;
+
+    .btn__text {
+      @include typography($font-family-base, $fw-regular, (12px, 14px), 1, 0);
+      color: inherit;
+      white-space: nowrap;
+    }
+
+    .btn__icon {
+      width: convert-to-rem(13px);
+      height: convert-to-rem(14px);
+    }
+  }
+
   &--readmore-v1 {
     gap: convert-to-rem(10px);
     padding: convert-to-rem(10px) convert-to-rem(14px);
