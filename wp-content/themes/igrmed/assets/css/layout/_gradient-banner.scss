@@ -2,23 +2,35 @@
 @use "../base/variables" as *;
 
 .gradient-banner {
+  position: relative;
   margin-top: convert-to-rem(24px);
-  width: min(convert-to-rem(767px), 100vw);
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
   margin-bottom: convert-to-rem(27px);
-  background: linear-gradient(90deg, #4372b8 17.34%, rgba(195, 228, 247, 0) 100%);
+  background: transparent;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: calc(50% - 50vw);
+    width: min(convert-to-rem(767px), 100vw);
+    transform: none;
+    background: linear-gradient(90deg, #4372b8 10.34%, rgba(195, 228, 247, 0) 100%);
+    z-index: 0;
+  }
 
   &__inner {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: convert-to-rem(12px);
     min-height: convert-to-rem(128px);
-    padding: convert-to-rem(24px) 110px;
-    width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
-    margin-inline: auto;
+    padding: convert-to-rem(24px) 0;
+    max-width: min(convert-to-rem(767px), 100vw);
+    padding-left: convert-to-rem(110px);
   }
 
   &__title {
@@ -74,14 +86,13 @@
   }
 
   @include mobile {
+    width: 100%;
     margin-bottom: convert-to-rem(60px);
 
     &__inner {
       align-items: flex-start;
       min-height: convert-to-rem(100px);
       padding: convert-to-rem(18px) 0;
-      width: min(90rem - var(--_section-offset) * 2, 100vw - var(--_section-offset) * 2);
-      margin-inline: auto;
     }
   }
 }

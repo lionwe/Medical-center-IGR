@@ -21,6 +21,5 @@ $button_link = '#contact';
                 ]);
                 ?>
             </div>
-
     </div>
 </section>

@@ -1,0 +1,105 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.advantages-preg {
+  overflow: hidden;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(16px);
+  }
+
+  &__row {
+    display: flex;
+    align-items: stretch;
+    gap: convert-to-rem(20px);
+  }
+
+  &__left {
+    flex: 0 0 min(100%, convert-to-rem(230px));
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(14px);
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1.2, 0);
+  }
+
+  &__text {
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1.4, 0);
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  &__action {
+    margin-top: auto;
+    min-height: convert-to-rem(48px);
+  }
+
+  &__right {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+
+    .swiper-wrapper {
+      display: flex;
+    }
+
+    .swiper-slide {
+      width: convert-to-rem(238px);
+      flex: 0 0 convert-to-rem(238px);
+    }
+  }
+
+  &__card {
+    border-radius: convert-to-rem(12px);
+    background-color: var(--color-white-03);
+    background-image: url("../img/advantages_bg.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: convert-to-rem(78px) convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: convert-to-rem(14px);
+  }
+
+  &__card-line {
+    display: block;
+    width: convert-to-rem(28px);
+    height: 1px;
+    background: var(--color-text-main);
+  }
+
+  &__card-text {
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1.35, 0);
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  @include mobile {
+    &__wrapper {
+      gap: convert-to-rem(16px);
+    }
+
+    &__row {
+      flex-direction: column;
+      gap: convert-to-rem(16px);
+    }
+
+    &__left {
+      flex-basis: auto;
+    }
+
+    &__right {
+      overflow: visible;
+
+      .swiper-slide {
+        width: convert-to-rem(210px);
+        flex: 0 0 convert-to-rem(210px);
+      }
+    }
+  }
+}
