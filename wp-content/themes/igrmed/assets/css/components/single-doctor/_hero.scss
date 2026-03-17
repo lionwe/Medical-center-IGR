@@ -1,0 +1,451 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.doctor-hero {
+    position: relative;
+    background-image:
+        url("../img/doctor-bg-gradient.svg"),
+        url("../img/bread-crumbs.webp");
+    background-size:
+        convert-to-rem(1380px) auto,
+        100% convert-to-rem(441px);
+    background-repeat: no-repeat;
+    background-position:
+        center convert-to-rem(80px),
+        center top;
+    padding-top: convert-to-rem(120px); // 40px offset from header
+
+    &__container {
+        background: var(--color-white-07);
+        padding: convert-to-rem(23px) convert-to-rem(90px) convert-to-rem(100px) convert-to-rem(97px);
+        backdrop-filter: blur(convert-to-rem(9px));
+        position: relative;
+
+        @include gradient-border(convert-to-rem(8px),
+            convert-to-rem(2px),
+            linear-gradient(180deg, var(--color-gradient-border-start) 0%, var(--color-gradient-border-middle) 41.42%, var(--color-gradient-border-end) 100%));
+
+        @include mobile {
+            padding: convert-to-rem(20px);
+        }
+    }
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch; // Stretch left column to match right column height
+        gap: convert-to-rem(80px); // Reduced gap to give more room to text
+        margin-bottom: convert-to-rem(46px);
+
+        @include mobile {
+            flex-direction: column;
+            gap: convert-to-rem(30px);
+        }
+    }
+
+    &__info {
+        flex: 0 0 convert-to-rem(489px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; // Prevent children from stretching to full width
+        width: convert-to-rem(489px);
+
+        @include mobile {
+            flex: 0 1 auto;
+            width: 100%;
+        }
+    }
+
+    &__breadcrumbs {
+        margin-bottom: convert-to-rem(43px);
+
+        .breadcrumbs {
+            margin: 0;
+            padding: 0;
+
+            &__list {
+                justify-content: flex-start;
+            }
+
+            // Mobile specific reset if needed
+            @include mobile {
+                margin: 0;
+            }
+        }
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; // Ensure name and excerpt boxes match text width
+        justify-content: space-between;
+        height: 100%;
+        gap: convert-to-rem(20px);
+        width: 100%;
+    }
+
+    &__socials {
+        display: flex;
+        flex-wrap: wrap; // Allow wrap if icons don't fit
+        gap: convert-to-rem(10px);
+        margin-bottom: auto;
+    }
+
+    &__social-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: convert-to-rem(59px);
+        height: convert-to-rem(41px);
+        border-radius: convert-to-rem(8px);
+        background: var(--color-white-03);
+        border: convert-to-rem(1px) solid var(--color-white-02);
+        box-shadow:
+            0px convert-to-rem(17px) convert-to-rem(38px) 0px rgba(0, 0, 0, 0.1),
+            0px convert-to-rem(69px) convert-to-rem(69px) 0px rgba(0, 0, 0, 0.09),
+            0px convert-to-rem(156px) convert-to-rem(94px) 0px rgba(0, 0, 0, 0.05),
+            0px convert-to-rem(277px) convert-to-rem(111px) 0px rgba(0, 0, 0, 0.01);
+
+        transition: transform 0.3s ease;
+
+        @include hover {
+            transform: translateY(convert-to-rem(-3px));
+            background: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+
+            svg,
+            img {
+                filter: brightness(0) invert(1);
+            }
+        }
+
+        svg,
+        img {
+            width: convert-to-rem(23px);
+            height: convert-to-rem(23px);
+            object-fit: contain;
+            display: block;
+            color: var(--color-primary-dark-blue);
+            fill: currentColor;
+            transition: all 0.3s ease;
+        }
+    }
+
+    &__text-group {
+        margin-top: convert-to-rem(20px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    &__name {
+        @include typography($font-family-montserrat, $fw-medium, 32px, 1.2);
+        color: var(--color-black);
+        margin-bottom: convert-to-rem(9px);
+        width: 100%;
+    }
+
+    &__excerpt {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 1.5);
+        color: var(--color-black);
+        width: 100%;
+    }
+
+    &__badges {
+        display: flex;
+        gap: convert-to-rem(9px);
+        margin-top: convert-to-rem(30px);
+        width: 100%;
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
+
+    &__badge {
+        flex: 1; // Allow badges to grow and fill the 489px width
+        padding: convert-to-rem(18px) convert-to-rem(12px);
+        border-radius: convert-to-rem(8px);
+        background: var(--color-white-03);
+        border: convert-to-rem(1px) solid var(--color-white-02);
+        box-shadow:
+            0px convert-to-rem(17px) convert-to-rem(38px) 0px rgba(0, 0, 0, 0.1),
+            0px convert-to-rem(69px) convert-to-rem(69px) 0px rgba(0, 0, 0, 0.09),
+            0px convert-to-rem(156px) convert-to-rem(94px) 0px rgba(0, 0, 0, 0.05),
+            0px convert-to-rem(277px) convert-to-rem(111px) 0px rgba(0, 0, 0, 0.01);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; // Center content horizontally
+
+        @include mobile {
+            flex: 0 1 auto;
+            width: 100%;
+        }
+
+        &--specialty {
+            text-align: center; // Center text in container
+
+            .doctor-hero__badge-value {
+                white-space: nowrap; // Prevent wrapping for specialty
+            }
+        }
+
+        &--experience {
+            align-items: center; // Center content for experience squareish badge
+            text-align: center;
+
+            .doctor-hero__badge-value {
+                font-size: convert-to-rem(18px); // Smaller as requested
+            }
+        }
+    }
+
+    &__badge-value {
+        @include typography($font-family-montserrat, $fw-medium, 22px, 1.2, -0.02em);
+        color: var(--color-primary-dark-blue);
+        margin-bottom: convert-to-rem(5px);
+    }
+
+    &__badge-label {
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1.45);
+        color: var(--color-gray-dark);
+    }
+
+    &__image-wrapper {
+        flex-shrink: 0;
+        width: convert-to-rem(590px);
+        height: convert-to-rem(500px);
+        border-radius: convert-to-rem(12px);
+        border: convert-to-rem(1px) solid var(--color-gray-dark);
+        overflow: hidden;
+
+        @include mobile {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 590 / 500;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__divider {
+        width: 100%;
+        height: convert-to-rem(1px);
+        background: var(--color-white);
+        border: none;
+        margin-top: convert-to-rem(46px);
+        margin-bottom: convert-to-rem(46px);
+    }
+
+    &__bottom {
+        display: flex;
+        gap: convert-to-rem(136px);
+        align-items: flex-start;
+
+        @include mobile {
+            flex-direction: column;
+            gap: convert-to-rem(40px);
+        }
+    }
+
+    &__left {
+        flex: 0 0 convert-to-rem(268px);
+        width: convert-to-rem(268px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: convert-to-rem(360px);
+
+        @include mobile {
+            width: 100%;
+            flex: 0 1 auto;
+            min-height: auto;
+            gap: convert-to-rem(30px);
+        }
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(8px);
+        width: 100%;
+    }
+
+    &__tab {
+        width: 100%;
+        max-width: convert-to-rem(240px);
+        height: convert-to-rem(34px);
+        border-radius: convert-to-rem(12px);
+        padding: convert-to-rem(8px) convert-to-rem(10px);
+        background: var(--color-white-05);
+        border: convert-to-rem(1px) solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: convert-to-rem(8px);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &-text {
+            @include typography($font-family-montserrat, $fw-regular, 15px, 1.2);
+            color: var(--color-black);
+            text-align: left;
+        }
+
+        &-arrow {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            width: convert-to-rem(31px);
+            height: convert-to-rem(8px);
+        }
+
+        &.is-active {
+            background: transparent;
+            border-color: var(--color-black);
+
+            .doctor-hero__tab-arrow {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @include hover {
+            &:not(.is-active) {
+                background: var(--color-white-07);
+            }
+        }
+    }
+
+    &__btn {
+        margin-top: auto;
+        width: 100%;
+        padding: convert-to-rem(5px);
+        border: convert-to-rem(0.5px) solid var(--color-primary-dark) !important;
+        color: var(--color-primary-dark) !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: convert-to-rem(10px);
+
+        .btn-split__text {
+            @include typography($font-family-montserrat, $fw-semibold, 14px, 1.0);
+            color: inherit !important;
+        }
+
+        .btn--icon-only {
+            border: 1px solid var(--color-white) !important;
+            background: var(--color-white) !important;
+            color: var(--color-primary-dark) !important;
+            width: convert-to-rem(50px);
+            height: convert-to-rem(24px);
+            padding: 0;
+
+            .btn__icon {
+                background-color: var(--color-primary-dark) !important;
+                width: convert-to-rem(21px);
+                height: convert-to-rem(8px);
+            }
+        }
+
+        @include hover {
+            background: var(--color-primary-dark) !important;
+            color: var(--color-white) !important;
+
+            .btn--icon-only {
+                background: var(--color-white) !important;
+                border-color: var(--color-white) !important;
+
+                .btn__icon {
+                    background-color: var(--color-primary-dark) !important;
+                }
+            }
+        }
+    }
+
+    &__content-wrapper {
+        flex: 1;
+        width: 100%;
+    }
+
+    &__tab-content {
+        display: none;
+
+        &.is-active {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+    }
+
+    &__wysiwyg {
+        h2 {
+            @include typography($font-family-montserrat, $fw-medium, 24px, 1.2);
+            color: var(--color-black);
+            margin-bottom: convert-to-rem(20px);
+
+            @include mobile {
+                font-size: convert-to-rem(20px);
+            }
+        }
+
+        p {
+            @include typography($font-family-montserrat, $fw-regular, 16px, 1.5);
+            color: var(--color-black);
+            margin-bottom: convert-to-rem(15px);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        ul,
+        ol {
+            margin-bottom: convert-to-rem(15px);
+            padding-left: convert-to-rem(20px);
+
+            li {
+                @include typography($font-family-montserrat, $fw-regular, 16px, 1.5);
+                color: var(--color-black);
+                margin-bottom: convert-to-rem(8px);
+            }
+        }
+    }
+
+    &__certificates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(convert-to-rem(180px), 1fr));
+        gap: convert-to-rem(20px);
+    }
+
+    &__certificate-item {
+        border-radius: convert-to-rem(8px);
+        overflow: hidden;
+        border: convert-to-rem(1px) solid var(--color-gray-light);
+    }
+
+    &__certificate-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(convert-to-rem(10px));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
