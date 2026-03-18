@@ -101,9 +101,20 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
 <?php if ($is_primary_split): ?>
     <?php
     $split_button_classes = $classes . ' btn--icon-only';
+    $btn_split_class = 'btn-split';
+    if (!empty($class_extra) && str_contains($class_extra, 'btn-split--')) {
+        // Use custom split class if provided
+    } else {
+        $btn_split_class .= ' btn-split--white';
+    }
+    
+    // Add extra classes to the main wrapper
+    if (!empty($class_extra)) {
+        $btn_split_class .= ' ' . $class_extra;
+    }
     ?>
     <?php if ($tag === 'a'): ?>
-        <a class="btn-split btn-split--white" <?php echo $attrs; ?>>
+        <a class="<?php echo esc_attr($btn_split_class); ?>" <?php echo $attrs; ?>>
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
             <span class="<?php echo esc_attr($split_button_classes); ?>" aria-hidden="true">
                 <?php if ($icon_url): ?>
@@ -118,7 +129,7 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
             </span>
         </a>
     <?php else: ?>
-        <div class="btn-split btn-split--white">
+        <div class="<?php echo esc_attr($btn_split_class); ?>">
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
             <<?php echo $tag; ?> class="<?php echo esc_attr($split_button_classes); ?>" <?php echo $attrs; ?>>
                 <?php if ($icon_url): ?>

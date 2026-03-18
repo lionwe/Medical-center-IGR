@@ -35,6 +35,47 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 0;
 
+        .service-card {
+            &--cta {
+                grid-column: span 2;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                text-align: left;
+                padding: convert-to-rem(34px) convert-to-rem(50px);
+                background-color: var(--color-white);
+
+                &__content {
+                    max-width: convert-to-rem(460px);
+                }
+
+                &__title {
+                    @include typography($font-family-montserrat, $fw-semibold, 24px, 26px);
+                    color: var(--color-primary-dark);
+                    margin: 0 0 convert-to-rem(24px);
+                    text-transform: none;
+                }
+
+                .btn-split {
+                    width: fit-content;
+                }
+
+                &::before {
+                    display: none;
+                }
+
+                @include mobile {
+                    grid-column: span 2;
+                    padding: convert-to-rem(34px) convert-to-rem(20px);
+
+                    &__title {
+                        @include typography($font-family-montserrat, $fw-semibold, 20px, 22px);
+                        margin-bottom: convert-to-rem(20px);
+                    }
+                }
+            }
+        }
+
         // Border-radius on corner cards only
         // Top-left card
         .service-card:first-child {
