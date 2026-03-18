@@ -1,14 +1,21 @@
 function initDiagnosticsGenderToggle() {
   const ajaxParams = window.params || {};
+  const ajaxUrl =
+    typeof ajaxParams.ajax_url === "string" && ajaxParams.ajax_url.trim() !== ""
+      ? ajaxParams.ajax_url
+      : "/wp-admin/admin-ajax.php";
   const selectors = {
     section: ".diagnostics-research-diagnostics",
     toggle: ".js-diagnostics-toggle",
-    button: ".diagnostics-research-diagnostics__button",
+    radio: ".diagnostics-research-diagnostics__radio",
     panel: ".diagnostics-research-diagnostics__panel",
     accordion: ".js-diagnostics-accordion",
     accordionItem: ".diagnostics-research-diagnostics__accordion-item",
     accordionTrigger: ".diagnostics-research-diagnostics__accordion-trigger",
     accordionContent: ".diagnostics-research-diagnostics__accordion-content",
+    listBlocks: ".list-blocks",
+    hiddenServiceItem: ".is-hidden-service",
+    listMoreButton: ".diagnostics-research-diagnostics__list-more",
     status: ".diagnostics-research-diagnostics__status",
   };
 
@@ -121,6 +128,34 @@ function initDiagnosticsGenderToggle() {
       });
     });
 
+    accordion.addEventListener("click", (event) => {
+      const moreButton = event.target.closest(selectors.listMoreButton);
+      if (!moreButton || !accordion.contains(moreButton)) return;
+
+      const content = moreButton.closest(selectors.accordionContent);
+      if (!content) return;
+
+      const listBlocks = content.querySelector(selectors.listBlocks);
+      if (!listBlocks) return;
+
+      const hiddenItems = listBlocks.querySelectorAll(selectors.hiddenServiceItem);
+      if (!hiddenItems.length) return;
+
+      hiddenItems.forEach((item) => item.classList.remove("is-hidden-service"));
+      const moreItem = moreButton.closest("li");
+      if (moreItem) {
+        moreItem.remove();
+      } else {
+        moreButton.remove();
+      }
+
+      if (content.classList.contains("is-open") && content.style.maxHeight !== "none") {
+        content.style.maxHeight = `${content.scrollHeight}px`;
+      }
+
+      requestAnimationFrame(() => syncListLinesColumnEnds(content));
+    });
+
     accordion.dataset.bound = "true";
   };
 
@@ -130,11 +165,11 @@ function initDiagnosticsGenderToggle() {
     });
   };
 
-  const setButtonsLoading = (buttons, button, isLoading) => {
-    buttons.forEach((item) => {
+  const setToggleLoading = (toggle, radios, isLoading) => {
+    radios.forEach((item) => {
       item.disabled = isLoading;
     });
-    button.classList.toggle("is-loading", isLoading);
+    toggle.classList.toggle("is-loading", isLoading);
   };
 
   const buildAjaxBody = (postId) => {
@@ -159,7 +194,7 @@ function initDiagnosticsGenderToggle() {
     }
 
     try {
-      const response = await fetch(ajaxParams.ajax_url || "/wp-admin/admin-ajax.php", {
+      const response = await fetch(ajaxUrl, {
         method: "POST",
         credentials: "same-origin",
         headers: {
@@ -199,16 +234,18 @@ function initDiagnosticsGenderToggle() {
 
   toggles.forEach((toggle) => {
     const section = toggle.closest(selectors.section);
-    const buttons = toggle.querySelectorAll(selectors.button);
+    const radios = toggle.querySelectorAll(selectors.radio);
     const panels = section
       ? section.querySelectorAll(selectors.panel)
       : [];
 
-    if (!buttons.length) return;
+    if (!radios.length) return;
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", async () => {
-        const target = button.dataset.toggle;
+    radios.forEach((radio) => {
+      radio.addEventListener("change", async () => {
+        if (!radio.checked) return;
+
+        const target = radio.dataset.toggle;
         if (!target) return;
         const activePanel = section?.querySelector(`${selectors.panel}.is-active`);
         if (activePanel?.dataset.panel === target) return;
@@ -217,15 +254,10 @@ function initDiagnosticsGenderToggle() {
         const shouldLoadMen = target === "men" && menPanel && menPanel.dataset.loaded !== "true";
 
         if (shouldLoadMen) {
-          setButtonsLoading(buttons, button, true);
+          setToggleLoading(toggle, radios, true);
           await loadMenPanel(section, menPanel);
-          setButtonsLoading(buttons, button, false);
+          setToggleLoading(toggle, radios, false);
         }
-
-        buttons.forEach((item) => item.classList.remove("is-active"));
-        button.classList.add("is-active");
-
-        toggle.classList.toggle("is-men", target === "men");
 
         if (panels.length) {
           panels.forEach((panel) => {

@@ -47,7 +47,7 @@
   &__left {
     display: flex;
     flex-direction: column;
-    gap: convert-to-rem(47px);
+    gap: Clamp(20px, 47px);
     padding-right: convert-to-rem(28px);
   }
 
@@ -68,6 +68,10 @@
     column-count: 2;
     column-gap: convert-to-rem(30px);
     width: 100%;
+    @include mobile {
+      width: fit-content;
+     
+    }
   }
 
   &__item {

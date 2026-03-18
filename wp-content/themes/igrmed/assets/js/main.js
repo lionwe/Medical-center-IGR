@@ -1,6 +1,6 @@
 import "./utils";
 import "./components/home/main";
-import "./components/diagnostics-research/diagnostics-toggle";
+import "./components/diagnostics-research/main";
 import "./ui/main";
 
 import "./swipers/main";
