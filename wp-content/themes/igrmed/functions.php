@@ -6,6 +6,7 @@ add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 
 require get_template_directory() . '/includes/post-types.php';
+require get_template_directory() . '/includes/ajax-handler.php';
 
 
 function igrmed_enqueue_assets(): void
