@@ -1,6 +1,7 @@
 import "./utils";
 import "./components/home/main";
 import "./components/diagnostics-research/main";
+import "./components/single-doctor/main";
 import "./ui/main";
 
 import "./swipers/main";
