@@ -85,15 +85,13 @@
       background: var(--color-divider-dark-015);
     }
 
-    &:last-child::after {
-      display: none;
-    }
-
-    @include hover {
-      color: var(--color-sidebar-link-hover);
-
-      &::before {
+    &:not(.content-sidebar__link--active) {
+      @include hover {
         color: var(--color-sidebar-link-hover);
+
+        &::before {
+          color: var(--color-sidebar-link-hover);
+        }
       }
     }
 
