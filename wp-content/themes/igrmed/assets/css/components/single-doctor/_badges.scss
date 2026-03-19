@@ -1,0 +1,73 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.doctor-hero {
+
+    // Badges (desktop)
+    &__badges {
+        display: flex;
+        gap: convert-to-rem(9px);
+        margin-top: convert-to-rem(30px);
+        width: 100%;
+
+        @include mobile {
+            display: none;
+        }
+    }
+
+    &__badge {
+        padding: convert-to-rem(18px) convert-to-rem(12px);
+        border-radius: convert-to-rem(8px);
+        background: var(--color-white-03);
+        border: convert-to-rem(1px) solid var(--color-white-02);
+        box-shadow: 0px convert-to-rem(17px) convert-to-rem(38px) 0px rgba(0, 0, 0, 0.1),
+            0px convert-to-rem(69px) convert-to-rem(69px) 0px rgba(0, 0, 0, 0.09),
+            0px convert-to-rem(156px) convert-to-rem(94px) 0px rgba(0, 0, 0, 0.05),
+            0px convert-to-rem(277px) convert-to-rem(111px) 0px rgba(0, 0, 0, 0.01);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @include mobile {
+            padding: convert-to-rem(10px) convert-to-rem(24px);
+        }
+
+        &--specialty {
+            flex: 1 1 auto;
+            text-align: center;
+        }
+
+        &--experience {
+            flex: 0 0 auto;
+            width: fit-content;
+            align-items: center;
+            text-align: center;
+
+            @include mobile {
+                padding: convert-to-rem(10px) convert-to-rem(18px);
+            }
+        }
+
+        // Mobile schedule badge
+        &--schedule {
+            display: flex;
+            flex-direction: column;
+            gap: convert-to-rem(5px);
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__badge-value {
+        @include typography($font-family-montserrat, $fw-medium, (16px, 22px), 1.2, -0.02em);
+        color: var(--color-primary-dark-blue);
+        margin-bottom: convert-to-rem(5px);
+    }
+
+    &__badge-label {
+        @include typography($font-family-montserrat, $fw-regular, (12px, 14px), 1.45);
+        color: var(--color-gray-dark);
+    }
+}

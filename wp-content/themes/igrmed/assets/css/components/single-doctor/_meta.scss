@@ -1,0 +1,125 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.doctor-hero {
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        height: 100%;
+        gap: convert-to-rem(20px);
+        width: 100%;
+    }
+
+    // Socials row
+    &__socials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: convert-to-rem(10px);
+        margin-bottom: auto;
+
+        @include mobile {
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 0;
+        }
+    }
+
+    &__social-links {
+        display: flex;
+        gap: convert-to-rem(10px);
+    }
+
+    &__social-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: convert-to-rem(59px);
+        height: convert-to-rem(41px);
+        border-radius: convert-to-rem(8px);
+        background: var(--color-white-03);
+        border: convert-to-rem(1px) solid var(--color-white-02);
+        box-shadow:
+            0px convert-to-rem(17px) convert-to-rem(38px) 0px rgba(0, 0, 0, 0.1),
+            0px convert-to-rem(69px) convert-to-rem(69px) 0px rgba(0, 0, 0, 0.09),
+            0px convert-to-rem(156px) convert-to-rem(94px) 0px rgba(0, 0, 0, 0.05),
+            0px convert-to-rem(277px) convert-to-rem(111px) 0px rgba(0, 0, 0, 0.01);
+
+        transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+
+        @include hover {
+            transform: translateY(convert-to-rem(-3px));
+            background: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+
+            svg,
+            .doctor-hero__social-icon {
+                color: var(--color-white);
+                background-color: currentColor;
+            }
+        }
+
+        svg,
+        img,
+        .doctor-hero__social-icon {
+            width: convert-to-rem(23px);
+            height: convert-to-rem(23px);
+            object-fit: contain;
+            display: block;
+        }
+
+        svg {
+            color: var(--color-primary-dark-blue);
+            fill: currentColor;
+            transition: color 0.3s ease;
+        }
+
+        .doctor-hero__social-icon {
+            background-color: var(--color-primary-dark-blue);
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: contain;
+            transition: background-color 0.3s ease;
+        }
+
+        img {
+            transition: none;
+            filter: none;
+        }
+    }
+
+    // CTA button inside socials row — mobile only
+    &__btn-mobile {
+        display: none;
+
+        @include mobile {
+            display: inline-flex;
+            width: fit-content;
+        }
+    }
+
+    // Name + Excerpt
+    &__text-group {
+        margin-top: convert-to-rem(20px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    &__name {
+        @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1.2);
+        color: var(--color-black);
+        margin-bottom: convert-to-rem(9px);
+        width: 100%;
+    }
+
+    &__excerpt {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 1.5);
+        color: var(--color-black);
+        width: 100%;
+    }
+}

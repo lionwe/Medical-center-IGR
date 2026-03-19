@@ -570,6 +570,44 @@
                 "bidirectional_target": []
             },
             {
+                "key": "field_services_cta_text",
+                "label": "Текст для суцільної картки",
+                "name": "home_services_cta_text",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Маєте запитання або потребуєте консультації? Зв’яжіться з нами і ми допоможемо",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Маєте запитання або потребуєте консультації?\r\nЗв’яжіться з нами і ми допоможемо",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 3,
+                "placeholder": "",
+                "new_lines": "br"
+            },
+            {
+                "key": "field_services_cta_button",
+                "label": "Кнопка для суцільної картки",
+                "name": "home_services_cta_button",
+                "aria-label": "",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "allow_in_bindings": 0
+            },
+            {
                 "key": "field_tab_why_choose_us",
                 "label": "Чому обирають нас",
                 "name": "",
@@ -830,6 +868,32 @@
                 "append": ""
             },
             {
+                "key": "field_licenses_bg",
+                "label": "Фонове зображення секції",
+                "name": "licenses_bg",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Формати: webp, jpg, png. Рекомендовано webp.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "webp, jpg, jpeg, png",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
                 "key": "field_licenses_gallery",
                 "label": "Галерея сертифікатів",
                 "name": "licenses_gallery",
@@ -1024,7 +1088,7 @@
                     "id": ""
                 },
                 "post_type": [
-                    "post"
+                    "blog"
                 ],
                 "taxonomy": [],
                 "filters": [
