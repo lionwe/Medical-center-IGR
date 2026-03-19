@@ -30,10 +30,12 @@
   }
 
   &__title {
-    @include typography($font-family-montserrat, $fw-medium, (18px, 32px), 1.1, 0);
+    @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1.1, 0);
     margin: 0;
     color: var(--color-primary-dark);
-  }
+    @include mobile {
+      color: var(--color-dark);
+  }}
 
   &__image-wrap {
     position: relative;
@@ -70,11 +72,11 @@
     }
 
     &__content {
-      padding: convert-to-rem(18px) var(--_section-offset);
+      padding: convert-to-rem(30px) convert-to-rem(14px);
     }
 
     &__image-wrap {
-      min-height: convert-to-rem(160px);
+      display: none;
     }
   }
 }
