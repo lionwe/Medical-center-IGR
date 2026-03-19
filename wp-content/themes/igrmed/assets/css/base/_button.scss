@@ -66,6 +66,10 @@ $_gradient-border: linear-gradient(180deg,
     padding: convert-to-rem(10px) convert-to-rem(20px);
   }
 
+  &--glass-primary {
+    @extend .btn--primary;
+  }
+
   &--primary-dark {
     gap: convert-to-rem(8px);
     padding: convert-to-rem(20px);
@@ -350,6 +354,23 @@ $_gradient-border: linear-gradient(180deg,
     white-space: nowrap;
   }
 
+  &--glass-primary {
+    background: rgba(26, 59, 103, 0.05);
+    border: convert-to-rem(0.5px) solid rgba(26, 59, 103, 0.3);
+    color: rgba(26, 59, 103, 1);
+
+    .btn--glass-primary {
+      color: inherit;
+
+      &.btn--icon-only {
+        width: convert-to-rem(60px);
+        height: convert-to-rem(20px);
+        min-width: convert-to-rem(60px);
+        padding: 0;
+        border: none;
+        background: var(--color-white);
+      }
+    }
   &--white {
     // Current default styles from .btn-split are already "white" or currentColor based
   }
