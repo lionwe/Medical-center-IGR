@@ -1,34 +1,33 @@
 <?php
-
 /**
  * Button Component
  *
  * Usage:
  * get_template_part('templates/button', null, [
- *   'text'      => 'Детальніше',
- *   'link'      => '#',
- *   'type'      => 'primary', // primary, primary-dark, secondary, tertiary, social, carousel, carousel-glass
+ *   'text'        => 'Детальніше',
+ *   'link'        => '#',
+ *   'type'        => 'primary', // primary, primary-dark, secondary, tertiary, social, carousel, carousel-glass
  *   'icon_name'   => 'arrow',   // ACF field name without 'icon_' prefix
  *   'icon_url'    => '',        // direct URL override
  *   'target'      => '_self'
  * ]);
  */
 
-$text        = $args['text']      ?? '';
-$href        = $args['link']      ?? '#';
-$type        = $args['type']      ?? 'primary';
-$icon_name   = $args['icon_name'] ?? null;
-$icon_url    = $args['icon_url']  ?? null;
-$target      = $args['target']    ?? '_self';
-$class_extra = $args['class']     ?? '';
+$text = (string) ($args['text'] ?? '');
+$href = (string) ($args['link'] ?? '#');
+$type = (string) ($args['type'] ?? 'primary');
+$icon_name = $args['icon_name'] ?? null;
+$icon_url = $args['icon_url'] ?? null;
+$target = (string) ($args['target'] ?? '_self');
+$class_extra = trim((string) ($args['class'] ?? ''));
 $use_img_icon = !empty($args['icon_as_img']) && $type !== 'social';
 $is_primary_split = !empty($args['primary_split']) && in_array($type, ['primary', 'glass-primary'], true) && $text !== '';
 $carousel_group = $args['carousel_group'] ?? null;
 
-// Get icon from ACF options or direct URL
+// Get icon from ACF options or direct URL.
 if (!$icon_url && $icon_name) {
     $field_name = 'icon_' . $icon_name;
-    $icon_val   = get_field($field_name, 'option');
+    $icon_val = get_field($field_name, 'option');
 
     if (is_array($icon_val)) {
         $icon_url = $icon_val['url'] ?? null;
@@ -58,13 +57,13 @@ if ($type === 'carousel' && is_array($carousel_group) && !empty($carousel_group)
         foreach ($attributes as $attr => $value) {
             $attrs .= ' ' . esc_attr((string) $attr) . '="' . esc_attr((string) $value) . '"';
         }
-?>
+        ?>
         <button class="<?php echo esc_attr(trim('btn btn--carousel ' . $control_class)); ?>" <?php echo $attrs; ?>>
             <?php if ($control_icon_url !== ''): ?>
                 <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($control_icon_url); ?>'); mask-image: url('<?php echo esc_url($control_icon_url); ?>');"></span>
             <?php endif; ?>
         </button>
-<?php
+        <?php
     };
 
     foreach ($carousel_group as $control) {
@@ -76,45 +75,40 @@ if ($type === 'carousel' && is_array($carousel_group) && !empty($carousel_group)
     return;
 }
 
-// Build CSS classes
+// Build classes for regular button.
 $classes = 'btn btn--' . $type;
-if (!empty($class_extra)) {
+if ($class_extra !== '') {
     $classes .= ' ' . $class_extra;
 }
 if (!$icon_url) {
     $classes .= ' btn--no-icon';
 }
 
-// Determine tag and attributes
-$tag   = ($type === 'button' || $type === 'submit') ? 'button' : 'a';
-$attrs = ($tag === 'a') ? 'href="' . esc_url($href) . '" target="' . esc_attr($target) . '"' : 'type="button"';
+// Determine tag and attributes.
+$tag = ($type === 'button' || $type === 'submit') ? 'button' : 'a';
 
-// Add custom attributes
+if ($tag === 'a') {
+    $attrs = 'href="' . esc_url($href) . '" target="' . esc_attr($target) . '"';
+} else {
+    $button_type = $type === 'submit' ? 'submit' : 'button';
+    $attrs = 'type="' . esc_attr($button_type) . '"';
+}
+
 if (!empty($args['attributes']) && is_array($args['attributes'])) {
     foreach ($args['attributes'] as $attr => $value) {
-        $attrs .= ' ' . esc_attr($attr) . '="' . esc_attr($value) . '"';
+        $attrs .= ' ' . esc_attr((string) $attr) . '="' . esc_attr((string) $value) . '"';
     }
 }
 
-?>
+if ($is_primary_split) {
+    $split_button_classes = trim($classes . ' btn--icon-only');
 
-<?php if ($is_primary_split): ?>
-    <?php
-    $split_button_classes = $classes . ' btn--icon-only';
-    $split_variant_class = 'btn-split--' . $type;
-    ?>
-    <?php if ($tag === 'a'): ?>
-        <a class="btn-split <?php echo esc_attr($split_variant_class); ?>" <?php echo $attrs; ?>>
     $btn_split_class = 'btn-split';
-    if (!empty($class_extra) && str_contains($class_extra, 'btn-split--')) {
-        // Use custom split class if provided
-    } else {
-        $btn_split_class .= ' btn-split--white';
-    }
-    
-    // Add extra classes to the main wrapper
-    if (!empty($class_extra)) {
+    if ($class_extra !== '') {
         $btn_split_class .= ' ' . $class_extra;
+    }
+    if (strpos($btn_split_class, 'btn-split--') === false) {
+        $btn_split_class .= ' btn-split--' . $type;
     }
     ?>
     <?php if ($tag === 'a'): ?>
@@ -133,7 +127,6 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
             </span>
         </a>
     <?php else: ?>
-        <div class="btn-split <?php echo esc_attr($split_variant_class); ?>">
         <div class="<?php echo esc_attr($btn_split_class); ?>">
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
             <<?php echo $tag; ?> class="<?php echo esc_attr($split_button_classes); ?>" <?php echo $attrs; ?>>
@@ -149,31 +142,31 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
             </<?php echo $tag; ?>>
         </div>
     <?php endif; ?>
-    <?php return; ?>
-<?php endif; ?>
+    <?php
+    return;
+}
+?>
 
 <<?php echo $tag; ?> class="<?php echo esc_attr($classes); ?>" <?php echo $attrs; ?>>
-
-    <?php if ($text && $type !== 'social'): ?>
+    <?php if ($text !== '' && $type !== 'social'): ?>
         <span class="btn__text"><?php echo esc_html($text); ?></span>
     <?php endif; ?>
 
     <?php if ($icon_url): ?>
         <?php if ($type === 'readmore-v1'): ?>
             <span class="btn__icon-container">
-            <?php endif; ?>
+        <?php endif; ?>
 
-            <?php if ($use_img_icon): ?>
-                <span class="btn__icon btn__icon--img">
-                    <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
-                </span>
-            <?php else: ?>
-                <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
-            <?php endif; ?>
+        <?php if ($use_img_icon): ?>
+            <span class="btn__icon btn__icon--img">
+                <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+            </span>
+        <?php else: ?>
+            <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+        <?php endif; ?>
 
-            <?php if ($type === 'readmore-v1'): ?>
+        <?php if ($type === 'readmore-v1'): ?>
             </span>
         <?php endif; ?>
     <?php endif; ?>
-
 </<?php echo $tag; ?>>
