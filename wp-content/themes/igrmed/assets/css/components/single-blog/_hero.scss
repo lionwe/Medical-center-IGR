@@ -1,0 +1,132 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.blog-hero {
+    position: relative;
+    background-image: url("../img/bread-crumbs.webp");
+    background-size: 100% convert-to-rem(441px);
+    background-repeat: no-repeat;
+    background-position: center top;
+    min-height: convert-to-rem(441px);
+    padding-bottom: convert-to-rem(16px);
+    display: flex;
+    flex-direction: column;
+
+    @include mobile {
+        background-size: 100% convert-to-rem(320px);
+        background-position: center top;
+        min-height: convert-to-rem(320px);
+        padding-bottom: 0;
+    }
+
+    &>.container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        @include mobile {
+            padding-top: 0;
+        }
+    }
+
+    .breadcrumbs {
+        margin-bottom: convert-to-rem(12px);
+
+        @include mobile {
+            margin-bottom: convert-to-rem(20px);
+            max-width: 22rem;
+
+            .breadcrumbs__link,
+            .breadcrumbs__current,
+            .breadcrumbs__separator {
+                font-size: 10px;
+            }
+        }
+    }
+
+    &__bottom-container {
+        width: 100%;
+        max-width: convert-to-rem(1051px);
+        margin: auto auto 0; // Push to bottom
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(25px);
+        border-radius: convert-to-rem(20px);
+        padding: convert-to-rem(32px) convert-to-rem(50px) convert-to-rem(46px);
+        box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(15px);
+
+        @include mobile {
+            max-width: none;
+            width: 100vw;
+            margin-left: calc(-1 * var(--_section-offset));
+            margin-right: calc(-1 * var(--_section-offset));
+            margin-top: auto;
+            background: #FFFFFF;
+            border: none;
+            backdrop-filter: none;
+            box-shadow: none;
+            border-radius: 22px 22px 0 0;
+            padding: convert-to-rem(30px) var(--_section-offset) 0;
+            gap: convert-to-rem(30px);
+        }
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        gap: convert-to-rem(16px);
+
+        @include mobile {
+            gap: convert-to-rem(12px);
+        }
+    }
+
+    &__meta-item {
+        display: flex;
+        align-items: center;
+        gap: convert-to-rem(8px);
+    }
+
+    &__meta-icon-wrapper {
+        width: convert-to-rem(33px);
+        height: convert-to-rem(31px);
+        background: #FFFFFF;
+        border-radius: convert-to-rem(15.5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+        img {
+            width: convert-to-rem(16px);
+            height: convert-to-rem(16px);
+            object-fit: contain;
+        }
+    }
+
+    &__meta-text {
+        @include typography($font-family-montserrat, $fw-regular, (10px, 12px), 1.2);
+        color: var(--color-headings);
+    }
+
+    &__meta-separator {
+        width: 1px;
+        height: convert-to-rem(16px);
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &__title {
+        @include typography($font-family-montserrat, $fw-medium, (18px, 24px), 32px);
+        color: var(--color-headings);
+        margin: 0;
+        max-width: 95%;
+
+        @include mobile {
+            margin-bottom: convert-to-rem(10px);
+        }
+    }
+}

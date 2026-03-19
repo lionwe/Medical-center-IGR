@@ -8,6 +8,18 @@ add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 require get_template_directory() . '/includes/post-types.php';
 require get_template_directory() . '/includes/ajax-handler.php';
 
+/**
+ * Get SVG content from assets
+ */
+function igrmed_get_svg($name) {
+    $path = get_template_directory() . '/assets/img/svg/' . $name . '.svg';
+    if (file_exists($path)) {
+        return file_get_contents($path);
+    }
+    return '';
+}
+
+
 
 function igrmed_enqueue_assets(): void
 {
