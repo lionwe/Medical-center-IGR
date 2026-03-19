@@ -46,12 +46,16 @@
     max-width: 100%;
     min-width: 0;
     border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
-    padding: convert-to-rem(10px) 20px ;
+    padding: convert-to-rem(10px) convert-to-rem(20px) convert-to-rem(10px) convert-to-rem(20px);
     overflow-wrap: anywhere;
 
     :where(p, li) {
       @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
     }
+  }
+
+  &__section-body--stages {
+    padding: 20px 0;
   }
 
   &__subtitle {
@@ -126,56 +130,70 @@
     border-radius: convert-to-rem(4px);
   }
 
-  &__stages-layout {
-    display: flex;
-    gap: convert-to-rem(20px);
+  &__stages-bg {
+    width: 100%;
+    padding: convert-to-rem(35px) convert-to-rem(15px) convert-to-rem(25px);
+    border-radius: convert-to-rem(12px);
+    background-color: var(--color-background-light);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
-  &__stages-list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: convert-to-rem(15px);
+  &__stages-layout {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: convert-to-rem(48px);
+    row-gap: convert-to-rem(171px);
+    width: 100%;
+    min-height: 0;
+    grid-auto-rows: max-content;
+    align-content: start;
   }
 
   &__stage-item {
     display: flex;
-    gap: convert-to-rem(15px);
-    border-radius: convert-to-rem(8px);
-    background: var(--color-white);
-    border: convert-to-rem(1px) solid var(--color-white-03);
-    border-left: convert-to-rem(4px) solid var(--color-accent);
-    padding: convert-to-rem(20px);
+    align-items: flex-start;
+    gap: convert-to-rem(12px);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
   }
 
-  &__stage-num {
-    @include typography($font-family-montserrat, $fw-semibold, 18px, 1.2, 0);
-    color: var(--color-accent);
+  &__stage-icon-wrap {
+    width: convert-to-rem(35px);
+    height: convert-to-rem(35px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+  }
+
+  &__stage-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  &__stage-content {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(12px);
   }
 
   &__stage-content h3 {
     @include typography($font-family-montserrat, $fw-medium, 16px, 1.3, 0);
-    margin-bottom: convert-to-rem(8px);
+    min-height: convert-to-rem(42px);
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
   }
 
   &__stage-content p {
     @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
-  }
-
-  &__stages-image-wrap {
-    flex: 0 0 40%;
-    min-height: convert-to-rem(220px);
-    border-radius: convert-to-rem(8px);
-    overflow: hidden;
-    background: var(--color-background-light);
-  }
-
-  &__stages-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    margin: 0;
   }
 
   &__methods-list {
@@ -239,12 +257,9 @@
     }
 
     &__stages-layout {
-      flex-direction: column;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    &__stages-image-wrap {
-      display: none;
-    }
   }
 
   @include mobile {
@@ -265,5 +280,14 @@
     &__symptoms-grid {
       grid-template-columns: 1fr;
     }
+
+    &__stages-bg {
+      padding: convert-to-rem(20px) convert-to-rem(12px);
+    }
+
+    &__stages-layout {
+      grid-template-columns: 1fr;
+    }
+
   }
 }
