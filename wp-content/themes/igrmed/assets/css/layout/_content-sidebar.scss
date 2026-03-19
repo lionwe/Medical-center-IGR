@@ -1,0 +1,118 @@
+@use "../utils/mixins" as *;
+@use "../base/variables" as *;
+
+.catalog-wrap {
+  display: block;
+
+  @include desktop {
+    display: grid;
+    grid-template-columns: min(#{convert-to-rem(373px)}, 33vw) 1fr;
+    gap: convert-to-rem(20px);
+    align-items: stretch;
+  }
+}
+
+.content-sidebar {
+  display: none;
+
+  @include desktop {
+    display: block;
+    align-self: stretch;
+    position: relative;
+    width: 100%;
+    max-width: convert-to-rem(373px);
+  }
+
+  &__panel {
+    @include desktop {
+      @include gradient-border(
+        convert-to-rem(16px),
+        convert-to-rem(1px),
+        linear-gradient(
+          180deg,
+          var(--color-gradient-border-start) 0%,
+          var(--color-gradient-border-middle) 41.42%,
+          var(--color-gradient-border-end) 100%
+        )
+      );
+      padding: convert-to-rem(40px) convert-to-rem(16px);
+      border-radius: convert-to-rem(16px);
+      background: var(--color-white-06);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      box-shadow:
+        0 17px 38px 0 var(--color-shadow-dark-01),
+        0 69px 69px 0 var(--color-shadow-dark-009),
+        0 156px 94px 0 var(--color-shadow-dark-005),
+        0 277px 111px 0 var(--color-shadow-dark-001),
+        0 433px 121px 0 var(--color-shadow-dark-000);
+      overflow: hidden;
+      counter-reset: content-sidebar-items;
+    }
+  }
+
+  &__link {
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(24px);
+    width: 100%;
+    padding: convert-to-rem(4px) convert-to-rem(35px) convert-to-rem(16px) 0;
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+    background: transparent;
+    counter-increment: content-sidebar-items;
+
+    &::before {
+      content: "(" counter(content-sidebar-items, decimal-leading-zero) ")";
+      @include typography($font-family-montserrat, $fw-regular, 15px, 1, 0);
+      color: var(--color-text-gray);
+      flex-shrink: 0;
+      transition: color 0.2s ease;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: convert-to-rem(6px);
+      height: 1px;
+      background: var(--color-divider-dark-015);
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+
+    @include hover {
+      color: var(--color-sidebar-link-hover);
+
+      &::before {
+        color: var(--color-sidebar-link-hover);
+      }
+    }
+
+    &--active {
+      background: var(--color-sidebar-link-active);
+      color: var(--color-white);
+    }
+
+    &--active,
+    &--active .content-sidebar__label {
+      color: var(--color-white);
+    }
+
+    &--active::before {
+      color: var(--color-white);
+    }
+  }
+
+  &__label {
+    min-width: 0;
+  }
+}

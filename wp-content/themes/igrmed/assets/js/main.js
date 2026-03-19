@@ -1,5 +1,6 @@
 import "./utils";
 import "./components/home/main";
+import "./components/infertility-treatment-women/main";
 import "./components/diagnostics-research/main";
 import "./ui/main";
 

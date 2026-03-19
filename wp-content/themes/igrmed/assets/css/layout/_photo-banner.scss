@@ -1,0 +1,80 @@
+@use "../utils/mixins" as *;
+@use "../base/variables" as *;
+
+.photo-banner {
+  margin-top: convert-to-rem(24px);
+  margin-bottom: convert-to-rem(27px);
+  width: 100%;
+
+  &__inner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    min-height: convert-to-rem(160px);
+    border-radius: convert-to-rem(22px);
+    background: rgba(255, 255, 255, 0.52);
+    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(22px);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: convert-to-rem(24px);
+    padding: convert-to-rem(24px) convert-to-rem(24px) convert-to-rem(24px) convert-to-rem(32px);
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-medium, (18px, 32px), 1.1, 0);
+    margin: 0;
+    color: var(--color-primary-dark);
+  }
+
+  &__image-wrap {
+    position: relative;
+    width: 60%;
+    min-height: 100%;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__cta {
+    flex-shrink: 0;
+  }
+
+  &__cta :where(.btn) {
+    margin: 0;
+  }
+
+  @include mobile {
+    margin-bottom: convert-to-rem(60px);
+
+    &__inner {
+      min-height: convert-to-rem(120px);
+      flex-direction: column;
+    }
+
+    &__content,
+    &__image-wrap {
+      width: 100%;
+    }
+
+    &__content {
+      padding: convert-to-rem(18px) var(--_section-offset);
+    }
+
+    &__image-wrap {
+      min-height: convert-to-rem(160px);
+    }
+  }
+}

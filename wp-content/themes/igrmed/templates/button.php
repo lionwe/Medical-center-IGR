@@ -22,7 +22,7 @@ $icon_url    = $args['icon_url']  ?? null;
 $target      = $args['target']    ?? '_self';
 $class_extra = $args['class']     ?? '';
 $use_img_icon = !empty($args['icon_as_img']) && $type !== 'social';
-$is_primary_split = !empty($args['primary_split']) && $type === 'primary' && $text !== '';
+$is_primary_split = !empty($args['primary_split']) && in_array($type, ['primary', 'glass-primary'], true) && $text !== '';
 $carousel_group = $args['carousel_group'] ?? null;
 
 // Get icon from ACF options or direct URL
@@ -101,9 +101,10 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
 <?php if ($is_primary_split): ?>
     <?php
     $split_button_classes = $classes . ' btn--icon-only';
+    $split_variant_class = 'btn-split--' . $type;
     ?>
     <?php if ($tag === 'a'): ?>
-        <a class="btn-split btn-split--primary" <?php echo $attrs; ?>>
+        <a class="btn-split <?php echo esc_attr($split_variant_class); ?>" <?php echo $attrs; ?>>
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
             <span class="<?php echo esc_attr($split_button_classes); ?>" aria-hidden="true">
                 <?php if ($icon_url): ?>
@@ -118,7 +119,7 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
             </span>
         </a>
     <?php else: ?>
-        <div class="btn-split btn-split--primary">
+        <div class="btn-split <?php echo esc_attr($split_variant_class); ?>">
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
             <<?php echo $tag; ?> class="<?php echo esc_attr($split_button_classes); ?>" <?php echo $attrs; ?>>
                 <?php if ($icon_url): ?>
