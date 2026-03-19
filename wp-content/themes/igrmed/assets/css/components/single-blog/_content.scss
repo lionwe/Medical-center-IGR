@@ -128,4 +128,139 @@
             }
         }
     }
+
+    .blog-share {
+        margin-top: convert-to-rem(64px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include mobile {
+            margin-top: convert-to-rem(40px);
+            padding: 0 convert-to-rem(20px);
+        }
+
+        &__header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: convert-to-rem(5px);
+
+            &::before,
+            &::after {
+                content: "";
+                flex: 1;
+                height: 1px;
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            &::before {
+                margin-right: convert-to-rem(16px);
+            }
+
+            &::after {
+                margin-left: convert-to-rem(16px);
+            }
+        }
+
+        &__title {
+            @include typography($font-family-montserrat, 600, (14px, 18px), 32px);
+            color: #000000;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        &__list {
+            display: flex;
+            gap: convert-to-rem(12px);
+            justify-content: center;
+            flex-wrap: wrap;
+
+            @include mobile {
+                gap: convert-to-rem(8px);
+            }
+        }
+
+        &__link {
+            width: convert-to-rem(59px);
+            height: convert-to-rem(59px);
+            background-color: #1A3B67;
+            border-radius: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: convert-to-rem(4px);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            color: #FFFFFF;
+
+            @include mobile {
+                width: convert-to-rem(48px);
+                height: convert-to-rem(48px);
+            }
+
+            svg {
+                width: convert-to-rem(24px);
+                height: convert-to-rem(24px);
+
+                @include mobile {
+                    width: convert-to-rem(20px);
+                    height: convert-to-rem(20px);
+                }
+
+                path {
+                    transition: stroke 0.3s ease, fill 0.3s ease;
+                }
+            }
+
+            &:hover {
+                transform: translateY(-3px);
+                background-color: var(--color-accent);
+            }
+
+            &--copy {
+                position: relative;
+
+                &.copied {
+                    &::after {
+                        content: "Copied!";
+                        position: absolute;
+                        bottom: 110%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: #000;
+                        color: #fff;
+                        padding: 4px 8px;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        animation: fadeInOut 2s forwards;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 10px);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+    }
 }
