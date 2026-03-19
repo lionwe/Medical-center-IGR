@@ -1,0 +1,131 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.blog-content {
+    padding-top: convert-to-rem(50px);
+    padding-bottom: convert-to-rem(100px);
+
+    @include mobile {
+        background: #FFFFFF;
+        padding-top: 0;
+
+        &>.container {
+            padding: 0;
+            max-width: none;
+            width: 100%;
+        }
+    }
+
+    &__inner {
+        padding-left: convert-to-rem(60px);
+        padding-right: convert-to-rem(60px);
+        width: 100%;
+        text-align: justify;
+
+        @include mobile {
+            padding: convert-to-rem(10px) convert-to-rem(20px) convert-to-rem(40px);
+            text-align: left;
+        }
+
+        // --- Typography for WP Editor ---
+
+        p {
+            @include typography($font-family-montserrat, $fw-regular, 16px, 24px);
+            color: var(--color-black);
+            margin-bottom: convert-to-rem(24px);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        h2 {
+            @include typography($font-family-montserrat, $fw-medium, (20px, 32px), 40px);
+            color: var(--color-headings);
+            margin-top: convert-to-rem(48px);
+            margin-bottom: convert-to-rem(24px);
+        }
+
+        h3 {
+            @include typography($font-family-montserrat, $fw-medium, (20px, 24px), 32px);
+            color: var(--color-headings);
+            margin-top: convert-to-rem(40px);
+            margin-bottom: convert-to-rem(20px);
+        }
+
+        h4 {
+            @include typography($font-family-montserrat, $fw-medium, (18px, 20px), 28px);
+            color: var(--color-headings);
+            margin-top: convert-to-rem(32px);
+            margin-bottom: convert-to-rem(16px);
+        }
+
+        strong,
+        b {
+            font-weight: $fw-bold;
+        }
+
+        em,
+        i {
+            font-style: italic;
+        }
+
+        ul,
+        ol {
+            margin-bottom: convert-to-rem(24px);
+            padding-left: convert-to-rem(24px);
+
+            li {
+                @include typography($font-family-montserrat, $fw-regular, (14px, 16px), 24px);
+                margin-bottom: convert-to-rem(12px);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        ul {
+            list-style-type: disc;
+
+            li::marker {
+                color: var(--color-accent);
+            }
+        }
+
+        ol {
+            list-style-type: decimal;
+        }
+
+        blockquote {
+            margin: convert-to-rem(40px) 0;
+            padding: convert-to-rem(24px) convert-to-rem(32px);
+            background: var(--color-accent-03);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) 0;
+            font-style: italic;
+
+            p {
+                @include typography($font-family-montserrat, $fw-regular, (15px, 18px), 28px);
+                margin-bottom: 0;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: convert-to-rem(20px);
+            margin: convert-to-rem(32px) 0;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: underline;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
