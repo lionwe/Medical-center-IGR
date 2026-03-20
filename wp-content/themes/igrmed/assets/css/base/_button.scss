@@ -90,6 +90,32 @@ $_gradient-border: linear-gradient(180deg,
     }
   }
 
+  &--simple-outline {
+    padding: convert-to-rem(13.5px) convert-to-rem(98px);
+    border-radius: convert-to-rem(100px);
+    border: 0.5px solid #173C68;
+    background: transparent;
+    color: #173C68;
+    gap: convert-to-rem(10px);
+
+    @include mobile {
+      padding: convert-to-rem(10px) convert-to-rem(32px);
+      width: 100%;
+      max-width: convert-to-rem(300px);
+    }
+
+    .btn__text {
+      @include typography($font-family-montserrat, 500, 14px, 1);
+      color: inherit;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background-color: #173C68;
+      color: #FFFFFF;
+    }
+  }
+
   &--social {
     gap: convert-to-rem(8px);
     padding: convert-to-rem(4px) convert-to-rem(24px);

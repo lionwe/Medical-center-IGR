@@ -1,5 +1,5 @@
 <?php
-$title = (string) get_the_title();
+$title = (string) ($args['title'] ?? get_the_title());
 $button_text = (string) __("Зв'язатись з нами", 'igrmed');
 $button_link = '#cta';
 $image_url = get_template_directory_uri() . '/assets/img/baby.webp';

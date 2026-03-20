@@ -204,26 +204,26 @@ function igrmed_render_diagnostics_accordion(array $items): string
     }
 
     ob_start();
-    ?>
-<div class="diagnostics-research-diagnostics__accordion js-diagnostics-accordion">
-    <?php foreach ($items as $row): ?>
-    <article class="diagnostics-research-diagnostics__accordion-item">
-        <button class="diagnostics-research-diagnostics__accordion-trigger" type="button" aria-expanded="false">
-            <span class="diagnostics-research-diagnostics__accordion-title">
-                <?php echo esc_html($row['title']); ?>
-            </span>
-            <span class="diagnostics-research-diagnostics__accordion-icon" aria-hidden="true">
-                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/diagnostics-polygon.svg'); ?>"
-                    alt="" width="19" height="9">
-            </span>
-        </button>
+?>
+    <div class="diagnostics-research-diagnostics__accordion js-diagnostics-accordion">
+        <?php foreach ($items as $row): ?>
+            <article class="diagnostics-research-diagnostics__accordion-item">
+                <button class="diagnostics-research-diagnostics__accordion-trigger" type="button" aria-expanded="false">
+                    <span class="diagnostics-research-diagnostics__accordion-title">
+                        <?php echo esc_html($row['title']); ?>
+                    </span>
+                    <span class="diagnostics-research-diagnostics__accordion-icon" aria-hidden="true">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/diagnostics-polygon.svg'); ?>"
+                            alt="" width="19" height="9">
+                    </span>
+                </button>
 
-        <div class="diagnostics-research-diagnostics__accordion-content">
-            <?php echo igrmed_render_diagnostics_content($row); ?>
-        </div>
-    </article>
-    <?php endforeach; ?>
-</div>
+                <div class="diagnostics-research-diagnostics__accordion-content">
+                    <?php echo igrmed_render_diagnostics_content($row); ?>
+                </div>
+            </article>
+        <?php endforeach; ?>
+    </div>
 <?php
 
     return (string) ob_get_clean();
@@ -260,4 +260,69 @@ function igrmed_load_diagnostics_men(): void
     wp_send_json_success([
         'html' => $html,
     ]);
+}
+
+/**
+ * Load more blog posts via AJAX (style from user sample)
+ */
+add_action('wp_ajax_load_blog_posts', 'igrmed_load_blog_posts_ajax');
+add_action('wp_ajax_nopriv_load_blog_posts', 'igrmed_load_blog_posts_ajax');
+
+function igrmed_load_blog_posts_ajax()
+{
+    // Verification of the nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'blog_archive_nonce')) {
+        wp_send_json_error(['message' => 'Security check failed'], 403);
+    }
+
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+    $is_mobile = wp_is_mobile();
+    $posts_per_page = $is_mobile ? 7 : 12;
+
+    // Use cache for better performance
+    $cache_key = 'igrmed_blog_page_' . $paged . ($is_mobile ? '_mobile' : '_desktop');
+    $cached_data = get_transient($cache_key);
+
+    if ($cached_data !== false) {
+        wp_send_json_success($cached_data);
+    }
+
+    $args = [
+        'post_type'           => 'blog',
+        'post_status'         => 'publish',
+        'posts_per_page'      => $posts_per_page,
+        'paged'               => $paged,
+        'orderby'             => 'date',
+        'order'               => 'DESC',
+        'ignore_sticky_posts' => 1,
+        'no_found_rows'       => false, // Need for max_num_pages
+        'update_post_term_cache' => false,
+        'update_post_meta_cache' => false,
+    ];
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        ob_start();
+        while ($query->have_posts()) {
+            $query->the_post();
+            get_template_part('templates/blog-card');
+        }
+        $content = ob_get_clean();
+
+        $response_data = [
+            'html'      => $content,
+            'max_pages' => (int) $query->max_num_pages,
+        ];
+
+        // Cache for 1 hour
+        set_transient($cache_key, $response_data, HOUR_IN_SECONDS);
+
+        wp_send_json_success($response_data);
+    } else {
+        wp_send_json_error(['message' => 'No more posts']);
+    }
+
+    wp_reset_postdata();
+    wp_die();
 }

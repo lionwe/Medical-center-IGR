@@ -12,7 +12,6 @@ $image_url      = $custom_image && isset($custom_image['url'])
     : $fallback_image;
 
 if (!$image_url) {
-    // Placeholder if no image exists
     $image_url = get_template_directory_uri() . '/assets/img/placeholder.png';
 }
 
@@ -57,6 +56,17 @@ $read_time = sprintf(__('%d хв на прочитання', 'igrmed'), $minutes
     </div>
 
     <div class="blog-card__content">
+        <?php /* Mobile-only meta pill — shown via CSS only on mobile in blog archive */ ?>
+        <div class="blog-card__meta blog-card__meta--inline">
+            <div class="blog-card__meta-item">
+                <span class="blog-card__meta-text"><?php echo esc_html($date); ?></span>
+            </div>
+            <div class="blog-card__meta-separator"></div>
+            <div class="blog-card__meta-item">
+                <span class="blog-card__meta-text"><?php echo esc_html($read_time); ?></span>
+            </div>
+        </div>
+
         <h3 class="blog-card__title">
             <a href="<?php echo esc_url(get_permalink()); ?>">
                 <?php echo esc_html(wp_trim_words(get_the_title(), 10, '...')); ?>
@@ -64,7 +74,6 @@ $read_time = sprintf(__('%d хв на прочитання', 'igrmed'), $minutes
         </h3>
         <p class="blog-card__excerpt">
             <?php
-            // Default fallback if excerpt is empty
             $excerpt = get_the_excerpt() ?: 'It is a long established fact that a reader will be distracted by the readable content';
             echo esc_html(wp_trim_words($excerpt, 15, '...'));
             ?>
@@ -79,4 +88,5 @@ $read_time = sprintf(__('%d хв на прочитання', 'igrmed'), $minutes
             'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg'
         ]); ?>
     </div>
+
 </article>

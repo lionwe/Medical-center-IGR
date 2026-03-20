@@ -1,0 +1,38 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.blog-archive-hero {
+    position: relative;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    padding-bottom: convert-to-rem(40px);
+    min-height: convert-to-rem(441px);
+
+    @include mobile {
+        background-size: 100% 100%;
+        padding-bottom: convert-to-rem(30px);
+        min-height: convert-to-rem(320px);
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        min-height: inherit;
+        padding-top: convert-to-rem(40px);
+    }
+
+    .breadcrumbs {
+        margin-bottom: convert-to-rem(40px);
+
+        @include mobile {
+            margin-bottom: convert-to-rem(20px);
+        }
+    }
+
+    // Регулюємо вигляд фото-банера всередині херо
+    .photo-banner {
+        margin-top: auto; // pushed to bottom inside the flexible hero space
+        margin-bottom: 0;
+    }
+}

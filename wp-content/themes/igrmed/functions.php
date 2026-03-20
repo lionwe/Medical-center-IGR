@@ -4,6 +4,7 @@ add_action('after_setup_theme', 'igrmed_theme_setup');
 add_filter('upload_mimes', 'svg_upload_allow');
 add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
+add_action('pre_get_posts', 'igrmed_blog_posts_per_page');
 
 require get_template_directory() . '/includes/post-types.php';
 require get_template_directory() . '/includes/ajax-handler.php';
@@ -11,7 +12,8 @@ require get_template_directory() . '/includes/ajax-handler.php';
 /**
  * Get SVG content from assets
  */
-function igrmed_get_svg($name) {
+function igrmed_get_svg($name)
+{
     $path = get_template_directory() . '/assets/img/svg/' . $name . '.svg';
     if (file_exists($path)) {
         return file_get_contents($path);
@@ -101,6 +103,21 @@ function reading_time($content)
     $word_count = preg_match_all('/[\p{L}\p{N}]+/u', $clean_content);
     $minutes = (int) ceil($word_count / $words_per_minute);
     return max(1, $minutes);
+}
+
+/**
+ * Set posts per page on blog archive: 12 on desktop, 7 on mobile.
+ */
+function igrmed_blog_posts_per_page(WP_Query $query): void
+{
+    if (is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    if ($query->is_post_type_archive('blog')) {
+        $posts_per_page = wp_is_mobile() ? 7 : 12;
+        $query->set('posts_per_page', $posts_per_page);
+    }
 }
 
 function get_picture($args = [])
