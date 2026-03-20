@@ -58,11 +58,11 @@
   }
 }
 
-// @mixin tablet($min: 768px, $max: 992px) {
-//   @media screen and (min-width: $min) and (max-width: $max) {
-//     @content;
-//   }
-// }
+@mixin tablet($min: 768px, $max: 1024px) {
+  @media screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
 
 @mixin before($absolute: false) {
   @if ($absolute) {
