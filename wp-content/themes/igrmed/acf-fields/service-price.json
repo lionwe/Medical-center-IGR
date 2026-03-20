@@ -1,0 +1,60 @@
+[
+    {
+        "key": "group_service_details",
+        "title": "Деталі послуги",
+        "fields": [
+            {
+                "key": "field_service_price",
+                "label": "Ціна послуги",
+                "name": "service_price",
+                "type": "text",
+                "instructions": "Введіть ціну (наприклад: 500 або від 500)",
+                "required": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "500",
+                "prepend": "",
+                "append": "грн"
+            },
+            {
+                "key": "field_service_show_in_price",
+                "label": "Показувати в прайсі?",
+                "name": "service_show_in_price",
+                "type": "true_false",
+                "instructions": "Якщо вимкнено, послуга не з'явиться на загальній сторінці прайсу",
+                "required": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 1,
+                "ui": 1,
+                "ui_on_text": "Так",
+                "ui_off_text": "Ні"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "services"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    }
+]
