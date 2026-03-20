@@ -2,29 +2,63 @@
 @use "../base/variables" as *;
 
 .catalog-wrap {
-  display: block;
+  display: grid;
+  grid-template-columns: min(#{convert-to-rem(373px)}, 33vw) 1fr;
+  gap: convert-to-rem(20px);
+  align-items: stretch;
 
-  @include desktop {
-    display: grid;
-    grid-template-columns: min(#{convert-to-rem(373px)}, 33vw) 1fr;
-    gap: convert-to-rem(20px);
-    align-items: stretch;
+  @include mobile {
+    display: block;
   }
 }
 
 .content-sidebar {
-  display: none;
+  align-self: stretch;
+  position: relative;
+  top: auto;
+  z-index: auto;
+  margin-bottom: 0;
+  width: 100%;
+  max-width: convert-to-rem(373px);
 
-  @include desktop {
+  @include mobile {
     display: block;
-    align-self: stretch;
-    position: relative;
-    width: 100%;
-    max-width: convert-to-rem(373px);
+    position: sticky;
+    top: convert-to-rem(84px);
+    z-index: 20;
+    margin-bottom: convert-to-rem(16px);
+    width: 85%;
+    margin-inline: auto;
+    margin-top: convert-to-rem(-60px);
+    margin-bottom: convert-to-rem(40px);
+    max-width: unset;
   }
 
   &__panel {
-    @include desktop {
+    padding: convert-to-rem(40px) convert-to-rem(16px);
+    border-radius: convert-to-rem(16px);
+    background: var(--color-white-06);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow:
+      0 17px 38px 0 var(--color-shadow-dark-01),
+      0 69px 69px 0 var(--color-shadow-dark-009),
+      0 156px 94px 0 var(--color-shadow-dark-005),
+      0 277px 111px 0 var(--color-shadow-dark-001),
+      0 433px 121px 0 var(--color-shadow-dark-000);
+
+    @include mobile {
+      background: var(--color-white);
+      border-radius: convert-to-rem(12px);
+      align-items: flex-start;
+      box-shadow: 0 convert-to-rem(8px) convert-to-rem(20px) var(--color-shadow-dark-009);
+      padding: 20px 16px;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+
       @include gradient-border(
         convert-to-rem(16px),
         convert-to-rem(1px),
@@ -35,44 +69,28 @@
           var(--color-gradient-border-end) 100%
         )
       );
-      padding: convert-to-rem(40px) convert-to-rem(16px);
-      border-radius: convert-to-rem(16px);
-      background: var(--color-white-06);
-      -webkit-backdrop-filter: blur(18px);
-      backdrop-filter: blur(18px);
-      box-shadow:
-        0 17px 38px 0 var(--color-shadow-dark-01),
-        0 69px 69px 0 var(--color-shadow-dark-009),
-        0 156px 94px 0 var(--color-shadow-dark-005),
-        0 277px 111px 0 var(--color-shadow-dark-001),
-        0 433px 121px 0 var(--color-shadow-dark-000);
-      overflow: hidden;
-      counter-reset: content-sidebar-items;
     }
   }
 
   &__link {
     @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
     position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: convert-to-rem(24px);
-    width: 100%;
-    padding: convert-to-rem(4px) convert-to-rem(35px) convert-to-rem(16px) 0;
+    max-width: 100%;
+    padding: convert-to-rem(4px) convert-to-rem(20px) convert-to-rem(12px) 0;
     color: var(--color-text-main);
     text-decoration: none;
     transition:
       background-color 0.2s ease,
       color 0.2s ease;
     background: transparent;
-    counter-increment: content-sidebar-items;
 
-    &::before {
-      content: "(" counter(content-sidebar-items, decimal-leading-zero) ")";
-      @include typography($font-family-montserrat, $fw-regular, 15px, 1, 0);
-      color: var(--color-text-gray);
-      flex-shrink: 0;
-      transition: color 0.2s ease;
+    @include mobile {
+      width: fit-content;
+      padding: convert-to-rem(8px) convert-to-rem(12px);
+      gap: convert-to-rem(12px);
     }
 
     &::after {
@@ -83,13 +101,19 @@
       bottom: convert-to-rem(6px);
       height: 1px;
       background: var(--color-divider-dark-015);
+
+      @include mobile {
+        right: auto;
+        width: 100%;
+        bottom: convert-to-rem(2px);
+      }
     }
 
     &:not(.content-sidebar__link--active) {
       @include hover {
         color: var(--color-sidebar-link-hover);
 
-        &::before {
+        .content-sidebar__marker-number {
           color: var(--color-sidebar-link-hover);
         }
       }
@@ -98,19 +122,54 @@
     &--active {
       background: var(--color-sidebar-link-active);
       color: var(--color-white);
-    }
 
-    &--active,
-    &--active .content-sidebar__label {
-      color: var(--color-white);
-    }
+      &::after {
+        background: transparent;
+      }
 
-    &--active::before {
-      color: var(--color-white);
+      .content-sidebar__marker-number {
+        display: none;
+      }
+
+      .content-sidebar__marker-arrow {
+        display: inline-flex;
+      }
+
+      .content-sidebar__label {
+        color: var(--color-white);
+      }
     }
   }
 
   &__label {
     min-width: 0;
+  }
+
+  &__marker {
+    min-width: convert-to-rem(42px);
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__marker-number {
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1, 0);
+    color: var(--color-text-gray);
+    transition: color 0.2s ease;
+  }
+
+  &__marker-arrow {
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1, 0);
+    color: var(--color-white);
+    display: none;
+    align-items: center;
+    gap: convert-to-rem(2px);
+
+    svg {
+      width: convert-to-rem(16px);
+      height: convert-to-rem(16px);
+      flex-shrink: 0;
+    }
   }
 }
