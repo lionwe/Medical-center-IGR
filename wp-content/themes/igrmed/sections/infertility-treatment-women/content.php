@@ -87,6 +87,7 @@ if (is_array($stages_rows)) {
 }
 
 $stages_bg_url = $extract_image_url(get_field('treatment_bg'));
+$stages_bg_mobile_url = $extract_image_url(get_field('treatment_bg_mob'));
 
 $methods_title = trim((string) get_field('methods_title'));
 $methods_rows = get_field('methods_list');
@@ -134,7 +135,7 @@ if ($reasons_title !== '' || $reasons_subtitle !== '' || !empty($reasons_items))
 if ($symptoms_title !== '' || !empty($symptoms_items)) {
     $sections[] = ['id' => 'itw-symptoms', 'title' => $symptoms_title !== '' ? $symptoms_title : __('Симптоми', 'igrmed')];
 }
-if ($stages_title !== '' || !empty($stages) || $stages_bg_url !== '') {
+if ($stages_title !== '' || !empty($stages) || $stages_bg_url !== '' || $stages_bg_mobile_url !== '') {
     $sections[] = ['id' => 'itw-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи лікування', 'igrmed')];
 }
 if ($methods_title !== '' || !empty($methods)) {
@@ -154,8 +155,11 @@ if (empty($sections)) {
             <div class="infertility-treatment-women__content">
                 <?php if ($intro_title !== '' || $intro_content !== ''): ?>
                     <div id="itw-intro" class="infertility-treatment-women__section js-itw-section donor-section">
-                        <h2 class="infertility-treatment-women__section-title">
-                            <?php echo esc_html($intro_title !== '' ? $intro_title : __('Вступ', 'igrmed')); ?></h2>
+                        <div class="infertility-treatment-women__section-title-wrap">
+                            <h2 class="infertility-treatment-women__section-title">
+                                <?php echo esc_html($intro_title !== '' ? $intro_title : __('Вступ', 'igrmed')); ?>
+                            </h2>
+                        </div>
                         <div class="infertility-treatment-women__section-body">
                             <?php if ($intro_content !== ''): ?>
                                 <?php echo wp_kses_post($intro_content); ?>
@@ -166,8 +170,11 @@ if (empty($sections)) {
 
                 <?php if ($reasons_title !== '' || $reasons_subtitle !== '' || !empty($reasons_items)): ?>
                     <div id="itw-reasons" class="infertility-treatment-women__section js-itw-section donor-section">
-                        <h2 class="infertility-treatment-women__section-title">
-                            <?php echo esc_html($reasons_title !== '' ? $reasons_title : __('Причини', 'igrmed')); ?></h2>
+                        <div class="infertility-treatment-women__section-title-wrap">
+                            <h2 class="infertility-treatment-women__section-title">
+                                <?php echo esc_html($reasons_title !== '' ? $reasons_title : __('Причини', 'igrmed')); ?>
+                            </h2>
+                        </div>
                         <div class="infertility-treatment-women__section-body">
                             <?php if ($reasons_subtitle !== ''): ?>
                                 <p class="infertility-treatment-women__subtitle"><?php echo esc_html($reasons_subtitle); ?></p>
@@ -185,10 +192,12 @@ if (empty($sections)) {
                 <?php endif; ?>
 
                 <?php if ($symptoms_title !== '' || !empty($symptoms_items)): ?>
-                    <div id="itw-symptoms" class="infertility-treatment-women__section js-itw-section donor-section">
-                        <h2 class="infertility-treatment-women__section-title">
-                            <?php echo esc_html($symptoms_title !== '' ? $symptoms_title : __('Симптоми', 'igrmed')); ?>
-                        </h2>
+                    <div id="itw-symptoms" class="infertility-treatment-women__section infertility-treatment-women__section--symptoms js-itw-section donor-section">
+                        <div class="infertility-treatment-women__section-title-wrap infertility-treatment-women__section-title-wrap--symptoms">
+                            <h2 class="infertility-treatment-women__section-title">
+                                <?php echo esc_html($symptoms_title !== '' ? $symptoms_title : __('Симптоми', 'igrmed')); ?>
+                            </h2>
+                        </div>
                         <div class="infertility-treatment-women__section-body">
                             <?php if (!empty($symptoms_items)): ?>
                                 <div class="infertility-treatment-women__symptoms-grid">
@@ -204,14 +213,28 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($stages_title !== '' || !empty($stages) || $stages_bg_url !== ''): ?>
+                <?php if ($stages_title !== '' || !empty($stages) || $stages_bg_url !== '' || $stages_bg_mobile_url !== ''): ?>
                     <div id="itw-stages" class="infertility-treatment-women__section js-itw-section donor-section">
-                        <h2 class="infertility-treatment-women__section-title">
-                            <?php echo esc_html($stages_title !== '' ? $stages_title : __('Етапи лікування', 'igrmed')); ?>
-                        </h2>
+                        <div class="infertility-treatment-women__section-title-wrap">
+                            <h2 class="infertility-treatment-women__section-title">
+                                <?php echo esc_html($stages_title !== '' ? $stages_title : __('Етапи лікування', 'igrmed')); ?>
+                            </h2>
+                        </div>
                         <div
                             class="infertility-treatment-women__section-body infertility-treatment-women__section-body--stages">
-                            <div class="infertility-treatment-women__stages-bg" <?php echo $stages_bg_url !== '' ? 'style="background-image: url(' . esc_url($stages_bg_url) . ');"' : ''; ?>>
+                            <div
+                                class="infertility-treatment-women__stages-bg"
+                                <?php
+                                $stages_bg_styles = [];
+                                if ($stages_bg_url !== '') {
+                                    $stages_bg_styles[] = '--itw-stages-bg: url(' . esc_url($stages_bg_url) . ')';
+                                }
+                                if ($stages_bg_mobile_url !== '') {
+                                    $stages_bg_styles[] = '--itw-stages-bg-mobile: url(' . esc_url($stages_bg_mobile_url) . ')';
+                                }
+                                echo !empty($stages_bg_styles) ? 'style="' . esc_attr(implode('; ', $stages_bg_styles)) . '"' : '';
+                                ?>
+                            >
                                 <div class="infertility-treatment-women__stages-layout">
                                     <?php if (!empty($stages)): ?>
                                         <?php foreach ($stages as $stage): ?>
@@ -240,9 +263,11 @@ if (empty($sections)) {
 
                 <?php if ($methods_title !== '' || !empty($methods)): ?>
                     <div id="itw-methods" class="infertility-treatment-women__section js-itw-section donor-section">
-                        <h2 class="infertility-treatment-women__section-title">
-                            <?php echo esc_html($methods_title !== '' ? $methods_title : __('Методи лікування', 'igrmed')); ?>
-                        </h2>
+                        <div class="infertility-treatment-women__section-title-wrap">
+                            <h2 class="infertility-treatment-women__section-title">
+                                <?php echo esc_html($methods_title !== '' ? $methods_title : __('Методи лікування', 'igrmed')); ?>
+                            </h2>
+                        </div>
                         <div class="infertility-treatment-women__section-body">
                             <?php if (!empty($methods)): ?>
                                 <div class="infertility-treatment-women__methods-list">

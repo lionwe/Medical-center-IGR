@@ -63,10 +63,7 @@ $icon_arrow_svg = '<svg width="19" height="9" viewBox="0 0 19 9" fill="none" xml
                 <div class="faq-section__left-col">
                     <div class="faq-section__header-group">
                         <?php if ($title !== ''): ?>
-                            <h2 class="faq-section__title faq-section__title--desktop">
-                                <?php echo wp_kses_post($title); ?>
-                            </h2>
-                            <h2 class="faq-section__title faq-section__title--mobile">
+                            <h2 class="faq-section__title">
                                 <?php echo wp_kses_post($title); ?>
                             </h2>
                         <?php endif; ?>

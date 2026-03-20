@@ -2,9 +2,6 @@
 @use "../../base/variables" as *;
 
 .faq-section {
-  --faq-title-color: #362b24;
-  --faq-question-bg: #f8f3f0;
-
   position: relative;
   padding-block: convert-to-rem(20px);
   color: var(--color-white);
@@ -78,28 +75,13 @@
   }
 
   &__title {
-    @include typography($font-family-montserrat, $fw-medium, 42px, 1.1);
+    @include typography($font-family-montserrat, $fw-medium, (24px 42px), 1.1);
     letter-spacing: 0;
-    color: var(--faq-title-color);
+    color: var(--color-faq-heading);
     margin: 0;
 
-    &--desktop {
-      display: block;
-      @include mobile {
-        display: none;
-      }
-    }
-
-    &--mobile {
-      display: none;
-      @include mobile {
-        @include typography($font-family-montserrat, $fw-medium, 24px, convert-to-rem(32px));
-        display: block;
-        width: 100%;
-        max-width: none;
-        margin-bottom: 0;
-      }
-    }
+    
+    
   }
 
   &__right-col {
@@ -133,7 +115,7 @@
     }
 
     &__header {
-      background: var(--faq-question-bg);
+      background: var(--color-faq-question-bg);
       border-radius: convert-to-rem(12px);
       display: flex;
       align-items: center;
@@ -154,7 +136,7 @@
     }
 
     &__title {
-      @include typography($font-family-montserrat, $fw-regular, 18px, 1);
+      @include typography($font-family-montserrat, $fw-regular, (16px, 18px), 1, 0);
       color: var(--color-headings);
       pointer-events: none;
 
@@ -191,8 +173,7 @@
       margin: 0;
 
       @include mobile {
-        line-height: 1.5;
-        padding: convert-to-rem(8px) 0 convert-to-rem(8px) convert-to-rem(32px);
+        padding: convert-to-rem(8px) 0;
       }
     }
   }

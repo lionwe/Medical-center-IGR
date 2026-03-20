@@ -1,2 +1,2 @@
-import "./scroll-menu";
+import "./content-sidebar";
 import "./faq";
