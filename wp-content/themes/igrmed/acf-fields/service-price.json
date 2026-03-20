@@ -1,42 +1,29 @@
 [
     {
-        "key": "group_service_details",
+        "key": "group_price_item_details",
         "title": "Деталі послуги",
         "fields": [
             {
-                "key": "field_service_price",
-                "label": "Ціна послуги",
-                "name": "service_price",
-                "type": "text",
-                "instructions": "Введіть ціну (наприклад: 500 або від 500)",
-                "required": 0,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "placeholder": "500",
-                "prepend": "",
-                "append": "грн"
+                "key": "field_price_item_direction",
+                "label": "Напрямок",
+                "name": "price_item_direction",
+                "type": "post_object",
+                "instructions": "Виберіть напрямок, до якого належить ця послуга (наприклад: Гінекологія)",
+                "required": 1,
+                "post_type": ["services"],
+                "return_format": "id",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 1
             },
             {
-                "key": "field_service_show_in_price",
-                "label": "Показувати в прайсі?",
-                "name": "service_show_in_price",
-                "type": "true_false",
-                "instructions": "Якщо вимкнено, послуга не з'явиться на загальній сторінці прайсу",
-                "required": 0,
-                "wrapper": {
-                    "width": "50",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "",
-                "default_value": 1,
-                "ui": 1,
-                "ui_on_text": "Так",
-                "ui_off_text": "Ні"
+                "key": "field_price_item_value",
+                "label": "Ціна",
+                "name": "price_item_value",
+                "type": "text",
+                "instructions": "Введіть ціну",
+                "required": 1,
+                "placeholder": "500"
             }
         ],
         "location": [
@@ -44,17 +31,10 @@
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "services"
+                    "value": "price_items"
                 }
             ]
         ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": ""
+        "active": true
     }
 ]
