@@ -1,0 +1,316 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.price-list {
+    padding-bottom: convert-to-rem(100px);
+    margin-top: convert-to-rem(-20px);
+    position: relative;
+    z-index: 5;
+
+    @include mobile {
+        padding-bottom: convert-to-rem(60px);
+        margin-top: convert-to-rem(-15px);
+    }
+
+    &__wrapper {
+        width: 100%;
+        height: auto;
+        border-radius: convert-to-rem(20px);
+        background: rgba(240, 240, 240, 0.5);
+        box-shadow: 0 convert-to-rem(4px) convert-to-rem(50px) 0 rgba(0, 0, 0, 0.25);
+        padding: convert-to-rem(58px) convert-to-rem(34px) convert-to-rem(26px) convert-to-rem(34px);
+
+        @include mobile {
+            padding: convert-to-rem(30px) convert-to-rem(15px);
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: convert-to-rem(18px);
+        margin-bottom: convert-to-rem(40px);
+
+        @include mobile {
+            flex-direction: column;
+            align-items: stretch;
+            gap: convert-to-rem(15px);
+        }
+    }
+
+    &__search {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: convert-to-rem(271px);
+        height: convert-to-rem(41px);
+        padding: convert-to-rem(8px) convert-to-rem(13px);
+        border-radius: convert-to-rem(10px);
+        background: var(--color-white);
+        border: 1px solid var(--color-gray);
+        box-shadow: 0 convert-to-rem(0.5px) convert-to-rem(1px) 0 rgba(74, 58, 255, 0.07);
+
+        @include mobile {
+            width: 100%;
+        }
+    }
+
+    &__search-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        @include typography($font-family-montserrat, $fw-regular, convert-to-rem(14px), 1.35);
+        color: var(--color-text-gray);
+
+        &::placeholder {
+            color: var(--color-text-gray);
+        }
+    }
+
+    &__search-icon {
+        flex-shrink: 0;
+        margin-left: convert-to-rem(10px);
+        width: convert-to-rem(11px);
+        height: convert-to-rem(11px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            height: auto;
+            filter: grayscale(1) brightness(0.5);
+        }
+    }
+
+    &__category-select {
+        position: relative;
+        width: fit-content;
+
+        @include mobile {
+            width: 100%;
+        }
+
+        &.is-open {
+            .price-list__category-arrow-wrap img {
+                transform: rotate(0deg);
+            }
+
+            .price-list__dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &__category-trigger {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: convert-to-rem(41px);
+        padding: convert-to-rem(8px) convert-to-rem(13px);
+        border-radius: convert-to-rem(10px);
+        background: var(--color-white);
+        border: 1px solid var(--color-gray);
+        box-shadow: 0 convert-to-rem(0.5px) convert-to-rem(1px) 0 rgba(74, 58, 255, 0.07);
+        gap: convert-to-rem(10px);
+    }
+
+    &__category-label {
+        @include typography($font-family-montserrat, $fw-regular, convert-to-rem(14px), 1.35);
+        color: var(--color-text-main);
+        white-space: nowrap;
+    }
+
+    &__category-arrow-wrap {
+        flex-shrink: 0;
+        width: convert-to-rem(27px);
+        height: convert-to-rem(27px);
+        border-radius: 50%;
+        background: var(--color-primary-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img,
+        svg {
+            width: convert-to-rem(9px);
+            height: auto;
+            transition: transform 0.3s ease;
+            transform: rotate(180deg);
+        }
+    }
+
+    &__dropdown {
+        position: absolute;
+        top: calc(100% + convert-to-rem(10px));
+        left: 0;
+        width: convert-to-rem(280px);
+        background: var(--color-white);
+        border-radius: convert-to-rem(10px);
+        box-shadow: 0 convert-to-rem(4px) convert-to-rem(50px) 0 rgba(0, 0, 0, 0.5);
+        padding: convert-to-rem(20px) convert-to-rem(20px) convert-to-rem(24px) convert-to-rem(10px);
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(convert-to-rem(10px));
+        transition: all 0.3s ease;
+
+        @include mobile {
+            width: 100%;
+        }
+    }
+
+    &__dropdown-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    &__dropdown-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: convert-to-rem(10px);
+    }
+
+    &__dropdown-link {
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        border: none;
+        padding: 0;
+        padding-left: convert-to-rem(10px);
+        cursor: pointer;
+        @include typography($font-family-montserrat, $fw-regular, convert-to-rem(12px), 1.35);
+        color: var(--color-text-main);
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--color-primary-dark);
+        }
+    }
+
+    &__dropdown-separator {
+        width: convert-to-rem(214px);
+        border-bottom: 1px solid var(--color-gray-light);
+        margin: 0 auto;
+        margin-bottom: convert-to-rem(10px);
+
+        @include mobile {
+            width: 100%;
+        }
+    }
+
+    &__category-group {
+        margin-bottom: convert-to-rem(30px);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__direction-accordion {
+        margin-bottom: convert-to-rem(30px);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &.is-open {
+            .price-list__direction-icon-wrap {
+
+                img,
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    &__direction-trigger {
+        width: 100%;
+        height: convert-to-rem(48px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 convert-to-rem(10px) 0 convert-to-rem(22px);
+        border-radius: convert-to-rem(6px);
+        background: linear-gradient(90deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+        border: none;
+        cursor: pointer;
+        gap: convert-to-rem(10px);
+        position: relative;
+        z-index: 2;
+    }
+
+    &__direction-name {
+        @include typography($font-family-montserrat, $fw-medium, convert-to-rem(18px), 1.2);
+        color: var(--color-white);
+        text-align: left;
+    }
+
+    &__direction-icon-wrap {
+        flex-shrink: 0;
+        width: convert-to-rem(30px);
+        height: convert-to-rem(30px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-main);
+
+        img,
+        svg {
+            width: convert-to-rem(13px);
+            height: auto;
+            transition: transform 0.3s ease;
+            transform: rotate(0deg);
+        }
+    }
+
+    &__direction-content-inner {
+        padding-top: convert-to-rem(20px);
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(12px);
+    }
+
+    &__item-container {
+        width: 100%;
+        min-height: convert-to-rem(42px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: convert-to-rem(10px);
+        border-radius: convert-to-rem(8px);
+        background: var(--color-white-08);
+        border: 1px solid var(--color-gray-light);
+        gap: convert-to-rem(10px);
+    }
+
+    &__item-name {
+        @include typography($font-family-montserrat, $fw-regular, convert-to-rem(16px), 1.2);
+        color: var(--color-gray-dark);
+        text-align: left;
+    }
+
+    &__item-value {
+        @include typography($font-family-montserrat, $fw-medium, convert-to-rem(18px), 1.2);
+        color: var(--color-gray-dark);
+        text-align: right;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    &__empty {
+        text-align: center;
+        padding: convert-to-rem(40px) 0;
+        @include typography($font-family-montserrat, $fw-regular, convert-to-rem(16px), 1.4);
+        color: var(--color-text-gray);
+    }
+}

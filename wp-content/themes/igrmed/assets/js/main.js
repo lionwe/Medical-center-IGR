@@ -5,6 +5,7 @@ import "./components/diagnostics-research/main";
 import "./components/single-doctor/main";
 import "./components/archive-blog/main";
 import "./components/single-blog/main";
+import "./components/price/price";
 import "./ui/main";
 
 
