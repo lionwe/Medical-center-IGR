@@ -270,24 +270,35 @@ add_action('wp_ajax_nopriv_load_blog_posts', 'igrmed_load_blog_posts_ajax');
 
 function igrmed_load_blog_posts_ajax()
 {
-    check_ajax_referer('blog_archive_nonce', 'nonce');
+    // Verification of the nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'blog_archive_nonce')) {
+        wp_send_json_error(['message' => 'Security check failed'], 403);
+    }
 
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-    $posts_per_page = wp_is_mobile() ? 7 : 12;
+    $is_mobile = wp_is_mobile();
+    $posts_per_page = $is_mobile ? 7 : 12;
 
+    // Use cache for better performance
+    $cache_key = 'igrmed_blog_page_' . $paged . ($is_mobile ? '_mobile' : '_desktop');
+    $cached_data = get_transient($cache_key);
 
-
+    if ($cached_data !== false) {
+        wp_send_json_success($cached_data);
+    }
 
     $args = [
-        'post_type' => 'blog',
-        'post_status' => 'publish',
-        'posts_per_page' => $posts_per_page,
-        'paged' => $paged,
-        'orderby' => 'date',
-        'order' => 'DESC',
-        'ignore_sticky_posts' => 1
+        'post_type'           => 'blog',
+        'post_status'         => 'publish',
+        'posts_per_page'      => $posts_per_page,
+        'paged'               => $paged,
+        'orderby'             => 'date',
+        'order'               => 'DESC',
+        'ignore_sticky_posts' => 1,
+        'no_found_rows'       => false, // Need for max_num_pages
+        'update_post_term_cache' => false,
+        'update_post_meta_cache' => false,
     ];
-
 
     $query = new WP_Query($args);
 
@@ -299,10 +310,15 @@ function igrmed_load_blog_posts_ajax()
         }
         $content = ob_get_clean();
 
-        wp_send_json_success([
-            'html' => $content,
-            'max_pages' => $query->max_num_pages,
-        ]);
+        $response_data = [
+            'html'      => $content,
+            'max_pages' => (int) $query->max_num_pages,
+        ];
+
+        // Cache for 1 hour
+        set_transient($cache_key, $response_data, HOUR_IN_SECONDS);
+
+        wp_send_json_success($response_data);
     } else {
         wp_send_json_error(['message' => 'No more posts']);
     }
