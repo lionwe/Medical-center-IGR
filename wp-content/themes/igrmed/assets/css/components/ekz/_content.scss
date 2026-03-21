@@ -23,7 +23,7 @@
     gap: convert-to-rem(60px);
 
     @include mobile {
-      gap: convert-to-rem(32px);
+      gap: convert-to-rem(14px);
     }
   }
 
@@ -36,10 +36,8 @@
     scroll-margin-top: convert-to-rem(60px);
 
     @include mobile {
-
       scroll-margin-top: convert-to-rem(40px);
       gap: convert-to-rem(14px);
-
     }
   }
 
@@ -62,12 +60,27 @@
     }
   }
 
+  &__section-title-wrap--transparent {
+    background: none;
+    padding: 0;
+    margin-bottom: convert-to-rem(10px);
+
+    @include mobile {
+      margin-bottom: 0;
+    }
+  }
+
   &__section-title {
     @include typography($font-family-montserrat, $fw-semibold, (16px, 24px), 1.2, 0);
     display: inline-flex;
     align-items: center;
     margin: 0;
     color: var(--color-white);
+  }
+
+  &__section-title--contraindications {
+    color: var(--color-black);
+    @include typography($font-family-montserrat, $fw-semibold, (22px, 24px), 1.2, 0);
   }
 
   &__section-body {
@@ -93,28 +106,22 @@
         @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
       }
     }
-
   }
 
-  #ekz-intro &__section-body,
-  #ekz-advantages &__section-body {
+  &__section-subtitle {
+    @include typography($font-family-montserrat, $fw-semibold, 16px, 1.35, 0);
+    margin: 0;
+
     @include mobile {
-      padding: 0;
-      gap: 0;
+      @include typography($font-family-montserrat, $fw-semibold, (14px, 15px), 1.4, 0);
     }
   }
 
-  &__section-content {
+  &__lead {
     display: grid;
     gap: convert-to-rem(10px);
 
-    &--lead {
-      @include mobile {
-        gap: 0;
-      }
-    }
-
-    &--lead > p:first-of-type {
+    > p:first-of-type {
       @include typography($font-family-montserrat, $fw-regular, 16px, 22px, 0);
       display: inline;
       color: var(--color-black);
@@ -126,14 +133,36 @@
         padding: 0;
       }
     }
-  }
-
-  &__section-subtitle {
-    @include typography($font-family-montserrat, $fw-semibold, 16px, 1.35, 0);
-    margin: 0;
 
     @include mobile {
-      @include typography($font-family-montserrat, $fw-semibold, (14px, 15px), 1.4, 0);
+      gap: 0;
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: convert-to-rem(8px);
+  }
+
+  &__list-item {
+    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    color: var(--color-black);
+    border-radius: convert-to-rem(12px);
+    padding: convert-to-rem(10px) convert-to-rem(12px);
+
+    @include mobile {
+      @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+      padding: convert-to-rem(8px) convert-to-rem(10px);
+    }
+  }
+
+  &__section--intro,
+  &__section--advantages {
+    .ekz-content__section-body {
+      @include mobile {
+        padding: 0;
+        gap: 0;
+      }
     }
   }
 
@@ -150,7 +179,7 @@
       width: convert-to-rem(1300px);
       height: convert-to-rem(600px);
       transform: translate(-50%, -50%);
-      background-image: url("data:image/svg+xml,%3Csvg width='1298' height='1030' viewBox='0 0 1298 1030' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_f_766_4159)'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M782.976 246.628C876.727 251.674 981.152 227.637 1060.41 254.884C1139.6 282.111 1150.22 340.564 1189.37 386.345C1224.84 427.824 1258.9 467.611 1280.1 511.789C1307.08 568.03 1397.97 635.272 1330.7 680.857C1259.08 729.394 1099.67 682.386 993.048 706.319C906.072 725.843 873.131 788.968 782.976 803.806C685.121 819.911 577.258 810.603 482.092 790.412C379.243 768.591 251.499 741.914 222.309 684.851C191.51 624.643 335.781 574.175 339.565 511.789C343.153 452.636 216.669 402.583 242.915 345.087C268.864 288.244 367.726 242.067 471.311 223.182C572.329 204.766 676.782 240.914 782.976 246.628Z' fill='url(%23paint0_linear_766_4159)' fill-opacity='0.4'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_f_766_4159' x='0' y='0' width='1573' height='1030' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeGaussianBlur stdDeviation='109' result='effect1_foregroundBlur_766_4159'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear_766_4159' x1='-290.815' y1='518.047' x2='173.663' y2='1407.12' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23EFD7C7'/%3E%3Cstop offset='1' stop-color='%23EFD7C7'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+      background-image: url("../img/svg/ekz-indications-bg.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -176,11 +205,9 @@
     .ekz-content__section-subtitle {
       max-width: convert-to-rem(280px);
 
-
       @include mobile {
-        margin-left: 20px;
-        max-width: 281px;
-
+        margin-left: convert-to-rem(20px);
+        max-width: convert-to-rem(281px);
       }
     }
   }
@@ -208,22 +235,22 @@
     strong {
       @include typography($font-family-montserrat, $fw-semibold, 14px, 22px, 0);
     }
+  }
 
-    &__accent {
-      display: block;
-      flex: 0 0 auto;
-      align-self: stretch;
-      width: convert-to-rem(4px);
-      border-radius: convert-to-rem(4px);
-      background: linear-gradient(
-        0deg,
-        var(--color-accent-gradient-start) 0%,
-        var(--color-accent-gradient-end) 100%
-      );
+  &__indication-accent {
+    display: block;
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: convert-to-rem(4px);
+    border-radius: convert-to-rem(4px);
+    background: linear-gradient(
+      0deg,
+      var(--color-accent-gradient-start) 0%,
+      var(--color-accent-gradient-end) 100%
+    );
 
-      @include mobile {
-        width: convert-to-rem(2px);
-      }
+    @include mobile {
+      width: convert-to-rem(2px);
     }
   }
 
@@ -237,21 +264,6 @@
       padding: convert-to-rem(16px) convert-to-rem(8px);
     }
 
-    .ekz-content__section-title-wrap {
-      background: none;
-      padding: 0;
-      margin-bottom: convert-to-rem(10px);
-      @include mobile {
-        margin-bottom: 0;
-      }
-
-    }
-
-    .ekz-content__section-title {
-      color: var(--color-black);
-      @include typography($font-family-montserrat, $fw-semibold, (22px, 24px), 1.2, 0);
-    }
-
     .ekz-content__section-body {
       padding: 0;
     }
@@ -259,6 +271,7 @@
     .ekz-content__section-subtitle {
       max-width: convert-to-rem(406px);
       margin-bottom: convert-to-rem(18px);
+
       @include mobile {
         margin-bottom: 0;
       }
@@ -270,47 +283,21 @@
     }
   }
 
-  &__list {
-    display: grid;
-    gap: convert-to-rem(8px);
-  }
-
-  &__list-item {
-    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
-    color: var(--color-black);
-    border-radius: convert-to-rem(12px);
-    padding: convert-to-rem(10px) convert-to-rem(12px);
-
-    @include mobile {
-      @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
-      padding: convert-to-rem(8px) convert-to-rem(10px);
-    }
-  }
-
   &__section--stages {
     .ekz-content__section-body {
       padding: convert-to-rem(14px) convert-to-rem(20px);
       gap: convert-to-rem(30px);
 
-      
-
-      
-
       @include mobile {
         gap: convert-to-rem(20px);
-        padding: 0 ;
+        padding: 0;
       }
+    }
 
-      .ekz-content__section-subtitle {
-        @include mobile {
-         padding: 0 0 0 20px;
-        }
+    .ekz-content__section-subtitle {
+      @include mobile {
+        padding: 0 0 0 convert-to-rem(20px);
       }
-
-
-      
-
-      
     }
   }
 
@@ -371,16 +358,23 @@
     }
   }
 
+  // Анімація висоти без фіксованого max-height: grid 0fr → 1fr (потрібен один дочірній .__stage-desc-inner)
   &__stage-desc {
-    max-height: 0;
+    display: grid;
+    grid-template-rows: 0fr;
     overflow: hidden;
     opacity: 0;
     color: var(--color-primary-dark);
     padding: 0 convert-to-rem(12px);
     transition:
-      max-height 0.35s ease,
+      grid-template-rows 0.35s ease,
       opacity 0.25s ease,
       padding 0.3s ease;
+
+    &-inner {
+      min-height: 0;
+      overflow: hidden;
+    }
 
     :where(p, li) {
       @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
@@ -423,7 +417,7 @@
   }
 
   &__stage-item[open] &__stage-desc {
-    max-height: convert-to-rem(1200px);
+    grid-template-rows: 1fr;
     opacity: 1;
     padding: convert-to-rem(8px) convert-to-rem(12px) convert-to-rem(12px);
   }
@@ -455,7 +449,7 @@
       }
     }
 
-    .ekz-content__section-content {
+    .ekz-content__lead {
       display: flex;
       flex-direction: column;
       gap: convert-to-rem(10px);
@@ -482,7 +476,7 @@
       }
     }
 
-    .ekz-content__section-content--lead {
+    .ekz-content__lead {
       @include mobile {
         padding: convert-to-rem(10px) convert-to-rem(12px);
         background-color: var(--color-white);
@@ -514,9 +508,9 @@
       padding: convert-to-rem(14px) 0;
       gap: convert-to-rem(16px);
 
-    @include mobile {
-      padding: 0;
-    }
+      @include mobile {
+        padding: 0;
+      }
     }
   }
 
@@ -542,10 +536,6 @@
       flex-direction: column;
       background-image: none;
       background-color: rgba(221, 228, 240, 0.3);
-
-
-
-
     }
   }
 
@@ -626,28 +616,28 @@
     list-style: none;
     display: grid;
     gap: convert-to-rem(10px);
-  }
 
-  &__program-list-item {
-    @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
-    display: grid;
-    grid-template-columns: convert-to-rem(15px) minmax(0, 1fr);
-    column-gap: convert-to-rem(10px);
-    align-items: start;
-    color: var(--color-black);
+    > li {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
+      display: grid;
+      grid-template-columns: convert-to-rem(15px) minmax(0, 1fr);
+      column-gap: convert-to-rem(10px);
+      align-items: start;
+      color: var(--color-black);
 
-    @include mobile {
-      @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
-    }
+      @include mobile {
+        @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+      }
 
-    &::before {
-      content: "";
-      display: block;
-      width: convert-to-rem(15px);
-      height: convert-to-rem(15px);
-      border-radius: convert-to-rem(4px);
-      background: var(--color-accent);
-      margin-top: convert-to-rem(3px);
+      &::before {
+        content: "";
+        display: block;
+        width: convert-to-rem(15px);
+        height: convert-to-rem(15px);
+        border-radius: convert-to-rem(4px);
+        background: var(--color-accent);
+        margin-top: convert-to-rem(3px);
+      }
     }
   }
 

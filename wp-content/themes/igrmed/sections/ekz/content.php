@@ -1,5 +1,16 @@
 <?php
 
+$title_fallback = [
+    'intro' => __('Що таке ЕКЗ', 'igrmed'),
+    'advantages' => __('Переваги клініки', 'igrmed'),
+    'indications' => __('Показання', 'igrmed'),
+    'contraindications' => __('Протипоказання', 'igrmed'),
+    'stages' => __('Етапи процедури', 'igrmed'),
+    'success' => __('Успішність', 'igrmed'),
+    'candidates' => __('Кому підходить', 'igrmed'),
+    'programs' => __('Програми ЕКЗ', 'igrmed'),
+];
+
 $extract_text_rows = static function ($rows, array $keys = ['text', 'item', 'title', 'name']): array {
     $items = [];
     if (!is_array($rows)) {
@@ -115,75 +126,78 @@ if (is_array($programs_rows)) {
     }
 }
 
-$has_any_content =
-    ($intro_title !== '' || $intro_content !== '') ||
-    ($advantages_title !== '' || $advantages_content !== '') ||
-    ($indications_title !== '' || $indications_subtitle !== '' || !empty($indications_list)) ||
-    ($contra_title !== '' || $contra_intro !== '' || !empty($contra_list)) ||
-    ($stages_title !== '' || $stages_intro !== '' || !empty($stages_list)) ||
-    ($success_title !== '' || $success_intro !== '' || $success_content !== '') ||
-    ($candidates_title !== '' || $candidates_subtitle !== '' || !empty($candidates_list)) ||
-    ($programs_title !== '' || !empty($programs_list));
-
-if (!$has_any_content) {
-    return;
-}
-
-$sections = [];
+$content_sections = [];
 
 if ($intro_title !== '' || $intro_content !== '') {
-    $sections[] = [
-        'id' => 'ekz-intro',
-        'title' => $intro_title !== '' ? $intro_title : __('Що таке ЕКЗ', 'igrmed'),
+    $content_sections['intro'] = [
+        'heading' => $intro_title !== '' ? $intro_title : $title_fallback['intro'],
+        'intro_content' => $intro_content,
     ];
 }
 
 if ($advantages_title !== '' || $advantages_content !== '') {
-    $sections[] = [
-        'id' => 'ekz-advantages',
-        'title' => $advantages_title !== '' ? $advantages_title : __('Переваги клініки', 'igrmed'),
+    $content_sections['advantages'] = [
+        'heading' => $advantages_title !== '' ? $advantages_title : $title_fallback['advantages'],
+        'advantages_content' => $advantages_content,
     ];
 }
 
 if ($indications_title !== '' || $indications_subtitle !== '' || $indications_list) {
-    $sections[] = [
-        'id' => 'ekz-indications',
-        'title' => $indications_title !== '' ? $indications_title : __('Показання', 'igrmed'),
+    $content_sections['indications'] = [
+        'heading' => $indications_title !== '' ? $indications_title : $title_fallback['indications'],
+        'indications_subtitle' => $indications_subtitle,
+        'indications_list' => $indications_list,
     ];
 }
 
 if ($contra_title !== '' || $contra_intro !== '' || $contra_list) {
-    $sections[] = [
-        'id' => 'ekz-contraindications',
-        'title' => $contra_title !== '' ? $contra_title : __('Протипоказання', 'igrmed'),
+    $content_sections['contraindications'] = [
+        'heading' => $contra_title !== '' ? $contra_title : $title_fallback['contraindications'],
+        'contra_intro' => $contra_intro,
+        'contra_list' => $contra_list,
     ];
 }
 
 if ($stages_title !== '' || $stages_intro !== '' || $stages_list) {
-    $sections[] = [
-        'id' => 'ekz-stages',
-        'title' => $stages_title !== '' ? $stages_title : __('Етапи процедури', 'igrmed'),
+    $content_sections['stages'] = [
+        'heading' => $stages_title !== '' ? $stages_title : $title_fallback['stages'],
+        'stages_intro' => $stages_intro,
+        'stages_list' => $stages_list,
     ];
 }
 
 if ($success_title !== '' || $success_intro !== '' || $success_content !== '') {
-    $sections[] = [
-        'id' => 'ekz-success',
-        'title' => $success_title !== '' ? $success_title : __('Успішність', 'igrmed'),
+    $content_sections['success'] = [
+        'heading' => $success_title !== '' ? $success_title : $title_fallback['success'],
+        'success_intro' => $success_intro,
+        'success_content' => $success_content,
     ];
 }
 
 if ($candidates_title !== '' || $candidates_subtitle !== '' || $candidates_list) {
-    $sections[] = [
-        'id' => 'ekz-candidates',
-        'title' => $candidates_title !== '' ? $candidates_title : __('Кому підходить', 'igrmed'),
+    $content_sections['candidates'] = [
+        'heading' => $candidates_title !== '' ? $candidates_title : $title_fallback['candidates'],
+        'candidates_subtitle' => $candidates_subtitle,
+        'candidates_list' => $candidates_list,
     ];
 }
 
 if ($programs_title !== '' || $programs_list) {
+    $content_sections['programs'] = [
+        'heading' => $programs_title !== '' ? $programs_title : $title_fallback['programs'],
+        'programs_list' => $programs_list,
+    ];
+}
+
+if (empty($content_sections)) {
+    return;
+}
+
+$sections = [];
+foreach ($content_sections as $type => $data) {
     $sections[] = [
-        'id' => 'ekz-programs',
-        'title' => $programs_title !== '' ? $programs_title : __('Програми ЕКЗ', 'igrmed'),
+        'id' => 'ekz-' . $type,
+        'title' => $data['heading'],
     ];
 }
 ?>
@@ -195,223 +209,193 @@ if ($programs_title !== '' || $programs_list) {
 
             <div class="ekz-content__content">
 
-                <?php if ($intro_title !== '' || $intro_content !== ''): ?>
-                <section id="ekz-intro" class="ekz-content__section">
-                    <div class="ekz-content__section-title-wrap">
-                        <h2 class="ekz-content__section-title">
-                            <?php echo esc_html($intro_title ?: __('Що таке ЕКЗ', 'igrmed')); ?>
-                        </h2>
-                    </div>
-                    <div class="ekz-content__section-body">
-                        <div class="ekz-content__section-content ekz-content__section-content--lead">
-                            <?php echo wp_kses_post($intro_content); ?>
+                <?php foreach ($content_sections as $type => $data) : ?>
+                    <section id="ekz-<?php echo esc_attr($type); ?>" class="ekz-content__section ekz-content__section--<?php echo esc_attr($type); ?>">
+                        <div class="ekz-content__section-title-wrap">
+                            <h2 class="ekz-content__section-title">
+                                <?php echo esc_html($data['heading']); ?>
+                            </h2>
                         </div>
-                    </div>
-                </section>
-                <?php endif; ?>
-
-                <?php if ($advantages_title !== '' || $advantages_content !== ''): ?>
-                <section id="ekz-advantages" class="ekz-content__section">
-                    <div class="ekz-content__section-title-wrap">
-                        <h2 class="ekz-content__section-title">
-                            <?php echo esc_html($advantages_title ?: __('Переваги клініки', 'igrmed')); ?>
-                        </h2>
-                    </div>
-                    <div class="ekz-content__section-body">
-                        <div class="ekz-content__section-content ekz-content__section-content--lead">
-                            <?php echo wp_kses_post($advantages_content); ?>
-                        </div>
-                    </div>
-                </section>
-                <?php endif; ?>
-
-                <?php if ($indications_title !== '' || $indications_subtitle !== '' || $indications_list): ?>
-                <section id="ekz-indications" class="ekz-content__section ekz-content__section--indications">
-                    <div class="ekz-content__section-title-wrap">
-                        <h2 class="ekz-content__section-title">
-                            <?php echo esc_html($indications_title ?: __('Показання', 'igrmed')); ?>
-                        </h2>
-                    </div>
-                    <div class="ekz-content__section-body">
-                        <?php if ($indications_subtitle !== ''): ?>
-                        <p class="ekz-content__section-subtitle">
-                            <?php echo esc_html($indications_subtitle); ?>
-                        </p>
-                        <?php endif; ?>
-                        <?php if ($indications_list): ?>
-                        <div class="ekz-content__indications-grid">
-                            <?php foreach ($indications_list as $item): ?>
-                            <article class="ekz-content__indication-card">
-                                <span class="ekz-content__indication-card__accent" aria-hidden="true"></span>
-                                <?php echo wp_kses_post($item); ?>
-                            </article>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </section>
-                <?php endif; ?>
-
-                <?php if ($contra_title !== '' || $contra_intro !== '' || $contra_list): ?>
-                <section id="ekz-contraindications"
-                    class="ekz-content__section ekz-content__section--contraindications">
-                    <div class="ekz-content__section-title-wrap">
-                        <h3 class="ekz-content__section-title">
-                            <?php echo esc_html($contra_title ?: __('Протипоказання', 'igrmed')); ?>
-                        </h3>
-                    </div>
-                    <div class="ekz-content__section-body">
-                        <?php if ($contra_intro !== ''): ?>
-                        <p class="ekz-content__section-subtitle">
-                            <?php echo esc_html($contra_intro); ?>
-                        </p>
-                        <?php endif; ?>
-                        <?php if ($contra_list): ?>
-                        <div class="ekz-content__list">
-                            <?php foreach ($contra_list as $item): ?>
-                            <article class="ekz-content__list-item">
-                                <?php echo wp_kses_post($item); ?>
-                            </article>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </section>
-                <?php endif; ?>
-
-                <?php if ($stages_title !== '' || $stages_intro !== '' || $stages_list): ?>
-                <section id="ekz-stages" class="ekz-content__section ekz-content__section--stages">
-                    <div class="ekz-content__section-title-wrap">
-                        <h2 class="ekz-content__section-title">
-                            <?php echo esc_html($stages_title ?: __('Етапи процедури', 'igrmed')); ?>
-                        </h2>
-                    </div>
-                    <div class="ekz-content__section-body">
-                        <?php if ($stages_intro !== ''): ?>
-                        <strong class="ekz-content__section-subtitle">
-                            <?php echo wp_kses_post($stages_intro); ?>
-                        </strong>
-                        <?php endif; ?>
-                        <?php if ($stages_list): ?>
-                        <div class="ekz-content__stages-accordion">
-                            <?php foreach ($stages_list as $stage): ?>
-                            <details class="ekz-content__stage-item">
-                                <summary class="ekz-content__stage-trigger">
-                                    <span class="ekz-content__stage-label">
-                                        <?php echo esc_html($stage['label']); ?>
-                                    </span>
-                                </summary>
-                                <div class="ekz-content__stage-desc">
-                                    <?php echo wp_kses_post($stage['description']); ?>
-                                </div>
-                            </details>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </section>
-                <?php endif; ?>
-
-                <?php if ($success_title !== '' || $success_intro !== '' || $success_content !== ''): ?>
-                <section id="ekz-success" class="ekz-content__section ekz-content__section--success">
-                    <div class="ekz-content__section-title-wrap">
-                        <h2 class="ekz-content__section-title">
-                            <?php echo esc_html($success_title ?: __('Успішність', 'igrmed')); ?>
-                        </h2>
-                    </div>
-                    <div class="ekz-content__section-body">
-                        <?php if ($success_intro !== ''): ?>
-                        <p class="ekz-content__section-subtitle">
-                            <?php echo esc_html($success_intro); ?>
-                        </p>
-                        <?php endif; ?>
-                        <?php if ($success_content !== ''): ?>
-                        <div class="ekz-content__section-content ekz-content__section-content--lead">
-                            <?php echo wp_kses_post($success_content); ?>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </section>
-                <?php endif; ?>
-
-                <?php if ($candidates_title !== '' || $candidates_subtitle !== '' || $candidates_list): ?>
-                <section id="ekz-candidates" class="ekz-content__section ekz-content__section--candidates">
-                    <div class="ekz-content__section-title-wrap">
-                        <h2 class="ekz-content__section-title">
-                            <?php echo esc_html($candidates_title ?: __('Кому підходить', 'igrmed')); ?>
-                        </h2>
-                    </div>
-                    <div class="ekz-content__section-body">
-                        <?php if ($candidates_subtitle !== ''): ?>
-                        <p class="ekz-content__section-subtitle">
-                            <?php echo esc_html($candidates_subtitle); ?>
-                        </p>
-                        <?php endif; ?>
-                        <?php if ($candidates_list): ?>
-                        <div class="ekz-content__list">
-                            <?php foreach ($candidates_list as $item): ?>
-                            <article class="ekz-content__list-item">
-                                <?php echo esc_html($item); ?>
-                            </article>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </section>
-                <?php endif; ?>
-
-                <?php if ($programs_title !== '' || $programs_list): ?>
-                <section id="ekz-programs" class="ekz-content__section ekz-content__section--programs">
-                    <div class="ekz-content__section-title-wrap">
-                        <h2 class="ekz-content__section-title">
-                            <?php echo esc_html($programs_title ?: __('Програми ЕКЗ', 'igrmed')); ?>
-                        </h2>
-                    </div>
-                    <div class="ekz-content__section-body">
-                        <?php if ($programs_list): ?>
-                        <div class="ekz-content__programs">
-                            <?php foreach ($programs_list as $program): ?>
-                            <article class="ekz-content__program-card">
-                                <div class="ekz-content__program-content">
-                                    <?php if ($program['title'] !== ''): ?>
-                                    <h3 class="ekz-content__program-title"><?php echo esc_html($program['title']); ?>
-                                    </h3>
-                                    <?php endif; ?>
-
-                                    <?php if ($program['text'] !== ''): ?>
-                                    <div class="ekz-content__program-text">
-                                        <?php echo wp_kses_post(wpautop($program['text'])); ?>
+                        <div class="ekz-content__section-body">
+                            <?php
+                            switch ($type) {
+                                case 'intro':
+                                    ?>
+                                    <div class="ekz-content__lead">
+                                        <?php echo wp_kses_post($data['intro_content']); ?>
                                     </div>
-                                    <?php endif; ?>
+                                    <?php
+                                    break;
 
-                                    <?php if (!empty($program['items'])): ?>
-                                    <ol class="ekz-content__program-list">
-                                        <?php foreach ($program['items'] as $item): ?>
-                                        <li class="ekz-content__program-list-item"><?php echo esc_html($item); ?></li>
-                                        <?php endforeach; ?>
-                                    </ol>
-                                    <?php endif; ?>
-
-                                    <?php if ($program['price'] !== ''): ?>
-                                    <div class="ekz-content__program-price">
-                                        <?php echo wp_kses_post($program['price']); ?>
+                                case 'advantages':
+                                    ?>
+                                    <div class="ekz-content__lead">
+                                        <?php echo wp_kses_post($data['advantages_content']); ?>
                                     </div>
-                                    <?php endif; ?>
-                                </div>
+                                    <?php
+                                    break;
 
-                                <?php if ($program['image_url'] !== ''): ?>
-                                <div class="ekz-content__program-image-wrap">
-                                    <img src="<?php echo esc_url($program['image_url']); ?>"
-                                        alt="<?php echo esc_attr($program['image_alt']); ?>" loading="lazy">
-                                </div>
-                                <?php endif; ?>
-                            </article>
-                            <?php endforeach; ?>
+                                case 'indications':
+                                    if ($data['indications_subtitle'] !== '') :
+                                        ?>
+                                        <p class="ekz-content__section-subtitle">
+                                            <?php echo esc_html($data['indications_subtitle']); ?>
+                                        </p>
+                                    <?php
+                                    endif;
+                                    if ($data['indications_list']) :
+                                        ?>
+                                        <div class="ekz-content__indications-grid">
+                                            <?php foreach ($data['indications_list'] as $item) : ?>
+                                                <article class="ekz-content__indication-card">
+                                                    <span class="ekz-content__indication-accent" aria-hidden="true"></span>
+                                                    <?php echo wp_kses_post($item); ?>
+                                                </article>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php
+                                    endif;
+                                    break;
+
+                                case 'contraindications':
+                                    if ($data['contra_intro'] !== '') :
+                                        ?>
+                                        <p class="ekz-content__section-subtitle">
+                                            <?php echo esc_html($data['contra_intro']); ?>
+                                        </p>
+                                    <?php
+                                    endif;
+                                    if ($data['contra_list']) :
+                                        ?>
+                                        <div class="ekz-content__list">
+                                            <?php foreach ($data['contra_list'] as $item) : ?>
+                                                <article class="ekz-content__list-item">
+                                                    <?php echo wp_kses_post($item); ?>
+                                                </article>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php
+                                    endif;
+                                    break;
+
+                                case 'stages':
+                                    if ($data['stages_intro'] !== '') :
+                                        ?>
+                                        <strong class="ekz-content__section-subtitle">
+                                            <?php echo wp_kses_post($data['stages_intro']); ?>
+                                        </strong>
+                                    <?php
+                                    endif;
+                                    if ($data['stages_list']) :
+                                        ?>
+                                        <div class="ekz-content__stages-accordion">
+                                            <?php foreach ($data['stages_list'] as $stage) : ?>
+                                                <details class="ekz-content__stage-item">
+                                                    <summary class="ekz-content__stage-trigger">
+                                                        <span class="ekz-content__stage-label">
+                                                            <?php echo esc_html($stage['label']); ?>
+                                                        </span>
+                                                    </summary>
+                                                    <div class="ekz-content__stage-desc">
+                                                        <div class="ekz-content__stage-desc-inner">
+                                                            <?php echo wp_kses_post($stage['description']); ?>
+                                                        </div>
+                                                    </div>
+                                                </details>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php
+                                    endif;
+                                    break;
+
+                                case 'success':
+                                    if ($data['success_intro'] !== '') :
+                                        ?>
+                                        <p class="ekz-content__section-subtitle">
+                                            <?php echo esc_html($data['success_intro']); ?>
+                                        </p>
+                                    <?php
+                                    endif;
+                                    if ($data['success_content'] !== '') :
+                                        ?>
+                                        <div class="ekz-content__lead">
+                                            <?php echo wp_kses_post($data['success_content']); ?>
+                                        </div>
+                                    <?php
+                                    endif;
+                                    break;
+
+                                case 'candidates':
+                                    if ($data['candidates_subtitle'] !== '') :
+                                        ?>
+                                        <p class="ekz-content__section-subtitle">
+                                            <?php echo esc_html($data['candidates_subtitle']); ?>
+                                        </p>
+                                    <?php
+                                    endif;
+                                    if ($data['candidates_list']) :
+                                        ?>
+                                        <div class="ekz-content__list">
+                                            <?php foreach ($data['candidates_list'] as $item) : ?>
+                                                <article class="ekz-content__list-item">
+                                                    <?php echo esc_html($item); ?>
+                                                </article>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php
+                                    endif;
+                                    break;
+
+                                case 'programs':
+                                    if ($data['programs_list']) :
+                                        ?>
+                                        <div class="ekz-content__programs">
+                                            <?php foreach ($data['programs_list'] as $program) : ?>
+                                                <article class="ekz-content__program-card">
+                                                    <div class="ekz-content__program-content">
+                                                        <?php if ($program['title'] !== '') : ?>
+                                                            <h3 class="ekz-content__program-title"><?php echo esc_html($program['title']); ?>
+                                                            </h3>
+                                                        <?php endif; ?>
+
+                                                        <?php if ($program['text'] !== '') : ?>
+                                                            <div class="ekz-content__program-text">
+                                                                <?php echo wp_kses_post($program['text']); ?>
+                                                            </div>
+                                                        <?php endif; ?>
+
+                                                        <?php if (!empty($program['items'])) : ?>
+                                                            <ol class="ekz-content__program-list">
+                                                                <?php foreach ($program['items'] as $item) : ?>
+                                                                    <li><?php echo esc_html($item); ?></li>
+                                                                <?php endforeach; ?>
+                                                            </ol>
+                                                        <?php endif; ?>
+
+                                                        <?php if ($program['price'] !== '') : ?>
+                                                            <div class="ekz-content__program-price">
+                                                                <?php echo wp_kses_post($program['price']); ?>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    </div>
+
+                                                    <?php if ($program['image_url'] !== '') : ?>
+                                                        <div class="ekz-content__program-image-wrap">
+                                                            <img src="<?php echo esc_url($program['image_url']); ?>"
+                                                                alt="<?php echo esc_attr($program['image_alt']); ?>" loading="lazy">
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </article>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php
+                                    endif;
+                                    break;
+                            }
+                            ?>
                         </div>
-                        <?php endif; ?>
-                    </div>
-                </section>
-                <?php endif; ?>
+                    </section>
+                <?php endforeach; ?>
 
             </div>
         </div>

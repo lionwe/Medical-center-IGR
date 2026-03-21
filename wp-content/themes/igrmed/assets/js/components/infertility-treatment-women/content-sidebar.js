@@ -49,10 +49,13 @@ function initContentSidebarNavigation() {
       `;
       const label = link.querySelector(".content-sidebar__label");
       if (label) label.textContent = item.title;
-      fragment.appendChild(link);
+      const listItem = document.createElement("li");
+      listItem.appendChild(link);
+      fragment.appendChild(listItem);
     });
 
-    categoriesList.appendChild(fragment);
+    const listRoot = categoriesList.querySelector("ul") || categoriesList;
+    listRoot.appendChild(fragment);
   }
 
   const linksAfterBuild = Array.from(
