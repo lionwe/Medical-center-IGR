@@ -91,7 +91,7 @@
     flex-direction: column;
     gap: convert-to-rem(20px);
     border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
-    padding: convert-to-rem(14px) convert-to-rem(20px);
+    padding: convert-to-rem(24px) convert-to-rem(30px);
     overflow-wrap: anywhere;
 
     :where(p, li) {
@@ -125,12 +125,10 @@
       @include typography($font-family-montserrat, $fw-regular, 16px, 22px, 0);
       display: inline;
       color: var(--color-black);
-      padding: convert-to-rem(10px);
-      border-radius: convert-to-rem(12px);
+      margin: 0;
 
       @include mobile {
         @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
-        padding: 0;
       }
     }
 
@@ -158,8 +156,8 @@
 
   &__section--intro,
   &__section--advantages {
-    .ekz-content__section-body {
-      @include mobile {
+    @include mobile {
+      .ekz-content__section-body {
         padding: 0;
         gap: 0;
       }
@@ -195,7 +193,7 @@
 
     .ekz-content__section-body {
       overflow: visible;
-      padding: convert-to-rem(14px) convert-to-rem(20px);
+      padding: convert-to-rem(24px) convert-to-rem(30px);
 
       @include mobile {
         padding: 0;
@@ -270,7 +268,7 @@
 
     .ekz-content__section-subtitle {
       max-width: convert-to-rem(406px);
-      margin-bottom: convert-to-rem(18px);
+      margin-top: convert-to-rem(14px);
 
       @include mobile {
         margin-bottom: 0;
@@ -285,7 +283,7 @@
 
   &__section--stages {
     .ekz-content__section-body {
-      padding: convert-to-rem(14px) convert-to-rem(20px);
+      padding: 0;
       gap: convert-to-rem(30px);
 
       @include mobile {
@@ -295,6 +293,8 @@
     }
 
     .ekz-content__section-subtitle {
+      padding: convert-to-rem(14px) 0 0 convert-to-rem(20px);
+
       @include mobile {
         padding: 0 0 0 convert-to-rem(20px);
       }
@@ -437,7 +437,7 @@
     }
 
     .ekz-content__section-body {
-      padding: convert-to-rem(14px) 0;
+      padding: convert-to-rem(24px) 0;
       gap: convert-to-rem(20px);
     }
 
@@ -453,22 +453,18 @@
       display: flex;
       flex-direction: column;
       gap: convert-to-rem(10px);
+      background-color: var(--color-white);
+      border-radius: convert-to-rem(12px);
     }
 
     .ekz-content__list {
-      background: var(--color-white);
+      background-color: var(--color-white);
       border-radius: convert-to-rem(12px);
       padding: convert-to-rem(10px);
     }
   }
 
   &__section--success {
-    .ekz-content__list {
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
-    }
-
     .ekz-content__section-body {
       @include mobile {
         padding: 0 convert-to-rem(16px);
@@ -477,10 +473,10 @@
     }
 
     .ekz-content__lead {
+      padding: convert-to-rem(10px);
+
       @include mobile {
         padding: convert-to-rem(10px) convert-to-rem(12px);
-        background-color: var(--color-white);
-        border-radius: convert-to-rem(12px);
       }
     }
   }
@@ -505,7 +501,7 @@
 
   &__section--programs {
     .ekz-content__section-body {
-      padding: convert-to-rem(14px) 0;
+      padding: convert-to-rem(24px) 0;
       gap: convert-to-rem(16px);
 
       @include mobile {
@@ -616,6 +612,7 @@
     list-style: none;
     display: grid;
     gap: convert-to-rem(10px);
+    
 
     > li {
       @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
