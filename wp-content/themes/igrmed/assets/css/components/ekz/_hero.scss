@@ -1,0 +1,8 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.ekz-hero {
+  .photo-banner {
+    margin-bottom: convert-to-rem(20px);
+  }
+}
