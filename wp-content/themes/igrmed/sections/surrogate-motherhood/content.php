@@ -83,44 +83,44 @@ if ($has_program) {
                 <?php endif; ?>
 
                 <?php if ($has_tabs) : ?>
-                    <div id="surrogate-tabs" class="surrogate-motherhood-content surrogate-motherhood-content--tabs"
+                    <div id="surrogate-tabs" class="surrogate-motherhood-content__section surrogate-motherhood-content__section--tabs"
                          data-post-id="<?php echo esc_attr(get_queried_object_id()); ?>"
                          data-loading-label="<?php echo esc_attr__('Завантаження...', 'igrmed'); ?>"
                          data-error-label="<?php echo esc_attr__('Не вдалося завантажити дані. Спробуйте ще раз.', 'igrmed'); ?>">
-                        <div class="tabs">
-                            <div class="tabs-nav">
+                        <div class="surrogate-motherhood-content__tabs">
+                            <div class="surrogate-motherhood-content__tabs-nav">
                                 <?php foreach ($central_tabs as $index => $tab) : ?>
                                     <button type="button"
-                                            class="tab-btn <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                                            class="surrogate-motherhood-content__tab-btn <?php echo $index === 0 ? 'is-active' : ''; ?>"
                                             data-tab="<?php echo esc_attr($tab['tab_type'] ?? 'tab_' . $index); ?>">
                                         <?php if (!empty($tab['tab_icon'])) : ?>
-                                            <span class="tab-icon-wrap">
-                                                <img src="<?php echo esc_url($tab['tab_icon']); ?>" alt="" class="tab-icon">
+                                            <span class="surrogate-motherhood-content__tab-icon-wrap">
+                                                <img src="<?php echo esc_url($tab['tab_icon']); ?>" alt="" class="surrogate-motherhood-content__tab-icon">
                                             </span>
                                         <?php endif; ?>
                                         <span><?php echo esc_html($tab['tab_nav_title'] ?? ''); ?></span>
                                     </button>
                                 <?php endforeach; ?>
                             </div>
-                            <div class="tabs-content">
+                            <div class="surrogate-motherhood-content__tabs-content">
                                 <?php foreach ($central_tabs as $index => $tab) : ?>
-                                    <div class="tab-panel <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                                    <div class="surrogate-motherhood-content__tab-panel <?php echo $index === 0 ? 'is-active' : ''; ?>"
                                          data-panel="<?php echo esc_attr($tab['tab_type'] ?? 'tab_' . $index); ?>"
                                          data-loaded="<?php echo $index === 0 ? 'true' : 'false'; ?>"
                                          <?php echo $index !== 0 ? 'hidden' : ''; ?>>
                                         <?php if ($index === 0) : ?>
                                             <?php if (!empty($tab['tab_content_title'])) : ?>
-                                                <h3 class="tab-title">
+                                                <h3 class="surrogate-motherhood-content__tab-title">
                                                     <?php echo esc_html($tab['tab_content_title']); ?>
                                                 </h3>
                                             <?php endif; ?>
                                             <?php if (!empty($tab['tab_content_text'])) : ?>
-                                                <div class="tab-text">
+                                                <div class="surrogate-motherhood-content__tab-text">
                                                     <?php echo wp_kses_post($tab['tab_content_text']); ?>
                                                 </div>
                                             <?php endif; ?>
                                         <?php else : ?>
-                                            <div class="tab-status"></div>
+                                            <div class="surrogate-motherhood-content__tab-status"></div>
                                         <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -130,24 +130,24 @@ if ($has_program) {
                 <?php endif; ?>
 
                 <?php if ($has_program) : ?>
-                    <div id="surrogate-program" class="surrogate-motherhood-content surrogate-motherhood-content--program">
-                        <div class="program">
-                            <?php if ($program_title !== '') : ?>
-                                <h2 class="program-title">
-                                    <?php echo esc_html($program_title); ?>
-                                </h2>
-                            <?php endif; ?>
+                    <div id="surrogate-program" class="surrogate-motherhood-content__section surrogate-motherhood-content__section--program">
+                        <div class="surrogate-motherhood-content__program">
+                            <div class="surrogate-motherhood-content__program-main">
+                                <?php if ($program_title !== '') : ?>
+                                    <h2 class="surrogate-motherhood-content__program-title">
+                                        <?php echo esc_html($program_title); ?>
+                                    </h2>
+                                <?php endif; ?>
 
-                            <div class="program-main">
                                 <?php if (!empty($program_steps)) : ?>
-                                    <div class="steps">
+                                    <div class="surrogate-motherhood-content__steps">
                                         <?php foreach ($program_steps as $step_index => $step) : ?>
-                                            <div class="step">
-                                                <span class="step-number">
+                                            <div class="surrogate-motherhood-content__step">
+                                                <span class="surrogate-motherhood-content__step-number">
                                                     <?php echo esc_html(str_pad($step_index + 1, 2, '0', STR_PAD_LEFT)); ?>
                                                 </span>
                                                 <?php if (!empty($step['step_text'])) : ?>
-                                                    <p class="step-text">
+                                                    <p class="surrogate-motherhood-content__step-text">
                                                         <?php echo esc_html($step['step_text']); ?>
                                                     </p>
                                                 <?php endif; ?>
@@ -156,26 +156,24 @@ if ($has_program) {
                                     </div>
                                 <?php endif; ?>
 
-                                <?php if ($price_label !== '') : ?>
-                                    <div class="price">
-                                        <span class="price-label">
-                                            <?php echo $price_label; ?>
-                                        </span>
+                                <?php if ($price_value !== '') : ?>
+                                    <div class="surrogate-motherhood-content__price">
+                                        <?php if ($price_label !== '') : ?>
+                                            <span class="surrogate-motherhood-content__price-label">
+                                                <?php echo wp_kses_post($price_label); ?>
+                                            </span>
+                                        <?php endif; ?>
                                     </div>
                                 <?php endif; ?>
                             </div>
 
-                            <?php if (!empty($program_image_url)) : ?>
-                                <div class="program-image">
-                                    <?php 
-                                    if (function_exists('get_picture')) {
-                                        get_picture([
-                                            'src'   => $program_image_url,
-                                            'alt'   => is_array($program_image) ? ($program_image['alt'] ?? '') : '',
-                                            'class' => 'program-img',
-                                        ]);
-                                    }
-                                    ?>
+                            <?php if ($program_image_url !== '') : ?>
+                                <div class="surrogate-motherhood-content__program-image">
+                                    <?php get_picture([
+                                        'src'   => $program_image_url,
+                                        'alt'   => is_array($program_image) ? ($program_image['alt'] ?? '') : '',
+                                        'class' => 'surrogate-motherhood-content__program-img',
+                                    ]); ?>
                                 </div>
                             <?php endif; ?>
                         </div>

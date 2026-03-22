@@ -58,12 +58,12 @@ function igrmed_load_surrogate_tabs(): void
             ob_start();
             ?>
             <?php if (!empty($tab['tab_content_title'])): ?>
-                <h3 class="tab-title">
+                <h3 class="surrogate-motherhood-content__tab-title">
                     <?php echo esc_html($tab['tab_content_title']); ?>
                 </h3>
             <?php endif; ?>
             <?php if (!empty($tab['tab_content_text'])): ?>
-                <div class="tab-text">
+                <div class="surrogate-motherhood-content__tab-text">
                     <?php echo wp_kses_post($tab['tab_content_text']); ?>
                 </div>
             <?php endif; ?>
@@ -78,9 +78,9 @@ function igrmed_load_surrogate_tabs(): void
             // Provide demo content for testing
             ob_start();
             ?>
-            <div class="tab-text">
+            <div class="surrogate-motherhood-content__tab-text">
                 <?php if ($tab_index === 0): ?>
-                    <h3 class="tab-title">Програма сурогатного материнства</h3>
+                    <h3 class="surrogate-motherhood-content__tab-title">Програма сурогатного материнства</h3>
                     <p>Це демонстраційний контент для першого табу. Тут буде інформація про програму сурогатного материнства, кроки, умови та переваги.</p>
                     <ul>
                         <li>Повний юридичний супровід</li>
@@ -89,7 +89,7 @@ function igrmed_load_surrogate_tabs(): void
                         <li>Підтримка після народження дитини</li>
                     </ul>
                 <?php else: ?>
-                    <h3 class="tab-title">Показання до сурогатного материнства</h3>
+                    <h3 class="surrogate-motherhood-content__tab-title">Показання до сурогатного материнства</h3>
                     <p>Це демонстраційний контент для другого табу. Тут буде інформація про медичні показання до сурогатного материнства.</p>
                     <ul>
                         <li>Відсутність матки</li>

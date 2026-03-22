@@ -238,69 +238,52 @@
   // SECTION MODIFIER OVERRIDES
   // ==========================
 
-  &__title {
-    @include typography($font-family-montserrat, $fw-semibold, 32px, 1.2, 0);
-    text-align: center;
-    margin: 0 0 convert-to-rem(24px);
-    color: var(--color-headings);
-
-    @include mobile {
-      @include typography($font-family-montserrat, $fw-semibold, 24px, 1.2, 0);
-      margin: 0 0 convert-to-rem(16px);
-    }
-  }
-
-  &__intro {
-    display: flex;
-    flex-direction: column;
-    gap: convert-to-rem(16px);
-
-    @include mobile {
-      gap: convert-to-rem(12px);
-    }
-  }
-
-  &__intro-title {
-    @include typography($font-family-montserrat, $fw-semibold, 24px, 1.2, 0);
-    margin: 0;
-    color: var(--color-headings);
-  }
-
-  &__intro-text {
-    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
-    margin: 0;
-    color: var(--color-text);
-  }
-
-  &__intro-image {
+  &__section--intro {
+    background: linear-gradient(90deg, #4776BA 47.22%, #FFFFFF 114.79%);
     border-radius: convert-to-rem(12px);
-    overflow: hidden;
-    order: -1;
+    color: var(--color-white);
+    padding: convert-to-rem(20px) 10px;
 
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
+    .surrogate-motherhood-content__title-wrap {
+      padding: 0;
+      background: none;
     }
 
-    @include mobile {
-      order: 0;
+    .surrogate-motherhood-content__title {
+      color: var(--color-white);
     }
-  }
 
-  &__body {
-    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
-    color: var(--color-text);
+    .surrogate-motherhood-content__body {
+      background: transparent;
+      padding: 0;
+
+      ul, ol {
+        padding-left: convert-to-rem(20px);
+        margin: 0;
+      }
+
+      ul li {
+        list-style-type: disc;
+      }
+
+      ol li {
+        list-style-type: decimal;
+      }
+
+      @include mobile {
+        padding: 0;
+      }
+    }
   }
 
   &__section--tabs {
-    .tabs {
+    .surrogate-motherhood-content__tabs {
       display: flex;
       flex-direction: column;
       gap: convert-to-rem(24px);
     }
 
-    .tabs-nav {
+    .surrogate-motherhood-content__tabs-nav {
       display: flex;
       flex-wrap: wrap;
       gap: convert-to-rem(12px);
@@ -310,7 +293,7 @@
       }
     }
 
-    .tab-btn {
+    .surrogate-motherhood-content__tab-btn {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -341,7 +324,7 @@
       }
     }
 
-    .tab-icon-wrap {
+    .surrogate-motherhood-content__tab-icon-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -359,11 +342,11 @@
       }
     }
 
-    .tabs-content {
+    .surrogate-motherhood-content__tabs-content {
       position: relative;
     }
 
-    .tab-panel {
+    .surrogate-motherhood-content__tab-panel {
       display: none;
       background: var(--color-white);
       border-radius: convert-to-rem(12px);
@@ -375,14 +358,14 @@
       }
     }
 
-    .tab-title {
+    .surrogate-motherhood-content__tab-title {
       @include typography($font-family-montserrat, $fw-medium, 20px, 1.2, 0);
       vertical-align: middle;
       margin: 0 0 convert-to-rem(16px);
       color: var(--color-headings);
     }
 
-    .tab-text {
+    .surrogate-motherhood-content__tab-text {
       p {
         @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
         margin: 0 0 convert-to-rem(12px);
@@ -418,7 +401,7 @@
       }
     }
 
-    .tab-status {
+    .surrogate-motherhood-content__tab-status {
       @include typography($font-family-montserrat, $fw-regular, 14px, 1.4, 0);
       color: var(--color-text-muted);
       text-align: center;
@@ -426,7 +409,7 @@
     }
 
     &.is-loading {
-      .tab-btn {
+      .surrogate-motherhood-content__tab-btn {
         pointer-events: none;
         opacity: 0.6;
       }
@@ -440,33 +423,36 @@
     padding: convert-to-rem(14px) convert-to-rem(17px);
     border-radius: convert-to-rem(12px);
 
-    .program {
+    .surrogate-motherhood-content__program {
+      display: grid;
+      grid-template-columns: 1fr convert-to-rem(400px);
+      gap: convert-to-rem(40px);
+      align-items: start;
+
+      @include mobile {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .surrogate-motherhood-content__program-main {
+      display: flex;
+      flex-direction: column;
+      gap: convert-to-rem(24px);
+    }
+
+    .surrogate-motherhood-content__program-title {
+      @include typography($font-family-montserrat, $fw-medium, 22px, 1.2, 0);
+      margin: 0;
+      color: var(--color-headings);
+    }
+
+    .surrogate-motherhood-content__steps {
       display: flex;
       flex-direction: column;
       gap: convert-to-rem(16px);
     }
 
-    .program-title {
-      @include typography($font-family-montserrat, $fw-semibold, 24px, 1.2, 0);
-      margin: 0 0 convert-to-rem(16px);
-      color: rgba(26, 59, 103, 1);
-      max-width: convert-to-rem(300px);
-      vertical-align: middle;
-    }
-
-    .program-main {
-      display: flex;
-      flex-direction: column;
-      gap: convert-to-rem(16px);
-    }
-
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: convert-to-rem(16px);
-    }
-
-    .step {
+    .surrogate-motherhood-content__step {
       display: flex;
       align-items: center;
       gap: convert-to-rem(16px);
@@ -474,21 +460,18 @@
       border-radius: convert-to-rem(12px);
       position: relative;
 
-      .step-text {
-        position: relative;
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: convert-to-rem(-16px);
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: rgba(230, 192, 163, 0.5);
-        }
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - convert-to-rem(32px));
+        height: 1px;
+        background: rgba(230, 192, 163, 0.5);
       }
 
-      &:last-child .step-text::after {
+      &:last-child::after {
         display: none;
       }
 
@@ -496,14 +479,10 @@
         flex-direction: column;
         gap: convert-to-rem(8px);
         align-items: flex-start;
-
-        .step-text::after {
-          bottom: convert-to-rem(-8px);
-        }
       }
     }
 
-    .step-number {
+    .surrogate-motherhood-content__step-number {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -516,14 +495,14 @@
       flex-shrink: 0;
     }
 
-    .step-text {
+    .surrogate-motherhood-content__step-text {
       @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
       margin: 0;
       color: var(--color-text);
       vertical-align: middle;
     }
 
-    .price {
+    .surrogate-motherhood-content__price {
       padding: convert-to-rem(10px) convert-to-rem(51px);
       background: rgba(255, 255, 255, 0.5);
       border-radius: convert-to-rem(12px);
@@ -548,14 +527,19 @@
       }
     }
 
-    .program-image {
+    .surrogate-motherhood-content__program-image {
       border-radius: convert-to-rem(12px);
       overflow: hidden;
 
+
       img {
         width: 100%;
-        height: auto;
-        display: block;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      @include mobile {
+        order: -1;
       }
     }
   }

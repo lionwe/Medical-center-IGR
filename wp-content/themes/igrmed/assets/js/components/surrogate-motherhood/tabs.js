@@ -1,14 +1,14 @@
 export default class SurrogateTabs {
     constructor() {
         console.log('SurrogateTabs initialized');
-        this.container = document.querySelector('.surrogate-motherhood-content--tabs');
+        this.container = document.querySelector('.surrogate-motherhood-content__section--tabs');
         if (!this.container) {
             console.log('No tabs container found');
             return;
         }
 
-        this.tabs = this.container.querySelectorAll('.tab-btn');
-        this.panels = this.container.querySelectorAll('.tab-panel');
+        this.tabs = this.container.querySelectorAll('.surrogate-motherhood-content__tab-btn');
+        this.panels = this.container.querySelectorAll('.surrogate-motherhood-content__tab-panel');
         this.ajaxParams = window.params || {};
         this.ajaxUrl = this.getAjaxUrl();
         this.postId = this.container.dataset.postId || '';
@@ -73,7 +73,7 @@ export default class SurrogateTabs {
         console.log('Loading tab content:', tabType);
         if (!this.postId || panel.dataset.loaded === 'true') return;
 
-        const status = panel.querySelector('.tab-status');
+        const status = panel.querySelector('.surrogate-motherhood-content__tab-status');
         const loadingText = this.container.dataset.loadingLabel || 'Завантаження...';
         const errorText = this.container.dataset.errorLabel || 'Не вдалося завантажити дані. Спробуйте ще раз.';
 
@@ -125,7 +125,7 @@ export default class SurrogateTabs {
             if (status) {
                 status.textContent = errorText;
             } else {
-                panel.innerHTML = `<div class="tab-status">${errorText}</div>`;
+                panel.innerHTML = `<div class="surrogate-motherhood-content__tab-status">${errorText}</div>`;
             }
             panel.dataset.loaded = 'error';
         } finally {
