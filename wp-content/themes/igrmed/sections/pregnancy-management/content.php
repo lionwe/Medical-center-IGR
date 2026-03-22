@@ -9,16 +9,24 @@ $intro_content = is_string($intro_content) ? trim($intro_content) : '';
 
 $advantages_title = trim((string) get_field('advantages_title'));
 $advantages_list  = get_field('advantages_list');
-$advantages_list  = is_array($advantages_list) ? array_filter($advantages_list) : [];
+$advantages_list  = is_array($advantages_list) ? array_filter($advantages_list, function($item) {
+    return !empty($item['title']) || !empty($item['text']);
+}) : [];
 
 $procedures_title = trim((string) get_field('procedures_title'));
 $procedures_list  = get_field('procedures_list');
-$procedures_list  = is_array($procedures_list) ? array_filter($procedures_list) : [];
+$procedures_list  = is_array($procedures_list) ? array_filter($procedures_list, function($item) {
+    return !empty($item['title']) || !empty($item['link']['url']);
+}) : [];
 
 $doctors_title = trim((string) get_field('doctors_title'));
 $doctors_intro = trim((string) get_field('doctors_intro'));
 $doctors_list  = get_field('doctors_list');
-$doctors_list  = is_array($doctors_list) ? array_filter($doctors_list) : [];
+$doctors_list  = is_array($doctors_list) ? array_filter($doctors_list, function($doctor) {
+    if (!is_object($doctor) && !is_array($doctor)) return false;
+    $doctor_id = is_object($doctor) ? $doctor->ID : ($doctor['ID'] ?? 0);
+    return !empty($doctor_id);
+}) : [];
 
 $post_content  = trim((string) get_post_field('post_content', get_the_ID()));
 
@@ -70,13 +78,13 @@ if (empty($sections) && !$has_content) {
 
                 <?php if ($has_intro) : ?>
                     <div id="preg-intro" class="pregnancy-management-content__section pregnancy-management-content__section--intro">
-                        <div class="pregnancy-management-content__title-wrap pregnancy-management-content__section--intro__title-wrap">
+                        <div class="pregnancy-management-content__title-wrap">
                             <h2 class="pregnancy-management-content__title">
                                 <?php echo esc_html($intro_title !== '' ? $intro_title : __('Ведення вагітності', 'igrmed')); ?>
                             </h2>
                         </div>
                         <?php if ($intro_content !== '') : ?>
-                            <div class="pregnancy-management-content__body pregnancy-management-content__section--intro__body">
+                            <div class="pregnancy-management-content__body">
                                 <?php echo wp_kses_post($intro_content); ?>
                             </div>
                         <?php endif; ?>
@@ -90,7 +98,7 @@ if (empty($sections) && !$has_content) {
                                 <?php echo esc_html($advantages_title !== '' ? $advantages_title : __('Переваги ведення вагітності', 'igrmed')); ?>
                             </h2>
                         </div>
-                        <div class="pregnancy-management-content__body pregnancy-management-content__section--advantages__body">
+                        <div class="pregnancy-management-content__body">
                             <div class="pregnancy-management-content__list">
                                 <?php foreach ($advantages_list as $item) : ?>
                                     <article class="pregnancy-management-content__item">
@@ -114,10 +122,10 @@ if (empty($sections) && !$has_content) {
                                 <?php echo esc_html($procedures_title !== '' ? $procedures_title : __('Процедури діагностики при веденні вагітності', 'igrmed')); ?>
                             </h2>
                         </div>
-                        <div class="pregnancy-management-content__body pregnancy-management-content__section--procedures__body">
+                        <div class="pregnancy-management-content__body">
                             <div class="pregnancy-management-content__grid">
                                 <?php foreach ($procedures_list as $item) : ?>
-                                    <article class="pregnancy-management-content__card pregnancy-management-content__section--procedures__card">
+                                    <article class="pregnancy-management-content__card">
                                         <span class="pregnancy-management-content__accent" aria-hidden="true"></span>
                                         <?php if (!empty($item['title'])) : ?>
                                             <strong><?php echo esc_html($item['title']); ?></strong>
@@ -143,7 +151,7 @@ if (empty($sections) && !$has_content) {
                                 <?php echo esc_html($doctors_title !== '' ? $doctors_title : __('Лікарі, які ведуть лікування', 'igrmed')); ?>
                             </h2>
                         </div>
-                        <div class="pregnancy-management-content__body pregnancy-management-content__section--doctors__body">
+                        <div class="pregnancy-management-content__body">
                             <?php if ($doctors_intro !== '') : ?>
                                 <p class="pregnancy-management-content__intro"><?php echo esc_html($doctors_intro); ?></p>
                             <?php endif; ?>
@@ -157,7 +165,7 @@ if (empty($sections) && !$has_content) {
                                     $doctor_specialty = get_field('specialty', $doctor_id);
                                     $doctor_photo     = get_the_post_thumbnail_url($doctor_id, 'medium');
                                     ?>
-                                    <div class="pregnancy-management-content__card pregnancy-management-content__section--doctors__card">
+                                    <div class="pregnancy-management-content__card">
                                         <?php if ($doctor_photo) : ?>
                                             <div class="pregnancy-management-content__photo">
                                                 <img src="<?php echo esc_url($doctor_photo); ?>"
