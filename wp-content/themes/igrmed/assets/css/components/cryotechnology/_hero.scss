@@ -1,0 +1,11 @@
+@use "../../utils/mixins" as *;
+
+.cryotechnology-hero {
+  .photo-banner {
+    margin-bottom: convert-to-rem(20px);
+
+    @include mobile {
+      margin-bottom: 0;
+    }
+  }
+}
