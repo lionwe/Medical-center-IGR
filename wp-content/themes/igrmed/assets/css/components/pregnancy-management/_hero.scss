@@ -1,0 +1,13 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.pregnancy-management-hero {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: convert-to-rem(60px) 0;
+  
+  @include mobile {
+    padding: convert-to-rem(40px) 0;
+  }
+}
