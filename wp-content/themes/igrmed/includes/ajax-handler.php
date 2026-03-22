@@ -1,5 +1,215 @@
 <?php
 
+add_action('wp_ajax_igrmed_load_surrogate_tabs', 'igrmed_load_surrogate_tabs');
+add_action('wp_ajax_nopriv_igrmed_load_surrogate_tabs', 'igrmed_load_surrogate_tabs');
+
+function igrmed_load_surrogate_tabs(): void
+{
+    error_log('Surrogate tabs AJAX called');
+    
+    check_ajax_referer('ajax-nonce', 'nonce');
+
+    $post_id = isset($_POST['post_id']) ? (int) $_POST['post_id'] : 0;
+    $tab_type = isset($_POST['tab_type']) ? sanitize_text_field($_POST['tab_type']) : '';
+    
+    error_log('Post ID: ' . $post_id);
+    error_log('Tab type: ' . $tab_type);
+    
+    if ($post_id <= 0 || $tab_type === '') {
+        error_log('Invalid parameters');
+        wp_send_json_error(['message' => 'Invalid parameters'], 400);
+    }
+
+    $post = get_post($post_id);
+    if (!$post) {
+        error_log('Post not found');
+        wp_send_json_error(['message' => 'Post not found'], 404);
+    }
+
+    // Handle generic tab types (tab_0, tab_1, etc.)
+    if (strpos($tab_type, 'tab_') === 0) {
+        $tab_index = (int) str_replace('tab_', '', $tab_type);
+        error_log('Generic tab index: ' . $tab_index);
+        
+        // Get the actual tabs data for this post
+        $central_tabs = get_field('surrogate_central_tabs', $post_id);
+        
+        error_log('Central tabs field exists: ' . ($central_tabs !== null ? 'yes' : 'no'));
+        error_log('Central tabs is array: ' . (is_array($central_tabs) ? 'yes' : 'no'));
+        error_log('Central tabs count: ' . (is_array($central_tabs) ? count($central_tabs) : 0));
+        
+        // Try alternative field names
+        if ($central_tabs === null) {
+            $alternative_fields = ['central_tabs', 'tabs', 'surrogate_tabs'];
+            foreach ($alternative_fields as $field_name) {
+                $central_tabs = get_field($field_name, $post_id);
+                if ($central_tabs !== null) {
+                    error_log('Found tabs in field: ' . $field_name);
+                    break;
+                }
+            }
+        }
+        
+        if (!empty($central_tabs) && isset($central_tabs[$tab_index])) {
+            $tab = $central_tabs[$tab_index];
+            error_log('Found tab data for index ' . $tab_index);
+            error_log('Tab data keys: ' . implode(', ', array_keys($tab)));
+            
+            ob_start();
+            ?>
+            <?php if (!empty($tab['tab_content_title'])): ?>
+                <h3 class="tab-title">
+                    <?php echo esc_html($tab['tab_content_title']); ?>
+                </h3>
+            <?php endif; ?>
+            <?php if (!empty($tab['tab_content_text'])): ?>
+                <div class="tab-text">
+                    <?php echo wp_kses_post($tab['tab_content_text']); ?>
+                </div>
+            <?php endif; ?>
+            <?php
+            $html = ob_get_clean();
+            error_log('Generated HTML length: ' . strlen($html));
+            
+            wp_send_json_success(['html' => $html]);
+        } else {
+            error_log('No tab data found for index ' . $tab_index);
+            
+            // Provide demo content for testing
+            ob_start();
+            ?>
+            <div class="tab-text">
+                <?php if ($tab_index === 0): ?>
+                    <h3 class="tab-title">Програма сурогатного материнства</h3>
+                    <p>Це демонстраційний контент для першого табу. Тут буде інформація про програму сурогатного материнства, кроки, умови та переваги.</p>
+                    <ul>
+                        <li>Повний юридичний супровід</li>
+                        <li>Медичний контроль на всіх етапах</li>
+                        <li>Підбір сурогатної матері</li>
+                        <li>Підтримка після народження дитини</li>
+                    </ul>
+                <?php else: ?>
+                    <h3 class="tab-title">Показання до сурогатного материнства</h3>
+                    <p>Це демонстраційний контент для другого табу. Тут буде інформація про медичні показання до сурогатного материнства.</p>
+                    <ul>
+                        <li>Відсутність матки</li>
+                        <li>Серйозні захворювання матки</li>
+                        <li>Неуспішні спроби ЕКІ</li>
+                        <li>Інші медичні показання</li>
+                    </ul>
+                <?php endif; ?>
+            </div>
+            <?php
+            $html = ob_get_clean();
+            wp_send_json_success(['html' => $html]);
+        }
+        return;
+    }
+
+    // Handle specific tab types (programs, indications, etc.)
+    $cache_key = 'igrmed_surrogate_' . $tab_type . '_' . $post_id;
+    $cached_html = get_transient($cache_key);
+    if (is_string($cached_html) && $cached_html !== '') {
+        error_log('Returning cached content');
+        wp_send_json_success([
+            'html' => $cached_html,
+        ]);
+    }
+
+    ob_start();
+    
+    // Load content based on tab type
+    if ($tab_type === 'programs') {
+        error_log('Loading programs tab');
+        $program_steps = get_field('surrogate_program_steps', $post_id);
+        $price_label = get_field('surrogate_price_label', $post_id);
+        $program_image = get_field('surrogate_program_image', $post_id);
+        $program_image_url = is_array($program_image) ? ($program_image['url'] ?? '') : $program_image;
+        
+        error_log('Program steps found: ' . (is_array($program_steps) ? count($program_steps) : 0));
+        error_log('Price label: ' . ($price_label ? 'exists' : 'missing'));
+        
+        if (!empty($program_steps) || !empty($price_label)):
+        ?>
+            <div class="surrogate-motherhood-content__program-main">
+                <?php if (!empty($program_steps)): ?>
+                    <div class="surrogate-motherhood-content__steps">
+                        <?php foreach ($program_steps as $step_index => $step): ?>
+                            <div class="surrogate-motherhood-content__step">
+                                <span class="surrogate-motherhood-content__step-number">
+                                    <?php echo esc_html(str_pad($step_index + 1, 2, '0', STR_PAD_LEFT)); ?>
+                                </span>
+                                <?php if (!empty($step['step_text'])): ?>
+                                    <p class="surrogate-motherhood-content__step-text">
+                                        <?php echo esc_html($step['step_text']); ?>
+                                    </p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($price_label)): ?>
+                    <div class="surrogate-motherhood-content__price">
+                        <span class="surrogate-motherhood-content__price-label">
+                            <?php echo $price_label; ?>
+                        </span>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <?php if (!empty($program_image_url)): ?>
+                <div class="surrogate-motherhood-content__program-image">
+                    <?php 
+                    if (function_exists('get_picture')) {
+                        get_picture([
+                            'src'   => $program_image_url,
+                            'alt'   => is_array($program_image) ? ($program_image['alt'] ?? '') : '',
+                            'class' => 'surrogate-motherhood-content__program-img',
+                        ]);
+                    }
+                    ?>
+                </div>
+            <?php endif; ?>
+        <?php
+        endif;
+    } elseif ($tab_type === 'indications') {
+        error_log('Loading indications tab');
+        $indications = get_field('surrogate_indications', $post_id);
+        error_log('Indications found: ' . (is_array($indications) ? count($indications) : 0));
+        
+        if (!empty($indications)):
+        ?>
+            <div class="surrogate-motherhood-content__list">
+                <?php foreach ($indications as $item): ?>
+                    <div class="surrogate-motherhood-content__item">
+                        <?php if (!empty($item['title'])): ?>
+                            <h3><?php echo esc_html($item['title']); ?></h3>
+                        <?php endif; ?>
+                        <?php if (!empty($item['content'])): ?>
+                            <div class="surrogate-motherhood-content__item-content">
+                                <?php echo wp_kses_post($item['content']); ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php
+        endif;
+    } else {
+        error_log('Unknown tab type: ' . $tab_type);
+    }
+
+    $html = ob_get_clean();
+    error_log('Generated HTML length: ' . strlen($html));
+    
+    set_transient($cache_key, $html, HOUR_IN_SECONDS);
+
+    wp_send_json_success([
+        'html' => $html,
+    ]);
+}
+
 add_action('wp_ajax_igrmed_load_diagnostics_men', 'igrmed_load_diagnostics_men');
 add_action('wp_ajax_nopriv_igrmed_load_diagnostics_men', 'igrmed_load_diagnostics_men');
 

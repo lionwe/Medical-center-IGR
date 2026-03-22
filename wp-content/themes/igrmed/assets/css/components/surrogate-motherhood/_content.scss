@@ -1,0 +1,562 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.surrogate-motherhood-content {
+  // BASE
+  // ==========================
+
+  &__layout {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: convert-to-rem(60px);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(60px);
+
+    @include mobile {
+      gap: convert-to-rem(40px);
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(20px);
+  }
+
+  &__title-wrap {
+    padding: convert-to-rem(6px) clamp(10px, 23px, 23px);
+    border-radius: convert-to-rem(12px);
+    background: var(--color-white);
+    overflow: hidden;
+
+    strong {
+      @include typography($font-family-montserrat, $fw-semibold, 14px, 22px, 0);
+    }
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-medium, 22px, 1.2, 0);
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    color: var(--color-headings);
+  }
+
+  &__body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(20px);
+    border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
+    padding: 30px 10px 16px;
+    overflow-wrap: anywhere;
+
+    :where(p, li) {
+      @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    }
+
+    @include mobile {
+      padding: 0;
+      gap: convert-to-rem(16px);
+
+      :where(p, li) {
+        @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(16px);
+  }
+
+  &__item {
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 85%;
+      margin: convert-to-rem(16px) auto 0;
+      border-bottom: convert-to-rem(1px) solid var(--color-card-badge-bg);
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+
+    h3 {
+      @include typography($font-family-montserrat, $fw-semibold, 15px, 1.2, 0);
+      display: inline-flex;
+      align-items: center;
+      padding: convert-to-rem(8px) convert-to-rem(12px);
+      border-radius: convert-to-rem(12px);
+      background: var(--color-accent-light);
+      margin-bottom: convert-to-rem(8px);
+    }
+
+    p, ul, ol {
+      margin: 0;
+    }
+
+    ul, ol {
+      padding-left: convert-to-rem(20px);
+    }
+
+    ul li {
+      list-style-type: disc;
+    }
+
+    ol li {
+      list-style-type: decimal;
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: convert-to-rem(20px);
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(12px);
+    padding: convert-to-rem(20px);
+    border-radius: convert-to-rem(12px);
+    background: var(--color-white);
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+
+    strong {
+      @include typography($font-family-montserrat, $fw-semibold, 18px, 1.3, 0);
+      color: var(--color-headings);
+    }
+  }
+
+  &__accent {
+    display: block;
+    width: convert-to-rem(3px);
+    height: convert-to-rem(40px);
+    border-radius: convert-to-rem(40px);
+    background: var(--color-primary-dark);
+    flex-shrink: 0;
+  }
+
+  &__link {
+    margin-left: auto;
+    color: var(--color-link);
+    text-decoration: underline;
+    @include typography($font-family-montserrat, $fw-medium, 14px, 1.4, 0);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__photo {
+    width: 100%;
+    height: convert-to-rem(200px);
+    border-radius: convert-to-rem(8px);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(8px);
+  }
+
+  &__name {
+    @include typography($font-family-montserrat, $fw-semibold, 18px, 1.3, 0);
+    margin: 0;
+
+    a {
+      color: var(--color-headings);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__specialty {
+    @include typography($font-family-montserrat, $fw-regular, 14px, 1.4, 0);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  &__intro {
+    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    margin: 0 0 convert-to-rem(20px);
+  }
+
+  &__slider {
+    display: flex;
+    gap: convert-to-rem(20px);
+    overflow-x: auto;
+    padding-bottom: convert-to-rem(10px);
+
+    @include mobile {
+      gap: convert-to-rem(12px);
+    }
+
+    .surrogate-motherhood-content__card {
+      flex-shrink: 0;
+      width: convert-to-rem(280px);
+    }
+  }
+
+  &__editor {
+    margin-top: convert-to-rem(40px);
+  }
+
+  // ==========================
+  // SECTION MODIFIER OVERRIDES
+  // ==========================
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-semibold, 32px, 1.2, 0);
+    text-align: center;
+    margin: 0 0 convert-to-rem(24px);
+    color: var(--color-headings);
+
+    @include mobile {
+      @include typography($font-family-montserrat, $fw-semibold, 24px, 1.2, 0);
+      margin: 0 0 convert-to-rem(16px);
+    }
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(16px);
+
+    @include mobile {
+      gap: convert-to-rem(12px);
+    }
+  }
+
+  &__intro-title {
+    @include typography($font-family-montserrat, $fw-semibold, 24px, 1.2, 0);
+    margin: 0;
+    color: var(--color-headings);
+  }
+
+  &__intro-text {
+    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    margin: 0;
+    color: var(--color-text);
+  }
+
+  &__intro-image {
+    border-radius: convert-to-rem(12px);
+    overflow: hidden;
+    order: -1;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @include mobile {
+      order: 0;
+    }
+  }
+
+  &__body {
+    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    color: var(--color-text);
+  }
+
+  &__section--tabs {
+    .tabs {
+      display: flex;
+      flex-direction: column;
+      gap: convert-to-rem(24px);
+    }
+
+    .tabs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: convert-to-rem(12px);
+
+      @include mobile {
+        flex-direction: column;
+      }
+    }
+
+    .tab-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: convert-to-rem(8px);
+      padding: convert-to-rem(10px) convert-to-rem(37px) convert-to-rem(16px) convert-to-rem(37px);
+      border-radius: convert-to-rem(12px);
+      background: transparent;
+      border: 1px solid var(--color-gray-217);
+      box-shadow: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      @include typography($font-family-montserrat, $fw-medium, 16px, 1.2, 0);
+      color: var(--color-black);
+      vertical-align: middle;
+
+      &:hover,
+      &.is-active {
+        background: var(--color-white);
+        color: var(--color-black);
+        border: 1px solid var(--color-primary);
+        box-shadow: 0px 4px 50px 0px rgba(181, 181, 181, 1);
+      }
+
+      img {
+        width: convert-to-rem(24px);
+        height: convert-to-rem(24px);
+        object-fit: contain;
+      }
+    }
+
+    .tab-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: convert-to-rem(51px);
+      height: convert-to-rem(50px);
+      border-radius: 52px;
+      padding: convert-to-rem(5px);
+      background: linear-gradient(180deg, #4776BA 0%, #C8CCD1 100%);
+      box-shadow: 0px 4px 50px 0px rgba(255, 255, 255, 0.5);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .tabs-content {
+      position: relative;
+    }
+
+    .tab-panel {
+      display: none;
+      background: var(--color-white);
+      border-radius: convert-to-rem(12px);
+      padding: convert-to-rem(20px) convert-to-rem(10px);
+      box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25);
+
+      &.is-active {
+        display: block;
+      }
+    }
+
+    .tab-title {
+      @include typography($font-family-montserrat, $fw-medium, 20px, 1.2, 0);
+      vertical-align: middle;
+      margin: 0 0 convert-to-rem(16px);
+      color: var(--color-headings);
+    }
+
+    .tab-text {
+      p {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
+        margin: 0 0 convert-to-rem(12px);
+        color: var(--color-text);
+        vertical-align: middle;
+      }
+
+      h3 {
+        @include typography($font-family-montserrat, $fw-medium, 20px, 1.2, 0);
+        margin: 0 0 convert-to-rem(16px);
+        color: var(--color-headings);
+        vertical-align: middle;
+      }
+
+      ul, ol {
+        padding-left: convert-to-rem(20px);
+        margin: 0 0 convert-to-rem(12px);
+      }
+
+      ul li, ol li {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
+        vertical-align: middle;
+        margin-bottom: convert-to-rem(8px);
+        color: var(--color-text);
+      }
+
+      ul li {
+        list-style-type: disc;
+      }
+
+      ol li {
+        list-style-type: decimal;
+      }
+    }
+
+    .tab-status {
+      @include typography($font-family-montserrat, $fw-regular, 14px, 1.4, 0);
+      color: var(--color-text-muted);
+      text-align: center;
+      padding: convert-to-rem(20px);
+    }
+
+    &.is-loading {
+      .tab-btn {
+        pointer-events: none;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  &__section--program {
+    background-image: url('../img/program-bg.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: convert-to-rem(14px) convert-to-rem(17px);
+    border-radius: convert-to-rem(12px);
+
+    .program {
+      display: flex;
+      flex-direction: column;
+      gap: convert-to-rem(16px);
+    }
+
+    .program-title {
+      @include typography($font-family-montserrat, $fw-semibold, 24px, 1.2, 0);
+      margin: 0 0 convert-to-rem(16px);
+      color: rgba(26, 59, 103, 1);
+      max-width: convert-to-rem(300px);
+      vertical-align: middle;
+    }
+
+    .program-main {
+      display: flex;
+      flex-direction: column;
+      gap: convert-to-rem(16px);
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: convert-to-rem(16px);
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: convert-to-rem(16px);
+      padding: convert-to-rem(16px);
+      border-radius: convert-to-rem(12px);
+      position: relative;
+
+      .step-text {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: convert-to-rem(-16px);
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: rgba(230, 192, 163, 0.5);
+        }
+      }
+
+      &:last-child .step-text::after {
+        display: none;
+      }
+
+      @include mobile {
+        flex-direction: column;
+        gap: convert-to-rem(8px);
+        align-items: flex-start;
+
+        .step-text::after {
+          bottom: convert-to-rem(-8px);
+        }
+      }
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: convert-to-rem(36px);
+      height: convert-to-rem(36px);
+      background: rgba(230, 192, 163, 1);
+      border-radius: convert-to-rem(18px);
+      @include typography($font-family-montserrat, $fw-semibold, 20px, 1.2, 0);
+      color: var(--color-white);
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
+      margin: 0;
+      color: var(--color-text);
+      vertical-align: middle;
+    }
+
+    .price {
+      padding: convert-to-rem(10px) convert-to-rem(51px);
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: convert-to-rem(12px);
+      color: rgba(26, 59, 103, 1);
+      box-shadow: 0px 4px 50px 0px rgba(122, 122, 122, 0.5);
+
+      h4 {
+        @include typography($font-family-montserrat, $fw-regular, 22px, 1.2, 0);
+        vertical-align: middle;
+        margin: 0;
+      }
+
+      strong {
+        @include typography($font-family-montserrat, $fw-semibold, 22px, 1.2, 0);
+        vertical-align: middle;
+      }
+
+      p {
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1.2, 0);
+        vertical-align: middle;
+        margin: 0;
+      }
+    }
+
+    .program-image {
+      border-radius: convert-to-rem(12px);
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+}
