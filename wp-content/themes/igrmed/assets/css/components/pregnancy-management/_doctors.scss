@@ -14,7 +14,6 @@
         position: relative;
         z-index: 1;
         width: 100%;
-        padding: convert-to-rem(110px) 0 convert-to-rem(68px) 0;
         color: var(--color-white);
     }
 
@@ -22,7 +21,7 @@
         @include typography($font-family-montserrat, $fw-semibold, 24px, 1.2, 0);
         color: var(--color-white);
         margin: 0 0 convert-to-rem(20px);
-        text-align: center;
+        text-align: left;
         position: relative;
         display: block;
         
@@ -73,12 +72,11 @@
 
         .swiper-wrapper {
             align-items: flex-end;
-            gap: convert-to-rem(24px);
         }
     }
 
     &__slide.swiper-slide {
-        width: convert-to-rem(213px);
+        width: convert-to-rem(253px);
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -96,7 +94,7 @@
         position: relative;
         border-radius: convert-to-rem(12px);
         overflow: hidden;
-        aspect-ratio: 213 / 253;
+        aspect-ratio: 253 / 253;
         width: 100%;
         transition:
             aspect-ratio 0.45s cubic-bezier(0.4, 0, 0.2, 1),
@@ -199,7 +197,7 @@
         flex-shrink: 0;
         margin: 0 0 convert-to-rem(20px);
         color: var(--color-white);
-        width: convert-to-rem(330px);
+        width: convert-to-rem(350px);
         white-space: normal;
         overflow-wrap: anywhere;
         word-break: break-word;
@@ -214,8 +212,12 @@
     }
 
     .swiper-slide-active {
-        width: convert-to-rem(330px) !important;
+        width: convert-to-rem(350px) !important;
         opacity: 1;
+
+        @include mobile {
+            width: convert-to-rem(230px) !important;
+        }
 
         .pregnancy-doctors__slide-excerpt {
             display: -webkit-box;
@@ -229,7 +231,7 @@
         }
 
         .pregnancy-doctors__slide-image-wrap {
-            aspect-ratio: 330 / 330;
+            aspect-ratio: 350 / 350;
             box-shadow: none;
 
             @include mobile {

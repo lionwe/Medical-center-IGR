@@ -69,7 +69,20 @@ if (empty($doctors_list)) {
 
                             <article class="pregnancy-doctors__slide swiper-slide">
 
-                                <?php /* ЗОБРАЖЕННЯ ПЕРШЕ — CSS будує слайд знизу вгору (justify-content: flex-end) */ ?>
+                                <?php /* ТЕКСТ НАД ЗОБРАЖЕННЯМ */ ?>
+                                <?php if ($doctor_name !== ''): ?>
+                                    <h3 class="pregnancy-doctors__slide-title"><?php echo esc_html($doctor_name); ?></h3>
+                                <?php endif; ?>
+
+                                <?php if ($doctor_spec !== ''): ?>
+                                    <p class="pregnancy-doctors__slide-spec"><?php echo esc_html($doctor_spec); ?></p>
+                                <?php endif; ?>
+
+                                <?php if ($doctor_excerpt !== ''): ?>
+                                    <p class="pregnancy-doctors__slide-excerpt"><?php echo esc_html($doctor_excerpt); ?></p>
+                                <?php endif; ?>
+
+                                <?php /* ЗОБРАЖЕННЯ ПІСЛЯ ТЕКСТУ */ ?>
                                 <?php if ($doctor_photo_url !== ''): ?>
                                     <div class="pregnancy-doctors__slide-image-wrap">
                                         <?php
@@ -89,19 +102,6 @@ if (empty($doctors_list)) {
                                             </a>
                                         <?php endif; ?>
                                     </div>
-                                <?php endif; ?>
-
-                                <?php /* ТЕКСТ ПІД ЗОБРАЖЕННЯМ */ ?>
-                                <?php if ($doctor_name !== ''): ?>
-                                    <h3 class="pregnancy-doctors__slide-title"><?php echo esc_html($doctor_name); ?></h3>
-                                <?php endif; ?>
-
-                                <?php if ($doctor_spec !== ''): ?>
-                                    <p class="pregnancy-doctors__slide-spec"><?php echo esc_html($doctor_spec); ?></p>
-                                <?php endif; ?>
-
-                                <?php if ($doctor_excerpt !== ''): ?>
-                                    <p class="pregnancy-doctors__slide-excerpt"><?php echo esc_html($doctor_excerpt); ?></p>
                                 <?php endif; ?>
 
                             </article>
@@ -130,4 +130,5 @@ if (empty($doctors_list)) {
             </div>
         </div>
     </div>
-</div>{{/* ← було </section>, виправлено на </div> */}}
+</section>
+

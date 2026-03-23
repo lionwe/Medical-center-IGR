@@ -1,12 +1,66 @@
+/**
+ * Десктопний слайдер лікарів (ведення вагітності).
+ * Лише ручний translateX + кнопки — без Swiper.
+ * На мобільних не ініціалізується (див. doctors-swiper-mobile.js).
+ */
 export default class PregnancyDoctorsSwiper {
     constructor() {
         this.wrapper = document.querySelector('.js-pregnancy-doctors-swiper');
-        if (this.wrapper) {
+        this.desktopBreakpoint = 1024;
+        this.inited = false;
+        this.abortController = null;
+
+        if (!this.wrapper) {
+            return;
+        }
+
+        if (this.isDesktop()) {
             this.init();
         }
+
+        this.bindResize();
+    }
+
+    isDesktop() {
+        return window.innerWidth >= this.desktopBreakpoint;
+    }
+
+    destroy() {
+        if (this.abortController) {
+            this.abortController.abort();
+            this.abortController = null;
+        }
+
+        const track = this.wrapper?.querySelector('.swiper-wrapper');
+        if (track) {
+            track.style.transform = '';
+            track.style.gap = '';
+            track.style.display = '';
+        }
+
+        this.inited = false;
+    }
+
+    bindResize() {
+        let resizeTimer;
+
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (this.isDesktop() && !this.inited) {
+                    this.init();
+                } else if (!this.isDesktop() && this.inited) {
+                    this.destroy();
+                }
+            }, 250);
+        });
     }
 
     init() {
+        if (!this.isDesktop() || this.inited) {
+            return;
+        }
+
         const track = this.wrapper.querySelector('.swiper-wrapper');
         const slides = Array.from(this.wrapper.querySelectorAll('.swiper-slide'));
         const prevBtn = document.querySelector('.js-pregnancy-doctors-prev');
@@ -16,29 +70,28 @@ export default class PregnancyDoctorsSwiper {
             return;
         }
 
+        this.abortController = new AbortController();
+        const { signal } = this.abortController;
+
         let currentIndex = 0;
-        let cardWidthSmall = 213; // Відповідає convert-to-rem(213px) в CSS
+        let cardWidthSmall = 253; // Відповідає convert-to-rem(253px) в CSS
         let gap = 24; // Відповідає spaceBetween в CSS
 
-        // Функція для отримання актуальних розмірів
-        function getActualSizes() {
+        const getActualSizes = () => {
             const firstSlide = slides[0];
             if (firstSlide && slides.length > 1) {
-                // Отримуємо ширину першого слайда
                 const computedStyle = window.getComputedStyle(firstSlide);
                 cardWidthSmall = parseFloat(computedStyle.width);
-                
-                // Примусово встановлюємо gap для track
+
                 gap = 24;
                 track.style.gap = `${gap}px`;
                 track.style.display = 'flex';
-                
+
                 console.log('Gap set to:', gap, 'px');
             }
-        }
+        };
 
-        function updateSlider() {
-            // Оновлюємо активний стан слайдів
+        const updateSlider = () => {
             slides.forEach((slide, index) => {
                 if (index === currentIndex) {
                     slide.classList.add('swiper-slide-active');
@@ -47,11 +100,9 @@ export default class PregnancyDoctorsSwiper {
                 }
             });
 
-            // Зсуваємо трек вліво з актуальними розмірами
             const shift = currentIndex * (cardWidthSmall + gap);
             track.style.transform = `translateX(-${shift}px)`;
 
-            // Оновлюємо стан кнопок
             if (currentIndex === 0) {
                 prevBtn.classList.add('swiper-button-disabled');
                 prevBtn.disabled = true;
@@ -67,51 +118,59 @@ export default class PregnancyDoctorsSwiper {
                 nextBtn.classList.remove('swiper-button-disabled');
                 nextBtn.disabled = false;
             }
-        }
+        };
 
-        // Обробник ресайзу з debounce для оптимізації
         let resizeTimer;
-        function handleResize() {
+        const handleResize = () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
                 getActualSizes();
                 updateSlider();
             }, 250);
-        }
+        };
 
-        // Клік "Вперед"
-        nextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (currentIndex < slides.length - 1) {
-                currentIndex++;
-                updateSlider();
-            }
-        });
-
-        // Клік "Назад"
-        prevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSlider();
-            }
-        });
-
-        // Клік по неактивному слайду робить його активним
-        slides.forEach((slide, index) => {
-            slide.addEventListener('click', () => {
-                if (index !== currentIndex) {
-                    currentIndex = index;
+        nextBtn.addEventListener(
+            'click',
+            (e) => {
+                e.preventDefault();
+                if (currentIndex < slides.length - 1) {
+                    currentIndex++;
                     updateSlider();
                 }
-            });
+            },
+            { signal },
+        );
+
+        prevBtn.addEventListener(
+            'click',
+            (e) => {
+                e.preventDefault();
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            },
+            { signal },
+        );
+
+        slides.forEach((slide, index) => {
+            slide.addEventListener(
+                'click',
+                () => {
+                    if (index !== currentIndex) {
+                        currentIndex = index;
+                        updateSlider();
+                    }
+                },
+                { signal },
+            );
         });
 
-        // Ініціалізація
+        window.addEventListener('resize', handleResize, { signal });
+
         getActualSizes();
         updateSlider();
 
-        // Обробка зміни розміру вікна
-        window.addEventListener('resize', handleResize);
+        this.inited = true;
     }
 }
