@@ -8,24 +8,30 @@ $image_url = get_template_directory_uri() . '/assets/img/ba5c6331bea41bf283dc73f
 <section class="overflow-banner">
     <div class="overflow-banner__inner">
         <div class="overflow-banner__content">
-            <?php if ($title !== ''): ?>
-                <h2 class="overflow-banner__title"><?php echo esc_html($title); ?></h2>
-            <?php endif; ?>
+            <div class="overflow-banner__text-content">
+                <?php if ($title !== ''): ?>
+                    <h2 class="overflow-banner__title"><?php echo esc_html($title); ?></h2>
+                <?php endif; ?>
 
-            <div class="overflow-banner__cta">
-                <?php
-                get_template_part('templates/button', null, [
-                    'text' => $button_text,
-                    'link' => $button_link,
-                    'type' => 'glass-primary',
-                    'primary_split' => true,
-                    'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg',
-                ]);
-                ?>
+                <div class="overflow-banner__cta">
+                    <?php
+                    get_template_part('templates/button', null, [
+                        'text' => $button_text,
+                        'link' => $button_link,
+                        'type' => 'glass-primary',
+                        'primary_split' => true,
+                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg',
+                    ]);
+                    ?>
+                </div>
+            </div>
+
+            <div class="overflow-banner__image-wrap mobile-only" aria-hidden="true">
+                <img class="overflow-banner__image" src="<?php echo esc_url($image_url); ?>" alt="" loading="lazy">
             </div>
         </div>
 
-        <div class="overflow-banner__image-wrap" aria-hidden="true">
+        <div class="overflow-banner__image-wrap desktop-only" aria-hidden="true">
             <img class="overflow-banner__image" src="<?php echo esc_url($image_url); ?>" alt="" loading="lazy">
         </div>
     </div>

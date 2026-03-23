@@ -12,6 +12,7 @@ import "./ui/main";
 
 
 import "./swipers/main";
+import "./swipers/pregnancy-management/main";
 import "./components/forms/main";
 if (document.querySelector(".backdrop")) {
   import("./popups/main").catch((error) => {

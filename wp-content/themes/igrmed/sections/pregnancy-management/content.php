@@ -145,51 +145,7 @@ if (empty($sections) && !$has_content) {
                 <?php endif; ?>
 
                 <?php if ($has_doctors) : ?>
-                    <div id="preg-doctors" class="pregnancy-management-content__section pregnancy-management-content__section--doctors">
-                        <div class="pregnancy-management-content__title-wrap">
-                            <h2 class="pregnancy-management-content__title">
-                                <?php echo esc_html($doctors_title !== '' ? $doctors_title : __('Лікарі, які ведуть лікування', 'igrmed')); ?>
-                            </h2>
-                        </div>
-                        <div class="pregnancy-management-content__body">
-                            <?php if ($doctors_intro !== '') : ?>
-                                <p class="pregnancy-management-content__intro"><?php echo esc_html($doctors_intro); ?></p>
-                            <?php endif; ?>
-
-                            <div class="pregnancy-management-content__slider">
-                                <?php foreach ($doctors_list as $doctor) : ?>
-                                    <?php
-                                    $doctor_id        = $doctor->ID;
-                                    $doctor_name      = get_the_title($doctor_id);
-                                    $doctor_permalink = get_permalink($doctor_id);
-                                    $doctor_specialty = get_field('specialty', $doctor_id);
-                                    $doctor_photo     = get_the_post_thumbnail_url($doctor_id, 'medium');
-                                    ?>
-                                    <div class="pregnancy-management-content__card">
-                                        <?php if ($doctor_photo) : ?>
-                                            <div class="pregnancy-management-content__photo">
-                                                <img src="<?php echo esc_url($doctor_photo); ?>"
-                                                     alt="<?php echo esc_attr($doctor_name); ?>"
-                                                     loading="lazy">
-                                            </div>
-                                        <?php endif; ?>
-                                        <div class="pregnancy-management-content__info">
-                                            <h3 class="pregnancy-management-content__name">
-                                                <a href="<?php echo esc_url($doctor_permalink); ?>">
-                                                    <?php echo esc_html($doctor_name); ?>
-                                                </a>
-                                            </h3>
-                                            <?php if ($doctor_specialty) : ?>
-                                                <p class="pregnancy-management-content__specialty">
-                                                    <?php echo esc_html($doctor_specialty); ?>
-                                                </p>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
+                    <?php get_template_part('sections/pregnancy-management/doctors'); ?>
                 <?php endif; ?>
 
                 <?php if ($has_content) : ?>

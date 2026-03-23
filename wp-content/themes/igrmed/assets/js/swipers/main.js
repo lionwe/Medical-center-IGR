@@ -4,3 +4,4 @@ import "swiper/css/pagination";
 import "./home/main";
 import "./about/main";
 import "./infertility-women/main";
+import "./pregnancy-management/main";
