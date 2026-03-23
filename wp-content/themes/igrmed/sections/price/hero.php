@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Price Page Hero Section
  *

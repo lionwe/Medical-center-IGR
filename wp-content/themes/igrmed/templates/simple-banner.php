@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Simple Banner Template
  *
