@@ -1,26 +1,4 @@
 @use "../../utils/mixins" as *;
 @use "../../base/variables" as *;
 
-.price-hero {
-    position: relative;
-    padding-top: convert-to-rem(60px);
-    padding-bottom: convert-to-rem(36px);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-
-    @include mobile {
-        padding: 0;
-        min-height: convert-to-rem(320px);
-    }
-
-    .container {
-        @include mobile {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: inherit;
-        }
-    }
-}
+.price-hero {}
