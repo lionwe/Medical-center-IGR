@@ -84,7 +84,8 @@ if (empty($sections)) {
                 <?php endif; ?>
 
                 <?php if ($advantages_title !== '' || !empty($advantages_items)): ?>
-                    <div id="cryo-advantages" class="cryotechnology-content__section cryotechnology-content__section--advantages">
+                    <div id="cryo-advantages"
+                        class="cryotechnology-content__section cryotechnology-content__section--advantages">
                         <div class="cryotechnology-content__title-wrap">
                             <h2 class="cryotechnology-content__title">
                                 <?php echo esc_html($advantages_title !== '' ? $advantages_title : __('Чому варто обрати нас?', 'igrmed')); ?>
@@ -106,7 +107,8 @@ if (empty($sections)) {
                 <?php endif; ?>
 
                 <?php if ($services_title !== '' || !empty($services_items)): ?>
-                    <div id="cryo-services" class="cryotechnology-content__section cryotechnology-content__section--services">
+                    <div id="cryo-services"
+                        class="cryotechnology-content__section cryotechnology-content__section--services">
                         <div class="cryotechnology-content__title-wrap">
                             <h2 class="cryotechnology-content__title">
                                 <?php echo esc_html($services_title !== '' ? $services_title : __('Послуги кріоконсервації в клініці ІГР', 'igrmed')); ?>
@@ -137,10 +139,10 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if (trim((string) get_post_field('post_content', get_the_ID())) !== '') : ?>
-                <div class="cryotechnology-content__editor entry-content">
-                    <?php the_content(); ?>
-                </div>
+                <?php if (trim((string) get_post_field('post_content', get_the_ID())) !== ''): ?>
+                    <div class="cryotechnology-content__editor entry-content">
+                        <?php the_content(); ?>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

@@ -20,12 +20,11 @@ $program_steps  = get_field('program_steps');
 $program_steps  = is_array($program_steps) ? array_filter($program_steps, function($step) {
     return !empty($step['step_number']) || !empty($step['step_text']);
 }) : [];
-$program_image  = get_field('program_image'); // масив ACF (url, alt, ...) або просто URL
+$program_image  = get_field('program_image');
 $price_label    = trim((string) get_field('price_label'));
 $price_value    = trim((string) get_field('price_value'));
 $price_subtext  = trim((string) get_field('price_subtext'));
 
-// Визначаємо наявність зображення для перевірки $has_program
 $program_image_url = '';
 if (is_array($program_image)) {
     $program_image_url = $program_image['url'] ?? '';
@@ -33,7 +32,6 @@ if (is_array($program_image)) {
     $program_image_url = $program_image;
 }
 
-// Блоки показуються лише якщо є реальний контент
 $has_intro   = $intro_title !== '' || $intro_content !== '';
 $has_tabs    = !empty($central_tabs);
 $has_program = $program_title !== '' || !empty($program_steps) || $program_image_url !== '' || $price_value !== '';
@@ -83,10 +81,13 @@ if ($has_program) {
                 <?php endif; ?>
 
                 <?php if ($has_tabs) : ?>
-                    <div id="surrogate-tabs" class="surrogate-motherhood-content__section surrogate-motherhood-content__section--tabs"
+                    <div id="surrogate-tabs"
+                         class="surrogate-motherhood-content__section surrogate-motherhood-content__section--tabs"
                          data-post-id="<?php echo esc_attr(get_queried_object_id()); ?>"
                          data-loading-label="<?php echo esc_attr__('Завантаження...', 'igrmed'); ?>"
                          data-error-label="<?php echo esc_attr__('Не вдалося завантажити дані. Спробуйте ще раз.', 'igrmed'); ?>">
+
+                        <?php /* Desktop: flat nav + content area */ ?>
                         <div class="surrogate-motherhood-content__tabs">
                             <div class="surrogate-motherhood-content__tabs-nav">
                                 <?php foreach ($central_tabs as $index => $tab) : ?>
@@ -126,6 +127,44 @@ if ($has_program) {
                                 <?php endforeach; ?>
                             </div>
                         </div>
+
+                        <?php /* Mobile: accordion — each item wraps its own btn + panel */ ?>
+                        <div class="surrogate-motherhood-content__accordion">
+                            <?php foreach ($central_tabs as $index => $tab) : ?>
+                                <div class="surrogate-motherhood-content__accordion-item">
+                                    <button type="button"
+                                            class="surrogate-motherhood-content__tab-btn"
+                                            data-tab="<?php echo esc_attr($tab['tab_type'] ?? 'tab_' . $index); ?>">
+                                        <?php if (!empty($tab['tab_icon'])) : ?>
+                                            <span class="surrogate-motherhood-content__tab-icon-wrap">
+                                                <img src="<?php echo esc_url($tab['tab_icon']); ?>" alt="" class="surrogate-motherhood-content__tab-icon">
+                                            </span>
+                                        <?php endif; ?>
+                                        <span><?php echo esc_html($tab['tab_nav_title'] ?? ''); ?></span>
+                                    </button>
+                                    <div class="surrogate-motherhood-content__tab-panel"
+                                         data-panel="<?php echo esc_attr($tab['tab_type'] ?? 'tab_' . $index); ?>"
+                                         data-loaded="<?php echo $index === 0 ? 'true' : 'false'; ?>"
+                                         hidden>
+                                        <?php if ($index === 0) : ?>
+                                            <?php if (!empty($tab['tab_content_title'])) : ?>
+                                                <h3 class="surrogate-motherhood-content__tab-title">
+                                                    <?php echo esc_html($tab['tab_content_title']); ?>
+                                                </h3>
+                                            <?php endif; ?>
+                                            <?php if (!empty($tab['tab_content_text'])) : ?>
+                                                <div class="surrogate-motherhood-content__tab-text">
+                                                    <?php echo wp_kses_post($tab['tab_content_text']); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        <?php else : ?>
+                                            <div class="surrogate-motherhood-content__tab-status"></div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+
                     </div>
                 <?php endif; ?>
 
@@ -179,6 +218,8 @@ if ($has_program) {
                         </div>
                     </div>
                 <?php endif; ?>
+
+                <?php get_template_part('templates/overflow-banner'); ?>
 
             </div>
         </div>
