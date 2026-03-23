@@ -1,7 +1,7 @@
 @use "../../utils/mixins" as *;
 @use "../../base/variables" as *;
 
-.price-hero {
+.privacy-hero {
     position: relative;
     padding-top: convert-to-rem(60px);
     padding-bottom: convert-to-rem(36px);
@@ -13,5 +13,10 @@
     @include mobile {
         padding-top: convert-to-rem(40px);
         padding-bottom: convert-to-rem(45px);
+    }
+
+    .simple-banner__title {
+        color: var(--color-primary-dark);
+        max-width: convert-to-rem(240px);
     }
 }
