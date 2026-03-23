@@ -335,6 +335,26 @@ $_gradient-border: linear-gradient(180deg,
       }
     }
   }
+
+  &--back-home {
+    padding: convert-to-rem(10px) convert-to-rem(32px);
+    border-radius: convert-to-rem(100px);
+    background: var(--color-white-08);
+    border: 0.5px solid var(--color-primary-dark-30);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    gap: convert-to-rem(10px);
+    backdrop-filter: blur(4px);
+
+    .btn__text {
+      @include typography($font-family-montserrat, $fw-regular, (14px, 18px), 1);
+      color: var(--color-navy-900);
+    }
+
+    &:hover {
+      background: var(--color-white);
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.15);
+    }
+  }
 }
 
 // Common pagination bullets
