@@ -10,3 +10,6 @@
 @use "./archive-blog/main" as archiveBlog;
 @use "./pregnancy-management/main" as pregnancyManagement;
 @use "./surrogate-motherhood/main" as surrogateMotherhood;
+@use "./price/main" as price;
+@use "./privacy-policy/main" as privacyPolicy;
+@use "./404/main" as error404;

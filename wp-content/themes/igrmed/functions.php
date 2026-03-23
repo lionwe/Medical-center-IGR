@@ -8,6 +8,8 @@ add_action('pre_get_posts', 'igrmed_blog_posts_per_page');
 
 require get_template_directory() . '/includes/post-types.php';
 require get_template_directory() . '/includes/ajax-handler.php';
+require get_template_directory() . '/includes/helpers.php';
+
 
 /**
  * Get SVG content from assets

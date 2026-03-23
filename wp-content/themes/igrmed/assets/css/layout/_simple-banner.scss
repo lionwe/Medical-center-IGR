@@ -1,0 +1,95 @@
+@use "../utils/mixins" as *;
+@use "../base/variables" as *;
+
+.simple-banner {
+  margin-top: convert-to-rem(24px);
+  margin-bottom: convert-to-rem(27px);
+  width: 100%;
+
+  // Common styles for sections containing simple-banner
+  &-section {
+    position: relative;
+    padding-top: convert-to-rem(60px);
+    padding-bottom: convert-to-rem(36px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-image: url('../img/bread-crumbs.webp');
+
+    &>.container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      @include mobile {
+        min-height: inherit;
+        justify-content: space-between;
+        padding-top: 0;
+      }
+    }
+
+    @include mobile {
+      padding: 0;
+      min-height: convert-to-rem(320px);
+      background-image: url('../img/bread-crumbs-mobile.webp');
+    }
+  }
+
+  &__inner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: convert-to-rem(160px);
+    border-radius: convert-to-rem(22px);
+    background: rgba(255, 255, 255, 0.52);
+    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(22px);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: convert-to-rem(24px);
+    padding: convert-to-rem(24px) convert-to-rem(48px);
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1.1, 0);
+    margin: 0;
+    color: var(--color-primary-dark);
+  }
+
+  &__cta {
+    flex-shrink: 0;
+  }
+
+  &__cta :where(.btn) {
+    margin: 0;
+  }
+
+  @include mobile {
+    margin-bottom: convert-to-rem(60px);
+
+    &__inner {
+      min-height: auto;
+    }
+
+    &__content {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: convert-to-rem(30px) convert-to-rem(14px);
+      gap: convert-to-rem(20px);
+    }
+
+    &__title {
+      color: var(--color-dark);
+    }
+  }
+}

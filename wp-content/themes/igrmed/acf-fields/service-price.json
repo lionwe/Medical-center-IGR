@@ -1,0 +1,40 @@
+[
+    {
+        "key": "group_price_item_details",
+        "title": "Деталі послуги",
+        "fields": [
+            {
+                "key": "field_price_item_direction",
+                "label": "Напрямок",
+                "name": "price_item_direction",
+                "type": "post_object",
+                "instructions": "Виберіть напрямок, до якого належить ця послуга (наприклад: Гінекологія)",
+                "required": 1,
+                "post_type": ["services"],
+                "return_format": "id",
+                "multiple": 0,
+                "allow_null": 0,
+                "ui": 1
+            },
+            {
+                "key": "field_price_item_value",
+                "label": "Ціна",
+                "name": "price_item_value",
+                "type": "text",
+                "instructions": "Введіть ціну",
+                "required": 1,
+                "placeholder": "500"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "price_items"
+                }
+            ]
+        ],
+        "active": true
+    }
+]
