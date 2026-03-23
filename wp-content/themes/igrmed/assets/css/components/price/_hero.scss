@@ -11,7 +11,7 @@
     overflow: hidden;
 
     @include mobile {
-        padding-top: convert-to-rem(40px);
-        padding-bottom: convert-to-rem(45px);
+        padding-top: convert-to-rem(0px);
+        padding-bottom: convert-to-rem(0px);
     }
 }

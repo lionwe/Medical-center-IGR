@@ -15,6 +15,7 @@ class PriceList {
         this.dropdownLinks = document.querySelectorAll('.price-list__dropdown-link');
         this.categoryGroups = document.querySelectorAll('.price-list__category-group');
         this.searchInput = document.querySelector('.price-list__search-input');
+        this.emptyMessage = document.querySelector('.js-price-empty');
 
         this.initCategoryDropdown();
         this.initAccordions();
@@ -24,11 +25,11 @@ class PriceList {
     }
 
     openFirstVisible() {
-        const firstAcc = document.querySelector('.js-price-accordion');
-        if (firstAcc && !firstAcc.classList.contains('is-open')) {
-            const content = firstAcc.querySelector('.js-price-accordion-accordeon');
+        const firstVisibleAcc = document.querySelector('.js-price-accordion:not([style*="display: none"])');
+        if (firstVisibleAcc && !firstVisibleAcc.classList.contains('is-open')) {
+            const content = firstVisibleAcc.querySelector('.js-price-accordion-accordeon');
             if (content) {
-                this.toggleAccordion(firstAcc, content, true);
+                this.toggleAccordion(firstVisibleAcc, content, true);
             }
         }
     }
@@ -36,12 +37,14 @@ class PriceList {
     initCategoryDropdown() {
         this.trigger.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.container.classList.toggle('is-open');
+            const isOpen = this.container.classList.toggle('is-open');
+            this.trigger.setAttribute('aria-expanded', isOpen);
         });
 
         document.addEventListener('click', (e) => {
             if (!this.container.contains(e.target)) {
                 this.container.classList.remove('is-open');
+                this.trigger.setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -53,6 +56,7 @@ class PriceList {
                 this.container.setAttribute('data-selected-category', catId);
                 this.label.innerText = catName;
                 this.container.classList.remove('is-open');
+                this.trigger.setAttribute('aria-expanded', 'false');
 
                 this.filterPriceList();
             });
@@ -68,6 +72,7 @@ class PriceList {
             trigger.addEventListener('click', () => {
                 const isOpen = acc.classList.contains('is-open');
                 this.toggleAccordion(acc, content, !isOpen);
+                trigger.setAttribute('aria-expanded', !isOpen);
             });
         });
     }
@@ -114,13 +119,30 @@ class PriceList {
 
     initFilters() {
         if (this.searchInput) {
-            this.searchInput.addEventListener('input', () => this.filterPriceList());
+            this.searchContainer = this.searchInput.closest('.price-list__search');
+            this.searchTimeout = null;
+
+            this.searchInput.addEventListener('input', () => {
+                if (this.searchContainer) {
+                    this.searchContainer.classList.add('is-loading');
+                }
+
+                clearTimeout(this.searchTimeout);
+                this.searchTimeout = setTimeout(() => {
+                    this.filterPriceList();
+                    if (this.searchContainer) {
+                        this.searchContainer.classList.remove('is-loading');
+                    }
+                }, 400);
+            });
         }
     }
 
     filterPriceList() {
         const selectedId = this.container.getAttribute('data-selected-category') || 'all';
         const searchTerm = this.searchInput ? this.searchInput.value.toLowerCase().trim() : '';
+
+        let totalVisible = 0;
 
         this.categoryGroups.forEach(group => {
             const groupId = group.getAttribute('data-category-id');
@@ -152,6 +174,9 @@ class PriceList {
                     matchesSearch = true;
                     if (searchTerm.length > 0 && !acc.classList.contains('is-open')) {
                         this.toggleAccordion(acc, content, true);
+                    } else if (searchTerm.length === 0 && acc.classList.contains('is-open')) {
+                        // Optional: Reset state when search is cleared, but maybe better to let user keep them open.
+                        // For now we just keep them as they were before search started if possible, but JS doesn't store state.
                     }
                 } else {
                     acc.style.display = 'none';
@@ -163,10 +188,23 @@ class PriceList {
 
             if (matchesCategory && matchesSearch) {
                 group.style.display = '';
+                totalVisible++;
             } else {
                 group.style.display = 'none';
             }
         });
+
+        if (this.emptyMessage) {
+            this.emptyMessage.style.display = totalVisible === 0 ? 'block' : 'none';
+        }
+
+        // If search cleared, re-open first visible if none open
+        if (searchTerm === '' && totalVisible > 0) {
+            const anyOpen = document.querySelector('.js-price-accordion.is-open:not([style*="display: none"])');
+            if (!anyOpen) {
+                this.openFirstVisible();
+            }
+        }
     }
 
     static init() {

@@ -78,6 +78,9 @@ $search_icon = get_field('icon_search', 'option');
             </header>
 
             <div class="price-list__content js-price-list-content">
+                <div class="price-list__empty js-price-empty" style="display: none;">
+                    <?php echo esc_html__('За вашим запитом нічого не знайдено', 'igrmed'); ?>
+                </div>
                 <?php
                 $accordion_count = 0;
                 foreach ($full_price_data as $category):
