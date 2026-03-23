@@ -1,0 +1,114 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.privacy-content {
+    position: relative;
+    z-index: 5;
+
+    @include mobile {
+        padding-bottom: convert-to-rem(60px);
+    }
+
+    &__wrapper {
+        width: 100%;
+        height: auto;
+        padding: 0 convert-to-rem(45px) 0 convert-to-rem(45px);
+
+        @include mobile {
+            padding: 0;
+        }
+    }
+
+    &__text,
+    &__more-content {
+        color: var(--color-dark);
+
+        h2 {
+            @include typography($font-family-montserrat, $fw-semibold, convert-to-rem(22px), 1.4);
+            margin-top: convert-to-rem(32px);
+            margin-bottom: convert-to-rem(15px);
+            color: #000000;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        p {
+            @include typography($font-family-montserrat, $fw-regular, convert-to-rem(16px), 1.6);
+            margin-bottom: convert-to-rem(20px);
+
+            @include mobile {
+                font-size: convert-to-rem(15px);
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__text {
+        // ...
+    }
+
+    &__more-wrapper {
+        display: none;
+        margin-top: convert-to-rem(30px);
+
+        &.is-visible {
+            display: block;
+        }
+
+        &.is-open {
+            .privacy-content__more-content {
+                max-height: 5000px; // Large value for expansion
+                opacity: 1;
+                margin-bottom: convert-to-rem(20px);
+            }
+
+            .privacy-content__read-more-btn {
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    &__more-content {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.8s ease, opacity 0.5s ease, margin 0.3s ease;
+    }
+
+    &__read-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: convert-to-rem(8px);
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+
+        // Custom font from user specifications
+        font-family: 'Constantine', serif;
+        font-weight: 400;
+        font-size: convert-to-rem(14px);
+        line-height: 1.6;
+        text-transform: uppercase;
+        color: #323232;
+        transition: opacity 0.3s ease;
+
+        svg {
+            width: convert-to-rem(17px);
+            height: auto;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}

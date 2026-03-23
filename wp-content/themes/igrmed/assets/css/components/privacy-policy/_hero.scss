@@ -1,0 +1,11 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.privacy-hero {
+    // Базові стилі знаходяться в .simple-banner-section
+
+    .simple-banner__title {
+        color: var(--color-primary-dark);
+        max-width: convert-to-rem(240px);
+    }
+}

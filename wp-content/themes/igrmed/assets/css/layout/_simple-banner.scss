@@ -6,6 +6,36 @@
   margin-bottom: convert-to-rem(27px);
   width: 100%;
 
+  // Common styles for sections containing simple-banner
+  &-section {
+    position: relative;
+    padding-top: convert-to-rem(60px);
+    padding-bottom: convert-to-rem(36px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-image: url('../img/bread-crumbs.webp');
+
+    &>.container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      @include mobile {
+        min-height: inherit;
+        justify-content: space-between;
+        padding-top: 0;
+      }
+    }
+
+    @include mobile {
+      padding: 0;
+      min-height: convert-to-rem(320px);
+      background-image: url('../img/bread-crumbs-mobile.webp');
+    }
+  }
+
   &__inner {
     position: relative;
     overflow: hidden;
@@ -59,7 +89,7 @@
     }
 
     &__title {
-        color: var(--color-dark);
+      color: var(--color-dark);
     }
   }
 }

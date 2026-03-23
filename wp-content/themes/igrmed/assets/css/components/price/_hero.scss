@@ -1,17 +1,4 @@
 @use "../../utils/mixins" as *;
 @use "../../base/variables" as *;
 
-.price-hero {
-    position: relative;
-    padding-top: convert-to-rem(60px);
-    padding-bottom: convert-to-rem(36px);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-
-    @include mobile {
-        padding-top: convert-to-rem(0px);
-        padding-bottom: convert-to-rem(0px);
-    }
-}
+.price-hero {}
