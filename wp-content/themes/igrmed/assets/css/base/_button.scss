@@ -87,6 +87,7 @@ $_gradient-border: linear-gradient(180deg,
     .btn__icon {
       width: convert-to-rem(21px);
       height: convert-to-rem(8px);
+      background-color: var(--color-primary-dark-blue);
     }
   }
 

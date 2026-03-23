@@ -14,13 +14,60 @@ function initContentSidebarNavigation() {
   const links = Array.from(
     categoriesList.querySelectorAll(".js-content-sidebar-link[data-target]"),
   );
-  if (!links.length) return;
+  if (!links.length && categoriesList.dataset.autoBuild === "1") {
+    const contentRoot =
+      categoriesList.closest(".catalog-wrap")?.querySelector(
+        ".ekz-content__content, .infertility-treatment-women__content",
+      ) || null;
+
+    const autoSections = Array.from(
+      (contentRoot || document).querySelectorAll(
+        ".donor-section[id], .ekz-content__section[id], .infertility-treatment-women__section[id]",
+      ),
+    )
+      .map((section) => {
+        const titleNode =
+          section.querySelector(".ekz-content__section-title, .infertility-treatment-women__section-title, h2");
+        const id = section.id || "";
+        const title = titleNode ? (titleNode.textContent || "").trim() : "";
+        return id && title ? { id, title } : null;
+      })
+      .filter(Boolean);
+
+    const fragment = document.createDocumentFragment();
+    autoSections.forEach((item, index) => {
+      const link = document.createElement("a");
+      link.className = "content-sidebar__link js-content-sidebar-link";
+      link.href = `#${item.id}`;
+      link.dataset.target = item.id;
+      link.innerHTML = `
+        <span class="content-sidebar__marker" aria-hidden="true">
+          <span class="content-sidebar__marker-number">(${String(index + 1).padStart(2, "0")})</span>
+          <span class="content-sidebar__marker-arrow">(<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.172 6.77766H0V8.77766H12.172L6.808 14.1417L8.222 15.5557L16 7.77766L8.222 -0.000335693L6.808 1.41366L12.172 6.77766Z" fill="white"/></svg>)</span>
+        </span>
+        <span class="content-sidebar__label"></span>
+      `;
+      const label = link.querySelector(".content-sidebar__label");
+      if (label) label.textContent = item.title;
+      const listItem = document.createElement("li");
+      listItem.appendChild(link);
+      fragment.appendChild(listItem);
+    });
+
+    const listRoot = categoriesList.querySelector("ul") || categoriesList;
+    listRoot.appendChild(fragment);
+  }
+
+  const linksAfterBuild = Array.from(
+    categoriesList.querySelectorAll(".js-content-sidebar-link[data-target]"),
+  );
+  if (!linksAfterBuild.length) return;
 
   const linksMap = new Map(
-    links.map((link) => [link.dataset.target || "", link]).filter(([id]) => id !== ""),
+    linksAfterBuild.map((link) => [link.dataset.target || "", link]).filter(([id]) => id !== ""),
   );
 
-  const sections = links
+  const sections = linksAfterBuild
     .map((link) => {
       const targetId = link.dataset.target || "";
       const target = targetId ? document.getElementById(targetId) : null;
@@ -36,7 +83,7 @@ function initContentSidebarNavigation() {
     if (!sectionId || activeSectionId === sectionId) return;
     activeSectionId = sectionId;
 
-    links.forEach((link) => {
+    linksAfterBuild.forEach((link) => {
       const isActive = (link.dataset.target || "") === sectionId;
       link.classList.toggle("content-sidebar__link--active", isActive);
       if (isActive) {

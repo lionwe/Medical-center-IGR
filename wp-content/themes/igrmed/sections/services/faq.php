@@ -1,7 +1,7 @@
 <?php
 /**
- * Section: FAQ
- * Location: Infertility Treatment Women page
+ * Section: Services FAQ (shared)
+ * Location: Service pages
  */
 
 $extract_image_url = static function ($image): string {

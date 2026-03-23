@@ -93,6 +93,30 @@ $methods_title = trim((string) get_field('methods_title'));
 $methods_rows = get_field('methods_list');
 $methods = [];
 
+$advantages_title = trim((string) get_field('advantages_title'));
+$advantages_rows = get_field('advantages_list');
+$advantages = [];
+
+if (is_array($advantages_rows)) {
+    foreach ($advantages_rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $title = trim((string) ($row['title'] ?? $row['item_title'] ?? $row['name'] ?? ''));
+        $content = trim((string) ($row['content'] ?? $row['item_content'] ?? $row['text'] ?? ''));
+
+        if ($title === '' && $content === '') {
+            continue;
+        }
+
+        $advantages[] = [
+            'title' => $title,
+            'content' => $content,
+        ];
+    }
+}
+
 if (is_array($methods_rows)) {
     foreach ($methods_rows as $row) {
         if (is_string($row)) {
@@ -140,6 +164,9 @@ if ($stages_title !== '' || !empty($stages) || $stages_bg_url !== '' || $stages_
 }
 if ($methods_title !== '' || !empty($methods)) {
     $sections[] = ['id' => 'itw-methods', 'title' => $methods_title !== '' ? $methods_title : __('Методи лікування', 'igrmed')];
+}
+if ($advantages_title !== '' || !empty($advantages)) {
+    $sections[] = ['id' => 'itw-advantages', 'title' => $advantages_title !== '' ? $advantages_title : __('Переваги', 'igrmed')];
 }
 
 if (empty($sections)) {
@@ -278,6 +305,32 @@ if (empty($sections)) {
                                             <?php endif; ?>
                                             <?php if ($method['content'] !== ''): ?>
                                                 <?php echo wp_kses_post(wpautop($method['content'])); ?>
+                                            <?php endif; ?>
+                                        </article>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($advantages_title !== '' || !empty($advantages)): ?>
+                    <div id="itw-advantages" class="infertility-treatment-women__section infertility-treatment-women__section--advantages js-itw-section donor-section">
+                        <div class="infertility-treatment-women__section-title-wrap">
+                            <h2 class="infertility-treatment-women__section-title">
+                                <?php echo esc_html($advantages_title !== '' ? $advantages_title : __('Переваги', 'igrmed')); ?>
+                            </h2>
+                        </div>
+                        <div class="infertility-treatment-women__section-body infertility-treatment-women__section-body--advantages">
+                            <?php if (!empty($advantages)): ?>
+                                <div class="infertility-treatment-women__list">
+                                    <?php foreach ($advantages as $item): ?>
+                                        <article class="infertility-treatment-women__item">
+                                            <?php if ($item['title'] !== ''): ?>
+                                                <h3><?php echo esc_html($item['title']); ?></h3>
+                                            <?php endif; ?>
+                                            <?php if ($item['content'] !== ''): ?>
+                                                <?php echo wp_kses_post(wpautop($item['content'])); ?>
                                             <?php endif; ?>
                                         </article>
                                     <?php endforeach; ?>
