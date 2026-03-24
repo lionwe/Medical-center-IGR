@@ -1,0 +1,407 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.contacts-info {
+    margin-top: convert-to-rem(-330px);
+    position: relative;
+    z-index: 2;
+    padding-bottom: convert-to-rem(80px);
+
+    @include mobile {
+        --_section-offset: #{convert-to-rem(0px)};
+    }
+
+    &__card {
+        display: flex;
+        gap: convert-to-rem(16px);
+        border-radius: convert-to-rem(22px);
+        padding: convert-to-rem(16px);
+
+        background-color: var(--color-white-07);
+        backdrop-filter: blur(convert-to-rem(9px));
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: convert-to-rem(22px);
+            padding: convert-to-rem(2px);
+            background: linear-gradient(180deg, var(--color-gradient-border-start) 0%, var(--color-gradient-border-middle) 41.42%, var(--color-gradient-border-end) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        box-shadow: 0 convert-to-rem(17px) convert-to-rem(38px) 0 var(--color-shadow-dark-01),
+        0 convert-to-rem(69px) convert-to-rem(69px) 0 var(--color-shadow-dark-009),
+        0 convert-to-rem(156px) convert-to-rem(94px) 0 var(--color-shadow-dark-005),
+        0 convert-to-rem(277px) convert-to-rem(111px) 0 var(--color-shadow-dark-001),
+        0 convert-to-rem(433px) convert-to-rem(121px) 0 var(--color-shadow-dark-000);
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
+
+    &__left {
+        width: auto;
+        flex-shrink: 0;
+        background: var(--color-white);
+        border-radius: convert-to-rem(20px);
+        padding: convert-to-rem(30px) convert-to-rem(33px);
+        display: flex;
+        flex-direction: column;
+
+        @include mobile {
+            padding: convert-to-rem(20px);
+            width: 100%;
+        }
+    }
+
+    &__intro {
+        text-align: center;
+        margin-bottom: convert-to-rem(40px);
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1);
+            color: var(--color-headings);
+            margin-bottom: convert-to-rem(6px);
+        }
+
+        p {
+            @include typography($font-family-montserrat, $fw-regular, 16px, 1);
+            color: #323335;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: convert-to-rem(23px);
+        align-items: center;
+
+        @include mobile {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    &__data {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(20px);
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: convert-to-rem(10px);
+
+        &--phones {
+            align-items: flex-start;
+        }
+
+        span,
+        a {
+            @include typography($font-family-montserrat, $fw-regular, 14px, 1);
+            color: var(--color-text-main);
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: var(--color-primary);
+            }
+        }
+    }
+
+    &__tels {
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(12px);
+    }
+
+    &__icon {
+        width: convert-to-rem(30px);
+        height: convert-to-rem(30px);
+        border-radius: convert-to-rem(52px);
+        background: linear-gradient(180deg, var(--color-icon-gradient-start, #4776BA) 0%, var(--color-icon-gradient-end, #C8CCD1) 100%);
+        box-shadow: 0 convert-to-rem(4px) convert-to-rem(50px) 0 var(--color-white-05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        img {
+            width: convert-to-rem(14px);
+            height: convert-to-rem(14px);
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    &__schedule {
+        border-radius: convert-to-rem(20px);
+        background: var(--color-white-02);
+        box-shadow: 0 convert-to-rem(4px) convert-to-rem(30px) 0 var(--color-shadow-dark-025, rgba(0, 0, 0, 0.25));
+        padding: convert-to-rem(26px) convert-to-rem(23.5px);
+        display: flex;
+        align-items: flex-start;
+        gap: convert-to-rem(15px);
+        flex-shrink: 0;
+
+        @include mobile {
+            width: 100%;
+            justify-content: center;
+            padding: convert-to-rem(10px) convert-to-rem(38px);
+        }
+    }
+
+    &__schedule-icon {
+        width: convert-to-rem(48px);
+        height: convert-to-rem(53px);
+        border-radius: convert-to-rem(52px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    }
+
+    &__schedule-text {
+        @include typography($font-family-montserrat, $fw-regular, (12px, 14px), calc(24 / 14));
+        color: #323335;
+        padding-left: convert-to-rem(28px);
+
+        p,
+        pre {
+            white-space: pre-wrap;
+            margin-bottom: convert-to-rem(10px);
+
+            @include mobile {
+                margin-bottom: convert-to-rem(4px);
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .schedule-outdent {
+            position: absolute;
+            transform: translateX(-100%);
+        }
+
+
+        @include mobile {
+            font-weight: $fw-semibold;
+        }
+    }
+
+    &__right {
+        flex: 1;
+        border-radius: convert-to-rem(20px);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: convert-to-rem(75.5px) convert-to-rem(44px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        @include mobile {
+            padding: convert-to-rem(40px) convert-to-rem(20px);
+            min-height: convert-to-rem(350px);
+            width: 100%;
+        }
+    }
+
+    &__form-intro {
+        text-align: center;
+        margin-bottom: convert-to-rem(30px);
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            @include typography($font-family-montserrat, $fw-medium, (24px, 32px), 1);
+            color: var(--color-headings);
+            margin-bottom: convert-to-rem(6px);
+        }
+
+        p {
+            @include typography($font-family-montserrat, $fw-regular, 16px, 1);
+            color: #323335;
+        }
+    }
+
+    &__form {
+        width: 100%;
+        max-width: convert-to-rem(600px);
+    }
+
+    &__map-wrapper {
+        margin-top: convert-to-rem(40px);
+        width: 100%;
+        height: convert-to-rem(465px);
+        border-radius: convert-to-rem(22px);
+        border: 1px solid var(--color-white);
+        overflow: hidden;
+
+        @include mobile {
+            height: convert-to-rem(350px);
+            margin-top: convert-to-rem(30px);
+        }
+    }
+
+    &__map {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+}
+
+.contacts-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &__row {
+        display: flex;
+        gap: convert-to-rem(20px);
+        margin-bottom: convert-to-rem(10px);
+        width: 100%;
+
+        @include mobile {
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    &__group {
+        margin-bottom: convert-to-rem(10px);
+        width: 100%;
+
+        &--half {
+            flex: 1;
+
+            @include mobile {
+                margin-bottom: convert-to-rem(10px);
+            }
+        }
+
+        &--last {
+            margin-bottom: convert-to-rem(12px);
+        }
+    }
+
+    &__input {
+        width: 100%;
+        height: convert-to-rem(44px);
+        padding: convert-to-rem(10px) convert-to-rem(20px);
+        background: var(--color-white-06);
+        border: 1px solid transparent;
+        border-radius: convert-to-rem(100px);
+        @include typography($font-family-montserrat, $fw-regular, 12px, calc(20 / 12));
+        color: var(--color-text-main);
+        outline: none;
+        transition: all 0.3s ease;
+
+        &::placeholder {
+            @include typography($font-family-montserrat, $fw-regular, 12px, calc(20 / 12));
+            color: #8D8D8D;
+        }
+
+        &:focus {
+            background: var(--color-white-09);
+            border-color: var(--color-primary-dark-05, rgba(26, 59, 103, 0.5));
+        }
+
+        &.is-invalid {
+            border-color: red !important;
+            background-color: rgba(255, 0, 0, 0.1) !important;
+        }
+    }
+
+    &__button-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    &__button {
+        width: 100%;
+        height: convert-to-rem(44px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-primary-dark);
+        border: none;
+        border-radius: convert-to-rem(100px);
+        padding: convert-to-rem(10px);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        .btn__text {
+            @include typography('Open Sans', $fw-regular, 16px, 1);
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        &:hover {
+            background: var(--color-primary-dark-hover, #112745);
+        }
+
+        &:disabled {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+    }
+
+    &__success {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        width: 100%;
+        flex-direction: column;
+        padding: convert-to-rem(20px) 0;
+
+        &__content {
+            text-align: center;
+        }
+
+        &__title {
+            @include typography($font-family-montserrat, $fw-medium, 24px, 1.2);
+            color: var(--color-primary-dark);
+            margin-bottom: convert-to-rem(10px);
+            text-transform: uppercase;
+        }
+
+        &__text {
+            @include typography($font-family-montserrat, $fw-regular, 16px, 1);
+            color: #323335;
+        }
+    }
+}
