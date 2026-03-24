@@ -1,0 +1,384 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.egg-donor-content {
+  padding-top: convert-to-rem(40px);
+
+  @include mobile {
+    padding-top: convert-to-rem(28px);
+  }
+
+  // ==========================
+  // BASE
+  // ==========================
+
+  &__layout {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: convert-to-rem(60px);
+  }
+
+  &__content {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(60px);
+
+    @include mobile {
+      gap: convert-to-rem(14px);
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    scroll-margin-top: convert-to-rem(60px);
+    gap: convert-to-rem(10px);
+
+    @include mobile {
+      scroll-margin-top: convert-to-rem(40px);
+      gap: convert-to-rem(14px);
+    }
+  }
+
+  &__title-wrap {
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: convert-to-rem(-1px);
+    padding: convert-to-rem(10px);
+    padding-right: convert-to-rem(232px);
+    border-radius: convert-to-rem(8px);
+    background: linear-gradient(
+      90deg,
+      var(--color-title-gradient-start) 36.06%,
+      var(--color-title-gradient-end-transparent) 100%
+    );
+
+    @include mobile {
+      width: 100%;
+      padding: convert-to-rem(13px) convert-to-rem(9px);
+    }
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-semibold, (16px, 24px), 1.2, 0);
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    color: var(--color-white);
+  }
+
+  &__body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(20px);
+    border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
+    padding: convert-to-rem(18px) convert-to-rem(20px);
+    overflow-wrap: anywhere;
+      @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+
+    :where( li) {
+      @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    }
+
+    @include mobile {
+      padding: 0;
+      gap: convert-to-rem(16px);
+        @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+
+      :where( li) {
+        @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+      }
+    }
+  }
+
+  // ==========================
+  // INTRO SECTION (same as pregnancy)
+  // ==========================
+
+  &__section--intro {
+    background: linear-gradient(90deg, #4776BA 47.22%, #FFFFFF 114.79%);
+    border-radius: convert-to-rem(12px);
+    color: var(--color-white);
+    padding: convert-to-rem(20px) 10px;
+
+    .egg-donor-content__title-wrap {
+      padding: 0;
+      background: none;
+    }
+
+    .egg-donor-content__body {
+      background: transparent;
+      padding: 0;
+
+      @include mobile {
+        padding: 0;
+      }
+    }
+  }
+
+  // ==========================
+  // STAGES SECTION
+  // ==========================
+
+  &__section--stages {
+    position: relative;
+    overflow: hidden;
+
+    .egg-donor-content__blob {
+      position: absolute;
+      top: convert-to-rem(10px);
+      right: convert-to-rem(-300px);
+      width: convert-to-rem(799px);
+      height: convert-to-rem(594px);
+      opacity: 1;
+      pointer-events: none;
+      z-index: 1;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    .egg-donor-content__title-wrap,
+    .egg-donor-content__body {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  &__stages-layout {
+    display: flex;
+    gap: convert-to-rem(22px);
+    align-items: stretch;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__stages-image {
+    flex: 0 0 auto;
+    width: convert-to-rem(450px);
+    aspect-ratio: 447 / 569;
+    border-radius: convert-to-rem(10px);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include mobile {
+      width: 100%;
+      aspect-ratio: 447 / 569;
+    }
+  }
+
+  &__stages-list {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(6px);
+  }
+
+  &__stage-item {
+    display: flex;
+    align-items: stretch;
+    gap: convert-to-rem(10px);
+  }
+
+  &__stage-number {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: convert-to-rem(10px);
+    padding: Clamp(8px,10px);
+    @include typography($font-family-montserrat, $fw-medium, 15px, 1, 0);
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 1);
+    background: rgba(230, 192, 163, 1);
+
+    @include mobile {
+     
+    }
+  }
+
+  &__stage-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(5px);
+    border-radius: convert-to-rem(10px);
+    border: 1px solid rgba(230, 192, 163, 1);
+    padding: convert-to-rem(8px) convert-to-rem(17px);
+  }
+
+  &__stage-title {
+    @include typography($font-family-montserrat, $fw-semibold, 18px, 1, 0);
+    margin: 0;
+    color: var(--color-black);
+  }
+
+  &__stage-text-wrap {
+    display: flex;
+    align-items: stretch;
+    gap: convert-to-rem(6px);
+  }
+
+  &__stage-line {
+    flex: 0 0 auto;
+    width: convert-to-rem(2px);
+    height: 70%;
+    align-self: center;
+    background: linear-gradient(180deg, #316393 0%, #0F1E2D 100%);
+    border-radius: convert-to-rem(32px);
+  }
+
+  &__stage-text {
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1, 0);
+    margin: 0;
+    color: var(--color-black);
+    flex: 1 1 auto;
+  }
+
+  // ==========================
+  // REQUIREMENTS SECTION
+  // ==========================
+
+  &__requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: convert-to-rem(40px);
+    position: relative;
+
+    @include mobile {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: convert-to-rem(10px);
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &__requirement-card {
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(70px);
+    padding:Clamp(0,16px);
+    position: relative;
+    background: url('../img/requirements-card-bg.webp') no-repeat center center;
+    background-size: cover;
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: calc(-1 * convert-to-rem(20px));
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 105%;
+      background: rgba(85, 129, 191, 1);
+    }
+
+    @include mobile {
+      gap: 90px;
+      &:not(:last-child)::after {
+        display: none;
+      }
+
+      &:nth-child(odd):not(:last-child)::after {
+        display: block;
+        content: '';
+        position: absolute;
+        right: calc(-1 * convert-to-rem(5px));
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 100%;
+        background: rgba(85, 129, 191, 1);
+      }
+    }
+  }
+
+  &__requirement-title {
+    @include typography($font-family-montserrat, $fw-semibold, 15px, 1.2, 0);
+    margin: 0;
+    color: var(--color-black);
+  }
+
+  &__requirement-text {
+    @include typography($font-family-montserrat, $fw-regular, 14px, 1.4, 0);
+    margin: 0;
+    color: var(--color-black);
+  }
+
+  // ==========================
+  // COMPENSATION SECTION
+  // ==========================
+
+  &__compensation-text-wrap {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(8px);
+  }
+
+  &__compensation-text {
+    @include typography($font-family-montserrat, $fw-regular, 16px, 1.2, 0);
+  }
+
+  &__compensation-highlight-wrap {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(8px);
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  &__compensation-highlight-line {
+    flex: 0 0 auto;
+    width: convert-to-rem(2px);
+    height: 80%;
+    background: linear-gradient(180deg, #316393 0%, #0F1E2D 100%);
+    border-radius: convert-to-rem(32px);
+
+    @include mobile {
+
+      min-height: 50px;
+    }
+  }
+
+  &__compensation-highlight {
+    @include typography($font-family-montserrat, $fw-regular, 18px, 1.2, 0);
+
+    em {
+      @include typography($font-family-montserrat, $fw-regular, 16px, 1.2, 0);
+    }
+  }
+
+  // ==========================
+  // EDITOR
+  // ==========================
+
+  &__editor {
+    margin-top: convert-to-rem(40px);
+  }
+}

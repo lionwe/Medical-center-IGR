@@ -1,0 +1,265 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.pregnancy-doctors {
+    position: relative;
+    overflow: hidden;
+    padding: 130px 0px 30px 30px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: convert-to-rem(22px);
+
+    &__wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        color: var(--color-white);
+    }
+
+    &__title {
+        @include typography($font-family-montserrat, $fw-semibold, 24px, 1.2, 0);
+        color: var(--color-white);
+        margin: 0 0 convert-to-rem(20px);
+        text-align: left;
+        position: relative;
+        display: block;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: convert-to-rem(-10px);
+            left: 0;
+            width: 100%;
+            height: convert-to-rem(1px);
+            background-color: rgba(217, 217, 217, 1);
+        }
+
+        @include mobile {
+            @include typography($font-family-montserrat, $fw-semibold, 20px, 1.2, 0);
+            margin-bottom: convert-to-rem(12px);
+        }
+    }
+
+    &__intro {
+        @include typography($font-family-montserrat, $fw-regular, 18px, 1.5, 0);
+        color: var(--color-white);
+        margin: 0 auto convert-to-rem(40px);
+        text-align: center;
+        max-width: convert-to-rem(600px);
+
+        @include mobile {
+            @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+            margin-bottom: convert-to-rem(32px);
+        }
+    }
+
+    &__slider-clip {
+        position: relative;
+        overflow: visible;
+        margin-top: convert-to-rem(24px);
+        margin-inline: auto;
+    }
+
+    &__slider.swiper {
+        width: 100%;
+        height: convert-to-rem(500px);
+        overflow: hidden;
+        
+        @include mobile {
+            height: convert-to-rem(455px);
+        }
+
+        .swiper-wrapper {
+            align-items: flex-end;
+        }
+    }
+
+    &__slide.swiper-slide {
+        width: convert-to-rem(253px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @include mobile {
+            width: convert-to-rem(119px);
+            transition: none;
+        }
+    }
+
+    &__slide-image-wrap {
+        flex-shrink: 0;
+        position: relative;
+        border-radius: convert-to-rem(12px);
+        overflow: hidden;
+        aspect-ratio: 253 / 253;
+        width: 100%;
+        transition:
+            aspect-ratio 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 0.3s ease;
+        box-shadow: none;
+
+        @include mobile {
+            aspect-ratio: 119 / 127;
+            height: convert-to-rem(127px);
+        }
+    }
+
+    &__slide-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &__slide-more {
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1, 0);
+        position: absolute;
+        left: 50%;
+        bottom: convert-to-rem(30px);
+        transform: translate(-50%, convert-to-rem(8px));
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: convert-to-rem(8px) convert-to-rem(22px);
+        border-radius: convert-to-rem(100px);
+        border: none;
+        background: var(--color-primary-dark);
+        color: var(--color-white);
+        text-decoration: none;
+        white-space: nowrap;
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+
+        @include mobile {
+            width: convert-to-rem(43px);
+            height: convert-to-rem(43px);
+            padding: 0;
+            border-radius: 50%;
+            font-size: 0;
+            line-height: 0;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: convert-to-rem(-5px);
+                border-radius: 50%;
+                border: convert-to-rem(0.5px) solid rgba(255, 255, 255, 1);
+                pointer-events: none;
+            }
+        }
+    }
+
+    &__slide-more-text {
+        display: inline;
+    }
+
+    &__slide-more-icon {
+        width: convert-to-rem(20px);
+        height: convert-to-rem(20px);
+        display: none;
+
+        @include mobile {
+            display: block;
+        }
+    }
+
+    @include mobile {
+        &__slide-more-text {
+            display: none;
+        }
+    }
+
+    &__slide-title {
+        @include typography($font-family-montserrat, $fw-semibold, 16px, 1, 0);
+        flex-shrink: 0;
+        margin: 0 0 convert-to-rem(10px);
+        color: var(--color-white);
+    }
+
+    &__slide-spec {
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1, 0);
+        flex-shrink: 0;
+        margin: 0 0 convert-to-rem(8px);
+        color: var(--color-white);
+    }
+
+    &__slide-excerpt {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 1.4, 0);
+        display: none;
+        flex-shrink: 0;
+        margin: 0 0 convert-to-rem(20px);
+        color: var(--color-white);
+        width: convert-to-rem(350px);
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        overflow: hidden;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        
+        @include mobile {
+            width: convert-to-rem(230px);
+        }
+    }
+
+    .swiper-slide-active {
+        width: convert-to-rem(350px) !important;
+        opacity: 1;
+
+        @include mobile {
+            width: convert-to-rem(230px) !important;
+        }
+
+        .pregnancy-doctors__slide-excerpt {
+            display: -webkit-box;
+        }
+
+        .pregnancy-doctors__slide-more {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+        }
+
+        .pregnancy-doctors__slide-image-wrap {
+            aspect-ratio: 350 / 350;
+            box-shadow: none;
+
+            @include mobile {
+                height: convert-to-rem(273px);
+            }
+        }
+    }
+
+    &__slider-nav {
+        position: absolute;
+        left: 30%;
+        top: 75%;
+        margin-top: 0;
+        z-index: 2;
+
+        .btn {
+            pointer-events: auto;
+            border-radius: convert-to-rem(22px);
+        }
+        
+        @include mobile {
+            left: 80%;
+            top: 90%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: convert-to-rem(60px) 0;
+    }
+}

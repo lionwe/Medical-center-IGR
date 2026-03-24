@@ -147,7 +147,7 @@
   }
 
   &__symptoms-card {
-    @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
+    @include typography($font-family-montserrat, $fw-regular, 14px, 22px, 0);
     display: flex;
     align-items: center;
     gap: convert-to-rem(10px);
@@ -158,18 +158,31 @@
     justify-content: center;
   }
 
+  &__symptoms-card strong {
+    @include typography($font-family-montserrat, $fw-semibold, 14px, 22px, 0);
+  }
+
+  &__symptoms-card p:first-child {
+    @include typography($font-family-montserrat, $fw-semibold, 14px, 22px, 0);
+  }
+
   &__symptoms-accent {
     display: block;
     flex: 0 0 auto;
     align-self: center;
-    height: 120%;
-    width: convert-to-rem(2px);
+    height: 100%;
+    width: convert-to-rem(4px);
     background: linear-gradient(
       0deg,
       var(--color-accent-gradient-start) 0%,
       var(--color-accent-gradient-end) 100%
     );
     border-radius: convert-to-rem(4px);
+
+    @include mobile {
+      width: convert-to-rem(2px);
+      height: 100%;
+    }
   }
 
   &__stages-bg {

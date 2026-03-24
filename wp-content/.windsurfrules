@@ -1,0 +1,176 @@
+# IGR Medical — WordPress тема `igrmed` (Windsurf / AI rules)
+
+Цей документ описує, як працювати з проєктом: де лежить код, як збирається фронтенд, які є домовленості в PHP/SCSS/JS. Дотримуйся його при будь-яких змінах.
+
+---
+
+## 1. Контекст репозиторію та шляхів
+
+- Git-репозиторій зазвичай на рівні `app/public/` (WordPress core + `wp-content`).
+- Тема клініки IGR Medical: `wp-content/themes/igrmed/`.
+- Плагіни та uploads — стандартні для WordPress; **основна кастомна розробка — у темі `igrmed`**.
+- Локальне середовище часто Local by Flywheel / аналог; URL і БД не хардкодити в коді теми.
+
+---
+
+## 2. Роль теми та домен
+
+- Сайт медичного центру, українська локалізація в адмінці та контенті.
+- Текстовий домен перекладів WordPress у темі: **`igrmed`** (функції `__()`, `_e()`, `_x()` тощо — де застосовується).
+- **ACF (Advanced Custom Fields)** активно використовується; є сторінка опцій: `acf_add_options_page` з slug `site-options` («Налаштування сайту»). Поля з опцій підключай через `get_field('field', 'option')` за фактичними іменами полів у проєкті.
+- Перед зміною імен полей ACF переконайся в експорті/адмінці — зламані ключі полів ламають контент.
+
+---
+
+## 3. Кастомні типи записів (CPT)
+
+Файл реєстрації: `themes/igrmed/includes/post-types.php`.
+
+- **`services`** — послуги; таксономія `service_category`. Шаблони сторінок послуг часто як окремі `single-*.php` або через призначення шаблону сторінки CPT.
+- **`doctors`** — лікарі; таксономія `doctor_specialty`.
+- **`blog`** — блог; таксономія `blog_category`; архів з логікою кількості постів на сторінку (у `functions.php` — `igrmed_blog_posts_per_page`: мобільна/десктопна кількість).
+
+Не видаляти й не перейменовувати CPT/slug без міграції URL і правил rewrite.
+
+---
+
+## 4. Структура PHP у темі
+
+### 4.1 Точка входу
+- `functions.php` — підключення стилів/скриптів, хелпери, ACF options, фільтри (наприклад MIME для SVG), інтеграції (наприклад Telegram для CF7 за наявності).
+- `includes/post-types.php`, `includes/ajax-handler.php` — підключаються з `functions.php`.
+
+### 4.2 Шаблони сторінок і записів
+- Корінь теми: `page-*.php`, `single-*.php`, `archive-*.php`, `front-page.php` тощо за ієрархією WordPress.
+- Сторінки з явним шаблоном: у файлі заголовок `Template Name: ...` і при потребі `Template Post Type: ...` (наприклад EKZ прив’язаний до `services`).
+
+### 4.3 Секції (компоненти розмітки)
+- Каталог **`sections/`** — дрібні PHP-фрагменти, що підключаються через `get_template_part('sections/...')`.
+- Приклад: головна збирається в `pages/home.php` з `sections/home/hero`, `advantages`, `services` тощо.
+- Сторінка EKZ: `single-ekz.php` → `sections/ekz/hero`, `sections/ekz/content`, спільні `sections/services/faq`, `sections/home/cta`.
+- **Правило:** нова верстка сторінки — спочатку подумай, чи це окремий `single-*.php` / `page-*.php`, чи лише нова секція в `sections/<контекст>/`.
+
+### 4.4 Повторно використовувані шаблони
+- `templates/` — наприклад `button.php`, `blog-card.php`, `photo-banner.php`, `content-sidebar.php`.
+
+### 4.5 Хедер/футер
+- `get_header()`, `get_footer()`, інколи `get_footer('simple')` — не ламай сигнатури без потреби.
+
+### 4.6 PHP-стиль
+- Оголошуй типи повернення де це вже прийнято в файлі (`: void` тощо).
+- Екранування виводу: `esc_html`, `esc_attr`, `esc_url`, `wp_kses_post` для HTML з обмеженнями.
+- AJAX: екшени з префіксом теми (наприклад `igrmed_*`), nonce перевіряти на сервері.
+
+---
+
+## 5. SVG та зображення
+
+- SVG для інлайну з диска теми: **`igrmed_get_svg($name)`** — читає `assets/img/svg/{name}.svg`. Додавай нові файли в цю папку й викликай без розширення.
+- Webpack кладе скопійовані/імпортовані ресурси в **`dist/images/`** (див. `webpack.config.js`).
+- У адмінці дозволені SVG через фільтри в `functions.php` — не відключай без причини.
+
+---
+
+## 6. Фронтенд: збірка (Webpack 5)
+
+Робоча директорія для команд: **`wp-content/themes/igrmed/`** (там `package.json`).
+
+- **`npm run watch`** — development + watch (типова локальна робота).
+- **`npm run build`** — production (мініфікація JS/CSS).
+
+### 6.1 Вхідні точки
+- **JS:** єдиний головний entry — `assets/js/main.js` → вихід `dist/js/main.bundle.js`.
+- **CSS:** імпортується з `main.js` рядком `import "../css/main.scss";` → `dist/css/main.bundle.css`.
+
+WordPress підключає саме **`dist/css/main.bundle.css`** та **`dist/js/main.bundle.js`** у `igrmed_enqueue_assets()` з версією за `filemtime`. **Не редагуй вручну файли в `dist/`** — лише джерела в `assets/`.
+
+### 6.2 Залежності JS (package.json)
+- **Swiper 11**, **GSAP**, **IMask**, **intl-tel-input**, **lodash.throttle**, **animate.css**, **modern-normalize**, **core-js** (через Babel useBuiltIns).
+- Динамічний імпорт уже використовується для попапів: `import("./popups/main")` за наявності `.backdrop` у DOM — зберігай цей патерн для важких модулів.
+
+### 6.3 Структура JS у темі
+- `assets/js/main.js` — імпорти підмодулів.
+- `assets/js/components/<area>/main.js` — вхід для логіки сторінки/розділу.
+- `assets/js/swipers/` — свайпери, зібрані через `swipers/main.js`.
+- `assets/js/ui/`, `assets/js/forms/`, `assets/js/popups/`, `assets/js/utils` — за призначенням.
+- **Правило:** новий інтерактив для конкретної сторінки — у відповідний `components/<area>/`, підключи з `main.js` або умовно, щоб не роздувати бандл без потреби.
+
+### 6.4 Babel / PostCSS
+- Babel: `@babel/preset-env` з `core-js` usage, `@babel/plugin-transform-runtime`.
+- PostCSS: `postcss.config.js` у темі; autoprefixer / preset-env за конфігом.
+
+---
+
+## 7. SCSS архітектура
+
+Корінь стилів: **`assets/css/main.scss`**.
+
+Порядок підключення (важливо для каскаду):
+1. `utils/mixins`
+2. `base/` — variables, fonts, utils, common, button
+3. `vendors/`
+4. `layout/` — загальні блоки (pageHeader, breadcrumbs, картки, sidebar тощо)
+5. **`components/main`** — агрегатор секційних стилів
+6. `layout/pageFooter`
+
+### 7.1 Модульність (`@use`)
+- Проєкт переведений на **Sass module system (`@use` / `@forward` де застосовно)**. Не повертайся до глобального `@import` у новому коді.
+- Змінні та міксини: `assets/css/base/_variables.scss` (часто `@use "../utils/mixins" as *;`), `assets/css/utils/_mixins.scss`.
+- У компонентах використовуй **CSS custom properties** з `:root` у variables для кольорів, відступів (`--_section-gap`, `--_section-offset` тощо) — узгоджуй з існуючою палітрою.
+
+### 7.2 Компонентні пакети
+- `assets/css/components/_main.scss` підключає підпакети через `@use`: `home`, `about`, `ekz`, `single-blog`, `archive-blog`, `diagnostics-research`, тощо.
+- Кожен підрозділ має свій `_main.scss`, який тягне partials (`_hero.scss`, `_content.scss`, …).
+
+**Правило:** нова сторінка/розділ — додай partial(и), підключи в `components/<name>/_main.scss`, переконайся що `components/_main.scss` містить `@use` для цього пакета.
+
+### 7.3 Іменування класів
+- Дотримуйся BEM-подібних або вже прийнятих у файлі префіксів (наприклад контекст `ekz`, `home`).
+- Уникай надто загальних селекторів, що ламають інші сторінки.
+
+---
+
+## 8. Локалізація скриптів
+
+У `functions.php` для головного скрипта:
+- `wp_localize_script('igrmed-main-js', 'params', [ 'ajax_url', 'nonce', 'template_directory_url' ])`
+
+У браузері об’єкт **`params`** — використовуй для AJAX URL, nonce і базового URI теми. Не дублюй ці значення в HTML атрибутах без потреби.
+
+---
+
+## 9. Що робити при типових задачах
+
+| Задача | Де змінювати |
+|--------|----------------|
+| Верстка/контент блоку сторінки | `sections/<контекст>/*.php` + SCSS у `assets/css/components/<контекст>/` |
+| Глобальні кольори/відступи | `assets/css/base/_variables.scss` (обережно: впливає на весь сайт) |
+| Нова анімація/слайдер | `assets/js/swipers/` або `components/`, підключення в `main.js` / `swipers/main.js` |
+| Нова форма / відправка | CF7 / бекенд теми; AJAX — `includes/ajax-handler.php` + JS |
+| Новий CPT / таксономія | `includes/post-types.php` + шаблони + можливо ACF location rules |
+
+---
+
+## 10. Обмеження та якість коду (обов’язково для AI)
+
+- **Мінімальний diff:** змінюй лише те, що потрібно для задачі; без «рефакторингу заодно» в сусідніх файлах.
+- **Не коміть** `node_modules`, згенеровані карти/бандли можна комітити лише якщо так заведено в команді (зазвичай `dist/` у репозиторії — після `npm run build` має бути актуальним).
+- **Перевірка:** після змін SCSS/JS запусти `npm run watch` або `npm run build` у теці теми; переконайся, що немає помилок компіляції.
+- **Доступність і медичний контекст:** не спрощуй юридично/медично значущий текст без запиту; семантичні теги (`main`, заголовки, `alt`) зберігай.
+- **Безпека WordPress:** capability checks в адмінських діях, sanitization input, escaping output, перевірка nonce для AJAX.
+
+---
+
+## 11. Корисні орієнтири по файлах (шпаргалка)
+
+- Підключення асетів: `themes/igrmed/functions.php` → `igrmed_enqueue_assets`
+- Міксини: `themes/igrmed/assets/css/utils/_mixins.scss`
+- Змінні та :root: `themes/igrmed/assets/css/base/_variables.scss`
+- Збірка: `themes/igrmed/webpack.config.js`, `package.json`
+- Головний JS: `themes/igrmed/assets/js/main.js`
+- Головний SCSS: `themes/igrmed/assets/css/main.scss`
+- Секції EKZ: `themes/igrmed/sections/ekz/`, стилі `assets/css/components/ekz/`
+
+---
+
+Кінець правил. Оновлюй цей файл, коли змінюється архітектура збірки, CPT або домовленості по папках.

@@ -1,0 +1,105 @@
+/**
+ * Header nav: open submenus on click (desktop + mobile overlay).
+ */
+const initNavDropdown = () => {
+  const menus = document.querySelectorAll(
+    ".header__menu .nav-list, .header__mobile-menu-nav .nav-list"
+  );
+
+  if (!menus.length) {
+    return;
+  }
+
+  const closeSiblings = (li) => {
+    const parent = li.parentElement;
+    if (!parent) {
+      return;
+    }
+    parent.querySelectorAll(":scope > .menu-item-has-children.is-open").forEach((sibling) => {
+      if (sibling !== li) {
+        sibling.classList.remove("is-open");
+        const link = sibling.querySelector(":scope > a");
+        if (link) {
+          link.setAttribute("aria-expanded", "false");
+        }
+      }
+    });
+  };
+
+  const closeAllInMenu = (menu) => {
+    menu.querySelectorAll(".menu-item-has-children.is-open").forEach((li) => {
+      li.classList.remove("is-open");
+      const link = li.querySelector(":scope > a");
+      if (link) {
+        link.setAttribute("aria-expanded", "false");
+      }
+    });
+  };
+
+  menus.forEach((menu) => {
+    menu.querySelectorAll(".menu-item-has-children").forEach((li) => {
+      const link = li.querySelector(":scope > a");
+      const sub = li.querySelector(":scope > .sub-menu");
+      if (!link || !sub) {
+        return;
+      }
+
+      link.setAttribute("aria-haspopup", "true");
+      link.setAttribute("aria-expanded", "false");
+
+      const toggle = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const wasOpen = li.classList.contains("is-open");
+        closeSiblings(li);
+        if (wasOpen) {
+          li.classList.remove("is-open");
+          link.setAttribute("aria-expanded", "false");
+        } else {
+          li.classList.add("is-open");
+          link.setAttribute("aria-expanded", "true");
+        }
+      };
+
+      link.addEventListener("click", toggle);
+      link.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggle(event);
+        }
+      });
+    });
+
+    menu.addEventListener("click", (event) => {
+      const anchor = event.target.closest("a");
+      if (!anchor) {
+        return;
+      }
+      const item = anchor.closest("li");
+      if (!item || !menu.contains(item)) {
+        return;
+      }
+      if (item.classList.contains("menu-item-has-children") && anchor === item.querySelector(":scope > a")) {
+        return;
+      }
+      closeAllInMenu(menu);
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    menus.forEach((menu) => {
+      if (!menu.contains(event.target)) {
+        closeAllInMenu(menu);
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") {
+      return;
+    }
+    menus.forEach((menu) => closeAllInMenu(menu));
+  });
+};
+
+document.addEventListener("DOMContentLoaded", initNavDropdown);

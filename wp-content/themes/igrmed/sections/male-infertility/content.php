@@ -1,0 +1,282 @@
+<?php
+/**
+ * Чоловіче безпліддя — контент сторінки.
+ */
+
+$extract_text_rows = static function ($rows, array $keys = ['item', 'text', 'title', 'name']): array {
+    $items = [];
+
+    if (!is_array($rows)) {
+        return $items;
+    }
+
+    foreach ($rows as $row) {
+        if (is_string($row)) {
+            $value = trim($row);
+            if ($value !== '') {
+                $items[] = $value;
+            }
+            continue;
+        }
+
+        if (!is_array($row)) {
+            continue;
+        }
+
+        foreach ($keys as $key) {
+            $value = trim((string) ($row[$key] ?? ''));
+            if ($value !== '') {
+                $items[] = $value;
+                break;
+            }
+        }
+    }
+
+    return $items;
+};
+
+$extract_image_url = static function ($image): string {
+    if (is_array($image)) {
+        return trim((string) ($image['url'] ?? ''));
+    }
+
+    if (is_numeric($image)) {
+        $image_url = wp_get_attachment_url((int) $image);
+        return $image_url ? (string) $image_url : '';
+    }
+
+    return trim((string) $image);
+};
+
+$intro_title = trim((string) get_field('intro_title'));
+$intro_content = get_field('intro_content');
+$intro_content = is_string($intro_content) ? trim($intro_content) : '';
+
+$causes_title = trim((string) get_field('causes_title'));
+$causes_subtitle = trim((string) get_field('causes_subtitle'));
+$causes_list = $extract_text_rows(get_field('causes_list'), ['item', 'text', 'title', 'name']);
+
+$when_title = trim((string) get_field('when_title'));
+$when_list = $extract_text_rows(get_field('when_list'), ['item', 'text', 'title', 'name']);
+
+$stages_title = trim((string) get_field('stages_title'));
+$stages_bg_desc = trim((string) get_field('stages_bg_desc'));
+$stages_bg_url = $extract_image_url(get_field('stages_bg'));
+$stages_bg_mobile_url = $extract_image_url(get_field('stages_bg_mob'));
+
+// Guard: if URL is accidentally entered into description field,
+// do not render it as visible text above the timeline.
+if ($stages_bg_desc !== '' && filter_var($stages_bg_desc, FILTER_VALIDATE_URL)) {
+    $stages_bg_desc = '';
+}
+
+if ($stages_bg_url === '') {
+    $stages_bg_url = 'http://igr-medical.local/wp-content/uploads/2026/03/group-1000001824-1-scaled.webp';
+}
+
+if ($stages_bg_mobile_url === '') {
+    $stages_bg_mobile_url = $stages_bg_url;
+}
+$stages_rows = get_field('stages_list');
+$stages_list = [];
+
+if (is_array($stages_rows)) {
+    foreach ($stages_rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $stages_list[] = [
+            'icon' => trim((string) ($row['icon'] ?? '')),
+            'title' => trim((string) ($row['title'] ?? '')),
+            'text' => trim((string) ($row['text'] ?? '')),
+        ];
+    }
+
+    $stages_list = array_values(array_filter($stages_list, static function ($item) {
+        return $item['icon'] !== '' || $item['title'] !== '' || $item['text'] !== '';
+    }));
+}
+
+$methods_title = trim((string) get_field('methods_title'));
+$methods_rows = get_field('methods_list');
+$methods_list = [];
+
+if (is_array($methods_rows)) {
+    foreach ($methods_rows as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+
+        $text = trim((string) ($row['text'] ?? ''));
+        if ($text !== '') {
+            $methods_list[] = $text;
+        }
+    }
+}
+
+$sections = [];
+
+if ($intro_title !== '' || $intro_content !== '') {
+    $sections[] = ['id' => 'mi-intro', 'title' => $intro_title !== '' ? $intro_title : __('Що таке чоловіче безпліддя?', 'igrmed')];
+}
+if ($causes_title !== '' || $causes_subtitle !== '' || !empty($causes_list)) {
+    $sections[] = ['id' => 'mi-causes', 'title' => $causes_title !== '' ? $causes_title : __('Причини безпліддя у чоловіків', 'igrmed')];
+}
+if ($when_title !== '' || !empty($when_list)) {
+    $sections[] = ['id' => 'mi-when', 'title' => $when_title !== '' ? $when_title : __('Коли варто звернутися за лікуванням?', 'igrmed')];
+}
+if ($stages_title !== '' || $stages_bg_desc !== '' || !empty($stages_list) || $stages_bg_url !== '' || $stages_bg_mobile_url !== '') {
+    $sections[] = ['id' => 'mi-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи лікування безпліддя', 'igrmed')];
+}
+if ($methods_title !== '' || !empty($methods_list)) {
+    $sections[] = ['id' => 'mi-methods', 'title' => $methods_title !== '' ? $methods_title : __('Методи лікування безпліддя', 'igrmed')];
+}
+
+if (empty($sections)) {
+    return;
+}
+?>
+
+<section class="male-infertility-content">
+    <div class="container">
+        <div class="male-infertility-content__layout catalog-wrap">
+            <?php get_template_part('templates/content-sidebar', null, ['sections' => $sections]); ?>
+
+            <div class="male-infertility-content__content">
+                <?php if ($intro_title !== '' || $intro_content !== ''): ?>
+                    <div id="mi-intro" class="male-infertility-content__section male-infertility-content__section--intro">
+                        <div class="male-infertility-content__title-wrap">
+                            <h2 class="male-infertility-content__title">
+                                <?php echo esc_html($intro_title !== '' ? $intro_title : __('Що таке чоловіче безпліддя?', 'igrmed')); ?>
+                            </h2>
+                        </div>
+                        <div class="male-infertility-content__body">
+                            <?php if ($intro_content !== ''): ?>
+                                <?php echo wp_kses_post($intro_content); ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($causes_title !== '' || $causes_subtitle !== '' || !empty($causes_list)): ?>
+                    <div id="mi-causes" class="male-infertility-content__section">
+                        <div class="male-infertility-content__title-wrap">
+                            <h2 class="male-infertility-content__title">
+                                <?php echo esc_html($causes_title !== '' ? $causes_title : __('Причини безпліддя у чоловіків', 'igrmed')); ?>
+                            </h2>
+                        </div>
+                        <div class="male-infertility-content__body">
+                            <?php if ($causes_subtitle !== ''): ?>
+                                <p class="male-infertility-content__subtitle"><?php echo esc_html($causes_subtitle); ?></p>
+                            <?php endif; ?>
+                            <?php if (!empty($causes_list)): ?>
+                                <ul class="male-infertility-content__reasons-list">
+                                    <?php foreach ($causes_list as $item): ?>
+                                        <li><?php echo esc_html($item); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($when_title !== '' || !empty($when_list)): ?>
+                    <div id="mi-when" class="male-infertility-content__section male-infertility-content__section--when">
+                        <div class="male-infertility-content__title-wrap male-infertility-content__title-wrap--when">
+                            <h2 class="male-infertility-content__title">
+                                <?php echo esc_html($when_title !== '' ? $when_title : __('Коли варто звернутися за лікуванням?', 'igrmed')); ?>
+                            </h2>
+                        </div>
+                        <div class="male-infertility-content__body">
+                            <?php if (!empty($when_list)): ?>
+                                <div class="male-infertility-content__symptoms-grid">
+                                    <?php foreach ($when_list as $item): ?>
+                                        <article class="male-infertility-content__symptoms-card">
+                                            <span class="male-infertility-content__symptoms-accent" aria-hidden="true"></span>
+                                            <?php echo esc_html($item); ?>
+                                        </article>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($stages_title !== '' || $stages_bg_desc !== '' || !empty($stages_list) || $stages_bg_url !== '' || $stages_bg_mobile_url !== ''): ?>
+                    <div id="mi-stages" class="male-infertility-content__section male-infertility-content__section--stages">
+                        <div class="male-infertility-content__title-wrap">
+                            <h2 class="male-infertility-content__title">
+                                <?php echo esc_html($stages_title !== '' ? $stages_title : __('Етапи лікування безпліддя', 'igrmed')); ?>
+                            </h2>
+                        </div>
+                        <div class="male-infertility-content__body male-infertility-content__body--stages">
+                            <?php if ($stages_bg_desc !== ''): ?>
+                                <strong class="male-infertility-content__subtitle">
+                                    <?php echo esc_html($stages_bg_desc); ?>
+                                </strong>
+                            <?php endif; ?>
+                            <?php if (!empty($stages_list) || $stages_bg_url !== '' || $stages_bg_mobile_url !== ''): ?>
+                                <div
+                                    class="male-infertility-content__stages-bg"
+                                    <?php
+                                    $stages_bg_styles = [];
+                                    if ($stages_bg_url !== '') {
+                                        $stages_bg_styles[] = '--mi-stages-bg: url(' . esc_url($stages_bg_url) . ')';
+                                    }
+                                    if ($stages_bg_mobile_url !== '') {
+                                        $stages_bg_styles[] = '--mi-stages-bg-mobile: url(' . esc_url($stages_bg_mobile_url) . ')';
+                                    }
+                                    echo !empty($stages_bg_styles) ? 'style="' . esc_attr(implode('; ', $stages_bg_styles)) . '"' : '';
+                                    ?>
+                                >
+                                    <div class="male-infertility-content__stages-layout">
+                                        <?php foreach ($stages_list as $stage): ?>
+                                            <article class="male-infertility-content__stage-item">
+                                                <?php if ($stage['icon'] !== ''): ?>
+                                                    <span class="male-infertility-content__stage-icon-wrap" aria-hidden="true">
+                                                        <img src="<?php echo esc_url($stage['icon']); ?>" alt="" class="male-infertility-content__stage-icon" loading="lazy">
+                                                    </span>
+                                                <?php endif; ?>
+                                                <div class="male-infertility-content__stage-content">
+                                                    <?php if ($stage['title'] !== ''): ?>
+                                                        <h3><?php echo esc_html($stage['title']); ?></h3>
+                                                    <?php endif; ?>
+                                                    <?php if ($stage['text'] !== ''): ?>
+                                                        <p><?php echo esc_html($stage['text']); ?></p>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </article>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($methods_title !== '' || !empty($methods_list)): ?>
+                    <div id="mi-methods" class="male-infertility-content__section male-infertility-content__section--methods">
+                        <div class="male-infertility-content__title-wrap">
+                            <h2 class="male-infertility-content__title">
+                                <?php echo esc_html($methods_title !== '' ? $methods_title : __('Методи лікування безпліддя', 'igrmed')); ?>
+                            </h2>
+                        </div>
+                        <div class="male-infertility-content__body">
+                            <?php if (!empty($methods_list)): ?>
+                                <div class="male-infertility-content__list">
+                                    <?php foreach ($methods_list as $item): ?>
+                                        <article class="male-infertility-content__list-item">
+                                            <?php echo wp_kses_post($item); ?>
+                                        </article>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+            </div>
+        </div>
+    </div>
+</section>

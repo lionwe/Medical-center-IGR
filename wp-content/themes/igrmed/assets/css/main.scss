@@ -11,11 +11,15 @@
 
 @use "layout/pageHeader";
 @use "layout/breadcrumbs";
+
 @use "layout/gradient-banner";
 @use "layout/photo-banner";
+@use "layout/overflow-banner";
 @use "layout/simple-banner";
 @use "layout/content-sidebar";
 
 @use 'components/main';
+@use "components/pregnancy-management/doctors";
+@use "components/egg-donor/content";
 
 @use "layout/pageFooter";

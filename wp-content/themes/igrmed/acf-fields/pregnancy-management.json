@@ -1,0 +1,394 @@
+[
+    {
+        "key": "group_pregnancy_care_page",
+        "title": "Сторінка: Ведення вагітності",
+        "fields": [
+            {
+                "key": "field_tab_intro_preg",
+                "label": "1. Вступна частина",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_preg_intro_title",
+                "label": "Заголовок блоку",
+                "name": "intro_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ведення вагітності",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_preg_intro_content",
+                "label": "Основний текст",
+                "name": "intro_content",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 0,
+                "default_value": "",
+                "delay": 0
+            },
+            {
+                "key": "field_tab_advantages_preg",
+                "label": "2. Переваги",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_preg_advantages_title",
+                "label": "Заголовок блоку",
+                "name": "advantages_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Переваги ведення вагітності",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_preg_advantages_repeater",
+                "label": "Список переваг",
+                "name": "advantages_list",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "button_label": "Додати перевагу",
+                "min": 0,
+                "max": 0,
+                "rows_per_page": 20,
+                "collapsed": "",
+                "sub_fields": [
+                    {
+                        "key": "field_preg_adv_item_title",
+                        "label": "Підзаголовок (у плашці)",
+                        "name": "title",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "Наприклад: Індивідуальний супровід під час ведення вагітності",
+                        "required": false,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_preg_advantages_repeater"
+                    },
+                    {
+                        "key": "field_preg_adv_item_text",
+                        "label": "Текст переваги",
+                        "name": "text",
+                        "aria-label": "",
+                        "type": "wysiwyg",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "tabs": "all",
+                        "toolbar": "full",
+                        "media_upload": 0,
+                        "default_value": "",
+                        "delay": 0,
+                        "parent_repeater": "field_preg_advantages_repeater"
+                    }
+                ]
+            },
+            {
+                "key": "field_tab_procedures_preg",
+                "label": "3. Процедури діагностики",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_preg_procedures_title",
+                "label": "Заголовок блоку",
+                "name": "procedures_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Процедури діагностики при веденні вагітності",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_preg_procedures_repeater",
+                "label": "Картки процедур",
+                "name": "procedures_list",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "table",
+                "button_label": "Додати процедуру",
+                "min": 0,
+                "max": 0,
+                "rows_per_page": 20,
+                "collapsed": "",
+                "sub_fields": [
+                    {
+                        "key": "field_preg_proc_item_title",
+                        "label": "Назва процедури",
+                        "name": "title",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_preg_procedures_repeater"
+                    },
+                    {
+                        "key": "field_preg_proc_item_link",
+                        "label": "Посилання (Докладніше)",
+                        "name": "link",
+                        "aria-label": "",
+                        "type": "link",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "array",
+                        "parent_repeater": "field_preg_procedures_repeater"
+                    }
+                ]
+            },
+            {
+                "key": "field_tab_doctors_preg",
+                "label": "4. Лікарі",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_preg_doctors_title",
+                "label": "Заголовок блоку",
+                "name": "doctors_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Лікарі, які ведуть лікування",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_preg_doctors_intro",
+                "label": "Вступний текст",
+                "name": "doctors_intro",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 3,
+                "default_value": "",
+                "new_lines": "",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_preg_doctors_relationship",
+                "label": "Вибір лікарів",
+                "name": "doctors_list",
+                "aria-label": "",
+                "type": "relationship",
+                "instructions": "Оберіть лікарів, які будуть відображатися в слайдері",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "doctors"
+                ],
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "return_format": "object",
+                "taxonomy": [],
+                "min": 0,
+                "max": 0,
+                "elements": [],
+                "bidirectional_target": []
+            },
+            {
+                "key": "field_preg_doctors_bg",
+                "label": "Фон слайдера",
+                "name": "doctors_bg",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Оберіть фонове зображення для слайдера лікарів",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_size": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp",
+                "preview_size": "medium"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_template",
+                    "operator": "==",
+                    "value": "single-pregnancy-management.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0,
+        "display_title": ""
+    }
+]
