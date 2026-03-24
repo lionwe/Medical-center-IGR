@@ -1,0 +1,265 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.gynecology-content {
+  padding-top: convert-to-rem(40px);
+
+  @include mobile {
+    padding-top: convert-to-rem(28px);
+  }
+
+  &__layout {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: convert-to-rem(60px);
+  }
+
+  &__content {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(60px);
+
+    @include mobile {
+      gap: convert-to-rem(14px);
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    scroll-margin-top: convert-to-rem(60px);
+
+    @include mobile {
+      scroll-margin-top: convert-to-rem(40px);
+      gap: convert-to-rem(14px);
+    }
+  }
+
+  &__title-wrap {
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: convert-to-rem(-1px);
+    padding: convert-to-rem(10px);
+    padding-right: convert-to-rem(232px);
+    border-radius: convert-to-rem(8px);
+    background: linear-gradient(
+      90deg,
+      var(--color-title-gradient-start) 36.06%,
+      var(--color-title-gradient-end-transparent) 100%
+    );
+
+    @include mobile {
+      width: 100%;
+      padding: convert-to-rem(13px) convert-to-rem(9px);
+    }
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-semibold, (16px, 24px), 1.2, 0);
+    margin: 0;
+    color: var(--color-white);
+  }
+
+  &__body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(20px);
+    border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
+    padding: convert-to-rem(24px) convert-to-rem(30px);
+    overflow-wrap: anywhere;
+
+    :where(p, li) {
+      @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    }
+
+    @include mobile {
+      padding: 0;
+      gap: convert-to-rem(16px);
+
+      :where(p, li) {
+        @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+      }
+    }
+  }
+
+  &__section--intro {
+    .gynecology-content__lead {
+      :where(p, li) {
+        @include typography($font-family-montserrat, $fw-semibold, 15px, 22px, 0);
+      }
+    }
+
+    @include mobile {
+      .gynecology-content__body {
+        padding: 0;
+        gap: 0;
+      }
+    }
+  }
+
+  &__section--advantages {
+    @include mobile {
+      .gynecology-content__body {
+        padding: 0;
+        gap: 0;
+      }
+    }
+  }
+
+  &__lead {
+    display: grid;
+    gap: convert-to-rem(10px);
+
+    > p:first-of-type {
+      @include typography($font-family-montserrat, $fw-regular, 16px, 22px, 0);
+      display: inline;
+      color: var(--color-black);
+      margin: 0;
+
+      @include mobile {
+        @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+      }
+    }
+
+    @include mobile {
+      gap: 0;
+    }
+  }
+
+  &__reasons-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: reasons-counter;
+    display: grid;
+    gap: convert-to-rem(10px);
+  }
+
+  &__reasons-list li {
+    counter-increment: reasons-counter;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    gap: clamp(12px, 2.4vw, 34px);
+    padding: convert-to-rem(8px) convert-to-rem(7px);
+    border: convert-to-rem(1px) solid var(--color-gray-205);
+    border-radius: convert-to-rem(12px);
+  }
+
+  &__reasons-list li::before {
+    content: counter(reasons-counter);
+    @include typography($font-family-montserrat, $fw-semibold, (32px, 42px), 1.2, 0);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: convert-to-rem(53px);
+    height: convert-to-rem(50px);
+    padding: convert-to-rem(8px) convert-to-rem(7px);
+    border-radius: convert-to-rem(8px);
+    background: var(--color-card-badge-bg);
+    color: var(--color-white);
+
+    @include mobile {
+      width: convert-to-rem(40px);
+      height: convert-to-rem(40px);
+      padding: 0;
+    }
+  }
+
+  &__procedures-list {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    grid-auto-rows: 1fr;
+    justify-content: center;
+    gap: convert-to-rem(10px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include mobile {
+      width: 100%;
+      grid-template-columns: minmax(0, 1fr);
+      justify-content: stretch;
+    }
+  }
+
+  &__procedures-item {
+    @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
+    width: convert-to-rem(213px);
+    max-width: 100%;
+    min-height: convert-to-rem(90px);
+    height: 100%;
+    border-radius: convert-to-rem(12px);
+    padding: convert-to-rem(20px) convert-to-rem(15px) convert-to-rem(14px) convert-to-rem(16px);
+    border: convert-to-rem(1px) solid var(--color-gray-217);
+    background: var(--color-background-light);
+    box-sizing: border-box;
+
+    @include mobile {
+      width: 100%;
+      max-width: none;
+      padding: convert-to-rem(14px) convert-to-rem(21px);
+      height: auto;
+      min-height: 0;
+    }
+  }
+
+  &__procedures-item.is-hidden-service {
+    display: none;
+  }
+
+  &__procedures-item.gynecology-content__list-more-item {
+    padding: convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(16px);
+  }
+
+  &__list-more {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: convert-to-rem(10px);
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  &__list-more-text {
+    @include typography($font-family-montserrat, $fw-regular, 12px, 1, 0);
+  }
+
+  &__list-more-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: convert-to-rem(60px);
+    height: convert-to-rem(20px);
+    border: convert-to-rem(0.5px) solid var(--color-primary-dark);
+    border-radius: convert-to-rem(100px);
+    box-sizing: border-box;
+
+    svg {
+      display: block;
+      width: convert-to-rem(21px);
+      height: convert-to-rem(8px);
+      flex-shrink: 0;
+    }
+  }
+
+  &__editor {
+    margin-top: convert-to-rem(40px);
+  }
+}

@@ -1,15 +1,15 @@
 <?php
 /*
-Template Name: Andrology
+Template Name: Gynecology
 Template Post Type: services
 */
 
 get_header();
 ?>
 
-<main id="male-infertility">
-    <?php get_template_part('sections/male-infertility/hero'); ?>
-    <?php get_template_part('sections/male-infertility/content'); ?>
+<main id="gynecology">
+    <?php get_template_part('sections/gynecology/hero'); ?>
+    <?php get_template_part('sections/gynecology/content'); ?>
     <?php get_template_part('sections/services/faq'); ?>
     <?php get_template_part('sections/home/cta'); ?>
 </main>

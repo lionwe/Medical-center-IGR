@@ -75,6 +75,25 @@ function igrmed_theme_setup(): void
     add_theme_support('post-thumbnails');
 }
 
+/**
+ * Header menu: mark the “Напрямки” item for dropdown chevron (::after in CSS).
+ */
+add_filter(
+    'nav_menu_css_class',
+    static function (array $classes, $item, $args, int $depth): array {
+        if ($depth !== 0 || !isset($args->theme_location) || $args->theme_location !== 'menu-header') {
+            return $classes;
+        }
+        $title = isset($item->title) ? trim(wp_strip_all_tags($item->title)) : '';
+        if (strcasecmp($title, 'Напрямки') === 0) {
+            $classes[] = 'menu-item--nav-directions';
+        }
+        return $classes;
+    },
+    10,
+    4
+);
+
 // ============================================
 // ACF Options Page
 // ============================================

@@ -226,17 +226,9 @@
                                                 <?php endif; ?>
                                             </span>
                                         </div>
-                                        <div class="header__lang header__lang--desktop" data-lang-switcher>
-                                            <select class="header__lang-select"
-                                                aria-label="<?php esc_attr_e('Language switcher', 'igr-theme'); ?>">
-                                                <option value="uk">UA</option>
-                                                <option value="en">EN</option>
-                                            </select>
-                                            <span class="header__lang-icon" aria-hidden="true">
-                                                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/lang-switcher-arrow.svg'); ?>"
-                                                    alt="">
-                                            </span>
-                                        </div>
+                                        <?php get_template_part('templates/language-switcher', null, [
+                                            'class' => 'header__lang header__lang--desktop',
+                                        ]); ?>
                                     </div>
                                     <div class="header__menu-lang-block">
                                         <?php get_template_part('templates/navigation', null, array('location' => 'menu-header')); ?>
@@ -254,17 +246,9 @@
                             </div>
 
                         </div>
-                        <div class="header__lang header__lang--bar" data-lang-switcher>
-                            <select class="header__lang-select"
-                                aria-label="<?php esc_attr_e('Language switcher', 'igr-theme'); ?>">
-                                <option value="uk">UA</option>
-                                <option value="en">EN</option>
-                            </select>
-                            <span class="header__lang-icon" aria-hidden="true">
-                                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/lang-switcher-arrow.svg'); ?>"
-                                    alt="">
-                            </span>
-                        </div>
+                        <?php get_template_part('templates/language-switcher', null, [
+                            'class' => 'header__lang header__lang--bar',
+                        ]); ?>
                         <span class="header__mobile-spacer" aria-hidden="true"></span>
                         <button class="header__search-btn-bar" type="button"
                             aria-label="<?php esc_attr_e('Search', 'igr-theme'); ?>">

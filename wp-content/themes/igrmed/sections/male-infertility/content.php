@@ -275,6 +275,7 @@ if (empty($sections)) {
                         </div>
                     </div>
                 <?php endif; ?>
+
             </div>
         </div>
     </div>
