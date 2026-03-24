@@ -1,0 +1,416 @@
+@use "../../utils/mixins" as *;
+@use "../../base/variables" as *;
+
+.male-infertility-content {
+  padding-top: convert-to-rem(40px);
+
+  @include mobile {
+    padding-top: convert-to-rem(28px);
+  }
+
+  &__layout {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: convert-to-rem(60px);
+  }
+
+  &__content {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(60px);
+
+    @include mobile {
+      gap: convert-to-rem(14px);
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    scroll-margin-top: convert-to-rem(60px);
+
+    @include mobile {
+      scroll-margin-top: convert-to-rem(40px);
+      gap: convert-to-rem(14px);
+    }
+  }
+
+  &__title-wrap {
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: convert-to-rem(-1px);
+    padding: convert-to-rem(10px);
+    padding-right: convert-to-rem(232px);
+    border-radius: convert-to-rem(8px);
+    background: linear-gradient(
+      90deg,
+      var(--color-title-gradient-start) 36.06%,
+      var(--color-title-gradient-end-transparent) 100%
+    );
+
+    @include mobile {
+      width: 100%;
+      padding: convert-to-rem(13px) convert-to-rem(9px);
+    }
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-semibold, (16px, 24px), 1.2, 0);
+    margin: 0;
+    color: var(--color-white);
+  }
+
+  &__body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: convert-to-rem(16px);
+    border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
+    padding: convert-to-rem(24px) convert-to-rem(30px);
+    overflow-wrap: anywhere;
+
+    :where(p, li) {
+      @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+      margin: 0;
+    }
+
+    @include mobile {
+      padding: 0;
+      gap: convert-to-rem(16px);
+
+      :where(p, li) {
+        @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+      }
+    }
+  }
+
+  &__section--intro {
+    @include mobile {
+      .male-infertility-content__body {
+        gap: 0;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include typography($font-family-montserrat, $fw-semibold, 16px, 22px, 0);
+    margin-bottom: convert-to-rem(12px);
+  }
+
+  &__reasons-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: reasons-counter;
+    display: grid;
+    gap: convert-to-rem(10px);
+  }
+
+  &__reasons-list li {
+    counter-increment: reasons-counter;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    gap: clamp(12px, 2.4vw, 34px);
+    padding: convert-to-rem(8px) convert-to-rem(7px);
+    border: convert-to-rem(1px) solid var(--color-gray-205);
+    border-radius: convert-to-rem(12px);
+  }
+
+  &__reasons-list li::before {
+    content: counter(reasons-counter);
+    @include typography($font-family-montserrat, $fw-semibold, (32px, 42px), 1.2, 0);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: convert-to-rem(53px);
+    height: convert-to-rem(50px);
+    padding: convert-to-rem(8px) convert-to-rem(7px);
+    border-radius: convert-to-rem(8px);
+    background: var(--color-card-badge-bg);
+    color: var(--color-white);
+
+    @include mobile {
+      width: convert-to-rem(40px);
+      height: convert-to-rem(40px);
+      padding: 0;
+    }
+  }
+
+  &__title-wrap--when {
+    width: 100%;
+  }
+
+  &__section--when &__title {
+    width: auto;
+    max-width: convert-to-rem(220px);
+  }
+
+  &__symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: convert-to-rem(20px);
+    row-gap: convert-to-rem(10px);
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__symptoms-card {
+    @include typography($font-family-montserrat, $fw-regular, 14px, 22px, 0);
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(10px);
+    border-radius: convert-to-rem(12px);
+    background: var(--color-white);
+    padding: convert-to-rem(6px) clamp(10px, 23px, 23px);
+    overflow: hidden;
+    justify-content: center;
+  }
+
+  &__symptoms-card strong {
+    @include typography($font-family-montserrat, $fw-semibold, 14px, 22px, 0);
+  }
+
+  &__symptoms-card p:first-child {
+    @include typography($font-family-montserrat, $fw-semibold, 14px, 22px, 0);
+  }
+
+  &__symptoms-accent {
+    display: block;
+    flex: 0 0 auto;
+    align-self: center;
+    height: 100%;
+    width: convert-to-rem(4px);
+    background: linear-gradient(
+      0deg,
+      var(--color-accent-gradient-start) 0%,
+      var(--color-accent-gradient-end) 100%
+    );
+    border-radius: convert-to-rem(4px);
+
+    @include mobile {
+      width: convert-to-rem(2px);
+      height: 100%;
+    }
+  }
+
+  &__body--stages {
+    padding: convert-to-rem(20px) 0;
+  }
+
+  &__section--stages {
+    .male-infertility-content__body {
+      padding: 0;
+      gap: convert-to-rem(30px);
+
+      @include mobile {
+        gap: convert-to-rem(20px);
+        padding: 0;
+      }
+    }
+
+    .male-infertility-content__subtitle {
+      padding: convert-to-rem(14px) 0 0 convert-to-rem(20px);
+      margin-bottom: 0;
+
+      @include mobile {
+        padding: 0 0 0 convert-to-rem(20px);
+      }
+    }
+  }
+
+  &__stages-bg {
+    width: 100%;
+    padding: convert-to-rem(35px) convert-to-rem(15px) convert-to-rem(25px);
+    border-radius: convert-to-rem(12px);
+    overflow: hidden;
+    background-color: var(--color-background-light);
+    background-image: var(--mi-stages-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include mobile {
+      background-image: var(--mi-stages-bg-mobile, var(--mi-stages-bg));
+      background-size: cover;
+      background-position: top center;
+      padding: convert-to-rem(20px) convert-to-rem(12px);
+    }
+  }
+
+  &__stages-layout {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: convert-to-rem(48px);
+    row-gap: Clamp(10px, 171px);
+    width: 100%;
+    min-height: 0;
+    grid-auto-rows: max-content;
+    align-content: start;
+
+    @media (max-width: #{convert-to-rem(992px)}) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      padding-left: 0;
+      row-gap: convert-to-rem(24px);
+      counter-reset: mi-mobile-stage;
+    }
+  }
+
+  &__stage-item {
+    display: flex;
+    align-items: flex-start;
+    gap: convert-to-rem(12px);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+
+    @include mobile {
+      position: relative;
+      counter-increment: mi-mobile-stage;
+      display: grid;
+      grid-template-columns: convert-to-rem(44px) minmax(0, 1fr);
+      column-gap: convert-to-rem(16px);
+      row-gap: convert-to-rem(8px);
+      align-items: start;
+    }
+
+    @include mobile {
+      &::before {
+        content: counter(mi-mobile-stage);
+        @include typography($font-family-montserrat, $fw-semibold, 32px, 1, 0);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: convert-to-rem(44px);
+        height: convert-to-rem(44px);
+        border-radius: convert-to-rem(100px);
+        border: convert-to-rem(1px) solid var(--color-gray-light);
+        background: var(--color-gray-light-04);
+        color: var(--color-white);
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: convert-to-rem(22px);
+        top: convert-to-rem(44px);
+        bottom: convert-to-rem(-24px);
+        border-left: convert-to-rem(1px) dashed var(--color-gray-light);
+      }
+    }
+  }
+
+  &__stage-icon-wrap {
+    width: convert-to-rem(35px);
+    height: convert-to-rem(35px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    @include mobile {
+      display: inline-flex;
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+
+  &__stage-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  &__stage-content {
+    display: flex;
+    flex-direction: column;
+    gap:Clamp(2px, 12px);
+    min-width: 0;
+
+    @include mobile {
+      grid-column: 2;
+      grid-row: 2;
+    }
+  }
+
+  &__stage-content h3 {
+    @include typography($font-family-montserrat, $fw-medium, 16px, 1.3, 0);
+    min-height: convert-to-rem(42px);
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+
+    @include mobile {
+      min-height: auto;
+    }
+  }
+
+  &__stage-content p {
+    @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+    margin: 0;
+  }
+
+  &__list {
+    display: grid;
+    gap: convert-to-rem(8px);
+  }
+
+  &__list-item {
+    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    color: var(--color-black);
+    border-radius: convert-to-rem(12px);
+    padding: convert-to-rem(10px) convert-to-rem(12px);
+
+    @include mobile {
+      @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+      padding: convert-to-rem(8px) convert-to-rem(10px);
+    }
+  }
+
+  &__section--methods {
+    .male-infertility-content__body {
+      padding: convert-to-rem(24px) 0;
+      gap: convert-to-rem(20px);
+    }
+
+    .male-infertility-content__list {
+      background-color: var(--color-white);
+      border-radius: convert-to-rem(12px);
+      padding: convert-to-rem(10px);
+    }
+
+    .male-infertility-content__list-item {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      align-items: start;
+      column-gap: convert-to-rem(10px);
+
+      &::before {
+        content: "";
+        width: convert-to-rem(6px);
+        height: convert-to-rem(6px);
+        border-radius: 50%;
+        background: currentColor;
+        margin-top: convert-to-rem(9px);
+      }
+    }
+  }
+}
