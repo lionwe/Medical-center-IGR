@@ -12,14 +12,10 @@ $_header-cta-gradient: linear-gradient(
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
   z-index: 10110;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
-
-  > .container {
-    width: min(90rem - var(--_section-offset) * 2, calc(100% - var(--_section-offset) * 2));
-    margin-inline: auto;
-  }
 
   &.is-hidden {
     transform: translateY(-100%);
@@ -410,7 +406,7 @@ $_header-cta-gradient: linear-gradient(
     position: relative;
     display: inline-flex;
     gap: convert-to-rem(4px);
-    align-items: center;
+    align-items: stretch;
     min-height: convert-to-rem(38px);
     min-width: convert-to-rem(72px);
     color: var(--color-gray-dark);
@@ -421,22 +417,30 @@ $_header-cta-gradient: linear-gradient(
     background-color: transparent;
   }
 
-  &__lang-select {
+  &__lang-trigger {
     @include typography($font-family-montserrat, $fw-regular, 14px, 12px);
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: convert-to-rem(4px);
+    flex: 1;
+    min-width: 0;
+    min-height: 100%;
     width: 100%;
-    height: 100%;
+    margin: 0;
+    padding: 0;
     border: 0;
     background: transparent;
     color: var(--color-primary-dark);
     text-transform: uppercase;
-    appearance: none;
-    outline: none;
     cursor: pointer;
-    padding: convert-to-rem(8px) convert-to-rem(36px) convert-to-rem(8px) convert-to-rem(13px);
     box-sizing: border-box;
+    text-align: left;
+
+    &-label {
+      flex: 1;
+      min-width: 0;
+    }
   }
 
   &__lang-icon {
@@ -456,6 +460,131 @@ $_header-cta-gradient: linear-gradient(
       display: block;
       object-fit: contain;
     }
+  }
+
+  // Custom dropdown panel (interaction pattern like staggered reveal + expanding circle)
+  &__lang-dropdown {
+    position: absolute;
+    top: calc(100% + convert-to-rem(4px));
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    overflow: hidden;
+    z-index: 0;
+    display: none;
+    opacity: 0;
+    border-radius: convert-to-rem(12px);
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    box-shadow: none;
+    transition: opacity 0.36s ease-out;
+  }
+
+  &__lang-dropdown-circle {
+    position: absolute;
+    top: convert-to-rem(-40px);
+    right: convert-to-rem(-40px);
+    width: convert-to-rem(80px);
+    height: convert-to-rem(80px);
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    pointer-events: none;
+    transform: scale(0.5);
+    transition: transform 0.4s ease-out;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__lang-dropdown-list {
+    position: relative;
+    z-index: 5;
+    margin: 0;
+    padding: convert-to-rem(6px) convert-to-rem(8px);
+    list-style: none;
+  }
+
+  &__lang-dropdown-item {
+    margin: 0;
+    padding: 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--color-gray-light);
+    }
+  }
+
+  &__lang-dropdown-link {
+    @include typography($font-family-montserrat, $fw-regular, 14px, 12px);
+    display: block;
+    padding: convert-to-rem(10px) convert-to-rem(8px);
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(convert-to-rem(10px));
+    transition:
+      opacity 0.24s ease-out,
+      transform 0.24s ease-out,
+      color 0.2s ease,
+      background 0.2s ease;
+
+    &:hover {
+      color: var(--color-primary-dark);
+      background: rgba(202, 213, 218, 1);
+    }
+
+    &.is-current {
+      font-weight: $fw-medium;
+      color: var(--color-nav-link);
+    }
+  }
+
+  &__lang.show-options &__lang-dropdown {
+    display: block;
+    z-index: 10020;
+  }
+
+  &__lang.anim-options &__lang-dropdown {
+    opacity: 1;
+  }
+
+  &__lang.show-shadow &__lang-dropdown {
+    box-shadow: 0 convert-to-rem(4px) convert-to-rem(24px) rgba(0, 0, 0, 0.12);
+  }
+
+  &__lang.anim-options &__lang-dropdown-circle {
+    transform: scale(9);
+  }
+
+  &__lang.anim-options &__lang-dropdown-item:nth-child(1) &__lang-dropdown-link {
+    transition-delay: 0.1s;
+  }
+
+  &__lang.anim-options &__lang-dropdown-item:nth-child(2) &__lang-dropdown-link {
+    transition-delay: 0.15s;
+  }
+
+  &__lang.anim-options &__lang-dropdown-item:nth-child(3) &__lang-dropdown-link {
+    transition-delay: 0.2s;
+  }
+
+  &__lang.anim-options &__lang-dropdown-item:nth-child(4) &__lang-dropdown-link {
+    transition-delay: 0.25s;
+  }
+
+  &__lang.anim-options &__lang-dropdown-item:nth-child(5) &__lang-dropdown-link {
+    transition-delay: 0.3s;
+  }
+
+  &__lang.anim-options &__lang-dropdown-link {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   &__lang--desktop {
@@ -595,10 +724,13 @@ $_header-cta-gradient: linear-gradient(
   }
 
   a {
-    @include typography($font-family-montserrat, $fw-medium, 14px, 14px);
+    font-family: $font-family-montserrat;
+    font-weight: $fw-regular;
     font-style: normal;
+    font-size: convert-to-rem(14px);
+    line-height: 100%;
     letter-spacing: 0;
-    text-align: center;
+    text-align: left;
     color: var(--color-nav-link);
     text-decoration: none;
   }
@@ -625,6 +757,117 @@ $_header-cta-gradient: linear-gradient(
       text-align: left;
       padding: convert-to-rem(8px) 0;
       display: block;
+    }
+  }
+}
+
+// Chevron after “Напрямки” (class menu-item--nav-directions from functions.php or manual in Menus)
+.header__menu .nav-list > .menu-item--nav-directions > a,
+.header__mobile-menu-nav .nav-list > .menu-item--nav-directions > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: convert-to-rem(6px);
+  padding: convert-to-rem(4px);
+  border-radius: convert-to-rem(12px);
+  background: transparent;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  &::after {
+    content: "";
+    flex-shrink: 0;
+    width: convert-to-rem(9px);
+    height: convert-to-rem(5px);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5' fill='none'%3E%3Cpath d='M7.65 0.5L4.075 4.35L0.5 0.5' stroke='%230C0B0B' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      no-repeat center / contain;
+  }
+}
+
+// WordPress dropdown: primary desktop bar only (panel matches price-list__dropdown; parent links unchanged)
+.header__menu .nav-list {
+  .menu-item-has-children {
+    position: relative;
+  }
+
+  // Same visual language as .price-list__dropdown (components/price/_list.scss)
+  .sub-menu {
+    position: absolute;
+    width: convert-to-rem(280px);
+    list-style: none;
+    margin: 0;
+    background: var(--color-white);
+    border-radius: convert-to-rem(10px);
+    box-shadow: 0 convert-to-rem(4px) convert-to-rem(50px) 0 rgba(0, 0, 0, 0.5);
+    padding: convert-to-rem(14px) convert-to-rem(10px);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  // First-level panel centered under its parent item (matches centered nav labels)
+  > .menu-item-has-children > .sub-menu {
+    top: calc(100% + convert-to-rem(10px));
+    left: 50%;
+    transform: translate(-50%, convert-to-rem(10px));
+  }
+
+  .sub-menu .menu-item-has-children > .sub-menu {
+    top: 0;
+    left: calc(100% + convert-to-rem(10px));
+    transform: translateY(convert-to-rem(10px));
+  }
+
+  .menu-item-has-children.is-open > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  > .menu-item-has-children.is-open > .sub-menu {
+    transform: translate(-50%, 0);
+  }
+
+  .sub-menu .menu-item-has-children.is-open > .sub-menu {
+    transform: translateY(0);
+  }
+
+  // Reset top-level nav dividers — .nav-list .menu-item applies border-right to every .menu-item
+  .sub-menu .menu-item {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .sub-menu > li {
+    display: block;
+  }
+
+  .sub-menu > li:not(:last-child) {
+    border-bottom: 1px solid var(--color-gray-light);
+  }
+
+  .sub-menu a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    padding: convert-to-rem(12px) convert-to-rem(10px);
+    @include typography($font-family-montserrat, $fw-regular, convert-to-rem(14px), 1);
+    color: var(--color-text-main);
+    transition:
+      color 0.3s ease,
+      background 0.3s ease;
+
+    &:hover {
+      background: rgba(202, 213, 218, 1);
     }
   }
 }
