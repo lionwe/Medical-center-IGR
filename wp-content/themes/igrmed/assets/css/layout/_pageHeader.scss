@@ -405,13 +405,13 @@ $_header-cta-gradient: linear-gradient(
   &__lang {
     position: relative;
     display: inline-flex;
-    gap: convert-to-rem(4px);
+    gap: 0;
     align-items: stretch;
     min-height: convert-to-rem(38px);
     min-width: convert-to-rem(72px);
     color: var(--color-gray-dark);
     box-sizing: border-box;
-    padding: convert-to-rem(8px) convert-to-rem(13px);
+    padding: 0;
     border: 1px solid var(--color-gray-light);
     border-radius: convert-to-rem(12px);
     background-color: transparent;
@@ -425,10 +425,10 @@ $_header-cta-gradient: linear-gradient(
     gap: convert-to-rem(4px);
     flex: 1;
     min-width: 0;
-    min-height: 100%;
+    min-height: convert-to-rem(38px);
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: convert-to-rem(8px) convert-to-rem(13px);
     border: 0;
     background: transparent;
     color: var(--color-primary-dark);
