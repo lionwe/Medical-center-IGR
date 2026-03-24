@@ -1,6 +1,7 @@
 @use "../../utils/mixins" as *;
 
 .contacts-hero {
+    padding-top: convert-to-rem(60px);
     height: convert-to-rem(441px);
     background-size: cover;
     background-position: center;
@@ -10,6 +11,7 @@
     background-image: var(--bg-desktop);
 
     @include mobile {
+        padding-top: 0;
         background-image: var(--bg-mobile);
     }
 }

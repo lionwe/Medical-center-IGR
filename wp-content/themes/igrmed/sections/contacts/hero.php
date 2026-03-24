@@ -24,6 +24,6 @@ $hero_style = ' style="--bg-desktop: url(' . esc_url($bg_d) . '); --bg-mobile: u
 
 <section id="contacts-hero" class="contacts-hero" <?php echo $hero_style; ?>>
     <div class="container">
-
+        <?php get_template_part('templates/breadcrumbs'); ?>
     </div>
 </section>

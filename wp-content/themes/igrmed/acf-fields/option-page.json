@@ -133,6 +133,26 @@
                 "new_lines": ""
             },
             {
+                "key": "field_email_main",
+                "label": "Головна пошта",
+                "name": "email_main",
+                "aria-label": "",
+                "type": "email",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
                 "key": "field_schedule",
                 "label": "Графік",
                 "name": "schedule",

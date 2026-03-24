@@ -27,7 +27,7 @@ $schedule = preg_replace('/(<p[^>]*>|<br\s*\/?>)(?:&nbsp;|\s)+/i', '$1', $schedu
 $schedule = str_replace('Вт-Пт', '<span class="schedule-outdent">Вт-</span>Пт', $schedule);
 $schedule = str_replace('Вт - Пт', '<span class="schedule-outdent">Вт - </span>Пт', $schedule);
 
-$email = 'demo@gmail.com';
+$email = (string) get_field('email_main', 'option');
 
 // Form Bg URL
 $form_bg_url = '';
