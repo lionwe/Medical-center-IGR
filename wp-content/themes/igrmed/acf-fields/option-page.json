@@ -31,7 +31,7 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "",
+                    "width": "20",
                     "class": "",
                     "id": ""
                 },
@@ -49,7 +49,61 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "",
+                    "width": "20",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "allow_in_bindings": 0,
+                "allow_archives": 0
+            },
+            {
+                "key": "field_phone_3",
+                "label": "Phone 3",
+                "name": "phone_3",
+                "aria-label": "",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "20",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "allow_in_bindings": 0,
+                "allow_archives": 0
+            },
+            {
+                "key": "field_phone_4",
+                "label": "Phone 4",
+                "name": "phone_4",
+                "aria-label": "",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "20",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "allow_in_bindings": 0,
+                "allow_archives": 0
+            },
+            {
+                "key": "field_phone_5",
+                "label": "Phone 5",
+                "name": "phone_5",
+                "aria-label": "",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "20",
                     "class": "",
                     "id": ""
                 },
@@ -425,6 +479,58 @@
                 "preview_size": "medium"
             },
             {
+                "key": "field_icon_clock_3",
+                "label": "Іконка годинника 3",
+                "name": "icon_clock_3",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_icon_mail",
+                "label": "Іконка пошти",
+                "name": "icon_mail",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "34",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
                 "key": "field_tab_footer",
                 "label": "Футер",
                 "name": "",
@@ -762,6 +868,133 @@
                 "default_value": "",
                 "placeholder": "https:\/\/tiktok.com\/...",
                 "allow_in_bindings": 0
+            },
+            {
+                "key": "field_tab_contacts",
+                "label": "Сторінка контакти",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_contacts_left_block",
+                "label": "Лівий блок (Заголовок + Підзаголовок)",
+                "name": "contacts_left_block",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_contacts_form_block",
+                "label": "Блок з формою (Заголовок + Підзаголовок)",
+                "name": "contacts_form_block",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_contacts_form_shortcode",
+                "label": "Шорткод форми",
+                "name": "contacts_form_shortcode",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "100",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_contacts_form_bg",
+                "label": "Фонове зображення форми",
+                "name": "contacts_form_bg",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "100",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_contacts_schedule",
+                "label": "Графік роботи (Контакти)",
+                "name": "contacts_schedule",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "100",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
             }
         ],
         "location": [

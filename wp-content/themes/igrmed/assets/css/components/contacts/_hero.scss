@@ -1,0 +1,15 @@
+@use "../../utils/mixins" as *;
+
+.contacts-hero {
+    height: convert-to-rem(441px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    background-image: var(--bg-desktop);
+
+    @include mobile {
+        background-image: var(--bg-mobile);
+    }
+}
