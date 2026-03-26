@@ -63,7 +63,9 @@
       padding: convert-to-rem(20px) convert-to-rem(16px);
     }
   }
-}.cta-form,
+}
+
+.cta-form,
 .cta__window form {
   width: 100%;
   display: flex;
@@ -241,5 +243,39 @@
       border-color: var(--color-white-08);
       background: var(--color-white-03);
     }
+  }
+}
+
+.cta__form-success {
+  display: none; // Controlled by JS
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  flex-direction: column;
+  color: var(--color-white);
+  text-align: center;
+  margin: auto;
+
+  @include mobile {
+    padding: convert-to-rem(40px) convert-to-rem(20px);
+  }
+
+  &__content {
+    text-align: center;
+  }
+
+  &__title {
+    @include typography($font-family-montserrat, $fw-medium, (22px, 28px), 1.2);
+    color: var(--color-white);
+    margin-bottom: convert-to-rem(10px);
+    text-transform: uppercase;
+  }
+
+  &__text {
+    @include typography($font-family-montserrat, $fw-regular, 16px, 1.4);
+    color: var(--color-white);
   }
 }

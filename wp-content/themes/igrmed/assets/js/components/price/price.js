@@ -1,6 +1,8 @@
 /**
  * Price Page JavaScript - Filtering and Accordion Logic
  */
+import { load } from "../../events/load";
+
 class PriceList {
     constructor() {
         this.container = document.querySelector('.js-price-category');
@@ -35,6 +37,8 @@ class PriceList {
     }
 
     initCategoryDropdown() {
+        if (!this.trigger) return;
+        
         this.trigger.addEventListener('click', (e) => {
             e.stopPropagation();
             const isOpen = this.container.classList.toggle('is-open');
@@ -69,11 +73,13 @@ class PriceList {
             const trigger = acc.querySelector('.js-price-accordion-trigger');
             const content = acc.querySelector('.js-price-accordion-accordeon');
 
-            trigger.addEventListener('click', () => {
-                const isOpen = acc.classList.contains('is-open');
-                this.toggleAccordion(acc, content, !isOpen);
-                trigger.setAttribute('aria-expanded', !isOpen);
-            });
+            if (trigger && content) {
+                trigger.addEventListener('click', () => {
+                    const isOpen = acc.classList.contains('is-open');
+                    this.toggleAccordion(acc, content, !isOpen);
+                    trigger.setAttribute('aria-expanded', !isOpen);
+                });
+            }
         });
     }
 
@@ -175,8 +181,7 @@ class PriceList {
                     if (searchTerm.length > 0 && !acc.classList.contains('is-open')) {
                         this.toggleAccordion(acc, content, true);
                     } else if (searchTerm.length === 0 && acc.classList.contains('is-open')) {
-                        // Optional: Reset state when search is cleared, but maybe better to let user keep them open.
-                        // For now we just keep them as they were before search started if possible, but JS doesn't store state.
+                        // Optional: Reset state when search is cleared
                     }
                 } else {
                     acc.style.display = 'none';
@@ -198,7 +203,6 @@ class PriceList {
             this.emptyMessage.style.display = totalVisible === 0 ? 'block' : 'none';
         }
 
-        // If search cleared, re-open first visible if none open
         if (searchTerm === '' && totalVisible > 0) {
             const anyOpen = document.querySelector('.js-price-accordion.is-open:not([style*="display: none"])');
             if (!anyOpen) {
@@ -212,7 +216,8 @@ class PriceList {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// Use our robust loader instead of raw DOMContentLoaded
+load(() => {
     PriceList.init();
 });
 
