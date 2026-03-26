@@ -5,6 +5,7 @@ add_filter('upload_mimes', 'svg_upload_allow');
 add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 add_action('pre_get_posts', 'igrmed_blog_posts_per_page');
+add_filter('script_loader_tag', 'igrmed_defer_scripts', 10, 2);
 
 require get_template_directory() . '/includes/post-types.php';
 require get_template_directory() . '/includes/ajax-handler.php';
@@ -23,15 +24,23 @@ function igrmed_get_svg($name)
     return '';
 }
 
-
-
+/**
+ * Enqueue Main Assets & Vendors with cache busting
+ */
 function igrmed_enqueue_assets(): void
 {
-    $css_file = get_template_directory() . '/dist/css/main.bundle.css';
-    $js_file = get_template_directory() . '/dist/js/main.bundle.js';
+    $dist_path = get_template_directory() . '/dist';
+    $dist_uri = get_template_directory_uri() . '/dist';
 
-    $css_ver = file_exists($css_file) ? filemtime($css_file) : null;
-    $js_ver = file_exists($js_file) ? filemtime($js_file) : null;
+    // File paths for versioning
+    $css_bundle = $dist_path . '/css/main.bundle.css';
+    $js_bundle = $dist_path . '/js/main.bundle.js';
+    $js_vendors = $dist_path . '/js/vendors-core.bundle.js';
+
+    // Versioning based on file modified time
+    $css_ver = file_exists($css_bundle) ? filemtime($css_bundle) : '1.0.0';
+    $js_ver = file_exists($js_bundle) ? filemtime($js_bundle) : '1.0.0';
+    $js_vendors_ver = file_exists($js_vendors) ? filemtime($js_vendors) : '1.0.0';
 
     wp_enqueue_style(
         'igrmed-google-fonts',
@@ -42,15 +51,26 @@ function igrmed_enqueue_assets(): void
 
     wp_enqueue_style(
         'igrmed-main-style',
-        get_template_directory_uri() . '/dist/css/main.bundle.css',
+        $dist_uri . '/css/main.bundle.css',
         ['igrmed-google-fonts'],
         $css_ver
     );
 
+    // Enqueue core vendors first if they exist
+    if (file_exists($js_vendors)) {
+        wp_enqueue_script(
+            'igrmed-vendors-core',
+            $dist_uri . '/js/vendors-core.bundle.js',
+            [],
+            $js_vendors_ver,
+            true
+        );
+    }
+
     wp_enqueue_script(
         'igrmed-main-js',
-        get_template_directory_uri() . '/dist/js/main.bundle.js',
-        [],
+        $dist_uri . '/js/main.bundle.js',
+        file_exists($js_vendors) ? ['igrmed-vendors-core'] : [],
         $js_ver,
         true
     );
@@ -60,6 +80,19 @@ function igrmed_enqueue_assets(): void
         'nonce' => wp_create_nonce('ajax-nonce'),
         'template_directory_url' => get_template_directory_uri(),
     ]);
+}
+
+/**
+ * Add DEFER attribute to theme scripts for better performance
+ */
+function igrmed_defer_scripts($tag, $handle) {
+    $scripts_to_defer = ['igrmed-main-js', 'igrmed-vendors-core'];
+    
+    if (in_array($handle, $scripts_to_defer)) {
+        return str_replace(' src', ' defer src', $tag);
+    }
+    
+    return $tag;
 }
 
 function igrmed_theme_setup(): void
@@ -168,21 +201,15 @@ function get_picture($args = [])
     $loading = $args['lazy'] ? 'loading="lazy"' : '';
 
     if ($is_asset) {
-        // Check for WebP variant for theme assets
         $path_parts = pathinfo($args['name']);
         $webp_name = $path_parts['filename'] . '.webp';
-        // Note: checking file existence on every load might be expensive, 
-        // relying on convention that if using get_picture with name, webp exists.
-        // For now, output generic structure.
         $webp_src = get_template_directory_uri() . "/assets/img/" . $webp_name;
 
         echo '<picture>';
-        // Assuming webp exists if requested via this function for assets
         echo '<source srcset="' . esc_url($webp_src) . '" type="image/webp">';
         echo '<img src="' . esc_url($img_src) . '" ' . $alt . ' ' . $class . ' ' . $loading . '>';
         echo '</picture>';
     } else {
-        // Fallback or external URL
         echo '<img src="' . esc_url($img_src) . '" ' . $alt . ' ' . $class . ' ' . $loading . '>';
     }
 }
@@ -230,30 +257,20 @@ function getHomePageID()
 // GUTENBERG DISABLE (NUCLEAR OPTION)
 // ============================================
 
-// 1. Disable Editor Interface
 add_filter('use_block_editor_for_post', '__return_false', 10);
 add_filter('use_block_editor_for_post_type', '__return_false', 10);
 add_filter('use_widgets_block_editor', '__return_false');
 
-// 2. Remove Frontend Assets (Styles & Scripts)
 add_action('wp_enqueue_scripts', function () {
-    // Remove Gutenberg styles
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');
-    wp_dequeue_style('wc-blocks-style'); // Woocommerce blocks if present
-
-    // Remove "Global Styles" (theme.json bloat)
+    wp_dequeue_style('wc-blocks-style');
     wp_dequeue_style('global-styles');
-
-    // Remove Classic Theme styles (SVG filters in body)
     wp_dequeue_style('classic-theme-styles');
 }, 100);
 
-// 3. Remove SVG Filters from Body (Critical for clean DOM)
 remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 remove_action('in_admin_header', 'wp_global_styles_render_svg_filters');
-
-// 4. Disable Standard Gallery Styles
 add_filter('use_default_gallery_style', '__return_false');
 
 // ============================================

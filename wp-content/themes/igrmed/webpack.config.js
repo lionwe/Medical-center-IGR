@@ -10,8 +10,9 @@ module.exports = {
   },
   output: {
     filename: "js/[name].bundle.js",
-    chunkFilename: "js/[name].bundle.js",
+    chunkFilename: "js/[name].chunk.js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/wp-content/themes/igrmed/dist/",
   },
   module: {
     rules: [
@@ -86,6 +87,20 @@ module.exports = {
   },
   optimization: {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        vendorCore: {
+          test: /[\\/]node_modules[\\/](core-js|@babel\/runtime)/,
+          name: "vendors-core",
+          chunks: "all",
+          enforce: true,
+        },
+      },
+    },
+  },
+  performance: {
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
   plugins: [
     new CleanWebpackPlugin(),
