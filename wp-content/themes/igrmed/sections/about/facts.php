@@ -72,10 +72,10 @@ $right_cards = array_slice($cards, $left_count);
                 </div>
 
                 <?php if ($cards_count > 0) : ?>
-                    <div class="about-facts__features">
+                    <div class="about-facts__features" id="about-facts-features">
                         <ol class="about-facts__column">
                             <?php foreach ($left_cards as $index => $card_text) : ?>
-                                <li class="about-facts__card">
+                                <li class="about-facts__card<?php if ($index >= 5) echo ' is-hidden-fact'; ?>">
                                     <span class="about-facts__card-number"><?php echo esc_html((string) ($index + 1)); ?></span>
                                     <div class="about-facts__card-text"><?php echo wp_kses_post($card_text); ?></div>
                                 </li>
@@ -85,12 +85,25 @@ $right_cards = array_slice($cards, $left_count);
                         <?php if (!empty($right_cards)) : ?>
                             <ol class="about-facts__column">
                                 <?php foreach ($right_cards as $index => $card_text) : ?>
-                                    <li class="about-facts__card">
+                                    <li class="about-facts__card<?php if (($left_count + $index) >= 5) echo ' is-hidden-fact'; ?>">
                                         <span class="about-facts__card-number"><?php echo esc_html((string) ($left_count + $index + 1)); ?></span>
                                         <div class="about-facts__card-text"><?php echo wp_kses_post($card_text); ?></div>
                                     </li>
                                 <?php endforeach; ?>
                             </ol>
+                        <?php endif; ?>
+                        
+                        <?php if ($cards_count > 5) : ?>
+                            <div class="about-facts__read-more-item">
+                                <button type="button" class="about-facts__read-more" aria-expanded="false"
+                                    data-more-text="<?php echo esc_html__('ЧИТАТИ БІЛЬШЕ', 'igrmed'); ?>"
+                                    data-less-text="<?php echo esc_html__('ЗГОРНУТИ', 'igrmed'); ?>">
+                                    <span class="about-facts__read-more-text"><?php echo esc_html__('ЧИТАТИ БІЛЬШЕ', 'igrmed'); ?></span>
+                                    <span class="about-facts__read-more-arrow" aria-hidden="true">
+                                        <?php echo igrmed_get_svg('read-more-arrow'); ?>
+                                    </span>
+                                </button>
+                            </div>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
@@ -100,3 +113,34 @@ $right_cards = array_slice($cards, $left_count);
 
     </div>
 </section>
+
+<script>
+    (function () {
+        const root = document.querySelector('#about-facts-features');
+        if (!root) return;
+
+        const button = root.querySelector('.about-facts__read-more');
+        if (!button) return;
+
+        const moreText = button.dataset.moreText;
+        const lessText = button.dataset.lessText;
+        const textElement = button.querySelector('.about-facts__read-more-text');
+        const hiddenItems = root.querySelectorAll('.is-hidden-fact');
+
+        button.addEventListener('click', () => {
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+            
+            if (isExpanded) {
+                // Collapse
+                hiddenItems.forEach((item) => item.classList.add('is-hidden-fact'));
+                button.setAttribute('aria-expanded', 'false');
+                textElement.textContent = moreText;
+            } else {
+                // Expand
+                hiddenItems.forEach((item) => item.classList.remove('is-hidden-fact'));
+                button.setAttribute('aria-expanded', 'true');
+                textElement.textContent = lessText;
+            }
+        });
+    })();
+</script>

@@ -257,6 +257,12 @@
       height: convert-to-rem(8px);
       flex-shrink: 0;
     }
+
+    .gynecology-content__list-more[aria-expanded="true"] & {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   &__editor {

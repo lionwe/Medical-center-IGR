@@ -147,6 +147,18 @@
     &__card-actions {
         display: flex;
         justify-content: flex-end;
+
+        .btn--primary-dark {
+            &:hover {
+                background: var(--color-white);
+                color: var(--color-white);
+                border-color: var(--color-white);
+
+                .btn__icon {
+                    background-color: var(--color-primary-dark);
+                }
+            }
+        }
     }
 
     &__card-title {

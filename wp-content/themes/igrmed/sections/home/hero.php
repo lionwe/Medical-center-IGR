@@ -120,7 +120,7 @@ $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_
                     <?php if ($hero_button_url !== '' && $hero_button_label !== ''): ?>
                         <?php
                         get_template_part('templates/button', null, [
-                            'text' => $hero_button_label,
+                            'text' => esc_html__("Детальніше про нас", 'igrmed'),
                             'link' => $hero_button_url,
                             'type' => 'primary',
                             'primary_split' => true,
