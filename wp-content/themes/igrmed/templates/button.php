@@ -6,7 +6,8 @@
  * get_template_part('templates/button', null, [
  *   'text'        => 'Детальніше',
  *   'link'        => '#',
- *   'type'        => 'primary', // primary, primary-dark, secondary, tertiary, social, carousel, carousel-glass
+ *   'type'        => 'primary', // primary, primary-white-border, primary-white-border--black-border, primary-dark, secondary, tertiary, social, carousel, carousel-glass
+*   'modifier'    => 'black-border', // Use with type: primary-white-border for black border variant
  *   'icon_name'   => 'arrow',   // ACF field name without 'icon_' prefix
  *   'icon_url'    => '',        // direct URL override
  *   'target'      => '_self'
@@ -20,8 +21,9 @@ $icon_name = $args['icon_name'] ?? null;
 $icon_url = $args['icon_url'] ?? null;
 $target = (string) ($args['target'] ?? '_self');
 $class_extra = trim((string) ($args['class'] ?? ''));
+$modifier = $args['modifier'] ?? '';
 $use_img_icon = !empty($args['icon_as_img']) && $type !== 'social';
-$is_primary_split = !empty($args['primary_split']) && in_array($type, ['primary', 'glass-primary'], true) && $text !== '';
+$is_primary_split = !empty($args['primary_split']) && in_array($type, ['primary', 'glass-primary', 'primary-white-border'], true) && $text !== '';
 $carousel_group = $args['carousel_group'] ?? null;
 
 // Get icon from ACF options or direct URL.
@@ -77,6 +79,9 @@ if ($type === 'carousel' && is_array($carousel_group) && !empty($carousel_group)
 
 // Build classes for regular button.
 $classes = 'btn btn--' . $type;
+if ($modifier !== '') {
+    $classes .= ' btn--' . $type . '--' . $modifier;
+}
 if ($class_extra !== '') {
     $classes .= ' ' . $class_extra;
 }
@@ -92,6 +97,16 @@ if ($tag === 'a') {
 } else {
     $button_type = $type === 'submit' ? 'submit' : 'button';
     $attrs = 'type="' . esc_attr($button_type) . '"';
+}
+
+// Add inline hover styles for primary-dark buttons (not for split buttons)
+if ($type === 'primary-dark' && !$is_primary_split) {
+    $attrs .= ' style="transition: background 0.3s ease, color 0.3s ease;" onmouseover="this.style.background=\'var(--color-white)\'; this.style.color=\'var(--color-primary-dark)\'; this.style.borderColor=\'var(--color-white)\'; const icon = this.querySelector(\'.btn__icon\'); if(icon) icon.style.backgroundColor=\'var(--color-primary-dark)\';" onmouseout="this.style.background=\'var(--color-primary-dark)\'; this.style.color=\'var(--color-white)\'; this.style.borderColor=\'var(--color-primary-dark)\'; const icon = this.querySelector(\'.btn__icon\'); if(icon) icon.style.backgroundColor=\'var(--color-white)\';"';
+}
+
+// Add inline hover styles for primary-white-border buttons (not for split buttons)
+if ($type === 'primary-white-border' && !$is_primary_split) {
+    $attrs .= ' style="transition: background 0.3s ease, color 0.3s ease;" onmouseover="this.style.background=\'transparent\'; this.style.color=\'var(--color-primary-dark)\'; this.style.borderColor=\'var(--color-white)\'; const icon = this.querySelector(\'.btn__icon\'); if(icon) icon.style.backgroundColor=\'var(--color-primary-dark)\';" onmouseout="this.style.background=\'var(--color-primary-dark)\'; this.style.color=\'var(--color-white)\'; this.style.borderColor=\'var(--color-primary-dark)\'; const icon = this.querySelector(\'.btn__icon\'); if(icon) icon.style.backgroundColor=\'var(--color-white)\';"';
 }
 
 if (!empty($args['attributes']) && is_array($args['attributes'])) {

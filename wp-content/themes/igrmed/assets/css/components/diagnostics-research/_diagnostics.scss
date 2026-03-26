@@ -350,13 +350,15 @@
 
     svg {
       display: block;
-      width: convert-to-rem(20px);
-      height: auto;
+      width: convert-to-rem(21px);
+      height: convert-to-rem(8px);
       flex-shrink: 0;
+      filter: brightness(0) saturate(100%);
+    }
 
-      path {
-        fill: var(--color-primary-dark);
-        transition: fill 0.3s ease;
+    .diagnostics-research-diagnostics__list-more[aria-expanded="true"] & {
+      svg {
+        transform: rotate(180deg);
       }
     }
   }

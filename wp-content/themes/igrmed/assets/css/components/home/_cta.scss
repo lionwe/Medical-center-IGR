@@ -173,6 +173,21 @@
       background: transparent;
       color: var(--color-white);
       cursor: pointer;
+            
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      .btn-split__icon {
+                   border: 1px solid var(--color-white-09);
+   
+              }
+      &:hover {
+        background: var(--color-white);
+        color: var(--color-primary-dark);
+        border-color: var(--color-white);
+        
+        .btn-split__icon {
+          border-color: var(--color-primary-dark);
+        }
+      }
     }
 
     .btn-split__text,
@@ -192,7 +207,9 @@
       width: convert-to-rem(60px);
       height: convert-to-rem(20px);
       background: var(--color-white);
+      border: 1px solid var(--color-primary-dark);
       border-radius: convert-to-rem(36px);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
     .btn-split__icon img,

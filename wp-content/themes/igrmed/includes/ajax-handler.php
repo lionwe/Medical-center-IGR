@@ -386,17 +386,19 @@ function igrmed_render_diagnostics_content(array $row): string
             }
 
             $item_class = ($should_collapse_blocks && $index >= $list_blocks_visible_limit)
-                ? ' class="is-hidden-service"'
+                ? ' class="is-collapsible-service is-hidden-service"'
                 : '';
 
             echo '<li' . $item_class . '>' . esc_html($item_text) . '</li>';
         }
         if ($should_collapse_blocks) {
             echo '<li class="diagnostics-research-diagnostics__list-more-item">';
-            echo '<button type="button" class="diagnostics-research-diagnostics__list-more" aria-expanded="false">';
+            echo '<button type="button" class="diagnostics-research-diagnostics__list-more" aria-expanded="false"';
+            echo ' data-more-label="' . esc_attr__('Всі процедури', 'igrmed') . '"';
+            echo ' data-less-label="' . esc_attr__('Згорнути', 'igrmed') . '">';
             echo '<span class="diagnostics-research-diagnostics__list-more-text">' . esc_html__('Всі процедури', 'igrmed') . '</span>';
             echo '<span class="diagnostics-research-diagnostics__list-more-arrow" aria-hidden="true">';
-            echo igrmed_get_diagnostics_svg_markup('assets/img/svg/arrow-next.svg');
+            echo igrmed_get_svg('read-more-arrow');
             echo '</span>';
             echo '</button>';
             echo '</li>';

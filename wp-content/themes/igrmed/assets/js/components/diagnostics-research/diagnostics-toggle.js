@@ -15,6 +15,7 @@ function initDiagnosticsGenderToggle() {
     accordionContent: ".diagnostics-research-diagnostics__accordion-content",
     listBlocks: ".list-blocks",
     hiddenServiceItem: ".is-hidden-service",
+    collapsibleServiceItem: ".is-collapsible-service",
     listMoreButton: ".diagnostics-research-diagnostics__list-more",
     status: ".diagnostics-research-diagnostics__status",
   };
@@ -138,15 +139,21 @@ function initDiagnosticsGenderToggle() {
       const listBlocks = content.querySelector(selectors.listBlocks);
       if (!listBlocks) return;
 
-      const hiddenItems = listBlocks.querySelectorAll(selectors.hiddenServiceItem);
-      if (!hiddenItems.length) return;
+      const collapsibleItems = listBlocks.querySelectorAll(selectors.collapsibleServiceItem);
+      if (!collapsibleItems.length) return;
 
-      hiddenItems.forEach((item) => item.classList.remove("is-hidden-service"));
-      const moreItem = moreButton.closest("li");
-      if (moreItem) {
-        moreItem.remove();
-      } else {
-        moreButton.remove();
+      const textEl = moreButton.querySelector(".diagnostics-research-diagnostics__list-more-text");
+      const moreLabel = moreButton.dataset.moreLabel || "Всі процедури";
+      const lessLabel = moreButton.dataset.lessLabel || "Згорнути";
+      const isExpanded = moreButton.getAttribute("aria-expanded") === "true";
+
+      collapsibleItems.forEach((item) => {
+        item.classList.toggle("is-hidden-service", isExpanded);
+      });
+
+      moreButton.setAttribute("aria-expanded", String(!isExpanded));
+      if (textEl) {
+        textEl.textContent = isExpanded ? moreLabel : lessLabel;
       }
 
       if (content.classList.contains("is-open") && content.style.maxHeight !== "none") {
