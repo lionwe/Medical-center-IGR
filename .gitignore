@@ -78,6 +78,9 @@ dist/
 
 # IDE settings
 .cursorrules
+# Windsurf (Cascade rules / project rules — ignore if local-only)
+.windsurfrules
+.windsurf/
 .vscode/
 *.code-workspace
 local-xdebuginfo.php
