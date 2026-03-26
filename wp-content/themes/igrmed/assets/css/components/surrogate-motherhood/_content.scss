@@ -383,8 +383,12 @@
 
     .surrogate-motherhood-content__tabs-nav {
       display: flex;
-      flex-wrap: wrap;
       gap: convert-to-rem(12px);
+
+      .surrogate-motherhood-content__tab-btn {
+        flex: 1;
+        min-width: 0; // Prevent flex items from overflowing
+      }
     }
 
     .surrogate-motherhood-content__tabs-content {
