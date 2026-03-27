@@ -79,6 +79,7 @@ function igrmed_enqueue_assets(): void
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('ajax-nonce'),
         'template_directory_url' => get_template_directory_uri(),
+        'current_lang' => function_exists('pll_current_language') ? pll_current_language() : '',
     ]);
 }
 

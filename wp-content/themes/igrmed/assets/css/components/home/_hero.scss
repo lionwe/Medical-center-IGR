@@ -34,7 +34,8 @@
         gap: convert-to-rem(14px);
 
         @include mobile {
-            padding-top: clamp(32px, 8dvh, 96px);
+            padding-top: clamp(convert-to-rem(50px), 20dvh, convert-to-rem(96px));
+            padding-bottom: convert-to-rem(56px);
         }
 
     }
@@ -43,7 +44,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: convert-to-rem(13px) Clamp(12px, 22px);
+        padding: convert-to-rem(13px) clamp(convert-to-rem(12px), 2vw, convert-to-rem(22px));
         background: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary-dark-20) 100%);
         color: var(--color-white);
         border-radius: convert-to-rem(22px);
@@ -53,8 +54,18 @@
             text-align: left;
             align-items: flex-start;
             gap: convert-to-rem(22px);
-            margin-bottom: clamp(24px, 2lvh, 120px);
+            margin-bottom: clamp(convert-to-rem(48px), 10dvh, convert-to-rem(120px));
+        }
+    }
 
+    &__title {
+        @include typography($font-family-base, $fw-semibold, convert-to-rem(48px), 1.1);
+        color: var(--color-white);
+        margin: 0;
+        text-transform: uppercase;
+
+        @include mobile {
+            font-size: convert-to-rem(28px);
         }
     }
 
@@ -76,7 +87,7 @@
     }
 
     &__bottom-text {
-        @include typography($font-family-base, $fw-regular, (12px, 15px), 15px);
+        @include typography($font-family-base, $fw-regular, (convert-to-rem(10px), convert-to-rem(15px)), convert-to-rem(15px));
         font-variant: small-caps;
         text-align: center;
         margin: 0;
@@ -84,7 +95,6 @@
         @include mobile {
             white-space: nowrap;
             padding: 0;
-
         }
     }
 
@@ -123,7 +133,7 @@
         border-radius: convert-to-rem(22px);
         padding: convert-to-rem(16px);
         text-align: left;
-        backdrop-filter: blur(22px);
+        backdrop-filter: blur(convert-to-rem(22px));
     }
 
     &__card.swiper-slide {
@@ -134,7 +144,7 @@
         display: flex;
         align-items: center;
         gap: convert-to-rem(8px);
-        margin-bottom: convert-to-rem(36px);
+        margin-bottom: convert-to-rem(82px);
     }
 
     &__card-body {
@@ -157,7 +167,7 @@
     }
 
     &__card-title--promo {
-        @include typography($font-family-base, $fw-medium, (22px, 32px), 1, 0);
+        @include typography($font-family-base, $fw-medium, (convert-to-rem(22px), convert-to-rem(32px)), 1, 0);
         margin: 0;
         text-align: center;
         text-transform: uppercase;
@@ -169,34 +179,34 @@
     }
 
     &__card-title--info {
-        @include typography($font-family-base, $fw-semibold, 14px, 1, 0.04em);
+        @include typography($font-family-base, $fw-semibold, convert-to-rem(14px), 1, 0.04em);
         margin: 0 0 convert-to-rem(12px);
     }
 
     &__card-badge {
-        @include typography($font-family-base, $fw-medium, 42px, 1, 0);
+        @include typography($font-family-base, $fw-medium, convert-to-rem(42px), 1, 0);
         text-align: center;
         text-transform: uppercase;
     }
 
     &__card-subtitle {
-        @include typography($font-family-base, $fw-medium, 18px, 1, 0);
+        @include typography($font-family-base, $fw-medium, convert-to-rem(18px), 1, 0);
         margin: 0;
     }
 
     &__card-text {
-        @include typography($font-family-base, $fw-regular, 14px, 1, 0);
+        @include typography($font-family-base, $fw-regular, convert-to-rem(14px), 1, 0);
         margin: 0;
 
         // WYSIWYG content elements
         h3,
         h4 {
-            @include typography($font-family-base, $fw-medium, 18px, 1, 0);
+            @include typography($font-family-base, $fw-medium, convert-to-rem(18px), 1, 0);
             margin: 0 0 convert-to-rem(8px);
         }
 
         p {
-            @include typography($font-family-base, $fw-regular, 14px, 1, 0);
+            @include typography($font-family-base, $fw-regular, convert-to-rem(14px), 1, 0);
             margin: 0 0 convert-to-rem(8px);
 
             &:last-child {
@@ -220,7 +230,7 @@
     // Card modifier: promo
     &__card--promo {
         flex: 0 1 45%;
-        padding: Clamp(16px, 24px) Clamp(22px, 38px);
+        padding: clamp(convert-to-rem(16px), 4vw, convert-to-rem(24px)) clamp(convert-to-rem(22px), 6vw, convert-to-rem(38px));
         background: var(--color-white-05);
         border: 1px solid var(--color-white-05);
 
@@ -242,7 +252,7 @@
         }
 
         .hero__card-subtitle {
-            @include typography($font-family-base, $fw-regular, 14px, 1, 0);
+            @include typography($font-family-base, $fw-regular, convert-to-rem(14px), 1, 0);
         }
 
         .hero__card-actions {
@@ -263,12 +273,12 @@
 
     // Card modifier: info
     &__card--info {
-        padding: Clamp(16px, 24px) Clamp(22px, 38px);
+        padding: clamp(convert-to-rem(16px), 4vw, convert-to-rem(24px)) clamp(convert-to-rem(22px), 6vw, convert-to-rem(38px));
         background: var(--color-accent-light-05);
         border: 1px solid var(--color-white-05);
 
         .hero__card-subtitle {
-            @include typography($font-family-base, $fw-semibold, 14px, 14px, 0.04em);
+            @include typography($font-family-base, $fw-semibold, convert-to-rem(14px), convert-to-rem(14px), 0.04em);
             font-style: normal;
             color: var(--color-primary-dark);
         }
@@ -307,7 +317,7 @@
         display: inline-flex;
         align-items: center;
         gap: convert-to-rem(4px);
-        @include typography($font-family-base, $fw-regular, 10px, 1, 0);
+        @include typography($font-family-base, $fw-regular, convert-to-rem(10px), 1, 0);
         text-align: center;
         color: var(--color-primary-dark);
         opacity: 0.8;
@@ -346,14 +356,14 @@
         display: inline-flex;
         align-items: center;
         gap: convert-to-rem(4px);
-        @include typography($font-family-base, $fw-regular, 10px, 1, 0);
+        @include typography($font-family-base, $fw-regular, convert-to-rem(10px), 1, 0);
         text-align: center;
         color: var(--color-primary-dark);
         opacity: 0.8;
     }
 
     &__card-excerpt {
-        @include typography($font-family-base, $fw-regular, 14px, 1, 0);
+        @include typography($font-family-base, $fw-regular, convert-to-rem(14px), 1, 0);
         color: var(--color-primary-dark);
         margin: 0 0 convert-to-rem(10px);
     }
@@ -375,7 +385,7 @@
     }
 
     &__socials-label {
-        @include typography($font-family-base, $fw-medium, 14px, 1, 0.04em);
+        @include typography($font-family-base, $fw-medium, convert-to-rem(14px), 1, 0.04em);
         color: var(--color-primary-dark);
         text-transform: uppercase;
     }
@@ -387,12 +397,12 @@
         color: var(--color-primary-dark);
 
         h4 {
-            @include typography($font-family-base, $fw-semibold, 14px, 1, 0.04em);
+            @include typography($font-family-base, $fw-semibold, convert-to-rem(14px), 1, 0.04em);
             margin: 0 0 convert-to-rem(10px);
         }
 
         p {
-            @include typography($font-family-base, $fw-medium, 14px, 1.5, 0.04em);
+            @include typography($font-family-base, $fw-medium, convert-to-rem(14px), 1.5, 0.04em);
         }
     }
 }

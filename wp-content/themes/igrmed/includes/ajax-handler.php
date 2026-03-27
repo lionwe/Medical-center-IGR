@@ -6,15 +6,15 @@ add_action('wp_ajax_nopriv_igrmed_load_surrogate_tabs', 'igrmed_load_surrogate_t
 function igrmed_load_surrogate_tabs(): void
 {
     error_log('Surrogate tabs AJAX called');
-    
+
     check_ajax_referer('ajax-nonce', 'nonce');
 
     $post_id = isset($_POST['post_id']) ? (int) $_POST['post_id'] : 0;
     $tab_type = isset($_POST['tab_type']) ? sanitize_text_field($_POST['tab_type']) : '';
-    
+
     error_log('Post ID: ' . $post_id);
     error_log('Tab type: ' . $tab_type);
-    
+
     if ($post_id <= 0 || $tab_type === '') {
         error_log('Invalid parameters');
         wp_send_json_error(['message' => 'Invalid parameters'], 400);
@@ -30,14 +30,14 @@ function igrmed_load_surrogate_tabs(): void
     if (strpos($tab_type, 'tab_') === 0) {
         $tab_index = (int) str_replace('tab_', '', $tab_type);
         error_log('Generic tab index: ' . $tab_index);
-        
+
         // Get the actual tabs data for this post
         $central_tabs = get_field('surrogate_central_tabs', $post_id);
-        
+
         error_log('Central tabs field exists: ' . ($central_tabs !== null ? 'yes' : 'no'));
         error_log('Central tabs is array: ' . (is_array($central_tabs) ? 'yes' : 'no'));
         error_log('Central tabs count: ' . (is_array($central_tabs) ? count($central_tabs) : 0));
-        
+
         // Try alternative field names
         if ($central_tabs === null) {
             $alternative_fields = ['central_tabs', 'tabs', 'surrogate_tabs'];
@@ -49,14 +49,14 @@ function igrmed_load_surrogate_tabs(): void
                 }
             }
         }
-        
+
         if (!empty($central_tabs) && isset($central_tabs[$tab_index])) {
             $tab = $central_tabs[$tab_index];
             error_log('Found tab data for index ' . $tab_index);
             error_log('Tab data keys: ' . implode(', ', array_keys($tab)));
-            
+
             ob_start();
-            ?>
+?>
             <?php if (!empty($tab['tab_content_title'])): ?>
                 <h3 class="surrogate-motherhood-content__tab-title">
                     <?php echo esc_html($tab['tab_content_title']); ?>
@@ -67,17 +67,17 @@ function igrmed_load_surrogate_tabs(): void
                     <?php echo wp_kses_post($tab['tab_content_text']); ?>
                 </div>
             <?php endif; ?>
-            <?php
+        <?php
             $html = ob_get_clean();
             error_log('Generated HTML length: ' . strlen($html));
-            
+
             wp_send_json_success(['html' => $html]);
         } else {
             error_log('No tab data found for index ' . $tab_index);
-            
+
             // Provide demo content for testing
             ob_start();
-            ?>
+        ?>
             <div class="surrogate-motherhood-content__tab-text">
                 <?php if ($tab_index === 0): ?>
                     <h3 class="surrogate-motherhood-content__tab-title">Програма сурогатного материнства</h3>
@@ -99,7 +99,7 @@ function igrmed_load_surrogate_tabs(): void
                     </ul>
                 <?php endif; ?>
             </div>
-            <?php
+        <?php
             $html = ob_get_clean();
             wp_send_json_success(['html' => $html]);
         }
@@ -117,7 +117,7 @@ function igrmed_load_surrogate_tabs(): void
     }
 
     ob_start();
-    
+
     // Load content based on tab type
     if ($tab_type === 'programs') {
         error_log('Loading programs tab');
@@ -125,10 +125,10 @@ function igrmed_load_surrogate_tabs(): void
         $price_label = get_field('surrogate_price_label', $post_id);
         $program_image = get_field('surrogate_program_image', $post_id);
         $program_image_url = is_array($program_image) ? ($program_image['url'] ?? '') : $program_image;
-        
+
         error_log('Program steps found: ' . (is_array($program_steps) ? count($program_steps) : 0));
         error_log('Price label: ' . ($price_label ? 'exists' : 'missing'));
-        
+
         if (!empty($program_steps) || !empty($price_label)):
         ?>
             <div class="surrogate-motherhood-content__program-main">
@@ -160,7 +160,7 @@ function igrmed_load_surrogate_tabs(): void
 
             <?php if (!empty($program_image_url)): ?>
                 <div class="surrogate-motherhood-content__program-image">
-                    <?php 
+                    <?php
                     if (function_exists('get_picture')) {
                         get_picture([
                             'src'   => $program_image_url,
@@ -177,7 +177,7 @@ function igrmed_load_surrogate_tabs(): void
         error_log('Loading indications tab');
         $indications = get_field('surrogate_indications', $post_id);
         error_log('Indications found: ' . (is_array($indications) ? count($indications) : 0));
-        
+
         if (!empty($indications)):
         ?>
             <div class="surrogate-motherhood-content__list">
@@ -194,7 +194,7 @@ function igrmed_load_surrogate_tabs(): void
                     </div>
                 <?php endforeach; ?>
             </div>
-        <?php
+    <?php
         endif;
     } else {
         error_log('Unknown tab type: ' . $tab_type);
@@ -202,7 +202,7 @@ function igrmed_load_surrogate_tabs(): void
 
     $html = ob_get_clean();
     error_log('Generated HTML length: ' . strlen($html));
-    
+
     set_transient($cache_key, $html, HOUR_IN_SECONDS);
 
     wp_send_json_success([
@@ -414,7 +414,7 @@ function igrmed_render_diagnostics_accordion(array $items): string
     }
 
     ob_start();
-?>
+    ?>
     <div class="diagnostics-research-diagnostics__accordion js-diagnostics-accordion">
         <?php foreach ($items as $row): ?>
             <article class="diagnostics-research-diagnostics__accordion-item">
@@ -434,7 +434,7 @@ function igrmed_render_diagnostics_accordion(array $items): string
             </article>
         <?php endforeach; ?>
     </div>
-<?php
+    <?php
 
     return (string) ob_get_clean();
 }
@@ -535,4 +535,121 @@ function igrmed_load_blog_posts_ajax()
 
     wp_reset_postdata();
     wp_die();
+}
+
+/**
+ * Live search AJAX handler.
+ *
+ * Uses direct $wpdb query instead of WP_Query because WordPress 6.x
+ * $wpdb->prepare() replaces LIKE wildcards (%) with hash-placeholder tokens,
+ * making title LIKE searches impossible through WP_Query filters.
+ */
+add_action('wp_ajax_igrmed_live_search', 'igrmed_live_search');
+add_action('wp_ajax_nopriv_igrmed_live_search', 'igrmed_live_search');
+
+function igrmed_live_search(): void
+{
+    check_ajax_referer('ajax-nonce', 'nonce');
+
+    $s = isset($_POST['s']) ? sanitize_text_field(wp_unslash($_POST['s'])) : '';
+    $lang = isset($_POST['lang']) ? sanitize_text_field(wp_unslash($_POST['lang'])) : '';
+
+    if ($s === '' || mb_strlen($s) < 2) {
+        wp_send_json_error(['message' => __('Занадто короткий запит', 'igrmed')], 400);
+    }
+
+    global $wpdb;
+
+    $escaped_like = esc_sql($wpdb->esc_like($s));
+    $like_contains = "'%" . $escaped_like . "%'";
+    $like_starts   = "'" . $escaped_like . "%'";
+    $exact_val     = "'" . esc_sql($s) . "'";
+
+    // Searchable post types
+    $post_types = ['services', 'price_items', 'doctors', 'blog', 'page'];
+    $types_in = implode(',', array_map(function ($t) {
+        return "'" . esc_sql($t) . "'";
+    }, $post_types));
+
+    // Polylang language filter: LEFT JOIN so posts without language assignment are still found
+    $lang_join  = '';
+    $lang_where = '';
+
+    if ($lang !== '' && function_exists('pll_current_language')) {
+        $lang_term = get_term_by('slug', $lang, 'language');
+
+        if ($lang_term && !is_wp_error($lang_term)) {
+            $lang_tt_id = (int) $lang_term->term_taxonomy_id;
+            $lang_join  = " LEFT JOIN {$wpdb->term_relationships} AS pll_tr
+                ON ({$wpdb->posts}.ID = pll_tr.object_id
+                    AND pll_tr.term_taxonomy_id = {$lang_tt_id})";
+            $lang_where = " AND (pll_tr.term_taxonomy_id IS NOT NULL
+                OR {$wpdb->posts}.ID NOT IN (
+                    SELECT object_id FROM {$wpdb->term_relationships}
+                    INNER JOIN {$wpdb->term_taxonomy} ON {$wpdb->term_relationships}.term_taxonomy_id = {$wpdb->term_taxonomy}.term_taxonomy_id
+                    WHERE {$wpdb->term_taxonomy}.taxonomy = 'language'
+                ))";
+        }
+    }
+
+    // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+    $sql = "SELECT {$wpdb->posts}.ID, {$wpdb->posts}.post_title, {$wpdb->posts}.post_type
+        FROM {$wpdb->posts}
+        {$lang_join}
+        WHERE {$wpdb->posts}.post_title LIKE {$like_contains}
+            AND {$wpdb->posts}.post_type IN ({$types_in})
+            AND {$wpdb->posts}.post_status = 'publish'
+            {$lang_where}
+        ORDER BY
+            (CASE
+                WHEN {$wpdb->posts}.post_title = {$exact_val} THEN 1
+                WHEN {$wpdb->posts}.post_title LIKE {$like_starts} THEN 2
+                ELSE 3
+            END) ASC,
+            {$wpdb->posts}.post_title ASC
+        LIMIT 10";
+    // phpcs:enable
+
+    $results = $wpdb->get_results($sql);
+
+    if (!empty($results)) {
+        ob_start();
+        echo '<ul class="header__search-results-list">';
+
+        foreach ($results as $row) {
+            $post_id   = (int) $row->ID;
+            $post_type = $row->post_type;
+            $post_type_obj = get_post_type_object($post_type);
+            $label = $post_type_obj ? $post_type_obj->labels->singular_name : $post_type;
+
+            if ($post_type === 'services') {
+                $terms = get_the_terms($post_id, 'service_category');
+                if (!empty($terms) && !is_wp_error($terms)) {
+                    $label = $terms[0]->name;
+                }
+            }
+
+            $permalink = get_permalink($post_id);
+            $title     = esc_html($row->post_title);
+    ?>
+            <li class="header__search-results-item">
+                <a href="<?php echo esc_url($permalink); ?>" class="header__search-results-link">
+                    <span class="header__search-results-title"><?php echo $title; ?></span>
+                    <span class="header__search-results-type"><?php echo esc_html($label); ?></span>
+                </a>
+            </li>
+<?php
+        }
+
+        echo '</ul>';
+        $html = ob_get_clean();
+
+        wp_send_json_success(['html' => $html]);
+    } else {
+        wp_send_json_success([
+            'html' => '<div class="header__search-no-results">'
+                . esc_html__('Нічого не знайдено', 'igrmed')
+                . '</div>',
+        ]);
+    }
 }

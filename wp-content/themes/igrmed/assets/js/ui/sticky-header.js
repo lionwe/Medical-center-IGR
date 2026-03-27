@@ -32,6 +32,12 @@ const initHeaderVisibility = () => {
       return;
     }
 
+    if (currentScrollTop > 50) {
+      header.classList.add("is-scrolled");
+    } else {
+      header.classList.remove("is-scrolled");
+    }
+
     if (
       currentScrollTop > lastScrollTop &&
       currentScrollTop > header.offsetHeight
