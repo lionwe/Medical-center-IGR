@@ -231,9 +231,9 @@
                                                         <svg class="header__search-loader" width="20" height="20" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
                                                             <g fill="none" fill-rule="evenodd">
                                                                 <g transform="translate(1 1)" stroke-width="2">
-                                                                    <circle stroke-opacity=".5" cx="18" cy="18" r="18"/>
+                                                                    <circle stroke-opacity=".5" cx="18" cy="18" r="18" />
                                                                     <path d="M36 18c0-9.94-8.06-18-18-18">
-                                                                        <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"/>
+                                                                        <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite" />
                                                                     </path>
                                                                 </g>
                                                             </g>
@@ -241,7 +241,7 @@
                                                     </span>
                                                     <button type="button" class="header__search-icon-wrapper header__search-icon-wrapper--close" aria-label="<?php esc_attr_e('Закрити пошук', 'igr-theme'); ?>">
                                                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                                            <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                                                         </svg>
                                                     </button>
                                                 </div>
@@ -319,76 +319,76 @@
                         </span>
                     </a>
                     <div class="header__mobile-menu-info">
-                    <?php if ($header_address !== ''): ?>
-                        <div class="header__mobile-menu-info-row">
-                            <?php if ($header_address_icon_url !== ''): ?>
-                                <span class="header__mobile-menu-info-icon">
-                                    <?php
-                                    get_picture([
-                                        'src' => $header_address_icon_url,
-                                        'alt' => $header_address_icon_alt,
-                                        'class' => 'header__mobile-menu-info-icon-image',
-                                        'lazy' => false,
-                                    ]);
-                                    ?>
-                                </span>
-                            <?php endif; ?>
-                            <span class="header__mobile-menu-info-text"><?php echo esc_html($header_address); ?></span>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if ($header_phone_1_url !== '' || $header_phone_2_url !== ''): ?>
-                        <div class="header__mobile-menu-info-row">
-                            <?php if ($header_phone_icon_url !== ''): ?>
-                                <span class="header__mobile-menu-info-icon">
-                                    <?php
-                                    get_picture([
-                                        'src' => $header_phone_icon_url,
-                                        'alt' => $header_phone_icon_alt,
-                                        'class' => 'header__mobile-menu-info-icon-image',
-                                        'lazy' => false,
-                                    ]);
-                                    ?>
-                                </span>
-                            <?php endif; ?>
-                            <div class="header__mobile-menu-info-phones">
-                                <?php if ($header_phone_1_url !== ''): ?>
-                                    <span class="header__mobile-menu-info-dot" aria-hidden="true">·</span>
-                                    <a class="header__mobile-menu-info-text header__mobile-menu-info-link"
-                                        href="<?php echo esc_url($header_phone_1_url); ?>"
-                                        target="<?php echo esc_attr($header_phone_1_target); ?>">
-                                        <?php echo esc_html($header_phone_1_label !== '' ? $header_phone_1_label : $header_phone_1_url); ?>
-                                    </a>
+                        <?php if ($header_address !== ''): ?>
+                            <div class="header__mobile-menu-info-row">
+                                <?php if ($header_address_icon_url !== ''): ?>
+                                    <span class="header__mobile-menu-info-icon">
+                                        <?php
+                                        get_picture([
+                                            'src' => $header_address_icon_url,
+                                            'alt' => $header_address_icon_alt,
+                                            'class' => 'header__mobile-menu-info-icon-image',
+                                            'lazy' => false,
+                                        ]);
+                                        ?>
+                                    </span>
                                 <?php endif; ?>
-                                <?php if ($header_phone_2_url !== ''): ?>
-                                    <span class="header__mobile-menu-info-dot" aria-hidden="true">·</span>
-                                    <a class="header__mobile-menu-info-text header__mobile-menu-info-link"
-                                        href="<?php echo esc_url($header_phone_2_url); ?>"
-                                        target="<?php echo esc_attr($header_phone_2_target); ?>">
-                                        <?php echo esc_html($header_phone_2_label !== '' ? $header_phone_2_label : $header_phone_2_url); ?>
-                                    </a>
-                                <?php endif; ?>
+                                <span class="header__mobile-menu-info-text"><?php echo esc_html($header_address); ?></span>
                             </div>
-                        </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
 
-                    <?php if ($header_schedule !== ''): ?>
-                        <div class="header__mobile-menu-info-row">
-                            <?php if ($header_clock_icon_url !== ''): ?>
-                                <span class="header__mobile-menu-info-icon">
-                                    <?php
-                                    get_picture([
-                                        'src' => $header_clock_icon_url,
-                                        'alt' => $header_clock_icon_alt,
-                                        'class' => 'header__mobile-menu-info-icon-image',
-                                        'lazy' => false,
-                                    ]);
-                                    ?>
-                                </span>
-                            <?php endif; ?>
-                            <span class="header__mobile-menu-info-text"><?php echo wp_kses_post($header_schedule); ?></span>
-                        </div>
-                    <?php endif; ?>
+                        <?php if ($header_phone_1_url !== '' || $header_phone_2_url !== ''): ?>
+                            <div class="header__mobile-menu-info-row">
+                                <?php if ($header_phone_icon_url !== ''): ?>
+                                    <span class="header__mobile-menu-info-icon">
+                                        <?php
+                                        get_picture([
+                                            'src' => $header_phone_icon_url,
+                                            'alt' => $header_phone_icon_alt,
+                                            'class' => 'header__mobile-menu-info-icon-image',
+                                            'lazy' => false,
+                                        ]);
+                                        ?>
+                                    </span>
+                                <?php endif; ?>
+                                <div class="header__mobile-menu-info-phones">
+                                    <?php if ($header_phone_1_url !== ''): ?>
+                                        <span class="header__mobile-menu-info-dot" aria-hidden="true">·</span>
+                                        <a class="header__mobile-menu-info-text header__mobile-menu-info-link"
+                                            href="<?php echo esc_url($header_phone_1_url); ?>"
+                                            target="<?php echo esc_attr($header_phone_1_target); ?>">
+                                            <?php echo esc_html($header_phone_1_label !== '' ? $header_phone_1_label : $header_phone_1_url); ?>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if ($header_phone_2_url !== ''): ?>
+                                        <span class="header__mobile-menu-info-dot" aria-hidden="true">·</span>
+                                        <a class="header__mobile-menu-info-text header__mobile-menu-info-link"
+                                            href="<?php echo esc_url($header_phone_2_url); ?>"
+                                            target="<?php echo esc_attr($header_phone_2_target); ?>">
+                                            <?php echo esc_html($header_phone_2_label !== '' ? $header_phone_2_label : $header_phone_2_url); ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($header_schedule !== ''): ?>
+                            <div class="header__mobile-menu-info-row">
+                                <?php if ($header_clock_icon_url !== ''): ?>
+                                    <span class="header__mobile-menu-info-icon">
+                                        <?php
+                                        get_picture([
+                                            'src' => $header_clock_icon_url,
+                                            'alt' => $header_clock_icon_alt,
+                                            'class' => 'header__mobile-menu-info-icon-image',
+                                            'lazy' => false,
+                                        ]);
+                                        ?>
+                                    </span>
+                                <?php endif; ?>
+                                <span class="header__mobile-menu-info-text"><?php echo wp_kses_post($header_schedule); ?></span>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php if (!empty($header_social_items)): ?>
@@ -415,3 +415,39 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Search Popup -->
+    <div class="header__search-popup" id="mobile-search-popup" aria-hidden="true">
+        <div class="header__search-popup-overlay"></div>
+        <div class="header__search-popup-container">
+            <div class="header__search-popup-header">
+                <span class="header__search-popup-title"><?php esc_html_e('Пошук', 'igr-theme'); ?></span>
+                <button class="header__search-popup-close" type="button"
+                    aria-label="<?php esc_attr_e('Закрити пошук', 'igr-theme'); ?>">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L15 15M1 15L15 1" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+            <div class="header__search-popup-field">
+                <input class="header__search-popup-input" type="search"
+                    placeholder="<?php esc_attr_e('Введіть запит...', 'igr-theme'); ?>" autocomplete="off">
+                <span class="header__search-popup-loader" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg"
+                        stroke="currentColor">
+                        <g fill="none" fill-rule="evenodd">
+                            <g transform="translate(1 1)" stroke-width="2">
+                                <circle stroke-opacity=".5" cx="18" cy="18" r="18" />
+                                <path d="M36 18c0-9.94-8.06-18-18-18">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 18 18"
+                                        to="360 18 18" dur="1s" repeatCount="indefinite" />
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+                </span>
+            </div>
+            <div class="header__search-popup-results"></div>
+        </div>
+    </div>

@@ -44,13 +44,14 @@
                 text-align: left;
                 padding: convert-to-rem(34px) convert-to-rem(50px);
                 background-color: var(--color-white);
+                border-radius: convert-to-rem(12px);
 
                 &__content {
                     max-width: convert-to-rem(460px);
                 }
 
                 &__title {
-                    @include typography($font-family-montserrat, $fw-semibold, 24px, 26px);
+                    @include typography($font-family-montserrat, $fw-semibold, convert-to-rem(24px), convert-to-rem(26px));
                     color: var(--color-primary-dark);
                     margin: 0 0 convert-to-rem(24px);
                     text-transform: none;
@@ -69,45 +70,17 @@
                     padding: convert-to-rem(34px) convert-to-rem(20px);
 
                     &__title {
-                        @include typography($font-family-montserrat, $fw-semibold, 20px, 22px);
+                        @include typography($font-family-montserrat, $fw-semibold, convert-to-rem(20px), convert-to-rem(22px));
                         margin-bottom: convert-to-rem(20px);
                     }
                 }
             }
         }
 
-        // Border-radius on corner cards only
-        // Top-left card
         .service-card:first-child {
-            border-top-left-radius: convert-to-rem(12px);
-
             .service-card__title {
                 max-width: convert-to-rem(156px);
             }
-        }
-
-        // Top-right card (4th in a 4-col grid)
-        .service-card:nth-child(4) {
-            border-top-right-radius: convert-to-rem(12px);
-        }
-
-        // Bottom-left card
-        .service-card:nth-last-child(4):nth-child(4n+1),
-        .service-card:nth-last-child(3):nth-child(4n+1),
-        .service-card:nth-last-child(2):nth-child(4n+1),
-        .service-card:last-child:nth-child(4n+1) {
-            border-bottom-left-radius: convert-to-rem(12px);
-        }
-
-        // Bottom-right card
-        .service-card:last-child {
-            border-bottom-right-radius: convert-to-rem(12px);
-        }
-
-        // Last row: also give bottom-left radius to 1st card of last row
-        // Generic: last child that starts a row
-        .service-card:nth-child(4n+1):nth-last-child(-n+4) {
-            border-bottom-left-radius: convert-to-rem(12px);
         }
 
         @include mobile {
@@ -115,26 +88,14 @@
             margin-inline: calc(-1 * var(--_section-offset));
             grid-template-columns: repeat(2, 1fr);
 
-            // Reset all border-radius
+            // Ensure service cards have no radius
             .service-card {
                 border-radius: 0;
             }
 
-            // Re-apply corner radii for 2-col layout
-            .service-card:first-child {
-                border-top-left-radius: convert-to-rem(12px);
-            }
-
-            .service-card:nth-child(2) {
-                border-top-right-radius: convert-to-rem(12px);
-            }
-
-            .service-card:last-child {
-                border-bottom-right-radius: convert-to-rem(12px);
-            }
-
-            .service-card:nth-child(2n+1):nth-last-child(-n+2) {
-                border-bottom-left-radius: convert-to-rem(12px);
+            // Radius only on bottom for CTA on mobile
+            .service-card--cta {
+                border-radius: 0 0 convert-to-rem(12px) convert-to-rem(12px);
             }
         }
     }
