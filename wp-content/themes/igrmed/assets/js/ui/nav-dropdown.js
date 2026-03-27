@@ -1,5 +1,5 @@
 /**
- * Header nav: open submenus on click (desktop + mobile overlay).
+ * Header nav: open submenus on hover (desktop + mobile overlay).
  */
 const initNavDropdown = () => {
   const menus = document.querySelectorAll(
@@ -47,6 +47,24 @@ const initNavDropdown = () => {
       link.setAttribute("aria-haspopup", "true");
       link.setAttribute("aria-expanded", "false");
 
+      // Open on hover
+      li.addEventListener("mouseenter", () => {
+        closeSiblings(li);
+        li.classList.add("is-open");
+        link.setAttribute("aria-expanded", "true");
+      });
+
+      // Close on mouseleave
+      li.addEventListener("mouseleave", () => {
+        setTimeout(() => {
+          if (!li.matches(":hover")) {
+            li.classList.remove("is-open");
+            link.setAttribute("aria-expanded", "false");
+          }
+        }, 100); // Small delay to prevent flickering
+      });
+
+      // Keep click functionality for mobile/touch
       const toggle = (event) => {
         event.preventDefault();
         event.stopPropagation();
