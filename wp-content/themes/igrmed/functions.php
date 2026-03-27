@@ -86,13 +86,14 @@ function igrmed_enqueue_assets(): void
 /**
  * Add DEFER attribute to theme scripts for better performance
  */
-function igrmed_defer_scripts($tag, $handle) {
+function igrmed_defer_scripts($tag, $handle)
+{
     $scripts_to_defer = ['igrmed-main-js', 'igrmed-vendors-core'];
-    
+
     if (in_array($handle, $scripts_to_defer)) {
         return str_replace(' src', ' defer src', $tag);
     }
-    
+
     return $tag;
 }
 
@@ -279,5 +280,6 @@ add_filter('use_default_gallery_style', '__return_false');
 // ============================================
 remove_action('shutdown', 'wp_ob_end_flush_all', 1);
 add_action('shutdown', function () {
-    while (@ob_end_flush());
+    while (@ob_end_flush())
+        ;
 });
