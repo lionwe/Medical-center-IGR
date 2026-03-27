@@ -3,6 +3,11 @@
 $form_shortcode = (string) get_field('form_shortcode', 'option');
 $home_page_id = getHomePageID();
 
+// Empty Fields Rule: if there is no shortcode, do not render the section.
+if (trim($form_shortcode) === '') {
+    return;
+}
+
 $resolve_image_url = static function ($value): string {
     if (is_numeric($value)) {
         $url = wp_get_attachment_image_url((int) $value, 'full');
@@ -64,11 +69,7 @@ if ($cta_bg_mobile_url === '') {
 
             <div class="cta__window">
 
-                <?php if ($form_shortcode): ?>
-
-                    <?php echo do_shortcode($form_shortcode); ?>
-
-                <?php endif; ?>
+                <?php echo do_shortcode($form_shortcode); ?>
 
             </div>
 

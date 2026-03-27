@@ -148,24 +148,31 @@ if (is_array($methods_rows)) {
     }
 }
 
+$has_intro = $intro_content !== '';
+$has_reasons = $reasons_subtitle !== '' || !empty($reasons_items);
+$has_symptoms = !empty($symptoms_items);
+$has_stages = !empty($stages);
+$has_methods = !empty($methods);
+$has_advantages = !empty($advantages);
+
 $sections = [];
 
-if ($intro_title !== '' || $intro_content !== '') {
+if ($has_intro) {
     $sections[] = ['id' => 'itw-intro', 'title' => $intro_title !== '' ? $intro_title : __('Вступ', 'igrmed')];
 }
-if ($reasons_title !== '' || $reasons_subtitle !== '' || !empty($reasons_items)) {
+if ($has_reasons) {
     $sections[] = ['id' => 'itw-reasons', 'title' => $reasons_title !== '' ? $reasons_title : __('Причини', 'igrmed')];
 }
-if ($symptoms_title !== '' || !empty($symptoms_items)) {
+if ($has_symptoms) {
     $sections[] = ['id' => 'itw-symptoms', 'title' => $symptoms_title !== '' ? $symptoms_title : __('Симптоми', 'igrmed')];
 }
-if ($stages_title !== '' || !empty($stages) || $stages_bg_url !== '' || $stages_bg_mobile_url !== '') {
+if ($has_stages) {
     $sections[] = ['id' => 'itw-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи лікування', 'igrmed')];
 }
-if ($methods_title !== '' || !empty($methods)) {
+if ($has_methods) {
     $sections[] = ['id' => 'itw-methods', 'title' => $methods_title !== '' ? $methods_title : __('Методи лікування', 'igrmed')];
 }
-if ($advantages_title !== '' || !empty($advantages)) {
+if ($has_advantages) {
     $sections[] = ['id' => 'itw-advantages', 'title' => $advantages_title !== '' ? $advantages_title : __('Переваги', 'igrmed')];
 }
 
@@ -180,7 +187,7 @@ if (empty($sections)) {
             <?php get_template_part('templates/content-sidebar', null, ['sections' => $sections]); ?>
 
             <div class="infertility-treatment-women__content">
-                <?php if ($intro_title !== '' || $intro_content !== ''): ?>
+                <?php if ($has_intro): ?>
                     <div id="itw-intro" class="infertility-treatment-women__section js-itw-section donor-section">
                         <div class="infertility-treatment-women__section-title-wrap">
                             <h2 class="infertility-treatment-women__section-title">
@@ -195,7 +202,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($reasons_title !== '' || $reasons_subtitle !== '' || !empty($reasons_items)): ?>
+                <?php if ($has_reasons): ?>
                     <div id="itw-reasons" class="infertility-treatment-women__section js-itw-section donor-section">
                         <div class="infertility-treatment-women__section-title-wrap">
                             <h2 class="infertility-treatment-women__section-title">
@@ -218,7 +225,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($symptoms_title !== '' || !empty($symptoms_items)): ?>
+                <?php if ($has_symptoms): ?>
                     <div id="itw-symptoms" class="infertility-treatment-women__section infertility-treatment-women__section--symptoms js-itw-section donor-section">
                         <div class="infertility-treatment-women__section-title-wrap infertility-treatment-women__section-title-wrap--symptoms">
                             <h2 class="infertility-treatment-women__section-title">
@@ -240,7 +247,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($stages_title !== '' || !empty($stages) || $stages_bg_url !== '' || $stages_bg_mobile_url !== ''): ?>
+                <?php if ($has_stages): ?>
                     <div id="itw-stages" class="infertility-treatment-women__section js-itw-section donor-section">
                         <div class="infertility-treatment-women__section-title-wrap">
                             <h2 class="infertility-treatment-women__section-title">
@@ -288,7 +295,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($methods_title !== '' || !empty($methods)): ?>
+                <?php if ($has_methods): ?>
                     <div id="itw-methods" class="infertility-treatment-women__section js-itw-section donor-section">
                         <div class="infertility-treatment-women__section-title-wrap">
                             <h2 class="infertility-treatment-women__section-title">
@@ -314,7 +321,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($advantages_title !== '' || !empty($advantages)): ?>
+                <?php if ($has_advantages): ?>
                     <div id="itw-advantages" class="infertility-treatment-women__section infertility-treatment-women__section--advantages js-itw-section donor-section">
                         <div class="infertility-treatment-women__section-title-wrap">
                             <h2 class="infertility-treatment-women__section-title">

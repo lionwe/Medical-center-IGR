@@ -49,17 +49,22 @@ $when_list = $extract_text_rows(get_field('when_list'), ['text', 'item', 'title'
 $procedures_title = trim((string) get_field('procedures_title'));
 $procedures_list = $extract_text_rows(get_field('procedures_list'), ['name', 'text', 'item', 'title']);
 
+$has_intro = $intro_content !== '';
+$has_advantages = $advantages_content !== '';
+$has_when = !empty($when_list);
+$has_procedures = !empty($procedures_list);
+
 $sections = [];
-if ($intro_title !== '' || $intro_content !== '') {
+if ($has_intro) {
     $sections[] = ['id' => 'gy-intro', 'title' => $intro_title !== '' ? $intro_title : __('Гінекологія', 'igrmed')];
 }
-if ($advantages_title !== '' || $advantages_content !== '') {
+if ($has_advantages) {
     $sections[] = ['id' => 'gy-advantages', 'title' => $advantages_title !== '' ? $advantages_title : __('Переваги', 'igrmed')];
 }
-if ($when_title !== '' || !empty($when_list)) {
+if ($has_when) {
     $sections[] = ['id' => 'gy-when', 'title' => $when_title !== '' ? $when_title : __('Коли варто звернутися', 'igrmed')];
 }
-if ($procedures_title !== '' || !empty($procedures_list)) {
+if ($has_procedures) {
     $sections[] = ['id' => 'gy-procedures', 'title' => $procedures_title !== '' ? $procedures_title : __('Процедури та захворювання', 'igrmed')];
 }
 
@@ -76,7 +81,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
             <?php endif; ?>
 
             <div class="gynecology-content__content">
-                <?php if ($intro_title !== '' || $intro_content !== ''): ?>
+                <?php if ($has_intro): ?>
                     <div id="gy-intro" class="gynecology-content__section gynecology-content__section--intro">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
@@ -93,7 +98,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     </div>
                 <?php endif; ?>
 
-                <?php if ($advantages_title !== '' || $advantages_content !== ''): ?>
+                <?php if ($has_advantages): ?>
                     <div id="gy-advantages" class="gynecology-content__section gynecology-content__section--advantages">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
@@ -108,7 +113,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     </div>
                 <?php endif; ?>
 
-                <?php if ($when_title !== '' || !empty($when_list)): ?>
+                <?php if ($has_when): ?>
                     <div id="gy-when" class="gynecology-content__section">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
@@ -127,7 +132,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     </div>
                 <?php endif; ?>
 
-                <?php if ($procedures_title !== '' || !empty($procedures_list)): ?>
+                <?php if ($has_procedures): ?>
                     <div id="gy-procedures" class="gynecology-content__section gynecology-content__section--procedures">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
@@ -181,18 +186,18 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
 </section>
 
 <script>
-    (function () {
-        const root = document.querySelector('#gy-procedures');
-        if (!root) return;
+(function() {
+    const root = document.querySelector('#gy-procedures');
+    if (!root) return;
 
-        const button = root.querySelector('.gynecology-content__list-more');
-        if (!button) return;
+    const button = root.querySelector('.gynecology-content__list-more');
+    if (!button) return;
 
-        button.addEventListener('click', () => {
-            const hiddenItems = root.querySelectorAll('.is-hidden-service');
-            hiddenItems.forEach((item) => item.classList.remove('is-hidden-service'));
-            button.setAttribute('aria-expanded', 'true');
-            button.closest('.gynecology-content__list-more-item')?.remove();
-        });
-    })();
+    button.addEventListener('click', () => {
+        const hiddenItems = root.querySelectorAll('.is-hidden-service');
+        hiddenItems.forEach((item) => item.classList.remove('is-hidden-service'));
+        button.setAttribute('aria-expanded', 'true');
+        button.closest('.gynecology-content__list-more-item')?.remove();
+    });
+})();
 </script>

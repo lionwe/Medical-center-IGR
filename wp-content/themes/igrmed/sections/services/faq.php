@@ -41,7 +41,7 @@ if (is_array($faq_rows)) {
     }
 }
 
-if ($title === '' && empty($faq_list)) {
+if (empty($faq_list)) {
     return;
 }
 
@@ -54,10 +54,7 @@ $icon_arrow_svg = '<svg width="19" height="9" viewBox="0 0 19 9" fill="none" xml
 
 <section class="faq-section" id="faq-section">
     <div class="container">
-        <div class="faq-section__inner">
-            <div class="faq-section__bg">
-                <img src="<?php echo esc_url($bg_image); ?>" alt="" loading="lazy">
-            </div>
+        <div class="faq-section__inner" style="background-image: url('<?php echo esc_url($bg_image); ?>');">
 
             <div class="faq-section__layout">
                 <div class="faq-section__left-col">

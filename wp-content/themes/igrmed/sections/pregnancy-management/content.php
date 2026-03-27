@@ -31,7 +31,7 @@ $doctors_list  = is_array($doctors_list) ? array_filter($doctors_list, function(
 $post_content  = trim((string) get_post_field('post_content', get_the_ID()));
 
 // Блок показується лише якщо є реальний контент
-$has_intro      = $intro_title !== '' || $intro_content !== '';
+$has_intro      = $intro_content !== '';
 $has_advantages = !empty($advantages_list);
 $has_procedures = !empty($procedures_list);
 $has_doctors    = !empty($doctors_list);

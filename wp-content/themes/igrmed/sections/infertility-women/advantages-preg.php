@@ -22,14 +22,22 @@ if (is_array($items_rows)) {
         }
     }
 }
+
+// Empty Fields Rule: title is required for this section.
+if ($title === '') {
+    return;
+}
+
+// Empty Fields Rule: avoid rendering title-only section.
+if ($text === '' && empty($items)) {
+    return;
+}
 ?>
 
 <section class="advantages-preg">
     <div class="container">
         <div class="advantages-preg__wrapper">
-            <?php if ($title !== ''): ?>
             <h3 class="advantages-preg__title"><?php echo esc_html($title); ?></h3>
-            <?php endif; ?>
 
             <div class="advantages-preg__row">
                 <div class="advantages-preg__left">

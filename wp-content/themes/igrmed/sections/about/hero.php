@@ -1,5 +1,5 @@
 <?php
-$hero_about_left_text = (string) get_field('hero_about_left_text');
+$hero_about_left_text = trim((string) get_field('hero_about_left_text'));
 $hero_about_img = get_field('hero_about_img');
 $hero_about_bg = get_field('hero_about_bg');
 
@@ -20,6 +20,11 @@ if (is_array($hero_about_bg)) {
     $hero_about_bg_url = (string) wp_get_attachment_image_url((int) $hero_about_bg, 'full');
 } elseif (is_string($hero_about_bg)) {
     $hero_about_bg_url = $hero_about_bg;
+}
+
+// Empty Fields Rule: treat left text as required primary content.
+if ($hero_about_left_text === '') {
+    return;
 }
 
 $about_hero_style = $hero_about_bg_url !== '' ? ' style="background-image: url(' . esc_url($hero_about_bg_url) . ');"' : '';

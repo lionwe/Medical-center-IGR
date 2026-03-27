@@ -10,26 +10,72 @@ $intro_content = is_string($intro_content) ? trim($intro_content) : '';
 $stages_title = trim((string) get_field('stages_title'));
 $stages_image = get_field('stages_image');
 $stages_list = get_field('stages_list');
+$stages_cards = [];
+
+if (is_array($stages_list)) {
+    foreach ($stages_list as $stage) {
+        if (!is_array($stage)) {
+            continue;
+        }
+        $stage_title = trim((string) ($stage['title'] ?? ''));
+        $stage_text = trim((string) ($stage['text'] ?? ''));
+        if ($stage_title === '' && $stage_text === '') {
+            continue;
+        }
+        $stages_cards[] = [
+            'title' => $stage_title,
+            'text' => $stage_text,
+        ];
+    }
+}
 
 $requirements_title = trim((string) get_field('requirements_title'));
 $requirements_list = get_field('requirements_list');
+$requirements_cards = [];
+
+if (is_array($requirements_list)) {
+    foreach ($requirements_list as $req) {
+        if (!is_array($req)) {
+            continue;
+        }
+
+        $req_title = trim((string) ($req['title'] ?? ''));
+        $req_text = trim((string) ($req['text'] ?? ''));
+
+        if ($req_title === '' && $req_text === '') {
+            continue;
+        }
+
+        $requirements_cards[] = [
+            'title' => $req_title,
+            'text' => $req_text,
+        ];
+    }
+}
 
 $compensation_title = trim((string) get_field('compensation_title'));
 $compensation_text = get_field('compensation_text');
 $compensation_highlight = get_field('compensation_highlight');
+$compensation_text = is_string($compensation_text) ? trim($compensation_text) : '';
+$compensation_highlight = is_string($compensation_highlight) ? trim($compensation_highlight) : '';
+
+$has_intro = $intro_content !== '';
+$has_stages = !empty($stages_cards) || !empty($stages_image);
+$has_requirements = !empty($requirements_cards);
+$has_compensation = $compensation_text !== '' || $compensation_highlight !== '';
 
 $sections = [];
 
-if ($intro_title !== '' || $intro_content !== '') {
+if ($has_intro) {
     $sections[] = ['id' => 'donor-intro', 'title' => $intro_title !== '' ? $intro_title : __('Вступ', 'igrmed')];
 }
-if ($stages_title !== '' || !empty($stages_list)) {
+if ($has_stages) {
     $sections[] = ['id' => 'donor-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи участі', 'igrmed')];
 }
-if ($requirements_title !== '' || !empty($requirements_list)) {
+if ($has_requirements) {
     $sections[] = ['id' => 'donor-requirements', 'title' => $requirements_title !== '' ? $requirements_title : __('Вимоги до кандидатів', 'igrmed')];
 }
-if ($compensation_title !== '' || $compensation_text !== '' || $compensation_highlight !== '') {
+if ($has_compensation) {
     $sections[] = ['id' => 'donor-compensation', 'title' => $compensation_title !== '' ? $compensation_title : __('Компенсація', 'igrmed')];
 }
 
@@ -44,7 +90,7 @@ if (empty($sections)) {
             <?php get_template_part('templates/content-sidebar', null, ['sections' => $sections]); ?>
 
             <div class="egg-donor-content__content">
-                <?php if ($intro_title !== '' || $intro_content !== ''): ?>
+                <?php if ($has_intro): ?>
                     <div id="donor-intro" class="egg-donor-content__section egg-donor-content__section--intro">
                         <div class="egg-donor-content__title-wrap">
                             <h2 class="egg-donor-content__title">
@@ -59,7 +105,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($stages_title !== '' || !empty($stages_list) || $stages_image): ?>
+                <?php if ($has_stages): ?>
                     <div id="donor-stages" class="egg-donor-content__section egg-donor-content__section--stages">
                         <div class="egg-donor-content__title-wrap">
                             <h2 class="egg-donor-content__title">
@@ -68,29 +114,23 @@ if (empty($sections)) {
                         </div>
                         <div class="egg-donor-content__body">
                             <div class="egg-donor-content__stages-layout">
-                                <?php if (!empty($stages_list)): ?>
+                                <?php if (!empty($stages_cards)): ?>
                                     <div class="egg-donor-content__stages-list">
-                                        <?php foreach ($stages_list as $index => $stage): ?>
-                                            <?php
-                                            $stage_title = trim((string) ($stage['title'] ?? ''));
-                                            $stage_text = trim((string) ($stage['text'] ?? ''));
-                                            ?>
-                                            <?php if ($stage_title !== '' || $stage_text !== ''): ?>
+                                        <?php foreach ($stages_cards as $index => $stage): ?>
                                                 <div class="egg-donor-content__stage-item">
                                                     <div class="egg-donor-content__stage-number"><?php echo esc_html(sprintf('%02d', $index + 1)); ?></div>
                                                     <div class="egg-donor-content__stage-content">
-                                                        <?php if ($stage_title !== ''): ?>
-                                                            <h3 class="egg-donor-content__stage-title"><?php echo esc_html($stage_title); ?></h3>
+                                                        <?php if ($stage['title'] !== ''): ?>
+                                                            <h3 class="egg-donor-content__stage-title"><?php echo esc_html($stage['title']); ?></h3>
                                                         <?php endif; ?>
-                                                        <?php if ($stage_text !== ''): ?>
+                                                        <?php if ($stage['text'] !== ''): ?>
                                                             <div class="egg-donor-content__stage-text-wrap">
                                                                 <span class="egg-donor-content__stage-line" aria-hidden="true"></span>
-                                                                <p class="egg-donor-content__stage-text"><?php echo esc_html($stage_text); ?></p>
+                                                                <p class="egg-donor-content__stage-text"><?php echo esc_html($stage['text']); ?></p>
                                                             </div>
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
-                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endif; ?>
@@ -104,7 +144,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($requirements_title !== '' || !empty($requirements_list)): ?>
+                <?php if ($has_requirements): ?>
                     <div id="donor-requirements" class="egg-donor-content__section egg-donor-content__section--requirements">
                         <div class="egg-donor-content__title-wrap">
                             <h2 class="egg-donor-content__title">
@@ -112,23 +152,17 @@ if (empty($sections)) {
                             </h2>
                         </div>
                         <div class="egg-donor-content__body">
-                            <?php if (!empty($requirements_list)): ?>
+                            <?php if (!empty($requirements_cards)): ?>
                                 <div class="egg-donor-content__requirements-grid">
-                                    <?php foreach ($requirements_list as $req): ?>
-                                        <?php
-                                        $req_title = trim((string) ($req['title'] ?? ''));
-                                        $req_text = trim((string) ($req['text'] ?? ''));
-                                        ?>
-                                        <?php if ($req_title !== '' || $req_text !== ''): ?>
-                                            <div class="egg-donor-content__requirement-card">
-                                                <?php if ($req_title !== ''): ?>
-                                                    <h3 class="egg-donor-content__requirement-title"><?php echo esc_html($req_title); ?></h3>
-                                                <?php endif; ?>
-                                                <?php if ($req_text !== ''): ?>
-                                                    <p class="egg-donor-content__requirement-text"><?php echo esc_html($req_text); ?></p>
-                                                <?php endif; ?>
-                                            </div>
-                                        <?php endif; ?>
+                                    <?php foreach ($requirements_cards as $req): ?>
+                                        <div class="egg-donor-content__requirement-card">
+                                            <?php if ($req['title'] !== ''): ?>
+                                                <h3 class="egg-donor-content__requirement-title"><?php echo esc_html($req['title']); ?></h3>
+                                            <?php endif; ?>
+                                            <?php if ($req['text'] !== ''): ?>
+                                                <p class="egg-donor-content__requirement-text"><?php echo esc_html($req['text']); ?></p>
+                                            <?php endif; ?>
+                                        </div>
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
@@ -136,7 +170,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($compensation_title !== '' || $compensation_text !== '' || $compensation_highlight !== ''): ?>
+                <?php if ($has_compensation): ?>
                     <div id="donor-compensation" class="egg-donor-content__section egg-donor-content__section--compensation">
                         <div class="egg-donor-content__title-wrap">
                             <h2 class="egg-donor-content__title">
