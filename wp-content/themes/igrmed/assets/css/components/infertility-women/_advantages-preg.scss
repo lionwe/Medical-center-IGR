@@ -21,8 +21,8 @@
     display: flex;
     flex-direction: column;
     gap: convert-to-rem(14px);
+    align-self: stretch;
   }
-
   &__title {
     @include typography($font-family-montserrat, $fw-medium, (22px, 32px), 1.2, 0);
   }
@@ -33,9 +33,19 @@
     margin: 0;
   }
 
-  &__action {
+  &__bottom {
     margin-top: auto;
-    min-height: convert-to-rem(48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: convert-to-rem(44px);
+  }
+
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: convert-to-rem(10px);
   }
 
   &__right {
@@ -91,6 +101,17 @@
 
     &__left {
       flex-basis: auto;
+    }
+
+    &__controls {
+      justify-content: center;
+    }
+
+    &__bottom {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: convert-to-rem(44px);
     }
 
     &__right {

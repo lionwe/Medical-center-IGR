@@ -92,13 +92,40 @@
   }
 
   &__section--intro {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 30%;
+      right: 30%;
+      width: convert-to-rem(706px);
+      height: convert-to-rem(1030px);
+      transform: translate(50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      background-image: url("../img/svg/gynecology-intro.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
     .gynecology-content__lead {
+      position: relative;
+      z-index: 1;
+      
       :where(p, li) {
         @include typography($font-family-montserrat, $fw-semibold, 15px, 22px, 0);
       }
     }
 
     @include mobile {
+      &::after {
+        display: none;
+      }
+      
       .gynecology-content__body {
         padding: 0;
         gap: 0;

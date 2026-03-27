@@ -11,6 +11,9 @@ $right_text_pregnant = (string) get_field('right_text_pregnant');
         <?php get_template_part('templates/gradient-banner'); ?>
 
         <div class="infertility-women-hero__wrapper">
+            <div class="infertility-women-hero__bg" aria-hidden="true">
+                <div class="infertility-women-hero__bg-desktop" aria-hidden="true"></div>
+            </div>
             <div class="infertility-women-hero__left">
                 <?php if ($title_pregnant !== ''): ?>
                     <div class="infertility-women-hero__left-title"><?php echo wp_kses_post($title_pregnant); ?>

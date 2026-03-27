@@ -208,8 +208,64 @@
     padding: convert-to-rem(20px) 0;
   }
 
-  &__section--stages {
+  &__section[id="mi-causes"] {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 30%;
+      right: 10%;
+      width: convert-to-rem(756px);
+      height: convert-to-rem(1030px);
+      transform: translate(50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      background-image: url("../img/svg/andrology-causes.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .male-infertility-content__title-wrap,
     .male-infertility-content__body {
+      position: relative;
+      z-index: 1;
+    }
+
+    @include mobile {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__section--stages {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 30%;
+      left: 10%;
+      width: convert-to-rem(1341px);
+      height: convert-to-rem(1146px);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      background-image: url("../img/svg/andrology-stages.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .male-infertility-content__body {
+      position: relative;
+      z-index: 1;
       padding: 0;
       gap: convert-to-rem(30px);
 
@@ -225,6 +281,12 @@
 
       @include mobile {
         padding: 0 0 0 convert-to-rem(20px);
+      }
+    }
+
+    @include mobile {
+      &::after {
+        display: none;
       }
     }
   }
