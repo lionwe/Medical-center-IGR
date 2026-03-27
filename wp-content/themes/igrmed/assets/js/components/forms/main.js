@@ -1,1 +1,1 @@
-import "./forms-phone-mask";
+import "./footer-form";

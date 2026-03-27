@@ -115,21 +115,27 @@ if (is_array($methods_rows)) {
     }
 }
 
+$has_intro = $intro_content !== '';
+$has_causes = $causes_subtitle !== '' || !empty($causes_list);
+$has_when = !empty($when_list);
+$has_stages = $stages_bg_desc !== '' || !empty($stages_list);
+$has_methods = !empty($methods_list);
+
 $sections = [];
 
-if ($intro_title !== '' || $intro_content !== '') {
+if ($has_intro) {
     $sections[] = ['id' => 'mi-intro', 'title' => $intro_title !== '' ? $intro_title : __('Що таке чоловіче безпліддя?', 'igrmed')];
 }
-if ($causes_title !== '' || $causes_subtitle !== '' || !empty($causes_list)) {
+if ($has_causes) {
     $sections[] = ['id' => 'mi-causes', 'title' => $causes_title !== '' ? $causes_title : __('Причини безпліддя у чоловіків', 'igrmed')];
 }
-if ($when_title !== '' || !empty($when_list)) {
+if ($has_when) {
     $sections[] = ['id' => 'mi-when', 'title' => $when_title !== '' ? $when_title : __('Коли варто звернутися за лікуванням?', 'igrmed')];
 }
-if ($stages_title !== '' || $stages_bg_desc !== '' || !empty($stages_list) || $stages_bg_url !== '' || $stages_bg_mobile_url !== '') {
+if ($has_stages) {
     $sections[] = ['id' => 'mi-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи лікування безпліддя', 'igrmed')];
 }
-if ($methods_title !== '' || !empty($methods_list)) {
+if ($has_methods) {
     $sections[] = ['id' => 'mi-methods', 'title' => $methods_title !== '' ? $methods_title : __('Методи лікування безпліддя', 'igrmed')];
 }
 
@@ -144,7 +150,7 @@ if (empty($sections)) {
             <?php get_template_part('templates/content-sidebar', null, ['sections' => $sections]); ?>
 
             <div class="male-infertility-content__content">
-                <?php if ($intro_title !== '' || $intro_content !== ''): ?>
+                <?php if ($has_intro): ?>
                     <div id="mi-intro" class="male-infertility-content__section male-infertility-content__section--intro">
                         <div class="male-infertility-content__title-wrap">
                             <h2 class="male-infertility-content__title">
@@ -159,7 +165,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($causes_title !== '' || $causes_subtitle !== '' || !empty($causes_list)): ?>
+                <?php if ($has_causes): ?>
                     <div id="mi-causes" class="male-infertility-content__section">
                         <div class="male-infertility-content__title-wrap">
                             <h2 class="male-infertility-content__title">
@@ -181,7 +187,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($when_title !== '' || !empty($when_list)): ?>
+                <?php if ($has_when): ?>
                     <div id="mi-when" class="male-infertility-content__section male-infertility-content__section--when">
                         <div class="male-infertility-content__title-wrap male-infertility-content__title-wrap--when">
                             <h2 class="male-infertility-content__title">
@@ -203,7 +209,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($stages_title !== '' || $stages_bg_desc !== '' || !empty($stages_list) || $stages_bg_url !== '' || $stages_bg_mobile_url !== ''): ?>
+                <?php if ($has_stages): ?>
                     <div id="mi-stages" class="male-infertility-content__section male-infertility-content__section--stages">
                         <div class="male-infertility-content__title-wrap">
                             <h2 class="male-infertility-content__title">
@@ -255,7 +261,7 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($methods_title !== '' || !empty($methods_list)): ?>
+                <?php if ($has_methods): ?>
                     <div id="mi-methods" class="male-infertility-content__section male-infertility-content__section--methods">
                         <div class="male-infertility-content__title-wrap">
                             <h2 class="male-infertility-content__title">

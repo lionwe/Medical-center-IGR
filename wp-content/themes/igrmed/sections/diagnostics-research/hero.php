@@ -27,6 +27,11 @@ if (is_array($image)) {
 } elseif (is_string($image)) {
     $image_url = $image;
 }
+
+// Empty Fields Rule: if there is no title, do not render the section.
+if ($title === '') {
+    return;
+}
 ?>
 
 <section id="diagnostics-research-hero" class="diagnostics-research-hero" <?php echo $hero_style; ?>>
@@ -36,9 +41,7 @@ if (is_array($image)) {
 
         <div class="diagnostics-research-hero__wrapper">
             <div class="diagnostics-research-hero__left">
-                <?php if ($title !== ''): ?>
-                    <h2 class="diagnostics-research-hero__title"><?php echo esc_html($title); ?></h2>
-                <?php endif; ?>
+                <h2 class="diagnostics-research-hero__title"><?php echo esc_html($title); ?></h2>
 
                 <div class="diagnostics-research-hero__action">
                     <?php

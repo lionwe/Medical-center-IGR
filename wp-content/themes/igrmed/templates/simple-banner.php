@@ -9,14 +9,19 @@
 $title = (string) ($args['title'] ?? get_the_title());
 $button_text = (string) __("Зв'язатись з нами", 'igrmed');
 $button_link = '#cta';
+
+$title = trim($title);
+
+// Empty Fields Rule: title is required for this block.
+if ($title === '') {
+    return;
+}
 ?>
 
 <div class="simple-banner">
     <div class="simple-banner__inner">
         <div class="simple-banner__content">
-            <?php if ($title !== ''): ?>
-                <h2 class="simple-banner__title"><?php echo esc_html($title); ?></h2>
-            <?php endif; ?>
+            <h2 class="simple-banner__title"><?php echo esc_html($title); ?></h2>
 
             <div class="simple-banner__cta">
                 <?php

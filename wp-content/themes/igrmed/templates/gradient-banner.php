@@ -1,14 +1,17 @@
 <?php
-$title = (string) get_the_title();
+$title = trim((string) get_the_title());
 $button_text = (string) __("Зв'язатись з нами", 'igrmed');
 $button_link = '#contact';
+
+// Empty Fields Rule: title is required for this block.
+if ($title === '') {
+    return;
+}
 ?>
 
 <section class="gradient-banner">
         <div class="gradient-banner__inner">
-            <?php if ($title !== ''): ?>
-                <h2 class="gradient-banner__title"><?php echo esc_html($title); ?></h2>
-            <?php endif; ?>
+            <h2 class="gradient-banner__title"><?php echo esc_html($title); ?></h2>
 
             <div class="gradient-banner__cta">
                 <?php

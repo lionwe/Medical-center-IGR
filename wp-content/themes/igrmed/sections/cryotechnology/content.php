@@ -45,15 +45,19 @@ $advantages_items = $extract_text_rows(get_field('advantages_grid'));
 $services_title = trim((string) get_field('services_title'));
 $services_items = $extract_text_rows(get_field('services_grid'));
 
+$has_intro = $intro_content !== '';
+$has_advantages = !empty($advantages_items);
+$has_services = !empty($services_items);
+
 $sections = [];
 
-if ($intro_title !== '' || $intro_content !== '') {
+if ($has_intro) {
     $sections[] = ['id' => 'cryo-intro', 'title' => $intro_title !== '' ? $intro_title : __('Кріотехнології', 'igrmed')];
 }
-if ($advantages_title !== '' || !empty($advantages_items)) {
+if ($has_advantages) {
     $sections[] = ['id' => 'cryo-advantages', 'title' => $advantages_title !== '' ? $advantages_title : __('Чому варто обрати нас?', 'igrmed')];
 }
-if ($services_title !== '' || !empty($services_items)) {
+if ($has_services) {
     $sections[] = ['id' => 'cryo-services', 'title' => $services_title !== '' ? $services_title : __('Послуги кріоконсервації в клініці ІГР', 'igrmed')];
 }
 
@@ -68,7 +72,7 @@ if (empty($sections)) {
             <?php get_template_part('templates/content-sidebar', null, ['sections' => $sections]); ?>
 
             <div class="cryotechnology-content__content">
-                <?php if ($intro_title !== '' || $intro_content !== ''): ?>
+                <?php if ($has_intro): ?>
                 <div id="cryo-intro" class="cryotechnology-content__section cryotechnology-content__section--intro">
                     <div class="cryotechnology-content__title-wrap">
                         <h2 class="cryotechnology-content__title">
@@ -83,7 +87,7 @@ if (empty($sections)) {
                 </div>
                 <?php endif; ?>
 
-                <?php if ($advantages_title !== '' || !empty($advantages_items)): ?>
+                <?php if ($has_advantages): ?>
                 <div id="cryo-advantages"
                     class="cryotechnology-content__section cryotechnology-content__section--advantages">
                     <div class="cryotechnology-content__title-wrap">
@@ -106,7 +110,7 @@ if (empty($sections)) {
                 </div>
                 <?php endif; ?>
 
-                <?php if ($services_title !== '' || !empty($services_items)): ?>
+                <?php if ($has_services): ?>
                 <div id="cryo-services"
                     class="cryotechnology-content__section cryotechnology-content__section--services">
                     <div class="cryotechnology-content__title-wrap">

@@ -1,16 +1,19 @@
 <?php
-$title = (string) ($args['title'] ?? get_the_title());
+$title = trim((string) ($args['title'] ?? get_the_title()));
 $button_text = (string) __("Зв'язатись з нами", 'igrmed');
 $button_link = '#cta';
 $image_url = get_template_directory_uri() . '/assets/img/baby.webp';
+
+// Empty Fields Rule: title is required for this block.
+if ($title === '') {
+    return;
+}
 ?>
 
 <section class="photo-banner">
     <div class="photo-banner__inner">
         <div class="photo-banner__content">
-            <?php if ($title !== ''): ?>
-                <h2 class="photo-banner__title"><?php echo esc_html($title); ?></h2>
-            <?php endif; ?>
+            <h2 class="photo-banner__title"><?php echo esc_html($title); ?></h2>
 
             <div class="photo-banner__cta">
                 <?php

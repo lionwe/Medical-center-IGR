@@ -309,7 +309,8 @@ html.noOverflow {
           width: convert-to-rem(280px);
           max-width: none;
           box-sizing: border-box;
-          background: var(--color-white);
+          background: var(--color-white) !important;
+          background-color: var(--color-white) !important;
           border-radius: convert-to-rem(10px);
           box-shadow: 0 convert-to-rem(4px) convert-to-rem(50px) 0 rgba(0, 0, 0, 0.5);
           z-index: 10;
