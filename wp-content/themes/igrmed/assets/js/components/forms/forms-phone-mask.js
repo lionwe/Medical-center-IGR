@@ -1,5 +1,59 @@
 import { load } from "../../events/load";
 
+const attachUaPhoneMask = (phoneInput) => {
+    if (!phoneInput || phoneInput.dataset?.maskAttached === "true") {
+        return;
+    }
+
+    phoneInput.dataset.maskAttached = "true";
+
+    phoneInput.addEventListener("input", (event) => {
+        const input = event.target;
+        let value = input.value.replace(/\D/g, "");
+
+        // Keep input empty until user starts typing to preserve placeholder visibility.
+        if (!value) {
+            input.value = "";
+            return;
+        }
+
+        if (!value.startsWith("38")) {
+            value = `38${value}`;
+        }
+
+        value = value.substring(0, 12);
+
+        let formatted = "+";
+        if (value.length > 0) formatted += value.substring(0, 2);
+        if (value.length > 2) formatted += ` (${value.substring(2, 5)}`;
+        if (value.length > 5) formatted += `) ${value.substring(5, 8)}`;
+        if (value.length > 8) formatted += `-${value.substring(8, 10)}`;
+        if (value.length > 10) formatted += `-${value.substring(10, 12)}`;
+
+        input.value = formatted;
+    });
+
+    phoneInput.addEventListener("keydown", (event) => {
+        const input = event.target;
+        const cursorPosition = input.selectionStart;
+        if (!input.value.trim()) {
+            return;
+        }
+
+        if (cursorPosition <= 4 && (event.key === "Backspace" || event.key === "Delete")) {
+            event.preventDefault();
+        }
+    });
+
+    phoneInput.addEventListener("focus", (event) => {
+        const input = event.target;
+        setTimeout(() => {
+            const valueLength = input.value.length;
+            input.setSelectionRange(valueLength, valueLength);
+        }, 0);
+    });
+};
+
 class FooterFormBlock {
     constructor(container, successClass, wrapperDisplayType) {
         this.container = container;
@@ -60,52 +114,7 @@ class FooterFormBlock {
         if (!phoneInput) {
             return;
         }
-
-        phoneInput.addEventListener("input", (event) => {
-            const input = event.target;
-            let value = input.value.replace(/\D/g, "");
-
-            // Keep input empty until user starts typing to preserve placeholder visibility.
-            if (!value) {
-                input.value = "";
-                return;
-            }
-
-            if (!value.startsWith("38")) {
-                value = `38${value}`;
-            }
-
-            value = value.substring(0, 12);
-
-            let formatted = "+";
-            if (value.length > 0) formatted += value.substring(0, 2);
-            if (value.length > 2) formatted += ` (${value.substring(2, 5)}`;
-            if (value.length > 5) formatted += `) ${value.substring(5, 8)}`;
-            if (value.length > 8) formatted += `-${value.substring(8, 10)}`;
-            if (value.length > 10) formatted += `-${value.substring(10, 12)}`;
-
-            input.value = formatted;
-        });
-
-        phoneInput.addEventListener("keydown", (event) => {
-            const input = event.target;
-            const cursorPosition = input.selectionStart;
-            if (!input.value.trim()) {
-                return;
-            }
-
-            if (cursorPosition <= 4 && (event.key === "Backspace" || event.key === "Delete")) {
-                event.preventDefault();
-            }
-        });
-
-        phoneInput.addEventListener("focus", (event) => {
-            const input = event.target;
-            setTimeout(() => {
-                const valueLength = input.value.length;
-                input.setSelectionRange(valueLength, valueLength);
-            }, 0);
-        });
+        attachUaPhoneMask(phoneInput);
     }
 
     initValidation() {
@@ -279,6 +288,18 @@ const initFooterForm = () => {
     });
 };
 
-load(initFooterForm);
+const initCtaPhoneMask = () => {
+    document.querySelectorAll(".cta__window form").forEach((form) => {
+        const phoneInput = form.querySelector('input[type="tel"]');
+        if (phoneInput) {
+            attachUaPhoneMask(phoneInput);
+        }
+    });
+};
+
+load(() => {
+    initFooterForm();
+    initCtaPhoneMask();
+});
 
 export default initFooterForm;

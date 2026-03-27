@@ -37,15 +37,37 @@ if (is_array($items_rows)) {
                     <div class="advantages-preg__text"><?php echo wp_kses_post($text); ?></div>
                     <?php endif; ?>
 
-                    <div class="advantages-preg__action">
-                        <?php
-                        get_template_part('templates/button', null, [
-                            'text' => 'Зв’язатись з нами',
-                            'link' => '#сta',
-                            'type' => 'tertiary',
-                            'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow-up-right.svg',
-                        ]);
-                        ?>
+                    <div class="advantages-preg__bottom">
+                        <div class="advantages-preg__controls" aria-label="<?php esc_attr_e('Slider controls', 'igr-theme'); ?>">
+                            <?php
+                            get_template_part('templates/button', null, [
+                                'type' => 'carousel',
+                                'carousel_group' => [
+                                    [
+                                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-prev.svg',
+                                        'class' => 'advantages-preg__prev js-advantages-preg-prev',
+                                        'aria_label' => __('Попередня картка', 'igrmed'),
+                                    ],
+                                    [
+                                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg',
+                                        'class' => 'advantages-preg__next js-advantages-preg-next',
+                                        'aria_label' => __('Наступна картка', 'igrmed'),
+                                    ],
+                                ],
+                            ]);
+                            ?>
+                        </div>
+
+                        <div class="advantages-preg__action">
+                            <?php
+                            get_template_part('templates/button', null, [
+                                'text' => 'Зв’язатись з нами',
+                                'link' => '#сta',
+                                'type' => 'tertiary',
+                                'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow-up-right.svg',
+                            ]);
+                            ?>
+                        </div>
                     </div>
                 </div>
 
