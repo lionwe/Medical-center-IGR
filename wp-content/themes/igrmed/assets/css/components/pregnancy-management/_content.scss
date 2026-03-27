@@ -390,10 +390,31 @@
       padding-inline: 0;
     }
 
+    .pregnancy-management-content__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: convert-to-rem(20px);
+      
+      @include mobile {
+        grid-template-columns: repeat(2, 1fr);
+        gap: convert-to-rem(8px);
+      }
+      
+      @media screen and (max-width: 576px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .pregnancy-management-content__card {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: convert-to-rem(8px);
+      background-image: url('../img/pregnancy-procedures-bg.webp');
+      height: convert-to-rem(140px);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: var(--color-primary-dark);
+      padding: convert-to-rem(12px) convert-to-rem(16px);
+ 
+      
     }
   }
 

@@ -128,7 +128,7 @@ if (empty($sections) && !$has_content) {
                                     <article class="pregnancy-management-content__card">
                                         <span class="pregnancy-management-content__accent" aria-hidden="true"></span>
                                         <?php if (!empty($item['title'])) : ?>
-                                            <strong><?php echo esc_html($item['title']); ?></strong>
+                                            <span><?php echo esc_html($item['title']); ?></span>
                                         <?php endif; ?>
                                         <?php if (!empty($item['link']['url'])) : ?>
                                             <a href="<?php echo esc_url($item['link']['url']); ?>"
