@@ -30,7 +30,8 @@ if (is_array($faq_rows)) {
         $question = trim((string) ($row['question'] ?? ''));
         $answer = trim((string) ($row['answer'] ?? ''));
 
-        if ($question === '' && $answer === '') {
+        // Empty Fields Rule: FAQ item must have a question to render.
+        if ($question === '') {
             continue;
         }
 
@@ -83,25 +84,23 @@ $icon_arrow_svg = '<svg width="19" height="9" viewBox="0 0 19 9" fill="none" xml
                     <?php if (!empty($faq_list)): ?>
                         <div class="faq-list">
                             <?php foreach ($faq_list as $item): ?>
-                                <?php if ($item['question'] !== ''): ?>
-                                    <div class="faq-item js-faq-item">
-                                        <button class="faq-item__header js-faq-trigger" type="button" aria-expanded="false">
-                                            <h4 class="faq-item__title">
-                                                <?php echo esc_html($item['question']); ?>
-                                            </h4>
-                                            <div class="faq-item__icon">
-                                                <?php echo $icon_arrow_svg; ?>
-                                            </div>
-                                        </button>
-                                        <div class="accordeon">
-                                            <div class="content">
-                                                <div class="faq-item__body">
-                                                    <?php echo wp_kses_post(wpautop($item['answer'])); ?>
-                                                </div>
+                                <div class="faq-item js-faq-item">
+                                    <button class="faq-item__header js-faq-trigger" type="button" aria-expanded="false">
+                                        <h4 class="faq-item__title">
+                                            <?php echo esc_html($item['question']); ?>
+                                        </h4>
+                                        <div class="faq-item__icon">
+                                            <?php echo $icon_arrow_svg; ?>
+                                        </div>
+                                    </button>
+                                    <div class="accordeon">
+                                        <div class="content">
+                                            <div class="faq-item__body">
+                                                <?php echo wp_kses_post(wpautop($item['answer'])); ?>
                                             </div>
                                         </div>
                                     </div>
-                                <?php endif; ?>
+                                </div>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
