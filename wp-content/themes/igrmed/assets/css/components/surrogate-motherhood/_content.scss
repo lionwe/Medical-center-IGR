@@ -383,8 +383,12 @@
 
     .surrogate-motherhood-content__tabs-nav {
       display: flex;
-      flex-wrap: wrap;
       gap: convert-to-rem(12px);
+
+      .surrogate-motherhood-content__tab-btn {
+        flex: 1;
+        min-width: 0; // Prevent flex items from overflowing
+      }
     }
 
     .surrogate-motherhood-content__tabs-content {
@@ -483,11 +487,36 @@
   }
 
   &__section--program {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
     background-image: url('../img/program-bg.webp');
     background-position: center;
     background-repeat: no-repeat;
     padding: convert-to-rem(14px) convert-to-rem(17px);
     border-radius: convert-to-rem(12px);
+    z-index: 1;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 30%;
+      left: 20%;
+      width: convert-to-rem(1435px);
+      height: convert-to-rem(1199px);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      background-image: url("../img/svg/cryotechnology-advantages-bg.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
 
     .surrogate-motherhood-content__program {
       display: grid;
@@ -497,6 +526,12 @@
 
       @include mobile {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @include mobile {
+      &::before {
+        display: none;
       }
     }
 

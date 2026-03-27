@@ -39,10 +39,13 @@
       width: fit-content;
       color: var(--color-primary-dark);
       background: transparent;
-
+ @include hover {
+          background-color: var(--color-primary-dark);
+          color: var(--color-white);
+        }
       .btn--primary {
         color: inherit;
-
+        
         &.btn--icon-only {
           width: convert-to-rem(60px);
           height: convert-to-rem(20px);
@@ -50,6 +53,9 @@
           padding: 0;
           border: none;
           background: var(--color-white);
+          @include hover {
+            color: var(--color-primary-dark);
+          }
         }
       }
     }
@@ -149,5 +155,70 @@
     margin: 0;
     max-width: convert-to-rem(300px);
     @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
+  }
+
+  &__read-more-item {
+    @include mobile {
+      width: 100%;
+    }
+    
+    @include desktop {
+      display: none;
+    }
+  }
+
+  &__read-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: convert-to-rem(8px);
+    width: 100%;
+    padding: convert-to-rem(12px) convert-to-rem(20px);
+    border-radius: convert-to-rem(100px);
+    background: inherit;
+    color: var(--color-primary-dark);
+    cursor: pointer;
+    @include typography($font-family-montserrat, $fw-regular, 14px, 1.6, 0);
+    text-transform: uppercase;
+
+    
+
+    &[aria-expanded="true"] {
+      background: transparent !important;
+      color: var(--color-primary-dark) !important;
+      
+      
+    }
+  }
+
+  &__read-more-text {
+    @include typography($font-family-montserrat, $fw-regular, 14px, 1.6, 0);
+    text-transform: uppercase;
+  }
+
+  &__read-more-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      display: block;
+      width: convert-to-rem(21px);
+      height: convert-to-rem(8px);
+      flex-shrink: 0;
+    }
+
+    .about-facts__read-more[aria-expanded="true"] & {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.is-hidden-fact {
+  @include mobile {
+    display: none;
   }
 }

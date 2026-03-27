@@ -1,15 +1,15 @@
-@use "../../utils/mixins" as *;
-@use "../../base/variables" as *;
+@use "../utils/mixins" as *;
+@use "../base/variables" as *;
 
 .faq-section {
   position: relative;
   padding-block: convert-to-rem(20px);
   color: var(--color-white);
   isolation: isolate;
-  --_section-offset: #{convert-to-rem(0)};
-
   @include mobile {
     padding-block: convert-to-rem(16px);
+    --_section-offset: #{convert-to-rem(0)};
+
   }
 
   &__inner {
@@ -17,25 +17,12 @@
     overflow: hidden;
     border-radius: convert-to-rem(22px);
     padding: convert-to-rem(43px) convert-to-rem(28px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     @include mobile {
       padding: convert-to-rem(43px) convert-to-rem(16px);
-    }
-  }
-
-  &__bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
   }
 
@@ -80,9 +67,6 @@
     letter-spacing: 0;
     color: var(--color-faq-heading);
     margin: 0;
-
-    
-    
   }
 
   &__right-col {
@@ -100,7 +84,8 @@
     display: flex;
     flex-direction: column;
     gap: convert-to-rem(10px);
-    width: min(100%, convert-to-rem(891px));
+    width: 100%;
+    max-width: 100%;
   }
 
   .faq-item {

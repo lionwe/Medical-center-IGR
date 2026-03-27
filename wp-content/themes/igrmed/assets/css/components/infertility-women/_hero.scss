@@ -9,6 +9,7 @@
   &__wrapper {
     position: relative;
     z-index: 0;
+    isolation: isolate;
     display: flex;
     gap: convert-to-rem(20px);
     border-radius: convert-to-rem(22px);
@@ -28,10 +29,6 @@
       0 277px 111px 0 rgba(0, 0, 0, 0.01),
       0 433px 121px 0 rgba(0, 0, 0, 0);
 
-  
-
-
-
     @include mobile {
       flex-direction: column;
       padding-top: convert-to-rem(30px);
@@ -42,9 +39,31 @@
     }
   }
 
+  &__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__bg-desktop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: convert-to-rem(1435px);
+    height: convert-to-rem(1199px);
+    transform: translate(-50%, -50%);
+    background-image: url("../img/svg/infertility-women-hero-bg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
   &__left,
   &__right {
     min-width: 0;
+    position: relative;
+    z-index: 1;
   }
 
   &__left {
@@ -180,5 +199,8 @@
       }
     }
 
+    &__bg {
+      display: none;
+    }
   }
 }

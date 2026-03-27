@@ -31,7 +31,7 @@ $doctors_list  = is_array($doctors_list) ? array_filter($doctors_list, function(
 $post_content  = trim((string) get_post_field('post_content', get_the_ID()));
 
 // Блок показується лише якщо є реальний контент
-$has_intro      = $intro_title !== '' || $intro_content !== '';
+$has_intro      = $intro_content !== '';
 $has_advantages = !empty($advantages_list);
 $has_procedures = !empty($procedures_list);
 $has_doctors    = !empty($doctors_list);
@@ -128,7 +128,7 @@ if (empty($sections) && !$has_content) {
                                     <article class="pregnancy-management-content__card">
                                         <span class="pregnancy-management-content__accent" aria-hidden="true"></span>
                                         <?php if (!empty($item['title'])) : ?>
-                                            <strong><?php echo esc_html($item['title']); ?></strong>
+                                            <span><?php echo esc_html($item['title']); ?></span>
                                         <?php endif; ?>
                                         <?php if (!empty($item['link']['url'])) : ?>
                                             <a href="<?php echo esc_url($item['link']['url']); ?>"

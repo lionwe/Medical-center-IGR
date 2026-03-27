@@ -1,17 +1,20 @@
 <?php
-$title = (string) ($args['title'] ?? 'Стати донором яйцеклітин');
+$title = trim((string) ($args['title'] ?? 'Стати донором яйцеклітин'));
 $button_text = (string) __("Зв'язатись з нами", 'igrmed');
 $button_link = '#cta';
 $image_url = get_template_directory_uri() . '/assets/img/ba5c6331bea41bf283dc73f4555c3659-removebg-preview 1.webp';
+
+// Empty Fields Rule: title is required for this block.
+if ($title === '') {
+    return;
+}
 ?>
 
 <section class="overflow-banner">
     <div class="overflow-banner__inner">
         <div class="overflow-banner__content">
             <div class="overflow-banner__text-content">
-                <?php if ($title !== ''): ?>
-                    <h2 class="overflow-banner__title"><?php echo esc_html($title); ?></h2>
-                <?php endif; ?>
+                <h2 class="overflow-banner__title"><?php echo esc_html($title); ?></h2>
 
                 <div class="overflow-banner__cta">
                     <?php

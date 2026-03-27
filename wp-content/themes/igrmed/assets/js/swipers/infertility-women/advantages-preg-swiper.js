@@ -1,14 +1,17 @@
 import Swiper from "swiper";
-import { Autoplay, FreeMode } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 
 let advantagesSwiper = null;
 
 function initAdvantagesSwiper() {
   const slider = document.querySelector(".js-advantages-preg-swiper");
+  const section = slider?.closest(".advantages-preg");
 
   if (!slider) return;
 
   const isDesktop = window.innerWidth >= 768;
+  const prevEl = section?.querySelector(".js-advantages-preg-prev") || null;
+  const nextEl = section?.querySelector(".js-advantages-preg-next") || null;
 
   // destroy previous instance before re-init with new mode
   if (advantagesSwiper) {
@@ -17,26 +20,16 @@ function initAdvantagesSwiper() {
   }
 
   advantagesSwiper = new Swiper(slider, {
-    modules: [Autoplay, FreeMode],
+    modules: [Navigation],
     slidesPerView: isDesktop ? "auto" : 1.1,
     spaceBetween: isDesktop ? 16 : 12,
-    speed: isDesktop ? 6000 : 450,
+    speed: 450,
     loop: false,
     watchOverflow: true,
-    resistanceRatio: isDesktop ? 1 : 0.85,
-    grabCursor: !isDesktop,
-    allowTouchMove: !isDesktop,
-    freeMode: {
-      enabled: isDesktop,
-      momentum: false,
-    },
-    autoplay: isDesktop
-      ? {
-          delay: 0,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }
-      : false,
+    resistanceRatio: 0.85,
+    grabCursor: true,
+    allowTouchMove: true,
+    navigation: prevEl && nextEl ? { prevEl, nextEl, disabledClass: "swiper-button-disabled" } : undefined,
   });
 }
 

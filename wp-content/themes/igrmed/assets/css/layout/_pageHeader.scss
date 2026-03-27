@@ -307,7 +307,7 @@ $_header-cta-gradient: linear-gradient(180deg,
   &__cta {
     display: inline-flex;
     align-items: center;
-    gap: convert-to-rem(4px);
+    gap: convert-to-rem(6px);
     padding: convert-to-rem(7px) convert-to-rem(16px);
     border-radius: convert-to-rem(12px);
     color: var(--color-black);
@@ -317,6 +317,12 @@ $_header-cta-gradient: linear-gradient(180deg,
     cursor: pointer;
     transition: all 0.3s ease;
     @include gradient-border(convert-to-rem(100px), convert-to-rem(1px), $_header-cta-gradient);
+
+    &:hover {
+      background: rgba(26, 59, 103, 0.5);
+
+     
+    }
 
     @include mobile {
       order: 1;
@@ -675,7 +681,7 @@ $_header-cta-gradient: linear-gradient(180deg,
 
     &:hover {
       color: var(--color-primary-dark);
-      background: rgba(202, 213, 218, 1);
+      background: rgba(26, 59, 103, 0.5);
     }
 
     &.is-current {
@@ -1207,7 +1213,7 @@ $_header-cta-gradient: linear-gradient(180deg,
       background 0.3s ease;
 
     &:hover {
-      background: rgba(202, 213, 218, 1);
+      background: rgba(26, 59, 103, 0.5);
     }
   }
 }

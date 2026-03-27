@@ -1,7 +1,7 @@
 <?php
 $hero_bg = get_field('home_hero_bg');
-$hero_title = (string) get_field('home_hero_title');
-$hero_text = (string) get_field('home_hero_text');
+$hero_title = trim((string) get_field('home_hero_title'));
+$hero_text = trim((string) get_field('home_hero_text'));
 $hero_button = get_field('home_hero_button');
 $hero_cards = get_field('hero_cards');
 
@@ -56,6 +56,11 @@ if ($article_post instanceof WP_Post) {
     $article_read_time = function_exists('reading_time') && $article_content !== ''
         ? (string) reading_time($article_content)
         : (string) ($hero_cards['article_read_time'] ?? '');
+}
+
+// Empty Fields Rule: do not render hero without title.
+if ($hero_title === '') {
+    return;
 }
 
 $social_items = [];
@@ -114,13 +119,11 @@ $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_
         <div class="hero__content">
             <?php if ($hero_title !== '' || ($hero_button_url !== '' && $hero_button_label !== '')): ?>
                 <div class="hero__top">
-                    <?php if ($hero_title !== ''): ?>
-                        <h1 class="hero__title"><?php echo wp_kses_post($hero_title); ?></h1>
-                    <?php endif; ?>
+                    <h1 class="hero__title"><?php echo wp_kses_post($hero_title); ?></h1>
                     <?php if ($hero_button_url !== '' && $hero_button_label !== ''): ?>
                         <?php
                         get_template_part('templates/button', null, [
-                            'text' => $hero_button_label,
+                            'text' => esc_html__("Детальніше про нас", 'igrmed'),
                             'link' => $hero_button_url,
                             'type' => 'primary',
                             'primary_split' => true,

@@ -1,5 +1,5 @@
 /**
- * Header nav: open submenus on click (desktop + mobile overlay).
+ * Header nav: open submenus on hover (desktop + mobile overlay).
  */
 const initNavDropdown = () => {
   const menus = document.querySelectorAll(
@@ -37,6 +37,8 @@ const initNavDropdown = () => {
   };
 
   menus.forEach((menu) => {
+    const isDesktopMenu = Boolean(menu.closest(".header__menu"));
+
     menu.querySelectorAll(".menu-item-has-children").forEach((li) => {
       const link = li.querySelector(":scope > a");
       const sub = li.querySelector(":scope > .sub-menu");
@@ -47,6 +49,25 @@ const initNavDropdown = () => {
       link.setAttribute("aria-haspopup", "true");
       link.setAttribute("aria-expanded", "false");
 
+      if (isDesktopMenu) {
+        li.addEventListener("mouseenter", () => {
+          closeSiblings(li);
+          li.classList.add("is-open");
+          link.setAttribute("aria-expanded", "true");
+        });
+
+        // Close on mouseleave (desktop only)
+        li.addEventListener("mouseleave", () => {
+          setTimeout(() => {
+            if (!li.matches(":hover")) {
+              li.classList.remove("is-open");
+              link.setAttribute("aria-expanded", "false");
+            }
+          }, 100); // Small delay to prevent flickering
+        });
+      }
+
+      // Keep click functionality for mobile/touch
       const toggle = (event) => {
         event.preventDefault();
         event.stopPropagation();

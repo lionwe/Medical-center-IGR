@@ -18,6 +18,11 @@
     margin-bottom: convert-to-rem(60px);
   }
 
+  &__section--intro {
+    background: linear-gradient(90deg, #4776BA 90.42%, #FFFFFF 100%);
+    z-index: 10000;
+  }
+
   &__content {
     min-width: 0;
     width: 100%;
@@ -131,33 +136,35 @@
 
   &__section--stages {
     position: relative;
-    overflow: hidden;
+    isolation: isolate;
+    overflow: visible;
 
-    .egg-donor-content__blob {
+    &::after {
+      content: "";
       position: absolute;
-      top: convert-to-rem(10px);
-      right: convert-to-rem(-300px);
-      width: convert-to-rem(799px);
-      height: convert-to-rem(594px);
-      opacity: 1;
+      top: 30%;
+      left: 90%;
+      width: convert-to-rem(1435px);
+      height: convert-to-rem(2199px);
+      transform: translate(-50%, -50%);
       pointer-events: none;
-      z-index: 1;
-
-      svg {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-
-      @include mobile {
-        display: none;
-      }
+      z-index: -1;
+      background-image: url("../img/svg/cryotechnology-advantages-bg.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
     }
 
     .egg-donor-content__title-wrap,
     .egg-donor-content__body {
       position: relative;
-      z-index: 2;
+      z-index: 1;
+    }
+
+    @include mobile {
+      &::after {
+        display: none;
+      }
     }
   }
 
@@ -261,6 +268,40 @@
   // ==========================
   // REQUIREMENTS SECTION
   // ==========================
+
+  &__section--requirements {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 30%;
+      right: 10%;
+      width: convert-to-rem(695px);
+      height: convert-to-rem(1030px);
+      transform: translate(50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      background-image: url("../img/svg/egg-donor-requirements.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .egg-donor-content__title-wrap,
+    .egg-donor-content__body {
+      position: relative;
+      z-index: 1;
+    }
+
+    @include mobile {
+      &::after {
+        display: none;
+      }
+    }
+  }
 
   &__requirements-grid {
     display: grid;

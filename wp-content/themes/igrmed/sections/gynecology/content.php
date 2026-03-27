@@ -49,17 +49,22 @@ $when_list = $extract_text_rows(get_field('when_list'), ['text', 'item', 'title'
 $procedures_title = trim((string) get_field('procedures_title'));
 $procedures_list = $extract_text_rows(get_field('procedures_list'), ['name', 'text', 'item', 'title']);
 
+$has_intro = $intro_content !== '';
+$has_advantages = $advantages_content !== '';
+$has_when = !empty($when_list);
+$has_procedures = !empty($procedures_list);
+
 $sections = [];
-if ($intro_title !== '' || $intro_content !== '') {
+if ($has_intro) {
     $sections[] = ['id' => 'gy-intro', 'title' => $intro_title !== '' ? $intro_title : __('Гінекологія', 'igrmed')];
 }
-if ($advantages_title !== '' || $advantages_content !== '') {
+if ($has_advantages) {
     $sections[] = ['id' => 'gy-advantages', 'title' => $advantages_title !== '' ? $advantages_title : __('Переваги', 'igrmed')];
 }
-if ($when_title !== '' || !empty($when_list)) {
+if ($has_when) {
     $sections[] = ['id' => 'gy-when', 'title' => $when_title !== '' ? $when_title : __('Коли варто звернутися', 'igrmed')];
 }
-if ($procedures_title !== '' || !empty($procedures_list)) {
+if ($has_procedures) {
     $sections[] = ['id' => 'gy-procedures', 'title' => $procedures_title !== '' ? $procedures_title : __('Процедури та захворювання', 'igrmed')];
 }
 
@@ -76,7 +81,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
             <?php endif; ?>
 
             <div class="gynecology-content__content">
-                <?php if ($intro_title !== '' || $intro_content !== ''): ?>
+                <?php if ($has_intro): ?>
                     <div id="gy-intro" class="gynecology-content__section gynecology-content__section--intro">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
@@ -93,7 +98,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     </div>
                 <?php endif; ?>
 
-                <?php if ($advantages_title !== '' || $advantages_content !== ''): ?>
+                <?php if ($has_advantages): ?>
                     <div id="gy-advantages" class="gynecology-content__section gynecology-content__section--advantages">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
@@ -108,7 +113,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     </div>
                 <?php endif; ?>
 
-                <?php if ($when_title !== '' || !empty($when_list)): ?>
+                <?php if ($has_when): ?>
                     <div id="gy-when" class="gynecology-content__section">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
@@ -127,7 +132,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     </div>
                 <?php endif; ?>
 
-                <?php if ($procedures_title !== '' || !empty($procedures_list)): ?>
+                <?php if ($has_procedures): ?>
                     <div id="gy-procedures" class="gynecology-content__section gynecology-content__section--procedures">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
@@ -159,12 +164,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                                                 <span
                                                     class="gynecology-content__list-more-text"><?php echo esc_html__('Всі процедури', 'igrmed'); ?></span>
                                                 <span class="gynecology-content__list-more-arrow" aria-hidden="true">
-                                                    <svg width="21" height="8" viewBox="0 0 21 8" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M20.3536 4.03544C20.5488 3.84018 20.5488 3.5236 20.3536 3.32833L17.1716 0.146352C16.9763 -0.0489098 16.6597 -0.0489099 16.4645 0.146352C16.2692 0.341614 16.2692 0.658197 16.4645 0.853459L19.2929 3.68189L16.4645 6.51031C16.2692 6.70558 16.2692 7.02216 16.4645 7.21742C16.6597 7.41268 16.9763 7.41268 17.1716 7.21742L20.3536 4.03544ZM0 3.68188L-4.37114e-08 4.18188L20 4.18189L20 3.68189L20 3.18189L4.37114e-08 3.18188L0 3.68188Z"
-                                                            fill="black" />
-                                                    </svg>
+                                                    <?php echo igrmed_get_svg('read-more-arrow'); ?>
                                                 </span>
                                             </button>
                                         </li>
@@ -186,18 +186,18 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
 </section>
 
 <script>
-    (function () {
-        const root = document.querySelector('#gy-procedures');
-        if (!root) return;
+(function() {
+    const root = document.querySelector('#gy-procedures');
+    if (!root) return;
 
-        const button = root.querySelector('.gynecology-content__list-more');
-        if (!button) return;
+    const button = root.querySelector('.gynecology-content__list-more');
+    if (!button) return;
 
-        button.addEventListener('click', () => {
-            const hiddenItems = root.querySelectorAll('.is-hidden-service');
-            hiddenItems.forEach((item) => item.classList.remove('is-hidden-service'));
-            button.setAttribute('aria-expanded', 'true');
-            button.closest('.gynecology-content__list-more-item')?.remove();
-        });
-    })();
+    button.addEventListener('click', () => {
+        const hiddenItems = root.querySelectorAll('.is-hidden-service');
+        hiddenItems.forEach((item) => item.classList.remove('is-hidden-service'));
+        button.setAttribute('aria-expanded', 'true');
+        button.closest('.gynecology-content__list-more-item')?.remove();
+    });
+})();
 </script>
