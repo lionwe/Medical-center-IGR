@@ -49,33 +49,6 @@ $_gradient-border: linear-gradient(180deg,
     border-radius: convert-to-rem(100px);
     background: transparent;
     border: 1px solid currentColor;
-
-    .btn__text {
-      @include typography($font-family-base, $fw-regular, 14px, 18.9px);
-      color: inherit;
-      white-space: nowrap;
-    }
-
-    .btn__icon {
-      width: convert-to-rem(21px);
-      height: convert-to-rem(8px);
-    }
-  }
-
-  &--primary.btn--icon-only {
-    padding: convert-to-rem(10px) convert-to-rem(20px);
-  }
-
-  &--glass-primary {
-    @extend .btn--primary;
-  }
-
-  &--primary-white-border {
-    gap: convert-to-rem(8px);
-    padding: convert-to-rem(10px) convert-to-rem(20px);
-    border-radius: convert-to-rem(100px);
-    background: transparent;
-    border: 1px solid currentColor;
     color: var(--color-primary-dark);
 
     .btn__text {
@@ -87,61 +60,85 @@ $_gradient-border: linear-gradient(180deg,
     .btn__icon {
       width: convert-to-rem(21px);
       height: convert-to-rem(8px);
+      background-color: currentColor;
+      border: none;
     }
 
     &:hover {
       background: var(--color-white);
-      color: var(--color-primary-dark);
       border-color: var(--color-white);
+      color: var(--color-primary-dark);
+
+      .btn__icon {
+        background-color: currentColor;
+      }
+    }
+  }
+
+  // Same as primary, but with a softer hover background.
+  &--primary-soft-hover {
+    @extend .btn--primary;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 1);
+      color: var(--color-primary-dark);
 
       .btn__icon {
         background-color: var(--color-primary-dark);
       }
     }
+  }
 
-    &.btn--icon-only {
-      padding: convert-to-rem(10px) convert-to-rem(20px);
-      width: convert-to-rem(60px);
-      height: convert-to-rem(20px);
-      min-width: convert-to-rem(60px);
-      padding: 0;
-      background: var(--color-white);
-      border-color: var(--color-white);
-      color: var(--color-black);
-      cursor: default;
-      pointer-events: none;
-      transition: none;
+  // Calm default state (as in photo banner): soft white background + white border.
+  &--primary-calm {
+    @extend .btn--primary;
+    background-color: rgba(26, 59, 103, 0.05);
+    border: 1px solid rgba(255, 255, 255, 1);
+    color: var(--color-primary-dark);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+
+
+    .btn__icon {
+      background-color: currentColor;
+    }
+
+    
+      .btn__icon {
+        background-color: currentColor;
       
-      &:hover {
-        background: var(--color-white) !important;
-        color: var(--color-black) !important;
-        border-color: var(--color-white) !important;
-        
-        .btn__icon {
-          background-color: var(--color-primary-dark) !important;
-        }
+    }
+  }
+
+  // Variant based on primary-calm, but with softer background.
+  &--primary-calm-soft {
+    @extend .btn--primary-calm;
+    background: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 1);
+      color: var(--color-primary-dark);
+
+      .btn__icon {
+        background-color: currentColor;
       }
     }
   }
 
-  &--primary-dark {
-    gap: convert-to-rem(8px);
-    padding: convert-to-rem(20px);
-    border-radius: convert-to-rem(100px);
-    background: transparent;
-    border: 1px solid var(--color-primary-dark-blue);
-    color: var(--color-primary-dark-blue);
+  &--primary.btn--icon-only {
+    width: convert-to-rem(60px);
+    height: convert-to-rem(20px);
+    min-width: convert-to-rem(60px);
+    padding: 0;
+    background: var(--color-white);
+    border-color: var(--color-white);
+    color: var(--color-black);
 
-    .btn__text {
-      @include typography($font-family-base, $fw-regular, 14px, 18.9px);
-      color: inherit;
-      white-space: nowrap;
-    }
-
-    .btn__icon {
-      width: convert-to-rem(21px);
-      height: convert-to-rem(8px);
-      background-color: var(--color-primary-dark-blue);
+    &:hover {
+      background: var(--color-white);
+      border-color: var(--color-white);
+      color: var(--color-primary-dark);
     }
   }
 
@@ -195,6 +192,8 @@ $_gradient-border: linear-gradient(180deg,
       color: var(--color-primary-dark-blue);
     }
 
+    // Header icon buttons (small circle)
+    &.btn--social--header,
     &.header__socials-link {
       padding: convert-to-rem(4px);
       width: convert-to-rem(28px);
@@ -206,6 +205,8 @@ $_gradient-border: linear-gradient(180deg,
 
       &:hover {
         background: rgba(26, 59, 103, 1);
+        // Keep icon readable on dark hover background (icon uses currentColor).
+        color: var(--color-white);
       }
     }
 
@@ -361,6 +362,20 @@ $_gradient-border: linear-gradient(180deg,
       width: convert-to-rem(13px);
       height: convert-to-rem(14px);
     }
+
+    &:hover {
+      background: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: var(--color-white);
+
+      .btn__text {
+        color: inherit;
+      }
+
+      .btn__icon {
+        background-color: currentColor;
+      }
+    }
   }
 
   &--readmore-v1 {
@@ -462,6 +477,25 @@ $_gradient-border: linear-gradient(180deg,
   transition: all 0.3s ease;
   text-decoration: none;
 
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: convert-to-rem(60px);
+    height: convert-to-rem(20px);
+    min-width: convert-to-rem(60px);
+    border: 0;
+    border-radius: convert-to-rem(100px);
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+
+  &__icon .btn__icon {
+    width: convert-to-rem(21px);
+    height: convert-to-rem(8px);
+    background-color: currentColor;
+  }
+
   &__text {
     @include typography($font-family-montserrat, $fw-semibold, 14px, 1.0);
     margin: 0;
@@ -469,53 +503,83 @@ $_gradient-border: linear-gradient(180deg,
     white-space: nowrap;
   }
 
-  &--glass-primary {
-    background: rgba(26, 59, 103, 0.05);
-    border: convert-to-rem(0.5px) solid rgba(26, 59, 103, 0.3);
-    color: rgba(26, 59, 103, 1);
-
-    .btn--glass-primary {
-      color: inherit;
-
-      &.btn--icon-only {
-        width: convert-to-rem(60px);
-        height: convert-to-rem(20px);
-        min-width: convert-to-rem(60px);
-        padding: 0;
-        border: none;
-        background: var(--color-white);
-      }
-    }
-  }
-
   &--primary {
-    &:hover {
-      background: var(--color-primary-dark);
-      color: var(--color-primary-dark);
-      border-color: var(--color-white);
-
-      .btn--icon-only {
-        background-color: var(--color-primary-dark);
-        border-color: var(--color-primary-dark);
-      }
-    }
-  }
-
-  &--primary-white-border {
     &:hover {
       background: var(--color-white);
       color: var(--color-primary-dark);
-      border-color: var(--color-primary-dark);
+      border-color: var(--color-white);
 
-      .btn--icon-only {
+      .btn-split__icon {
+        background: var(--color-white);
+        color: var(--color-primary-dark);
+        border: 1px solid var(--color-primary-dark);
+      }
+    }
+  }
+
+  &--primary-soft-hover {
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 1);
+      color: var(--color-primary-dark);
+
+      .btn-split__icon {
+        background: rgba(255, 255, 255, 0.5);
+        color: var(--color-primary-dark);
+      }
+
+      .btn-split__icon .btn__icon {
         background-color: var(--color-primary-dark);
-        border-color: var(--color-primary-dark);
+      }
+    }
+  }
+
+  &--primary-calm {
+    background-color:rgba(26, 59, 103, 0.05);
+    border-color: rgba(255, 255, 255, 1);
+    color: var(--color-primary-dark);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+
+    .btn-split__icon {
+      background: var(--color-white);
+      color: var(--color-primary-dark);
+    }
+
+    &:hover {
+      background: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: var(--color-white);
+
+      .btn-split__icon {
+        background: var(--color-white);
+        color: var(--color-primary-dark);
+      }
+    }
+  }
+
+  &--primary-calm-soft {
+    @extend .btn-split--primary-calm;
+    background: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 1);
+      color: var(--color-primary-dark);
+
+      .btn-split__icon {
+        background: var(--color-primary-dark);
+        color: var(--color-white);
+      }
+
+      .btn-split__icon .btn__icon {
+        background-color: currentColor;
       }
     }
   }
 
   &--white {
-    // Current default styles from .btn-split are already "white" or currentColor based
+    // Explicit alias class to allow usage in markup without changing defaults.
+    background: transparent;
   }
 
   &--dark {

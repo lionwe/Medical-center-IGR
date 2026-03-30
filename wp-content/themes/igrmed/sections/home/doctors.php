@@ -68,7 +68,7 @@ if (empty($doctors_posts)) {
                     get_template_part('templates/button', null, [
                         'text' => $doctors_button_label,
                         'link' => $doctors_button_url,
-                        'type' => 'primary-white-border',
+                        'type' => 'primary',
                         'primary_split' => true,
                         'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg',
                         'target' => $doctors_button_target,

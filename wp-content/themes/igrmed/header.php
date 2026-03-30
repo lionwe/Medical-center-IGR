@@ -193,7 +193,7 @@
                                                         get_template_part('templates/button', null, [
                                                             'link' => $item['link'],
                                                             'type' => 'social',
-                                                            'class' => 'header__socials-link',
+                                                            'class' => 'header__socials-link btn--social--header',
                                                             'icon_url' => $item['icon_url'] !== '' ? $item['icon_url'] : null,
                                                             'target' => '_blank',
                                                             'attributes' => [
@@ -399,7 +399,7 @@
                                 get_template_part('templates/button', null, [
                                     'link' => $item['link'],
                                     'type' => 'social',
-                                    'class' => 'header__socials-link',
+                                    'class' => 'header__socials-link btn--social--header',
                                     'icon_url' => $item['icon_url'] !== '' ? $item['icon_url'] : null,
                                     'target' => '_blank',
                                     'attributes' => [

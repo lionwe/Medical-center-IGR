@@ -31,6 +31,7 @@
     padding: convert-to-rem(24px) 0;
     max-width: min(convert-to-rem(767px), 100vw);
     padding-left: convert-to-rem(110px);
+    color: var(--color-white);
   }
 
   &__title {
@@ -41,44 +42,6 @@
 
   &__cta {
     flex-shrink: 0;
-
-    .btn-split {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: convert-to-rem(10px) convert-to-rem(32px);
-      border-radius: convert-to-rem(36px);
-      border: 1px solid var(--color-white-09);
-      background: transparent;
-      color: var(--color-white);
-      cursor: pointer;
-      gap: convert-to-rem(14px);
-    }
-
-    .btn-split__text {
-      @include typography($font-family-montserrat, $fw-semibold, 14px, 1, 0);
-      color: inherit;
-    }
-
-    .btn-split .btn--icon-only {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: convert-to-rem(60px);
-      height: convert-to-rem(20px);
-      min-height: auto;
-      padding: 0;
-      border: 0;
-      border-radius: convert-to-rem(36px);
-      background: var(--color-white);
-      color: var(--color-primary-dark);
-    }
-
-    .btn-split .btn--icon-only .btn__icon {
-      width: convert-to-rem(21px);
-      height: convert-to-rem(8px);
-      background-color: currentColor;
-    }
   }
 
   &__cta :where(.btn) {

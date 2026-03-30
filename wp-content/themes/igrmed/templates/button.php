@@ -6,8 +6,7 @@
  * get_template_part('templates/button', null, [
  *   'text'        => 'Детальніше',
  *   'link'        => '#',
- *   'type'        => 'primary', // primary, primary-white-border, primary-white-border--black-border, primary-dark, secondary, tertiary, social, carousel, carousel-glass
-*   'modifier'    => 'black-border', // Use with type: primary-white-border for black border variant
+ *   'type'        => 'primary', // primary, primary-soft-hover, primary-calm, primary-calm-soft, secondary, tertiary, social, carousel, carousel-glass
  *   'icon_name'   => 'arrow',   // ACF field name without 'icon_' prefix
  *   'icon_url'    => '',        // direct URL override
  *   'target'      => '_self'
@@ -23,7 +22,7 @@ $target = (string) ($args['target'] ?? '_self');
 $class_extra = trim((string) ($args['class'] ?? ''));
 $modifier = $args['modifier'] ?? '';
 $use_img_icon = !empty($args['icon_as_img']) && $type !== 'social';
-$is_primary_split = !empty($args['primary_split']) && in_array($type, ['primary', 'glass-primary', 'primary-white-border'], true) && $text !== '';
+$is_primary_split = !empty($args['primary_split']) && in_array($type, ['primary', 'primary-soft-hover', 'primary-calm', 'primary-calm-soft'], true) && $text !== '';
 $carousel_group = $args['carousel_group'] ?? null;
 
 // Get icon from ACF options or direct URL.
@@ -99,16 +98,6 @@ if ($tag === 'a') {
     $attrs = 'type="' . esc_attr($button_type) . '"';
 }
 
-// Add inline hover styles for primary-dark buttons (not for split buttons)
-if ($type === 'primary-dark' && !$is_primary_split) {
-    $attrs .= ' style="transition: background 0.3s ease, color 0.3s ease;" onmouseover="this.style.background=\'var(--color-white)\'; this.style.color=\'var(--color-primary-dark)\'; this.style.borderColor=\'var(--color-white)\'; const icon = this.querySelector(\'.btn__icon\'); if(icon) icon.style.backgroundColor=\'var(--color-primary-dark)\';" onmouseout="this.style.background=\'var(--color-primary-dark)\'; this.style.color=\'var(--color-white)\'; this.style.borderColor=\'var(--color-primary-dark)\'; const icon = this.querySelector(\'.btn__icon\'); if(icon) icon.style.backgroundColor=\'var(--color-white)\';"';
-}
-
-// Add inline hover styles for primary-white-border buttons (not for split buttons)
-if ($type === 'primary-white-border' && !$is_primary_split) {
-    $attrs .= ' style="transition: background 0.3s ease, color 0.3s ease;" onmouseover="this.style.background=\'transparent\'; this.style.color=\'var(--color-primary-dark)\'; this.style.borderColor=\'var(--color-white)\'; const icon = this.querySelector(\'.btn__icon\'); if(icon) icon.style.backgroundColor=\'var(--color-primary-dark)\';" onmouseout="this.style.background=\'var(--color-primary-dark)\'; this.style.color=\'var(--color-white)\'; this.style.borderColor=\'var(--color-primary-dark)\'; const icon = this.querySelector(\'.btn__icon\'); if(icon) icon.style.backgroundColor=\'var(--color-white)\';"';
-}
-
 if (!empty($args['attributes']) && is_array($args['attributes'])) {
     foreach ($args['attributes'] as $attr => $value) {
         $attrs .= ' ' . esc_attr((string) $attr) . '="' . esc_attr((string) $value) . '"';
@@ -116,8 +105,6 @@ if (!empty($args['attributes']) && is_array($args['attributes'])) {
 }
 
 if ($is_primary_split) {
-    $split_button_classes = trim($classes . ' btn--icon-only');
-
     $btn_split_class = 'btn-split';
     if ($class_extra !== '') {
         $btn_split_class .= ' ' . $class_extra;
@@ -129,7 +116,7 @@ if ($is_primary_split) {
     <?php if ($tag === 'a'): ?>
         <a class="<?php echo esc_attr($btn_split_class); ?>" <?php echo $attrs; ?>>
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
-            <span class="<?php echo esc_attr($split_button_classes); ?>" aria-hidden="true">
+            <span class="btn-split__icon" aria-hidden="true">
                 <?php if ($icon_url): ?>
                     <?php if ($use_img_icon): ?>
                         <span class="btn__icon btn__icon--img">
@@ -144,7 +131,7 @@ if ($is_primary_split) {
     <?php else: ?>
         <div class="<?php echo esc_attr($btn_split_class); ?>">
             <span class="btn-split__text"><?php echo esc_html($text); ?></span>
-            <<?php echo $tag; ?> class="<?php echo esc_attr($split_button_classes); ?>" <?php echo $attrs; ?>>
+            <span class="btn-split__icon" aria-hidden="true">
                 <?php if ($icon_url): ?>
                     <?php if ($use_img_icon): ?>
                         <span class="btn__icon btn__icon--img">
@@ -154,7 +141,7 @@ if ($is_primary_split) {
                         <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
                     <?php endif; ?>
                 <?php endif; ?>
-            </<?php echo $tag; ?>>
+            </span>
         </div>
     <?php endif; ?>
     <?php

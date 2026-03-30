@@ -81,7 +81,7 @@ $contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язати�
 
                             <a class="doctor-hero__btn-mobile btn-split btn-split--dark" href="#cta">
                                 <span class="btn-split__text"><?php esc_html_e("Зв'язатись з нами", 'igrmed'); ?></span>
-                                <span class="btn btn--primary btn--icon-only" aria-hidden="true">
+                                <span class="btn-split__icon" aria-hidden="true">
                                     <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/svg/contact-arrow.svg'); mask-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/svg/contact-arrow.svg');"></span>
                                 </span>
                             </a>
@@ -180,7 +180,7 @@ $contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язати�
 
                     <a class="doctor-hero__btn btn-split btn-split--dark" href="#cta">
                         <span class="btn-split__text"><?php esc_html_e("Зв'язатись з нами", 'igrmed'); ?></span>
-                        <span class="btn btn--primary btn--icon-only" aria-hidden="true">
+                        <span class="btn-split__icon" aria-hidden="true">
                             <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/svg/contact-arrow.svg'); mask-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/svg/contact-arrow.svg');"></span>
                         </span>
                     </a>

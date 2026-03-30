@@ -505,6 +505,10 @@
       
       .btn__icon-wrapper {
         background: var(--color-primary-dark);
+
+        img {
+          filter: brightness(0) invert(1);
+        }
       }
     }
   }

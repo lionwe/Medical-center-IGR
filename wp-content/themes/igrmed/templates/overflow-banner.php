@@ -21,7 +21,7 @@ if ($title === '') {
                     get_template_part('templates/button', null, [
                         'text' => $button_text,
                         'link' => $button_link,
-                        'type' => 'glass-primary',
+                        'type' => 'primary-calm-soft',
                         'primary_split' => true,
                         'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg',
                     ]);

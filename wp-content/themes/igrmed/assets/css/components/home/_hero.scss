@@ -101,6 +101,7 @@
     &__middle {
         display: flex;
         gap: convert-to-rem(14px);
+        align-items: stretch;
     }
 
     &__cards-left {
@@ -117,6 +118,11 @@
         gap: convert-to-rem(14px);
         flex: 1 1 0;
         min-width: 0;
+    }
+
+    // Swiper can override wrapper alignment; keep cards stretched.
+    &__cards-row.swiper-wrapper {
+        align-items: stretch;
     }
 
     &__cards-pagination {
@@ -137,14 +143,26 @@
     }
 
     &__card.swiper-slide {
+        // Swiper sets `.swiper-slide { display: block; }` globally.
+        // Force hero cards to stay flex containers.
+        display: flex;
         height: auto;
+        align-self: stretch;
     }
 
     &__card-header {
         display: flex;
         align-items: center;
         gap: convert-to-rem(8px);
-        margin-bottom: convert-to-rem(82px);
+        margin-bottom: convert-to-rem(12px);
+    }
+
+    &__card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1 1 auto;
+        min-height: 0;
     }
 
     &__card-body {
@@ -152,20 +170,37 @@
         flex-direction: column;
         gap: convert-to-rem(5px);
         color: var(--color-primary-dark);
+        flex: 1 1 auto;
+        min-height: 0;
     }
 
     &__card-actions {
         display: flex;
         justify-content: flex-end;
+        margin-top: auto;
 
-        .btn--primary-dark {
+        .btn--hero-card-cta {
+             width: 60px;
+            height: 40px;
+            padding: convert-to-rem(20px);
+            border-radius: convert-to-rem(100px);
+            border: 1px solid var(--color-primary-dark);
+            background: transparent;
+            color: var(--color-primary-dark);
+
+            .btn__icon {
+                width: convert-to-rem(21px);
+                height: convert-to-rem(8px);
+                background-color: currentColor;
+            }
+
             &:hover {
                 background: var(--color-white);
-                color: var(--color-white);
-                border-color: var(--color-white);
+                color: var(--color-primary-dark);
+                border-color: var(--color-primary-dark);
 
                 .btn__icon {
-                    background-color: var(--color-primary-dark);
+                    background-color: currentColor;
                 }
             }
         }
@@ -267,9 +302,6 @@
             @include typography($font-family-base, $fw-regular, convert-to-rem(14px), 1, 0);
         }
 
-        .hero__card-actions {
-            margin-top: auto;
-        }
     }
 
     // Card modifier: article
@@ -278,9 +310,6 @@
         background: var(--color-secondary-05);
         border: 1px solid var(--color-white-05);
 
-        .hero__card-actions {
-            margin-top: auto;
-        }
     }
 
     // Card modifier: info
