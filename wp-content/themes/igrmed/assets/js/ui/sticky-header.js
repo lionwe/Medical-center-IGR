@@ -27,15 +27,15 @@ const initHeaderVisibility = () => {
       return;
     }
 
-    if (Math.abs(currentScrollTop - lastScrollTop) <= threshold) {
-      isTicking = false;
-      return;
-    }
-
-    if (currentScrollTop > 50) {
+    if (currentScrollTop > 10) {
       header.classList.add("is-scrolled");
     } else {
       header.classList.remove("is-scrolled");
+    }
+
+    if (Math.abs(currentScrollTop - lastScrollTop) <= threshold) {
+      isTicking = false;
+      return;
     }
 
     if (
@@ -63,7 +63,11 @@ const initHeaderVisibility = () => {
     if (!canHideHeader()) {
       header.classList.remove("is-hidden");
     }
+    updateHeaderState();
   });
+
+  updateHeaderState();
+  window.requestAnimationFrame(updateHeaderState);
 };
 
 if (document.readyState === "loading") {
