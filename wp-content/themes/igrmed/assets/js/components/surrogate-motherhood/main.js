@@ -1,5 +1,9 @@
 import SurrogateTabs from './tabs.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    new SurrogateTabs();
-});
+const init = () => new SurrogateTabs();
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}

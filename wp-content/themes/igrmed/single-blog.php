@@ -8,13 +8,19 @@
 
 get_header();
 
-// Hero section
-get_template_part('sections/single-blog/hero');
+?>
 
-// Content section
-get_template_part('sections/single-blog/content');
+<main id="single-blog">
+    <?php
+    // Hero section
+    get_template_part('sections/single-blog/hero');
 
-// FAQ section
-get_template_part('sections/services/faq');
+    // Content section
+    get_template_part('sections/single-blog/content');
 
-get_footer('simple');
+    // FAQ section
+    get_template_part('sections/services/faq');
+    ?>
+</main>
+
+<?php get_footer('simple'); ?>

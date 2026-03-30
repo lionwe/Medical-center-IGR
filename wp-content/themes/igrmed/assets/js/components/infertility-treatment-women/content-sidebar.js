@@ -1,6 +1,5 @@
 function initContentSidebarNavigation() {
   const isDesktop = window.matchMedia("(min-width: 1200px)").matches;
-  if (!isDesktop) return;
 
   const categoriesList = document.querySelector(".js-content-sidebar");
   if (!categoriesList) return;
@@ -15,20 +14,25 @@ function initContentSidebarNavigation() {
     categoriesList.querySelectorAll(".js-content-sidebar-link[data-target]"),
   );
   if (!links.length && categoriesList.dataset.autoBuild === "1") {
-    const contentRoot =
-      categoriesList.closest(".catalog-wrap")?.querySelector(
-        ".ekz-content__content, .infertility-treatment-women__content",
-      ) || null;
+    const catalogWrap = categoriesList.closest(".catalog-wrap");
+    const contentContainer = catalogWrap
+      ? Array.from(catalogWrap.children).find((el) => !el.classList.contains("content-sidebar")) || null
+      : null;
 
-    const autoSections = Array.from(
-      (contentRoot || document).querySelectorAll(
-        ".donor-section[id], .ekz-content__section[id], .infertility-treatment-women__section[id]",
-      ),
-    )
+    const sectionNodes = contentContainer
+      ? Array.from(contentContainer.querySelectorAll("[id]")).filter((node) => {
+          if (!(node instanceof HTMLElement)) return false;
+          const id = (node.id || "").trim();
+          if (!id) return false;
+          if (sidebar && sidebar.contains(node)) return false;
+          return Boolean(node.querySelector("h1, h2, h3, h4, h5, h6"));
+        })
+      : [];
+
+    const autoSections = sectionNodes
       .map((section) => {
-        const titleNode =
-          section.querySelector(".ekz-content__section-title, .infertility-treatment-women__section-title, h2");
-        const id = section.id || "";
+        const id = (section.id || "").trim();
+        const titleNode = section.querySelector("h1, h2, h3, h4, h5, h6");
         const title = titleNode ? (titleNode.textContent || "").trim() : "";
         return id && title ? { id, title } : null;
       })
@@ -165,7 +169,9 @@ function initContentSidebarNavigation() {
   }
   requestActiveUpdate();
 
-  const hasSidebarPinning = Boolean(sidebar && sidebarPanel && contentSection);
+  // Only apply desktop pinning behavior (absolute panel translate).
+  // On smaller screens we still want link click + active state updates.
+  const hasSidebarPinning = Boolean(isDesktop && sidebar && sidebarPanel && contentSection);
   if (!hasSidebarPinning) return;
 
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);

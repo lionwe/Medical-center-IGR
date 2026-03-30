@@ -83,4 +83,8 @@ const initMobileMenu = () => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", initMobileMenu);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initMobileMenu);
+} else {
+  initMobileMenu();
+}

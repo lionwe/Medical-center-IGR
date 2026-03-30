@@ -1,5 +1,9 @@
 import BlogShare from './content';
 
-document.addEventListener('DOMContentLoaded', () => {
-    new BlogShare();
-});
+const init = () => new BlogShare();
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}

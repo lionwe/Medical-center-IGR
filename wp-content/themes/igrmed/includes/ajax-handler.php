@@ -31,16 +31,17 @@ function igrmed_load_surrogate_tabs(): void
         $tab_index = (int) str_replace('tab_', '', $tab_type);
         error_log('Generic tab index: ' . $tab_index);
 
-        // Get the actual tabs data for this post
-        $central_tabs = get_field('surrogate_central_tabs', $post_id);
+        // Get the actual tabs data for this post (keep in sync with template field names).
+        // Primary field in `sections/surrogate-motherhood/content.php` is `central_tabs_list`.
+        $central_tabs = get_field('central_tabs_list', $post_id);
 
         error_log('Central tabs field exists: ' . ($central_tabs !== null ? 'yes' : 'no'));
         error_log('Central tabs is array: ' . (is_array($central_tabs) ? 'yes' : 'no'));
         error_log('Central tabs count: ' . (is_array($central_tabs) ? count($central_tabs) : 0));
 
-        // Try alternative field names
+        // Try alternative field names (backward compatibility)
         if ($central_tabs === null) {
-            $alternative_fields = ['central_tabs', 'tabs', 'surrogate_tabs'];
+            $alternative_fields = ['surrogate_central_tabs', 'central_tabs', 'tabs', 'surrogate_tabs'];
             foreach ($alternative_fields as $field_name) {
                 $central_tabs = get_field($field_name, $post_id);
                 if ($central_tabs !== null) {

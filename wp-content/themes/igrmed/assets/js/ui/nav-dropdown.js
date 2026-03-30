@@ -123,4 +123,8 @@ const initNavDropdown = () => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", initNavDropdown);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initNavDropdown);
+} else {
+  initNavDropdown();
+}
