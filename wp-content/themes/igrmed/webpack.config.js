@@ -62,7 +62,16 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: [
-              ["@babel/preset-env", { useBuiltIns: "usage", corejs: 3 }],
+              [
+                "@babel/preset-env",
+                {
+                  // Keep compatibility with older Safari/iOS where modern syntax
+                  // like optional chaining / nullish coalescing can break parsing.
+                  targets: { safari: "12", ios: "12" },
+                  useBuiltIns: "usage",
+                  corejs: 3,
+                },
+              ],
             ],
             plugins: ["@babel/plugin-transform-runtime"],
             cacheDirectory: true,
