@@ -142,7 +142,7 @@
     gap: convert-to-rem(7px);
 
     a {
-      @include typography($font-family-montserrat-alternates, $fw-medium, (32px, 42px), 1);
+      @include typography($font-family-montserrat-alternates, $fw-medium, (32px, 34px), 1);
       letter-spacing: 0.04em;
       color: var(--color-white);
       text-decoration: none;
