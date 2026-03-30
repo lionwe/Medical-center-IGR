@@ -20,7 +20,8 @@ const components = [
     loader: () => import(/* webpackChunkName: "comp-home" */ "./components/home/main"),
   },
   {
-    selector: "#infertility-treatment-women",
+    selector:
+      "#infertility-treatment-women, #egg-donor, #ekz, #gynecology, #cryotechnology, #pregnancy-management, #male-infertility, #surrogate-motherhood",
     loader: () =>
       import(
         /* webpackChunkName: "comp-infertility" */ "./components/infertility-treatment-women/main"

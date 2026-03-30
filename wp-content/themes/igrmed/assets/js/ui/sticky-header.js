@@ -66,4 +66,8 @@ const initHeaderVisibility = () => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", initHeaderVisibility);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initHeaderVisibility);
+} else {
+  initHeaderVisibility();
+}

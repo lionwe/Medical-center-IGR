@@ -71,8 +71,12 @@ class PrivacyPolicy {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    PrivacyPolicy.init();
-});
+const init = () => PrivacyPolicy.init();
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}
 
 export default PrivacyPolicy;

@@ -1,6 +1,5 @@
 function initContentSidebarNavigation() {
   const isDesktop = window.matchMedia("(min-width: 1200px)").matches;
-  if (!isDesktop) return;
 
   const categoriesList = document.querySelector(".js-content-sidebar");
   if (!categoriesList) return;
@@ -165,7 +164,9 @@ function initContentSidebarNavigation() {
   }
   requestActiveUpdate();
 
-  const hasSidebarPinning = Boolean(sidebar && sidebarPanel && contentSection);
+  // Only apply desktop pinning behavior (absolute panel translate).
+  // On smaller screens we still want link click + active state updates.
+  const hasSidebarPinning = Boolean(isDesktop && sidebar && sidebarPanel && contentSection);
   if (!hasSidebarPinning) return;
 
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);

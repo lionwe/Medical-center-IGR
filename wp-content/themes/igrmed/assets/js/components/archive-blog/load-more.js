@@ -159,6 +159,10 @@ const initBlogLoadMore = () => {
     });
 };
 
-document.addEventListener('DOMContentLoaded', initBlogLoadMore);
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBlogLoadMore);
+} else {
+    initBlogLoadMore();
+}
 
 export default initBlogLoadMore;
