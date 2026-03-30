@@ -38,9 +38,27 @@ class PriceList {
 
     initCategoryDropdown() {
         if (!this.trigger) return;
+
+        const CLOSE_DELAY_MS = 800;
+        let closeTimerId = null;
+        const clearCloseTimer = () => {
+            if (closeTimerId) {
+                window.clearTimeout(closeTimerId);
+                closeTimerId = null;
+            }
+        };
+        const scheduleClose = () => {
+            clearCloseTimer();
+            closeTimerId = window.setTimeout(() => {
+                this.container.classList.remove('is-open');
+                this.trigger.setAttribute('aria-expanded', 'false');
+                closeTimerId = null;
+            }, CLOSE_DELAY_MS);
+        };
         
         this.trigger.addEventListener('click', (e) => {
             e.stopPropagation();
+            clearCloseTimer();
             const isOpen = this.container.classList.toggle('is-open');
             this.trigger.setAttribute('aria-expanded', isOpen);
         });
@@ -49,6 +67,14 @@ class PriceList {
             if (!this.container.contains(e.target)) {
                 this.container.classList.remove('is-open');
                 this.trigger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Hover delay close (desktop): prevents flicker when moving into dropdown.
+        this.container.addEventListener('mouseenter', clearCloseTimer);
+        this.container.addEventListener('mouseleave', () => {
+            if (this.container.classList.contains('is-open')) {
+                scheduleClose();
             }
         });
 
@@ -61,6 +87,7 @@ class PriceList {
                 this.label.innerText = catName;
                 this.container.classList.remove('is-open');
                 this.trigger.setAttribute('aria-expanded', 'false');
+                clearCloseTimer();
 
                 this.filterPriceList();
             });
