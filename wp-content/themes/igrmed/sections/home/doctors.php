@@ -10,7 +10,7 @@ $doctors_button_target = '_self';
 
 if (is_array($doctors_button)) {
     $doctors_button_url = (string) ($doctors_button['url'] ?? '');
-    $doctors_button_label = (string) ($doctors_button['title'] ?? '');
+    $doctors_button_label = igrmed__('btn_contact_us');
     $doctors_button_target = (string) ($doctors_button['target'] ?? '_self');
 }
 
@@ -125,7 +125,7 @@ if (empty($doctors_posts)) {
                                         ?>
                                         <?php if ($doctor_link !== ''): ?>
                                             <a class="doctors__slide-more" href="<?php echo esc_url($doctor_link); ?>">
-                                                <span class="doctors__slide-more-text"><?php echo esc_html__('Детальніше про лікаря', 'igrmed'); ?></span>
+                                                <span class="doctors__slide-more-text"><?php igrmed_e('doctors_details'); ?></span>
                                                 <svg class="doctors__slide-more-icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
                                                     <path d="M9.36002 19.2004V0.000390053H10.32V19.2004H9.36002ZM2.45571e-05 10.0804V9.16839H19.68V10.0804H2.45571e-05Z" fill="currentColor"/>
                                                 </svg>

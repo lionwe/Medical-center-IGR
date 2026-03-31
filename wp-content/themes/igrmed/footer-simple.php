@@ -28,7 +28,7 @@
                 <div class="footer__col footer__col--contacts">
                     <?php $footer_contacts_title = get_field('footer_contacts_title', 'option'); ?>
                     <?php if ($footer_contacts_title): ?>
-                        <h3 class="footer__col-title"><?php echo esc_html($footer_contacts_title); ?></h3>
+                        <h3 class="footer__col-title"><?php igrmed_e('footer_contacts_title'); ?></h3>
                     <?php endif; ?>
                     <div class="footer__contacts-text footer__text">
                         <?php
@@ -43,7 +43,7 @@
                 <div class="footer__col footer__col--socials">
                     <?php $footer_socials_title = get_field('footer_socials_title', 'option'); ?>
                     <?php if ($footer_socials_title): ?>
-                        <h3 class="footer__col-title"><?php echo esc_html($footer_socials_title); ?></h3>
+                        <h3 class="footer__col-title"><?php igrmed_e('footer_social_title'); ?></h3>
                     <?php endif; ?>
                     <div class="footer__socials footer__text">
                         <?php if ($link_instagram = get_field('link_instagram', 'option')): ?>
@@ -77,7 +77,7 @@
                     <?php endif; ?>
 
                     <?php if ($footer_main_title): ?>
-                        <div class="footer__main-title"><?php echo esc_html($footer_main_title); ?></div>
+                        <div class="footer__main-title"><?php igrmed_e('footer_about_title'); ?></div>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
@@ -98,7 +98,7 @@
                     <div class="footer__copyright-privacy">
                         <?php if ($privacy_policy): ?>
                             <a
-                                href="<?php echo esc_url($privacy_policy); ?>"><?php esc_html_e('Privacy Policy', 'igrmed'); ?></a>
+                                href="<?php echo esc_url($privacy_policy); ?>"><?php igrmed_e('footer_privacy_policy'); ?></a>
                         <?php endif; ?>
                     </div>
 

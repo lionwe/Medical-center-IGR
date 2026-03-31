@@ -44,7 +44,7 @@ $get_cpt_archive = static function (string $post_type): array {
 };
 
 $home_url = function_exists('pll_home_url') ? pll_home_url() : home_url('/');
-$add_crumb((string) __('Головна', 'igrmed'), $home_url);
+$add_crumb((string) igrmed__('breadcrumbs_home'), $home_url);
 
 if (is_tax(['service_category', 'doctor_specialty', 'blog_category'])) {
     $term = get_queried_object();
@@ -101,14 +101,14 @@ if (is_tax(['service_category', 'doctor_specialty', 'blog_category'])) {
         [$archive_title, $archive_url] = $get_cpt_archive($post_type);
         $add_crumb($archive_title, $archive_url);
     } elseif ($post_type === 'post') {
-        $add_crumb((string) __('Блог', 'igrmed'));
+        $add_crumb((string) igrmed__('blog_title'));
     }
 
     $add_crumb((string) get_the_title());
 } elseif (is_search()) {
-    $add_crumb((string) __('Пошук', 'igrmed') . ': ' . get_search_query());
+    $add_crumb((string) igrmed__('search_placeholder') . ': ' . get_search_query());
 } elseif (is_404()) {
-    $add_crumb((string) __('Сторінку не знайдено', 'igrmed'));
+    $add_crumb((string) igrmed__('error_404_title'));
 } elseif (is_archive()) {
     $title = preg_replace('/^[\w\s]+:\s/', '', (string) get_the_archive_title());
     $add_crumb((string) $title);

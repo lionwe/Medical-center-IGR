@@ -213,7 +213,7 @@
                                         <div class="header__search" id="header-search">
                                             <div class="header__search-field">
                                                 <input class="header__search-input" type="search"
-                                                    placeholder="<?php esc_attr_e('Пошук', 'igr-theme'); ?>">
+                                                    placeholder="<?php esc_attr_e(igrmed__('search_placeholder')); ?>">
                                                 <div class="header__search-icons">
                                                     <span class="header__search-icon-wrapper header__search-icon-wrapper--search" aria-hidden="true">
                                                         <?php if ($header_search_icon_url !== ''): ?>
@@ -239,7 +239,7 @@
                                                             </g>
                                                         </svg>
                                                     </span>
-                                                    <button type="button" class="header__search-icon-wrapper header__search-icon-wrapper--close" aria-label="<?php esc_attr_e('Закрити пошук', 'igr-theme'); ?>">
+                                                    <button type="button" class="header__search-icon-wrapper header__search-icon-wrapper--close" aria-label="<?php esc_attr_e(igrmed__('btn_close')); ?>">
                                                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                                                         </svg>
@@ -257,7 +257,7 @@
                                     </div>
                                     <a href="#contact" class="header__cta">
                                         <span
-                                            class="header__cta-text"><?php esc_html_e("Зв'язатись з нами", 'igr-theme'); ?></span>
+                                            class="header__cta-text"><?php igrmed_e('btn_contact_us'); ?></span>
                                         <span class="header__cta-icon">
                                             <span class="header__cta-icon-circle" aria-hidden="true"></span>
                                             <img class="header__cta-icon-arrow" src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg'); ?>"
@@ -311,7 +311,7 @@
                         <?php get_template_part('templates/navigation', null, array('location' => 'menu-header')); ?>
                     </div>
                     <a href="#contact" class="header__cta header__mobile-menu-cta">
-                        <span class="header__cta-text"><?php esc_html_e("Зв'язатись з нами", 'igr-theme'); ?></span>
+                        <span class="header__cta-text"><?php igrmed_e('btn_contact_us'); ?></span>
                         <span class="header__cta-icon">
                             <span class="header__cta-icon-circle" aria-hidden="true"></span>
                             <img class="header__cta-icon-arrow" src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg'); ?>"
@@ -421,9 +421,9 @@
         <div class="header__search-popup-overlay"></div>
         <div class="header__search-popup-container">
             <div class="header__search-popup-header">
-                <span class="header__search-popup-title"><?php esc_html_e('Пошук', 'igr-theme'); ?></span>
+                <span class="header__search-popup-title"><?php igrmed_e('search_placeholder'); ?></span>
                 <button class="header__search-popup-close" type="button"
-                    aria-label="<?php esc_attr_e('Закрити пошук', 'igr-theme'); ?>">
+                    aria-label="<?php esc_attr_e(igrmed__('btn_close')); ?>">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 1L15 15M1 15L15 1" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" />

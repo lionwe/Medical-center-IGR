@@ -95,7 +95,7 @@ if (empty($doctors_list)) {
 
                                         <?php if ($doctor_link !== ''): ?>
                                             <a class="pregnancy-doctors__slide-more" href="<?php echo esc_url($doctor_link); ?>">
-                                                <span class="pregnancy-doctors__slide-more-text"><?php echo esc_html__('Детальніше про лікаря', 'igrmed'); ?></span>
+                                                <span class="pregnancy-doctors__slide-more-text"><?php igrmed_e('doctors_details'); ?></span>
                                                 <svg class="pregnancy-doctors__slide-more-icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
                                                     <path d="M9.36002 19.2004V0.000390053H10.32V19.2004H9.36002ZM2.45571e-05 10.0804V9.16839H19.68V10.0804H2.45571e-05Z" fill="currentColor"/>
                                                 </svg>
@@ -115,7 +115,7 @@ if (empty($doctors_list)) {
                         'type'       => 'carousel-glass',
                         'icon_url'   => get_template_directory_uri() . '/assets/img/svg/arrow-carousel-active.svg',
                         'class'      => 'is-prev js-pregnancy-doctors-prev',
-                        'attributes' => ['aria-label' => __('Попередній лікар', 'igrmed')],
+                        'attributes' => ['aria-label' => igrmed__('pagination_prev')],
                     ]);
                     ?>
                     <?php
@@ -123,7 +123,7 @@ if (empty($doctors_list)) {
                         'type'       => 'carousel-glass',
                         'icon_url'   => get_template_directory_uri() . '/assets/img/svg/arrow-carousel-active.svg',
                         'class'      => 'pregnancy-doctors__next js-pregnancy-doctors-next',
-                        'attributes' => ['aria-label' => __('Наступний лікар', 'igrmed')],
+                        'attributes' => ['aria-label' => igrmed__('pagination_next')],
                     ]);
                     ?>
                 </div>

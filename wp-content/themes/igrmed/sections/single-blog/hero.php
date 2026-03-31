@@ -9,7 +9,7 @@ $post_id = get_the_ID();
 $date = get_the_date('j F, Y');
 $post_obj = get_post($post_id);
 $minutes = (function_exists('reading_time') && $post_obj) ? reading_time($post_obj->post_content) : 3;
-$read_time = sprintf(__('%d хв на читання', 'igrmed'), $minutes);
+$read_time = sprintf(igrmed__('blog_reading_time'), $minutes);
 
 $icon_calendar = get_field('icon_calendar', 'option');
 $icon_clock = get_field('icon_clock_2', 'option');

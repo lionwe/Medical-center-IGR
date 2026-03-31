@@ -124,19 +124,19 @@ $has_methods = !empty($methods_list);
 $sections = [];
 
 if ($has_intro) {
-    $sections[] = ['id' => 'mi-intro', 'title' => $intro_title !== '' ? $intro_title : __('Що таке чоловіче безпліддя?', 'igrmed')];
+    $sections[] = ['id' => 'mi-intro', 'title' => $intro_title];
 }
 if ($has_causes) {
-    $sections[] = ['id' => 'mi-causes', 'title' => $causes_title !== '' ? $causes_title : __('Причини безпліддя у чоловіків', 'igrmed')];
+    $sections[] = ['id' => 'mi-causes', 'title' => $causes_title];
 }
 if ($has_when) {
-    $sections[] = ['id' => 'mi-when', 'title' => $when_title !== '' ? $when_title : __('Коли варто звернутися за лікуванням?', 'igrmed')];
+    $sections[] = ['id' => 'mi-when', 'title' => $when_title];
 }
 if ($has_stages) {
-    $sections[] = ['id' => 'mi-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи лікування безпліддя', 'igrmed')];
+    $sections[] = ['id' => 'mi-stages', 'title' => $stages_title];
 }
 if ($has_methods) {
-    $sections[] = ['id' => 'mi-methods', 'title' => $methods_title !== '' ? $methods_title : __('Методи лікування безпліддя', 'igrmed')];
+    $sections[] = ['id' => 'mi-methods', 'title' => $methods_title];
 }
 
 if (empty($sections)) {

@@ -42,25 +42,25 @@ $sections = [];
 if ($has_intro) {
     $sections[] = [
         'id'    => 'preg-intro',
-        'title' => $intro_title !== '' ? $intro_title : __('Ведення вагітності', 'igrmed'),
+        'title' => $intro_title,
     ];
 }
 if ($has_advantages) {
     $sections[] = [
         'id'    => 'preg-advantages',
-        'title' => $advantages_title !== '' ? $advantages_title : __('Переваги ведення вагітності', 'igrmed'),
+        'title' => $advantages_title,
     ];
 }
 if ($has_procedures) {
     $sections[] = [
         'id'    => 'preg-procedures',
-        'title' => $procedures_title !== '' ? $procedures_title : __('Процедури діагностики при веденні вагітності', 'igrmed'),
+        'title' => $procedures_title,
     ];
 }
 if ($has_doctors) {
     $sections[] = [
         'id'    => 'preg-doctors',
-        'title' => $doctors_title !== '' ? $doctors_title : __('Лікарі, які ведуть лікування', 'igrmed'),
+        'title' => $doctors_title,
     ];
 }
 

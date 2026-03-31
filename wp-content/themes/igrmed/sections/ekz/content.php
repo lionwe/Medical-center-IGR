@@ -135,28 +135,28 @@ $has_programs = !empty($programs_list);
 $sections = [];
 
 if ($has_intro) {
-    $sections[] = ['id' => 'ekz-intro', 'title' => $intro_title !== '' ? $intro_title : __('Що таке ЕКЗ', 'igrmed')];
+    $sections[] = ['id' => 'ekz-intro', 'title' => $intro_title];
 }
 if ($has_advantages) {
-    $sections[] = ['id' => 'ekz-advantages', 'title' => $advantages_title !== '' ? $advantages_title : __('Переваги клініки', 'igrmed')];
+    $sections[] = ['id' => 'ekz-advantages', 'title' => $advantages_title];
 }
 if ($has_indications) {
-    $sections[] = ['id' => 'ekz-indications', 'title' => $indications_title !== '' ? $indications_title : __('Показання', 'igrmed')];
+    $sections[] = ['id' => 'ekz-indications', 'title' => $indications_title];
 }
 if ($has_contra) {
-    $sections[] = ['id' => 'ekz-contraindications', 'title' => $contra_title !== '' ? $contra_title : __('Протипоказання', 'igrmed')];
+    $sections[] = ['id' => 'ekz-contraindications', 'title' => $contra_title];
 }
 if ($has_stages) {
-    $sections[] = ['id' => 'ekz-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи процедури', 'igrmed')];
+    $sections[] = ['id' => 'ekz-stages', 'title' => $stages_title];
 }
 if ($has_success) {
-    $sections[] = ['id' => 'ekz-success', 'title' => $success_title !== '' ? $success_title : __('Успішність', 'igrmed')];
+    $sections[] = ['id' => 'ekz-success', 'title' => $success_title];
 }
 if ($has_candidates) {
-    $sections[] = ['id' => 'ekz-candidates', 'title' => $candidates_title !== '' ? $candidates_title : __('Кому підходить', 'igrmed')];
+    $sections[] = ['id' => 'ekz-candidates', 'title' => $candidates_title];
 }
 if ($has_programs) {
-    $sections[] = ['id' => 'ekz-programs', 'title' => $programs_title !== '' ? $programs_title : __('Програми ЕКЗ', 'igrmed')];
+    $sections[] = ['id' => 'ekz-programs', 'title' => $programs_title];
 }
 
 if (empty($sections)) {
@@ -170,11 +170,11 @@ if (empty($sections)) {
             <?php get_template_part('templates/content-sidebar', null, ['sections' => $sections]); ?>
 
             <div class="ekz-content__content">
-                <?php if ($has_intro): ?>
+                <?php if ($intro_title !== ''): ?>
                     <div id="ekz-intro" class="ekz-content__section ekz-content__section--intro">
                         <div class="ekz-content__section-title-wrap">
                             <h2 class="ekz-content__section-title">
-                                <?php echo esc_html($intro_title !== '' ? $intro_title : __('Що таке ЕКЗ', 'igrmed')); ?>
+                                <?php echo esc_html($intro_title); ?>
                             </h2>
                         </div>
                         <div class="ekz-content__section-body">
@@ -187,11 +187,11 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($has_advantages): ?>
+                <?php if ($advantages_title !== ''): ?>
                     <div id="ekz-advantages" class="ekz-content__section ekz-content__section--advantages">
                         <div class="ekz-content__section-title-wrap">
                             <h2 class="ekz-content__section-title">
-                                <?php echo esc_html($advantages_title !== '' ? $advantages_title : __('Переваги клініки', 'igrmed')); ?>
+                                <?php echo esc_html($advantages_title); ?>
                             </h2>
                         </div>
                         <div class="ekz-content__section-body">
@@ -204,11 +204,11 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($has_indications): ?>
+                <?php if ($indications_title !== ''): ?>
                     <div id="ekz-indications" class="ekz-content__section ekz-content__section--indications">
                         <div class="ekz-content__section-title-wrap">
                             <h2 class="ekz-content__section-title">
-                                <?php echo esc_html($indications_title !== '' ? $indications_title : __('Показання', 'igrmed')); ?>
+                                <?php echo esc_html($indications_title); ?>
                             </h2>
                         </div>
                         <div class="ekz-content__section-body">
@@ -231,11 +231,11 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($has_contra): ?>
+                <?php if ($contra_title !== ''): ?>
                     <div id="ekz-contraindications" class="ekz-content__section ekz-content__section--contraindications">
                         <div class="ekz-content__section-title-wrap">
                             <h2 class="ekz-content__section-title">
-                                <?php echo esc_html($contra_title !== '' ? $contra_title : __('Протипоказання', 'igrmed')); ?>
+                                <?php echo esc_html($contra_title); ?>
                             </h2>
                         </div>
                         <div class="ekz-content__section-body">
@@ -257,11 +257,11 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($has_stages): ?>
+                <?php if ($stages_title !== ''): ?>
                     <div id="ekz-stages" class="ekz-content__section ekz-content__section--stages">
                         <div class="ekz-content__section-title-wrap">
                             <h2 class="ekz-content__section-title">
-                                <?php echo esc_html($stages_title !== '' ? $stages_title : __('Етапи процедури', 'igrmed')); ?>
+                                <?php echo esc_html($stages_title); ?>
                             </h2>
                         </div>
                         <div class="ekz-content__section-body">
@@ -292,11 +292,11 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($has_success): ?>
+                <?php if ($success_title !== ''): ?>
                     <div id="ekz-success" class="ekz-content__section ekz-content__section--success">
                         <div class="ekz-content__section-title-wrap">
                             <h2 class="ekz-content__section-title">
-                                <?php echo esc_html($success_title !== '' ? $success_title : __('Успішність', 'igrmed')); ?>
+                                <?php echo esc_html($success_title); ?>
                             </h2>
                         </div>
                         <div class="ekz-content__section-body">
@@ -314,11 +314,11 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($has_candidates): ?>
+                <?php if ($candidates_title !== ''): ?>
                     <div id="ekz-candidates" class="ekz-content__section ekz-content__section--candidates">
                         <div class="ekz-content__section-title-wrap">
                             <h2 class="ekz-content__section-title">
-                                <?php echo esc_html($candidates_title !== '' ? $candidates_title : __('Кому підходить', 'igrmed')); ?>
+                                <?php echo esc_html($candidates_title); ?>
                             </h2>
                         </div>
                         <div class="ekz-content__section-body">
@@ -340,11 +340,11 @@ if (empty($sections)) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($has_programs): ?>
+                <?php if ($programs_title !== ''): ?>
                     <div id="ekz-programs" class="ekz-content__section ekz-content__section--programs">
                         <div class="ekz-content__section-title-wrap">
                             <h2 class="ekz-content__section-title">
-                                <?php echo esc_html($programs_title !== '' ? $programs_title : __('Програми ЕКЗ', 'igrmed')); ?>
+                                <?php echo esc_html($programs_title); ?>
                             </h2>
                         </div>
                         <div class="ekz-content__section-body">

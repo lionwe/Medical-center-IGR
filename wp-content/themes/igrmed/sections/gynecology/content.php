@@ -56,16 +56,16 @@ $has_procedures = !empty($procedures_list);
 
 $sections = [];
 if ($has_intro) {
-    $sections[] = ['id' => 'gy-intro', 'title' => $intro_title !== '' ? $intro_title : __('Гінекологія', 'igrmed')];
+    $sections[] = ['id' => 'gy-intro', 'title' => $intro_title !== '' ? $intro_title : igrmed__('services_title')];
 }
 if ($has_advantages) {
-    $sections[] = ['id' => 'gy-advantages', 'title' => $advantages_title !== '' ? $advantages_title : __('Переваги', 'igrmed')];
+    $sections[] = ['id' => 'gy-advantages', 'title' => $advantages_title !== '' ? $advantages_title : igrmed__('section_advantages')];
 }
 if ($has_when) {
-    $sections[] = ['id' => 'gy-when', 'title' => $when_title !== '' ? $when_title : __('Коли варто звернутися', 'igrmed')];
+    $sections[] = ['id' => 'gy-when', 'title' => $when_title !== '' ? $when_title : igrmed__('section_when_visit')];
 }
 if ($has_procedures) {
-    $sections[] = ['id' => 'gy-procedures', 'title' => $procedures_title !== '' ? $procedures_title : __('Процедури та захворювання', 'igrmed')];
+    $sections[] = ['id' => 'gy-procedures', 'title' => $procedures_title !== '' ? $procedures_title : igrmed__('section_procedures')];
 }
 
 if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID())) === '') {
@@ -85,7 +85,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     <div id="gy-intro" class="gynecology-content__section gynecology-content__section--intro">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
-                                <?php echo esc_html($intro_title !== '' ? $intro_title : __('Гінекологія', 'igrmed')); ?>
+                                <?php echo esc_html($intro_title !== '' ? $intro_title : igrmed__('services_title')); ?>
                             </h2>
                         </div>
                         <div class="gynecology-content__body">
@@ -102,7 +102,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     <div id="gy-advantages" class="gynecology-content__section gynecology-content__section--advantages">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
-                                <?php echo esc_html($advantages_title !== '' ? $advantages_title : __('Переваги', 'igrmed')); ?>
+                                <?php echo esc_html($advantages_title !== '' ? $advantages_title : igrmed__('section_advantages')); ?>
                             </h2>
                         </div>
                         <div class="gynecology-content__body">
@@ -117,7 +117,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     <div id="gy-when" class="gynecology-content__section">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
-                                <?php echo esc_html($when_title !== '' ? $when_title : __('Коли варто звернутися', 'igrmed')); ?>
+                                <?php echo esc_html($when_title !== '' ? $when_title : igrmed__('section_when_visit')); ?>
                             </h2>
                         </div>
                         <div class="gynecology-content__body">
@@ -136,7 +136,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                     <div id="gy-procedures" class="gynecology-content__section gynecology-content__section--procedures">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
-                                <?php echo esc_html($procedures_title !== '' ? $procedures_title : __('Процедури та захворювання', 'igrmed')); ?>
+                                <?php echo esc_html($procedures_title !== '' ? $procedures_title : igrmed__('section_procedures')); ?>
                             </h2>
                         </div>
                         <div class="gynecology-content__body">
@@ -161,8 +161,7 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                                     <?php if ($should_collapse_procedures): ?>
                                         <li class="gynecology-content__procedures-item gynecology-content__list-more-item">
                                             <button type="button" class="gynecology-content__list-more" aria-expanded="false">
-                                                <span
-                                                    class="gynecology-content__list-more-text"><?php echo esc_html__('Всі процедури', 'igrmed'); ?></span>
+                                                <span class="gynecology-content__list-more-text"><?php echo esc_html(igrmed__('diagnostics_all_procedures')); ?></span>
                                                 <span class="gynecology-content__list-more-arrow" aria-hidden="true">
                                                     <?php echo igrmed_get_svg('read-more-arrow'); ?>
                                                 </span>

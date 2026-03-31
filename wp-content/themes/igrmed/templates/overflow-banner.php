@@ -1,6 +1,6 @@
 <?php
 $title = trim((string) ($args['title'] ?? 'Стати донором яйцеклітин'));
-$button_text = (string) __("Зв'язатись з нами", 'igrmed');
+$button_text = igrmed__('btn_contact_us');
 $button_link = '#cta';
 $image_url = get_template_directory_uri() . '/assets/img/ba5c6331bea41bf283dc73f4555c3659-removebg-preview 1.webp';
 

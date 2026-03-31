@@ -38,13 +38,13 @@ if ($bg && isset($bg['url'])) {
                         'type' => 'carousel',
                         'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-prev.svg',
                         'class' => 'licenses-certificates__prev js-licenses-prev',
-                        'attributes' => ['aria-label' => __('Попередній сертифікат', 'igrmed')]
+                        'attributes' => ['aria-label' => igrmed__('pagination_prev')]
                     ]); ?>
                     <?php get_template_part('templates/button', null, [
                         'type' => 'carousel',
                         'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg',
                         'class' => 'licenses-certificates__next js-licenses-next',
-                        'attributes' => ['aria-label' => __('Наступний сертифікат', 'igrmed')]
+                        'attributes' => ['aria-label' => igrmed__('pagination_next')]
                     ]); ?>
                 </div>
             </div>

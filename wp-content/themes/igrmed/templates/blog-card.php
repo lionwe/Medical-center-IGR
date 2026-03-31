@@ -18,7 +18,7 @@ if (!$image_url) {
 $date      = get_the_date('j F, Y');
 $post_obj  = get_post($post_id);
 $minutes   = (function_exists('reading_time') && $post_obj) ? reading_time($post_obj->post_content) : 3;
-$read_time = sprintf(__('%d хв на прочитання', 'igrmed'), $minutes);
+$read_time = sprintf(igrmed__('blog_reading_time'), $minutes);
 ?>
 
 <article <?php post_class('blog-card'); ?>>
@@ -83,7 +83,7 @@ $read_time = sprintf(__('%d хв на прочитання', 'igrmed'), $minutes
     <div class="blog-card__footer">
         <?php get_template_part('templates/button', null, [
             'type'     => 'readmore-v1',
-            'text'     => __('Читати більше', 'igrmed'),
+            'text'     => igrmed__('blog_read_more'),
             'link'     => get_permalink(),
             'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg'
         ]); ?>

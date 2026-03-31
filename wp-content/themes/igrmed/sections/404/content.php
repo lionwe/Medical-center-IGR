@@ -22,13 +22,16 @@
     <div class="container">
         <div class="error-404__content">
             <div class="error-404__num">404</div>
+            <h1 class="error-404__title">
+                <?php igrmed_e('error_404_title'); ?>
+            </h1>
             <p class="error-404__text">
-                <?php echo esc_html__('Оййййй, щось пішло не так.....', 'igrmed'); ?>
+                <?php igrmed_e('error_404_text'); ?>
             </p>
         </div>
         <div class="error-404__cta">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn--back-home">
-                <span class="btn__text"><?php echo esc_html__('Повернутись на головну', 'igrmed'); ?></span>
+                <span class="btn__text"><?php igrmed_e('breadcrumbs_home'); ?></span>
             </a>
         </div>
     </div>

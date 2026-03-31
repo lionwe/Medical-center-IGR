@@ -11,7 +11,7 @@ $hero_button_target = '_self';
 
 if (is_array($hero_button)) {
     $hero_button_url = $hero_button['url'] ?? '';
-    $hero_button_label = $hero_button['title'] ?? '';
+$hero_button_label = igrmed__('btn_details_about_us');
     $hero_button_target = $hero_button['target'] ?? '_self';
 }
 
@@ -123,7 +123,7 @@ $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_
                     <?php if ($hero_button_url !== '' && $hero_button_label !== ''): ?>
                         <?php
                         get_template_part('templates/button', null, [
-                            'text' => esc_html__("Детальніше про нас", 'igrmed'),
+                            'text' => $hero_button_label,
                             'link' => $hero_button_url,
                             'type' => 'primary-soft-hover',
                             'primary_split' => true,

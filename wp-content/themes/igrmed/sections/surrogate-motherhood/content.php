@@ -46,19 +46,19 @@ $sections = [];
 if ($has_intro) {
     $sections[] = [
         'id'    => 'surrogate-intro',
-        'title' => $intro_title !== '' ? $intro_title : __('Сурогатне материнство', 'igrmed'),
+        'title' => $intro_title,
     ];
 }
 if ($has_tabs) {
     $sections[] = [
         'id'    => 'surrogate-tabs',
-        'title' => __('Супровід', 'igrmed'),
+        'title' => '',
     ];
 }
 if ($has_program) {
     $sections[] = [
         'id'    => 'surrogate-program',
-        'title' => $program_title !== '' ? $program_title : __('Програма та вартість', 'igrmed'),
+        'title' => $program_title,
     ];
 }
 ?>

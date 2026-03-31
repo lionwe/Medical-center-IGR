@@ -7,7 +7,7 @@
  */
 
 $title = (string) ($args['title'] ?? get_the_title());
-$button_text = (string) __("Зв'язатись з нами", 'igrmed');
+$button_text = igrmed__('btn_contact_us');
 $button_link = '#cta';
 
 $title = trim($title);

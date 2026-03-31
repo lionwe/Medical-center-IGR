@@ -2,7 +2,6 @@
 add_action('wp_enqueue_scripts', 'igrmed_enqueue_assets');
 add_action('after_setup_theme', 'igrmed_theme_setup');
 add_filter('upload_mimes', 'svg_upload_allow');
-add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 add_action('pre_get_posts', 'igrmed_blog_posts_per_page');
 add_filter('script_loader_tag', 'igrmed_defer_scripts', 10, 2);
@@ -10,7 +9,7 @@ add_filter('script_loader_tag', 'igrmed_defer_scripts', 10, 2);
 require get_template_directory() . '/includes/post-types.php';
 require get_template_directory() . '/includes/ajax-handler.php';
 require get_template_directory() . '/includes/helpers.php';
-
+require get_template_directory() . '/includes/polylang-register-strings.php';
 
 /**
  * Get SVG content from assets
@@ -80,6 +79,30 @@ function igrmed_enqueue_assets(): void
         'nonce' => wp_create_nonce('ajax-nonce'),
         'template_directory_url' => get_template_directory_uri(),
         'current_lang' => function_exists('pll_current_language') ? pll_current_language() : '',
+        'i18n' => [
+            'loading' => igrmed__('loading'),
+            'error_connection' => igrmed__('error_connection'),
+            'error_loading' => igrmed__('error_loading'),
+            'error_validation' => igrmed__('error_validation'),
+            'error_required' => igrmed__('error_required'),
+            'error_email' => igrmed__('error_email'),
+            'error_phone' => igrmed__('error_phone'),
+            'success' => igrmed__('success'),
+            'processing' => igrmed__('processing'),
+            'btn_send' => igrmed__('btn_send'),
+            'btn_close' => igrmed__('btn_close'),
+            'btn_cancel' => igrmed__('btn_cancel'),
+            'form_success_message' => igrmed__('form_success_message'),
+            'form_error_message' => igrmed__('form_error_message'),
+            'search_placeholder' => igrmed__('search_placeholder'),
+            'search_no_results' => igrmed__('search_no_results'),
+            'search_results' => igrmed__('search_results'),
+            'pagination_prev' => igrmed__('pagination_prev'),
+            'pagination_next' => igrmed__('pagination_next'),
+            'blog_load_more' => igrmed__('blog_load_more'),
+            'reviews_thank_you' => igrmed__('reviews_thank_you'),
+            'appointment_success' => igrmed__('appointment_success'),
+        ],
     ]);
 }
 
