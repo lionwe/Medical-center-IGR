@@ -1,28 +1,17 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-module.exports = (env, argv) => {
-  const mode = argv?.mode || "production";
-  const isProd = mode === "production";
-
-  return {
-    mode,
+module.exports = {
   entry: {
     main: "./assets/js/main.js",
   },
   output: {
     filename: "js/[name].bundle.js",
-    chunkFilename: "js/[name].chunk.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/wp-content/themes/igrmed/dist/",
-    clean: true,
   },
-  cache: {
-    type: "filesystem",
-  },
-  stats: "errors-warnings",
   module: {
     rules: [
       {
@@ -38,15 +27,7 @@ module.exports = (env, argv) => {
               },
             },
           },
-          {
-            loader: "sass-loader",
-            options: {
-              api: "modern",
-              sassOptions: {
-                silenceDeprecations: ["legacy-js-api", "import"],
-              },
-            },
-          },
+          "sass-loader",
         ],
       },
       {
@@ -71,14 +52,7 @@ module.exports = (env, argv) => {
           loader: "babel-loader",
           options: {
             presets: [
-              [
-                "@babel/preset-env",
-                {
-                  targets: { safari: "12", ios: "12" },
-                  useBuiltIns: "usage",
-                  corejs: 3,
-                },
-              ],
+              ["@babel/preset-env", { useBuiltIns: "usage", corejs: 3 }],
             ],
             plugins: ["@babel/plugin-transform-runtime"],
             cacheDirectory: true,
@@ -99,40 +73,16 @@ module.exports = (env, argv) => {
           filename: "images/[name][ext]",
         },
       },
-      {
-        test: /\.(png|jpe?g|gif|avif)$/i,
-        type: "asset/resource",
-        generator: {
-          filename: "images/[name][ext]",
-        },
-      },
     ],
   },
   optimization: {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
-    moduleIds: "deterministic",
-    chunkIds: "deterministic",
-    splitChunks: {
-      cacheGroups: {
-        vendorCore: {
-          test: /[\\/]node_modules[\\/](core-js|@babel\/runtime)/,
-          name: "vendors-core",
-          chunks: "all",
-          enforce: true,
-        },
-      },
-    },
-  },
-  performance: {
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "css/[name].bundle.css",
-      chunkFilename: "css/[name].chunk.css",
     }),
   ],
-  devtool: isProd ? "source-map" : "eval-cheap-module-source-map",
-  };
+  devtool: "source-map",
 };
