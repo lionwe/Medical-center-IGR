@@ -1,6 +1,6 @@
 <?php
 $title = trim((string) get_the_title());
-$button_text = (string) __("Зв'язатись з нами", 'igrmed');
+$button_text = igrmed__('btn_contact_us');
 $button_link = '#contact';
 
 // Empty Fields Rule: title is required for this block.

@@ -68,6 +68,23 @@
     transition: width 0.3s ease-in-out;
   }
 
+  // Remove inner rounded corners between the two toggle buttons.
+  &__label:first-child {
+    .diagnostics-research-diagnostics__button-text,
+    .diagnostics-research-diagnostics__bg {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__label:last-child {
+    .diagnostics-research-diagnostics__button-text,
+    .diagnostics-research-diagnostics__bg {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
   &__label:nth-child(1) &__bg {
     right: 0;
     left: auto;
@@ -331,6 +348,7 @@
     color: inherit;
     text-align: left;
     cursor: pointer;
+    @include typography($font-family-montserrat, $fw-regular, 12px, 1, 0);
   }
 
   &__list-more-text {

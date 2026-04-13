@@ -99,44 +99,31 @@ if (is_array($stages_rows)) {
 }
 
 $methods_title = trim((string) get_field('methods_title'));
-$methods_rows = get_field('methods_list');
-$methods_list = [];
-
-if (is_array($methods_rows)) {
-    foreach ($methods_rows as $row) {
-        if (!is_array($row)) {
-            continue;
-        }
-
-        $text = trim((string) ($row['text'] ?? ''));
-        if ($text !== '') {
-            $methods_list[] = $text;
-        }
-    }
-}
+$methods_content = get_field('methods_list');
+$methods_content = is_string($methods_content) ? trim($methods_content) : '';
 
 $has_intro = $intro_content !== '';
 $has_causes = $causes_subtitle !== '' || !empty($causes_list);
 $has_when = !empty($when_list);
 $has_stages = $stages_bg_desc !== '' || !empty($stages_list);
-$has_methods = !empty($methods_list);
+$has_methods = $methods_content !== '';
 
 $sections = [];
 
 if ($has_intro) {
-    $sections[] = ['id' => 'mi-intro', 'title' => $intro_title !== '' ? $intro_title : __('Що таке чоловіче безпліддя?', 'igrmed')];
+    $sections[] = ['id' => 'mi-intro', 'title' => $intro_title];
 }
 if ($has_causes) {
-    $sections[] = ['id' => 'mi-causes', 'title' => $causes_title !== '' ? $causes_title : __('Причини безпліддя у чоловіків', 'igrmed')];
+    $sections[] = ['id' => 'mi-causes', 'title' => $causes_title];
 }
 if ($has_when) {
-    $sections[] = ['id' => 'mi-when', 'title' => $when_title !== '' ? $when_title : __('Коли варто звернутися за лікуванням?', 'igrmed')];
+    $sections[] = ['id' => 'mi-when', 'title' => $when_title];
 }
 if ($has_stages) {
-    $sections[] = ['id' => 'mi-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи лікування безпліддя', 'igrmed')];
+    $sections[] = ['id' => 'mi-stages', 'title' => $stages_title];
 }
 if ($has_methods) {
-    $sections[] = ['id' => 'mi-methods', 'title' => $methods_title !== '' ? $methods_title : __('Методи лікування безпліддя', 'igrmed')];
+    $sections[] = ['id' => 'mi-methods', 'title' => $methods_title];
 }
 
 if (empty($sections)) {
@@ -269,13 +256,9 @@ if (empty($sections)) {
                             </h2>
                         </div>
                         <div class="male-infertility-content__body">
-                            <?php if (!empty($methods_list)): ?>
-                                <div class="male-infertility-content__list">
-                                    <?php foreach ($methods_list as $item): ?>
-                                        <article class="male-infertility-content__list-item">
-                                            <?php echo wp_kses_post($item); ?>
-                                        </article>
-                                    <?php endforeach; ?>
+                            <?php if ($methods_content !== ''): ?>
+                                <div class="male-infertility-content__methods">
+                                    <?php echo wp_kses_post($methods_content); ?>
                                 </div>
                             <?php endif; ?>
                         </div>

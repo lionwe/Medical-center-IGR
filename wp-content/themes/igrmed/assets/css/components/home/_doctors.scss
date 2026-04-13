@@ -4,7 +4,7 @@
 .doctors {
     position: relative;
     overflow: hidden;
-    min-height: 100dvh;
+    max-height: convert-to-rem(780px);
     display: flex;
     align-items: center;
 
@@ -38,39 +38,6 @@
 
     &__actions {
         margin-top: convert-to-rem(24px);
-
-        .btn--primary.btn--icon-only {
-            background: var(--color-white);
-            border-color: var(--color-white);
-            color: var(--color-black);
-        }
-
-        .btn--primary-white-border.btn--icon-only {
-            &:hover {
-                background: var(--color-primary-dark);
-                color: var(--color-white);
-                border-color: var(--color-primary-dark);
-
-                .btn__icon {
-                    background-color: var(--color-white);
-                }
-            }
-        }
-
-        .btn-split--primary-white-border {
-            &:hover {
-                background: var(--color-white);
-                color: var(--color-primary-dark);
-                border-color: var(--color-white);
-
-                .btn--icon-only {
-                   
-                    border-color: var(--color-primary-dark);
-
-                   
-                }
-            }
-        }
     }
 
     &__slider-clip {

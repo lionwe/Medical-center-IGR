@@ -39,7 +39,7 @@ if (!$title && !$posts) {
 
                     if ($cta_text || ($cta_button && !empty($cta_button['url']))) :
                         $cta_button_url = $cta_button['url'] ?? '';
-                        $cta_button_title = $cta_button['title'] ?? __("Зв'язатись з нами", 'igrmed');
+$cta_button_title = igrmed__('btn_contact_us');
                         $cta_button_target = $cta_button['target'] ?? '_self';
                 ?>
                         <div class="service-card service-card--cta" <?php echo $cta_button_url ? 'data-href="' . esc_url($cta_button_url) . '"' : ''; ?>>

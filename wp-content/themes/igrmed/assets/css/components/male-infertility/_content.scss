@@ -218,12 +218,12 @@
       position: absolute;
       top: 30%;
       right: 10%;
-      width: convert-to-rem(756px);
+      width: 100%;
       height: convert-to-rem(1030px);
       transform: translate(50%, -50%);
       pointer-events: none;
       z-index: -1;
-      background-image: url("../img/svg/andrology-causes.svg");
+      background-image: url("../img/svg/universal-pink-blob.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -257,7 +257,7 @@
       transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: -1;
-      background-image: url("../img/svg/andrology-stages.svg");
+      background-image: url("../img/svg/universal-pink-blob.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -445,6 +445,50 @@
       @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
       padding: convert-to-rem(8px) convert-to-rem(10px);
     }
+  }
+
+  &__methods {
+    background-color: var(--color-white);
+    border-radius: convert-to-rem(12px);
+    padding: convert-to-rem(10px);
+    
+    
+
+    p {
+      @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+      margin: 0 0 convert-to-rem(16px) 0;
+      color: var(--color-black);
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @include mobile {
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1.5, 0);
+      }
+    }
+
+    ul, ol {
+      padding-left: convert-to-rem(20px);
+      margin: 0 0 convert-to-rem(16px) 0;
+    }
+
+    ul li, ol li {
+      @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+      margin-bottom: convert-to-rem(8px);
+      color: var(--color-black);
+
+      @include mobile {
+        @include typography($font-family-montserrat, $fw-regular, 14px, 1.5, 0);
+      }
+    }
+
+    ul li { list-style-type: disc; }
+    ol li { list-style-type: decimal; }
   }
 
   &__section--methods {

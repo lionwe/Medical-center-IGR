@@ -395,9 +395,9 @@ function igrmed_render_diagnostics_content(array $row): string
         if ($should_collapse_blocks) {
             echo '<li class="diagnostics-research-diagnostics__list-more-item">';
             echo '<button type="button" class="diagnostics-research-diagnostics__list-more" aria-expanded="false"';
-            echo ' data-more-label="' . esc_attr__('Всі процедури', 'igrmed') . '"';
-            echo ' data-less-label="' . esc_attr__('Згорнути', 'igrmed') . '">';
-            echo '<span class="diagnostics-research-diagnostics__list-more-text">' . esc_html__('Всі процедури', 'igrmed') . '</span>';
+            echo ' data-more-label="' . esc_attr(igrmed__('diagnostics_all_procedures')) . '"';
+            echo ' data-less-label="' . esc_attr(igrmed__('btn_close')) . '">';
+            echo '<span class="diagnostics-research-diagnostics__list-more-text">' . esc_html(igrmed__('diagnostics_all_procedures')) . '</span>';
             echo '<span class="diagnostics-research-diagnostics__list-more-arrow" aria-hidden="true">';
             echo igrmed_get_svg('read-more-arrow');
             echo '</span>';
@@ -413,7 +413,7 @@ function igrmed_render_diagnostics_content(array $row): string
 function igrmed_render_diagnostics_accordion(array $items): string
 {
     if (empty($items)) {
-        return '<div class="diagnostics-research-diagnostics__status">' . esc_html__('Дані відсутні.', 'igrmed') . '</div>';
+        return '<div class="diagnostics-research-diagnostics__status">' . esc_html(igrmed__('error_no_data')) . '</div>';
     }
 
     ob_start();
@@ -558,7 +558,7 @@ function igrmed_live_search(): void
     $lang = isset($_POST['lang']) ? sanitize_text_field(wp_unslash($_POST['lang'])) : '';
 
     if ($s === '' || mb_strlen($s) < 2) {
-        wp_send_json_error(['message' => __('Занадто короткий запит', 'igrmed')], 400);
+        wp_send_json_error(['message' => igrmed__('error_query_too_short')], 400);
     }
 
     global $wpdb;
@@ -651,7 +651,7 @@ function igrmed_live_search(): void
     } else {
         wp_send_json_success([
             'html' => '<div class="header__search-no-results">'
-                . esc_html__('Нічого не знайдено', 'igrmed')
+                . esc_html(igrmed__('search_no_results'))
                 . '</div>',
         ]);
     }

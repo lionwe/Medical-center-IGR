@@ -67,16 +67,16 @@ $has_compensation = $compensation_text !== '' || $compensation_highlight !== '';
 $sections = [];
 
 if ($has_intro) {
-    $sections[] = ['id' => 'donor-intro', 'title' => $intro_title !== '' ? $intro_title : __('Вступ', 'igrmed')];
+    $sections[] = ['id' => 'donor-intro', 'title' => $intro_title];
 }
 if ($has_stages) {
-    $sections[] = ['id' => 'donor-stages', 'title' => $stages_title !== '' ? $stages_title : __('Етапи участі', 'igrmed')];
+    $sections[] = ['id' => 'donor-stages', 'title' => $stages_title];
 }
 if ($has_requirements) {
-    $sections[] = ['id' => 'donor-requirements', 'title' => $requirements_title !== '' ? $requirements_title : __('Вимоги до кандидатів', 'igrmed')];
+    $sections[] = ['id' => 'donor-requirements', 'title' => $requirements_title];
 }
 if ($has_compensation) {
-    $sections[] = ['id' => 'donor-compensation', 'title' => $compensation_title !== '' ? $compensation_title : __('Компенсація', 'igrmed')];
+    $sections[] = ['id' => 'donor-compensation', 'title' => $compensation_title];
 }
 
 if (empty($sections)) {

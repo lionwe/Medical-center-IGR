@@ -21,10 +21,17 @@ const components = [
   },
   {
     selector:
-      "#infertility-treatment-women, #egg-donor, #ekz, #gynecology, #cryotechnology, #pregnancy-management, #male-infertility, #surrogate-motherhood",
+      "#infertility-treatment-women, #egg-donor, #ekz, #cryotechnology, #pregnancy-management, #male-infertility, #surrogate-motherhood",
     loader: () =>
       import(
         /* webpackChunkName: "comp-infertility" */ "./components/infertility-treatment-women/main"
+      ),
+  },
+  {
+    selector: "#gynecology",
+    loader: () =>
+      import(
+        /* webpackChunkName: "comp-gynecology" */ "./components/gynecology/main"
       ),
   },
   {

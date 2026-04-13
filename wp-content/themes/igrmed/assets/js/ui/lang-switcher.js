@@ -1,4 +1,5 @@
 const PANEL_CLOSE_MS = 380;
+const HOVER_CLOSE_DELAY_MS = 800;
 
 const removeAnimClasses = (root) => {
   root.classList.remove("anim-options", "show-shadow");
@@ -56,10 +57,25 @@ const initLangSwitcher = () => {
       return;
     }
 
+    const clearHoverCloseTimer = () => {
+      const timerId = Number.parseInt(root.dataset.hoverCloseTimerId || "0", 10);
+      if (timerId) {
+        window.clearTimeout(timerId);
+      }
+      delete root.dataset.hoverCloseTimerId;
+    };
+
+    const scheduleHoverClose = () => {
+      clearHoverCloseTimer();
+      const timerId = window.setTimeout(() => closePanel(root), HOVER_CLOSE_DELAY_MS);
+      root.dataset.hoverCloseTimerId = String(timerId);
+    };
+
     panel.addEventListener("click", (e) => e.stopPropagation());
 
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
+      clearHoverCloseTimer();
       const isOpen = root.classList.contains("show-options");
       roots.forEach((other) => {
         if (other !== root) {
@@ -70,6 +86,14 @@ const initLangSwitcher = () => {
         closePanel(root);
       } else {
         openPanel(root);
+      }
+    });
+
+    // Desktop hover: delay close to avoid flicker.
+    root.addEventListener("mouseenter", clearHoverCloseTimer);
+    root.addEventListener("mouseleave", () => {
+      if (root.classList.contains("show-options")) {
+        scheduleHoverClose();
       }
     });
   });

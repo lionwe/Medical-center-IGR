@@ -70,10 +70,9 @@ $icon_arrow_svg = '<svg width="19" height="9" viewBox="0 0 19 9" fill="none" xml
                     <div class="faq-section__action">
                         <?php
                         get_template_part('templates/button', null, [
-                            'text' => __("Зв'язатись з нами", 'igrmed'),
+                            'text' => igrmed__('btn_contact_us'),
                             'link' => '#contact',
-                            'type' => 'glass-primary',
-                            'primary_split' => true,
+                            'type' => 'primary',
                             'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg',
                         ]);
                         ?>

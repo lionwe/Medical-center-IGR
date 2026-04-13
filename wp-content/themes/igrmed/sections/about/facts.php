@@ -40,7 +40,7 @@ $right_cards = array_slice($cards, $left_count);
                 <div class="about-facts__title"><?php echo wp_kses_post($title); ?></div>
                 <?php
                 get_template_part('templates/button', null, [
-                    'text' => esc_html__("Зв'язатись з нами", 'igrmed'),
+                    'text' => igrmed__('btn_contact_us'),
                     'link' => '#contact',
                     'type' => 'primary',
                     'primary_split' => true,
@@ -96,9 +96,9 @@ $right_cards = array_slice($cards, $left_count);
                         <?php if ($cards_count > 5) : ?>
                             <div class="about-facts__read-more-item">
                                 <button type="button" class="about-facts__read-more" aria-expanded="false"
-                                    data-more-text="<?php echo esc_html__('ЧИТАТИ БІЛЬШЕ', 'igrmed'); ?>"
-                                    data-less-text="<?php echo esc_html__('ЗГОРНУТИ', 'igrmed'); ?>">
-                                    <span class="about-facts__read-more-text"><?php echo esc_html__('ЧИТАТИ БІЛЬШЕ', 'igrmed'); ?></span>
+                                    data-more-text="<?php echo esc_html(igrmed__('btn_read_more')); ?>"
+                                    data-less-text="<?php echo esc_html(igrmed__('btn_close')); ?>">
+                                    <span class="about-facts__read-more-text"><?php echo esc_html(igrmed__('btn_read_more')); ?></span>
                                     <span class="about-facts__read-more-arrow" aria-hidden="true">
                                         <?php echo igrmed_get_svg('read-more-arrow'); ?>
                                     </span>

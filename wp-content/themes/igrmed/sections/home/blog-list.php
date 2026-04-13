@@ -17,7 +17,7 @@ if (!$title && !$posts) {
 
                 <?php get_template_part('templates/button', null, [
                     'type' => 'secondary',
-                    'text' => __('Переглянути більше новин', 'igrmed'),
+                    'text' => igrmed__('btn_view_more_news'),
                     'link' => get_post_type_archive_link('blog'),
                     'class' => 'blog-list__more-desktop'
                 ]); ?>
@@ -27,7 +27,7 @@ if (!$title && !$posts) {
             <div class="blog-list__controls">
                 <?php get_template_part('templates/button', null, [
                     'type' => 'secondary',
-                    'text' => __('Переглянути більше новин', 'igrmed'),
+                    'text' => igrmed__('btn_view_more_news'),
                     'link' => get_post_type_archive_link('blog'),
                     'class' => 'blog-list__more-mobile'
                 ]); ?>

@@ -35,30 +35,6 @@
       @include typography($font-family-montserrat, $fw-regular, 18px, 22px, 0);
     }
 
-    .btn-split--primary {
-      width: fit-content;
-      color: var(--color-primary-dark);
-      background: transparent;
- @include hover {
-          background-color: var(--color-primary-dark);
-          color: var(--color-white);
-        }
-      .btn--primary {
-        color: inherit;
-        
-        &.btn--icon-only {
-          width: convert-to-rem(60px);
-          height: convert-to-rem(20px);
-          min-width: convert-to-rem(60px);
-          padding: 0;
-          border: none;
-          background: var(--color-white);
-          @include hover {
-            color: var(--color-primary-dark);
-          }
-        }
-      }
-    }
   }
 
   &__right {

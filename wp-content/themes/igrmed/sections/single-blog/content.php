@@ -15,7 +15,7 @@ if (!get_the_content()) return;
 
             <div class="blog-share">
                 <div class="blog-share__header">
-                    <span class="blog-share__title"><?php echo esc_html__('Поширити', 'igrmed'); ?></span>
+                    <span class="blog-share__title"><?php igrmed_e('blog_share_title'); ?></span>
                 </div>
                 <div class="blog-share__list">
                     <?php

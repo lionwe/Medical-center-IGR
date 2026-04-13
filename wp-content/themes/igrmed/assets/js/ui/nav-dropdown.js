@@ -2,6 +2,7 @@
  * Header nav: open submenus on hover (desktop + mobile overlay).
  */
 const initNavDropdown = () => {
+  const CLOSE_DELAY_MS = 800;
   const menus = document.querySelectorAll(
     ".header__menu .nav-list, .header__mobile-menu-nav .nav-list"
   );
@@ -46,11 +47,30 @@ const initNavDropdown = () => {
         return;
       }
 
+      const clearCloseTimer = () => {
+        const timerId = Number.parseInt(li.dataset.closeTimerId || "0", 10);
+        if (timerId) {
+          window.clearTimeout(timerId);
+          delete li.dataset.closeTimerId;
+        }
+      };
+
+      const scheduleClose = () => {
+        clearCloseTimer();
+        const id = window.setTimeout(() => {
+          li.classList.remove("is-open");
+          link.setAttribute("aria-expanded", "false");
+          delete li.dataset.closeTimerId;
+        }, CLOSE_DELAY_MS);
+        li.dataset.closeTimerId = String(id);
+      };
+
       link.setAttribute("aria-haspopup", "true");
       link.setAttribute("aria-expanded", "false");
 
       if (isDesktopMenu) {
         li.addEventListener("mouseenter", () => {
+          clearCloseTimer();
           closeSiblings(li);
           li.classList.add("is-open");
           link.setAttribute("aria-expanded", "true");
@@ -58,19 +78,20 @@ const initNavDropdown = () => {
 
         // Close on mouseleave (desktop only)
         li.addEventListener("mouseleave", () => {
-          setTimeout(() => {
-            if (!li.matches(":hover")) {
-              li.classList.remove("is-open");
-              link.setAttribute("aria-expanded", "false");
-            }
-          }, 100); // Small delay to prevent flickering
+          // Delay close to prevent flicker when moving cursor into submenu.
+          scheduleClose();
         });
+
+        // If user enters submenu or returns to the item, keep it open.
+        sub.addEventListener("mouseenter", clearCloseTimer);
+        sub.addEventListener("mouseleave", scheduleClose);
       }
 
       // Keep click functionality for mobile/touch
       const toggle = (event) => {
         event.preventDefault();
         event.stopPropagation();
+        clearCloseTimer();
         const wasOpen = li.classList.contains("is-open");
         closeSiblings(li);
         if (wasOpen) {

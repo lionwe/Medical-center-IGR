@@ -497,20 +497,10 @@
     border-radius: convert-to-rem(12px);
     z-index: 1;
 
+    // Removed decorative "blob" background for this section.
     &::after {
-      content: "";
-      position: absolute;
-      top: 30%;
-      left: 20%;
-      width: convert-to-rem(1435px);
-      height: convert-to-rem(1199px);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: -1;
-      background-image: url("../img/svg/cryotechnology-advantages-bg.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
+      display: none;
+      content: none;
     }
 
     > * {

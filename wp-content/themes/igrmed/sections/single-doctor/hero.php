@@ -33,7 +33,8 @@ $doctor_photo = get_post_thumbnail_id();
 
 // Contacts button data
 $contact_link = get_field('header_btn_link', 'option');
-$contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язатись з нами", 'igrmed');
+$contact_label = igrmed__('btn_contact_us');
+
 ?>
 
 <section class="doctor-hero js-doctor-tabs" id="doctor-hero">
@@ -80,8 +81,8 @@ $contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язати�
                             </div>
 
                             <a class="doctor-hero__btn-mobile btn-split btn-split--dark" href="#cta">
-                                <span class="btn-split__text"><?php esc_html_e("Зв'язатись з нами", 'igrmed'); ?></span>
-                                <span class="btn btn--primary btn--icon-only" aria-hidden="true">
+                                <span class="btn-split__text"><?php igrmed_e('btn_contact_us'); ?></span>
+                                <span class="btn-split__icon" aria-hidden="true">
                                     <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/svg/contact-arrow.svg'); mask-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/svg/contact-arrow.svg');"></span>
                                 </span>
                             </a>
@@ -100,14 +101,14 @@ $contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язати�
                             <?php if ($doctor_specialization): ?>
                                 <div class="doctor-hero__badge doctor-hero__badge--specialty">
                                     <div class="doctor-hero__badge-value"><?php echo esc_html($doctor_specialization); ?></div>
-                                    <div class="doctor-hero__badge-label"><?php esc_html_e('Спеціальність', 'igrmed'); ?></div>
+                                    <div class="doctor-hero__badge-label"><?php igrmed_e('doctors_specialization'); ?></div>
                                 </div>
                             <?php endif; ?>
 
                             <?php if ($doctor_experience): ?>
                                 <div class="doctor-hero__badge doctor-hero__badge--experience">
                                     <div class="doctor-hero__badge-value"><?php echo esc_html($doctor_experience); ?></div>
-                                    <div class="doctor-hero__badge-label"><?php esc_html_e('Років стажу', 'igrmed'); ?></div>
+                                    <div class="doctor-hero__badge-label"><?php igrmed_e('doctors_experience'); ?></div>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -121,7 +122,7 @@ $contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язати�
 
                     <?php if ($doctor_schedule): ?>
                         <div class="doctor-hero__schedule-badge">
-                            <div class="doctor-hero__schedule-title"><?php esc_html_e('Графік прийому', 'igrmed'); ?></div>
+                            <div class="doctor-hero__schedule-title"><?php igrmed_e('doctors_schedule'); ?></div>
                             <div class="doctor-hero__schedule-value">
                                 <?php echo esc_html($doctor_schedule); ?>
                             </div>
@@ -131,7 +132,7 @@ $contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язати�
                     <?php if ($doctor_specialization): ?>
                         <div class="doctor-hero__specialty-overlay">
                             <div class="doctor-hero__badge-value"><?php echo esc_html($doctor_specialization); ?></div>
-                            <div class="doctor-hero__badge-label"><?php esc_html_e('Спеціальність', 'igrmed'); ?></div>
+                            <div class="doctor-hero__badge-label"><?php igrmed_e('doctors_specialization'); ?></div>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -140,13 +141,13 @@ $contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язати�
                     <?php if ($doctor_experience): ?>
                         <div class="doctor-hero__badge doctor-hero__badge--experience">
                             <div class="doctor-hero__badge-value"><?php echo esc_html($doctor_experience); ?></div>
-                            <div class="doctor-hero__badge-label"><?php esc_html_e('Років стажу', 'igrmed'); ?></div>
+                            <div class="doctor-hero__badge-label"><?php igrmed_e('doctors_experience'); ?></div>
                         </div>
                     <?php endif; ?>
 
                     <?php if ($doctor_schedule): ?>
                         <div class="doctor-hero__badge doctor-hero__badge--schedule">
-                            <div class="doctor-hero__schedule-title"><?php esc_html_e('Графік прийому', 'igrmed'); ?></div>
+                            <div class="doctor-hero__schedule-title"><?php igrmed_e('doctors_schedule'); ?></div>
                             <div class="doctor-hero__schedule-value">
                                 <?php echo esc_html($doctor_schedule); ?>
                             </div>
@@ -161,26 +162,26 @@ $contact_label = get_field('header_btn_label', 'option') ?: __("Зв'язати�
                 <div class="doctor-hero__left">
                     <nav class="doctor-hero__nav">
                         <button class="doctor-hero__tab is-active" data-tab="about">
-                            <span class="doctor-hero__tab-text"><?php esc_html_e('Про лікаря', 'igrmed'); ?></span>
+                            <span class="doctor-hero__tab-text"><?php igrmed_e('doctors_about'); ?></span>
                             <span class="doctor-hero__tab-arrow"></span>
                         </button>
                         <?php if ($doctor_education): ?>
                             <button class="doctor-hero__tab" data-tab="education">
-                                <span class="doctor-hero__tab-text"><?php esc_html_e('Освіта', 'igrmed'); ?></span>
+                                <span class="doctor-hero__tab-text"><?php igrmed_e('doctors_education'); ?></span>
                                 <span class="doctor-hero__tab-arrow"></span>
                             </button>
                         <?php endif; ?>
                         <?php if ($doctor_certificates): ?>
                             <button class="doctor-hero__tab" data-tab="certificates">
-                                <span class="doctor-hero__tab-text"><?php esc_html_e('Сертифікати', 'igrmed'); ?></span>
+                                <span class="doctor-hero__tab-text"><?php igrmed_e('doctors_certificates'); ?></span>
                                 <span class="doctor-hero__tab-arrow"></span>
                             </button>
                         <?php endif; ?>
                     </nav>
 
                     <a class="doctor-hero__btn btn-split btn-split--dark" href="#cta">
-                        <span class="btn-split__text"><?php esc_html_e("Зв'язатись з нами", 'igrmed'); ?></span>
-                        <span class="btn btn--primary btn--icon-only" aria-hidden="true">
+                        <span class="btn-split__text"><?php igrmed_e('btn_contact_us'); ?></span>
+                        <span class="btn-split__icon" aria-hidden="true">
                             <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/svg/contact-arrow.svg'); mask-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/svg/contact-arrow.svg');"></span>
                         </span>
                     </a>

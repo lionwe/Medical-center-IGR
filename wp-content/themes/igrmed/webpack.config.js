@@ -10,9 +10,7 @@ module.exports = {
   },
   output: {
     filename: "js/[name].bundle.js",
-    chunkFilename: "js/[name].chunk.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/wp-content/themes/igrmed/dist/",
   },
   module: {
     rules: [
@@ -29,15 +27,7 @@ module.exports = {
               },
             },
           },
-          {
-            loader: "sass-loader",
-            options: {
-              api: "modern",
-              sassOptions: {
-                silenceDeprecations: ["legacy-js-api", "import"],
-              },
-            },
-          },
+          "sass-loader",
         ],
       },
       {
@@ -62,16 +52,7 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: [
-              [
-                "@babel/preset-env",
-                {
-                  // Keep compatibility with older Safari/iOS where modern syntax
-                  // like optional chaining / nullish coalescing can break parsing.
-                  targets: { safari: "12", ios: "12" },
-                  useBuiltIns: "usage",
-                  corejs: 3,
-                },
-              ],
+              ["@babel/preset-env", { useBuiltIns: "usage", corejs: 3 }],
             ],
             plugins: ["@babel/plugin-transform-runtime"],
             cacheDirectory: true,
@@ -96,20 +77,6 @@ module.exports = {
   },
   optimization: {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
-    splitChunks: {
-      cacheGroups: {
-        vendorCore: {
-          test: /[\\/]node_modules[\\/](core-js|@babel\/runtime)/,
-          name: "vendors-core",
-          chunks: "all",
-          enforce: true,
-        },
-      },
-    },
-  },
-  performance: {
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
   },
   plugins: [
     new CleanWebpackPlugin(),

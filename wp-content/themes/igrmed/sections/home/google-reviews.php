@@ -7,9 +7,6 @@ if ($trustindex_shortcode === '' || !$has_trustindex_shortcode) {
     return;
 }
 
-if ($title === '') {
-    $title = (string) __('Відгуки з Google', 'igrmed');
-}
 ?>
 
 <section class="google-reviews" id="google-reviews">
@@ -27,12 +24,12 @@ if ($title === '') {
                                 [
                                     'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-prev.svg',
                                     'class' => 'google-reviews__prev js-google-reviews-prev',
-                                    'aria_label' => __('Попередній відгук', 'igrmed'),
+                                    'aria_label' => igrmed__('pagination_prev'),
                                 ],
                                 [
                                     'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg',
                                     'class' => 'google-reviews__next js-google-reviews-next',
-                                    'aria_label' => __('Наступний відгук', 'igrmed'),
+                                    'aria_label' => igrmed__('pagination_next'),
                                 ],
                             ],
                         ]);

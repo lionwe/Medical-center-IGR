@@ -15,7 +15,7 @@ $hero_style = ' style="background-image: url(' . esc_url($hero_bg_url) . ');"';
         <?php get_template_part('templates/breadcrumbs'); ?>
         <?php
         get_template_part('templates/photo-banner', null, [
-            'title' => __('Блог', 'igrmed')
+            'title' => igrmed__('blog_title')
         ]);
         ?>
     </div>

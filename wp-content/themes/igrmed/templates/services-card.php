@@ -53,8 +53,8 @@ $hover_bg = get_template_directory_uri() . '/assets/img/service-card-hover-bg.we
 
         <a href="<?php echo esc_url($permalink); ?>"
             class="service-card__link"
-            aria-label="<?php echo esc_attr(sprintf(__('Читати більше про %s', 'igrmed'), $title)); ?>">
-            <span class="service-card__link-text"><?php esc_html_e('Читати більше', 'igrmed'); ?></span>
+            aria-label="<?php echo esc_attr(sprintf(igrmed__('btn_read_more_about'), $title)); ?>">
+            <span class="service-card__link-text"><?php igrmed_e('btn_read_more'); ?></span>
             <span class="service-card__link-arrow" aria-hidden="true">
                 <?php
                 $arrow_path = get_template_directory() . '/assets/img/svg/arrow-next.svg';

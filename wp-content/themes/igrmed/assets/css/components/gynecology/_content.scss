@@ -76,6 +76,8 @@
     border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
     padding: convert-to-rem(24px) convert-to-rem(30px);
     overflow-wrap: anywhere;
+@include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    color: var(--color-black);
 
     :where(p, li) {
       @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
@@ -84,6 +86,7 @@
     @include mobile {
       padding: 0;
       gap: convert-to-rem(16px);
+      @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
 
       :where(p, li) {
         @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
@@ -101,12 +104,12 @@
       position: absolute;
       top: 30%;
       right: 30%;
-      width: convert-to-rem(706px);
+      width: 100%;
       height: convert-to-rem(1030px);
       transform: translate(50%, -50%);
       pointer-events: none;
       z-index: -1;
-      background-image: url("../img/svg/gynecology-intro.svg");
+      background-image: url("../img/svg/universal-pink-blob.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -261,6 +264,7 @@
     color: inherit;
     text-align: left;
     cursor: pointer;
+    @include typography($font-family-montserrat, $fw-regular, 12px, 1, 0);
   }
 
   &__list-more-text {

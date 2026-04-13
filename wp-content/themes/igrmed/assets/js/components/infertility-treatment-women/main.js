@@ -1,2 +1,2 @@
 import "./content-sidebar";
-import "./faq";
+import "./faq/main";

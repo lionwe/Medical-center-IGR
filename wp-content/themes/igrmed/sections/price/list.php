@@ -26,13 +26,13 @@ $search_icon = get_field('icon_search', 'option');
         <div class="price-list__wrapper">
             <header class="price-list__header">
                 <div class="price-list__search">
-                    <input type="text" class="price-list__search-input" placeholder="<?php echo esc_attr__('Пошук', 'igrmed'); ?>">
+                    <input type="text" class="price-list__search-input" placeholder="<?php echo esc_attr(igrmed__('search_placeholder')); ?>">
                     <?php if ($search_icon && isset($search_icon['url'])): ?>
                         <span class="price-list__search-icon">
                             <?php
                             get_picture([
                                 'src' => $search_icon['url'],
-                                'alt' => __('Search', 'igrmed'),
+                                'alt' => igrmed__('search_placeholder'),
                                 'lazy' => true
                             ]);
                             ?>
@@ -42,7 +42,7 @@ $search_icon = get_field('icon_search', 'option');
 
                 <div class="price-list__category-select js-price-category" data-selected-category="all">
                     <div class="price-list__category-trigger js-price-category-trigger">
-                        <span class="price-list__category-label"><?php echo esc_html__('Всі категорії', 'igrmed'); ?></span>
+                        <span class="price-list__category-label"><?php echo esc_html(igrmed__('services_all')); ?></span>
                         <div class="price-list__category-arrow-wrap">
                             <?php echo igrmed_get_svg('chevron-white'); ?>
                         </div>
@@ -53,7 +53,7 @@ $search_icon = get_field('icon_search', 'option');
                             <ul class="price-list__dropdown-list">
                                 <li class="price-list__dropdown-item">
                                     <button type="button" class="price-list__dropdown-link" data-category-id="all">
-                                        <?php echo esc_html__('Всі категорії', 'igrmed'); ?>
+                                        <?php echo esc_html(igrmed__('services_all')); ?>
                                     </button>
                                     <div class="price-list__dropdown-separator"></div>
                                 </li>
@@ -79,7 +79,7 @@ $search_icon = get_field('icon_search', 'option');
 
             <div class="price-list__content js-price-list-content">
                 <div class="price-list__empty js-price-empty" style="display: none;">
-                    <?php echo esc_html__('За вашим запитом нічого не знайдено', 'igrmed'); ?>
+                    <?php echo esc_html(igrmed__('search_no_results')); ?>
                 </div>
                 <?php
                 $accordion_count = 0;
@@ -108,7 +108,7 @@ $search_icon = get_field('icon_search', 'option');
                                                         <span class="price-list__item-name"><?php echo esc_html($item['title']); ?></span>
                                                         <span class="price-list__item-value">
                                                             <?php echo esc_html($item['price']); ?>
-                                                            <?php echo esc_html__('грн', 'igrmed'); ?>
+                                                            <?php echo esc_html(igrmed__('pricing_currency')); ?>
                                                         </span>
                                                     </div>
                                                 <?php endforeach; ?>

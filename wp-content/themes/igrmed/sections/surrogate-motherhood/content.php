@@ -46,19 +46,19 @@ $sections = [];
 if ($has_intro) {
     $sections[] = [
         'id'    => 'surrogate-intro',
-        'title' => $intro_title !== '' ? $intro_title : __('Сурогатне материнство', 'igrmed'),
+        'title' => $intro_title,
     ];
 }
 if ($has_tabs) {
     $sections[] = [
         'id'    => 'surrogate-tabs',
-        'title' => __('Супровід', 'igrmed'),
+        'title' => '',
     ];
 }
 if ($has_program) {
     $sections[] = [
         'id'    => 'surrogate-program',
-        'title' => $program_title !== '' ? $program_title : __('Програма та вартість', 'igrmed'),
+        'title' => $program_title,
     ];
 }
 ?>
@@ -117,11 +117,7 @@ if ($has_program) {
                                 data-loaded="<?php echo $index === 0 ? 'true' : 'false'; ?>"
                                 <?php echo $index !== 0 ? 'hidden' : ''; ?>>
                                 <?php if ($index === 0) : ?>
-                                <?php if (!empty($tab['tab_content_title'])) : ?>
-                                <h3 class="surrogate-motherhood-content__tab-title">
-                                    <?php echo esc_html($tab['tab_content_title']); ?>
-                                </h3>
-                                <?php endif; ?>
+                               
                                 <?php if (!empty($tab['tab_content_text'])) : ?>
                                 <div class="surrogate-motherhood-content__tab-text">
                                     <?php echo wp_kses_post($tab['tab_content_text']); ?>

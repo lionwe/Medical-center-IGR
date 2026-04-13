@@ -52,13 +52,13 @@ $has_services = !empty($services_items);
 $sections = [];
 
 if ($has_intro) {
-    $sections[] = ['id' => 'cryo-intro', 'title' => $intro_title !== '' ? $intro_title : __('Кріотехнології', 'igrmed')];
+    $sections[] = ['id' => 'cryo-intro', 'title' => $intro_title];
 }
 if ($has_advantages) {
-    $sections[] = ['id' => 'cryo-advantages', 'title' => $advantages_title !== '' ? $advantages_title : __('Чому варто обрати нас?', 'igrmed')];
+    $sections[] = ['id' => 'cryo-advantages', 'title' => $advantages_title];
 }
 if ($has_services) {
-    $sections[] = ['id' => 'cryo-services', 'title' => $services_title !== '' ? $services_title : __('Послуги кріоконсервації в клініці ІГР', 'igrmed')];
+    $sections[] = ['id' => 'cryo-services', 'title' => $services_title];
 }
 
 if (empty($sections)) {

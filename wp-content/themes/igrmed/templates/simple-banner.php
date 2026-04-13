@@ -7,7 +7,7 @@
  */
 
 $title = (string) ($args['title'] ?? get_the_title());
-$button_text = (string) __("Зв'язатись з нами", 'igrmed');
+$button_text = igrmed__('btn_contact_us');
 $button_link = '#cta';
 
 $title = trim($title);
@@ -28,7 +28,7 @@ if ($title === '') {
                 get_template_part('templates/button', null, [
                     'text' => $button_text,
                     'link' => $button_link,
-                    'type' => 'glass-primary',
+                    'type' => 'primary',
                     'primary_split' => true,
                     'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg',
                 ]);
