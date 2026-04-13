@@ -1167,6 +1167,32 @@ $_header-cta-gradient: linear-gradient(180deg,
 
 // WordPress dropdown: primary desktop bar only (panel matches price-list__dropdown; parent links unchanged)
 .header__menu .nav-list {
+  // Active service highlighting
+  .menu-item {
+    &.current-menu-item,
+    &.current-page-item {
+      font-weight: $fw-medium;
+      color: var(--color-white);
+      background: rgba(19, 83, 168, 0.55);
+      border-bottom: none;
+      
+      a {
+        color: var(--color-white);
+        font-weight: $fw-medium;
+      border-bottom: none;
+
+      }
+      
+      &:hover {
+        background: rgba(26, 59, 103, 0.5);
+        
+        a {
+          color: var(--color-white);
+        }
+      }
+    }
+  }
+
   .menu-item-has-children {
     position: relative;
   }
@@ -1246,6 +1272,19 @@ $_header-cta-gradient: linear-gradient(180deg,
 
     &:hover {
       background: rgba(26, 59, 103, 0.5);
+      color: rgb(255, 255, 255);
+    }
+
+    // Active page highlighting
+    &.current-menu-item,
+    &.current-page-item {
+      font-weight: $fw-medium;
+      color: var(--color-primary-dark);
+      background: rgba(26, 59, 103, 0.1);
+      
+      &:hover {
+        background: rgba(26, 59, 103, 0.3);
+      }
     }
   }
 }

@@ -348,6 +348,7 @@
     color: inherit;
     text-align: left;
     cursor: pointer;
+    @include typography($font-family-montserrat, $fw-regular, 12px, 1, 0);
   }
 
   &__list-more-text {

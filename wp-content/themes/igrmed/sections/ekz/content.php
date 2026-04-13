@@ -92,9 +92,27 @@ if (is_array($programs_rows)) {
         $program_title = trim((string) ($row['title'] ?? ''));
         $program_text = trim((string) ($row['text'] ?? ''));
         $program_price = trim((string) ($row['price'] ?? ''));
-        $program_image = $row['image'] ?? '';
-        $program_image_url = $extract_image_url($program_image);
+        $program_image_url = trim((string) ($row['image_url'] ?? ''));
         $program_image_alt = trim((string) ($row['image_alt'] ?? ''));
+        
+        if (empty($program_image_url)) {
+            $program_images = $row['image'] ?? $row['images'] ?? $row['img'] ?? $row['photo'] ?? $row['photos'] ?? [];
+            
+            if (is_string($program_images) && !empty($program_images)) {
+                $program_image_url = trim((string) $program_images);
+            } elseif (is_array($program_images) && !empty($program_images)) {
+                $first_image = reset($program_images);
+                if (is_array($first_image)) {
+                    $program_image_url = trim((string) ($first_image['url'] ?? ''));
+                    $program_image_alt = trim((string) ($first_image['alt'] ?? ''));
+                } elseif (is_numeric($first_image)) {
+                    $program_image_url = wp_get_attachment_url((int) $first_image);
+                    $program_image_alt = get_post_meta((int) $first_image, '_wp_attachment_image_alt', true) ?: '';
+                } else {
+                    $program_image_url = trim((string) $first_image);
+                }
+            }
+        }
         
         $items_source = $row['list'] ?? $row['items'] ?? $row['ol'] ?? [];
         $program_items = [];
@@ -301,12 +319,12 @@ if (empty($sections)) {
                         </div>
                         <div class="ekz-content__section-body">
                             <?php if ($success_intro !== ''): ?>
-                                <div class="ekz-content__lead">
+                                <p class="ekz-content__section-subtitle">
                                     <?php echo wp_kses_post($success_intro); ?>
-                                </div>
+                                </p>
                             <?php endif; ?>
                             <?php if ($success_content !== ''): ?>
-                                <div class="ekz-content__lead">
+                                <div class="ekz-content__lead-text">
                                     <?php echo wp_kses_post($success_content); ?>
                                 </div>
                             <?php endif; ?>
@@ -370,13 +388,22 @@ if (empty($sections)) {
                                                         </ul>
                                                     <?php endif; ?>
                                                 </div>
+                                                <?php if ($program['price'] !== ''): ?>
+                                                    <div class="ekz-content__program-price">
+                                                        <div><?php echo wp_kses_post($program['price']); ?></div>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
                                             <?php if ($program['image_url'] !== ''): ?>
                                                 <div class="ekz-content__program-image-wrap">
-                                                    <img src="<?php echo esc_url($program['image_url']); ?>" 
-                                                         alt="<?php echo esc_attr($program['image_alt']); ?>" 
-                                                         class="ekz-content__program-image" 
-                                                         loading="lazy">
+                                                    <?php
+                                                    get_picture([
+                                                        'src' => $program['image_url'],
+                                                        'alt' => $program['image_alt'],
+                                                        'class' => 'ekz-content__program-image',
+                                                        'lazy' => true,
+                                                    ]);
+                                                    ?>
                                                 </div>
                                             <?php endif; ?>
                                         </article>

@@ -157,18 +157,18 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                                             <?php echo esc_html($item); ?>
                                         </li>
                                     <?php endforeach; ?>
-
-                                    <?php if ($should_collapse_procedures): ?>
-                                        <li class="gynecology-content__procedures-item gynecology-content__list-more-item">
-                                            <button type="button" class="gynecology-content__list-more" aria-expanded="false">
-                                                <span class="gynecology-content__list-more-text"><?php echo esc_html(igrmed__('diagnostics_all_procedures')); ?></span>
-                                                <span class="gynecology-content__list-more-arrow" aria-hidden="true">
-                                                    <?php echo igrmed_get_svg('read-more-arrow'); ?>
-                                                </span>
-                                            </button>
-                                        </li>
-                                    <?php endif; ?>
+                                     <?php if ($should_collapse_procedures): ?>
+                                    <div class="gynecology-content__procedures-item gynecology-content__list-more-item">
+                                        <button type="button" class="gynecology-content__list-more" aria-expanded="false">
+                                            <span class="gynecology-content__list-more-text"><?php echo esc_html(igrmed__('btn_read_more')); ?></span>
+                                            <span class="gynecology-content__list-more-arrow" aria-hidden="true">
+                                                <?php echo igrmed_get_svg('read-more-arrow'); ?>
+                                            </span>
+                                        </button>
+                                </div>
+                                <?php endif; ?>
                                 </ul>
+                               
                             <?php endif; ?>
                         </div>
                     </div>
@@ -183,20 +183,3 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
         </div>
     </div>
 </section>
-
-<script>
-(function() {
-    const root = document.querySelector('#gy-procedures');
-    if (!root) return;
-
-    const button = root.querySelector('.gynecology-content__list-more');
-    if (!button) return;
-
-    button.addEventListener('click', () => {
-        const hiddenItems = root.querySelectorAll('.is-hidden-service');
-        hiddenItems.forEach((item) => item.classList.remove('is-hidden-service'));
-        button.setAttribute('aria-expanded', 'true');
-        button.closest('.gynecology-content__list-more-item')?.remove();
-    });
-})();
-</script>

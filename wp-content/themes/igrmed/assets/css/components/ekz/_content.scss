@@ -117,12 +117,12 @@
     }
   }
 
-  &__lead {
+  &__lead-text {
     display: grid;
     gap: convert-to-rem(10px);
 
     > p:first-of-type {
-      @include typography($font-family-montserrat, $fw-regular, 16px, 22px, 0);
+      @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
       display: inline;
       color: var(--color-black);
       margin: 0;
@@ -143,7 +143,7 @@
   }
 
   &__list-item {
-    @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+    @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
     color: var(--color-black);
     border-radius: convert-to-rem(12px);
     padding: convert-to-rem(10px) convert-to-rem(12px);
@@ -151,6 +151,35 @@
     @include mobile {
       @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
       padding: convert-to-rem(8px) convert-to-rem(10px);
+    }
+
+    // Basic editor styles
+    p {
+      margin: 0 0 convert-to-rem(10px);
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    strong,
+    b {
+      font-weight: $fw-semibold;
+      color: var(--color-primary-dark);
+    }
+
+    ul,
+    ol {
+      margin: convert-to-rem(10px) 0;
+      padding-left: convert-to-rem(20px);
+      
+      li {
+        margin-bottom: convert-to-rem(4px);
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 
@@ -174,10 +203,10 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: convert-to-rem(1300px);
+      width: 100%;
       height: convert-to-rem(600px);
       transform: translate(-50%, -50%);
-      background-image: url("../img/svg/ekz-indications-bg.svg");
+      background-image: url("../img/svg/universal-pink-blob.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -449,7 +478,7 @@
       }
     }
 
-    .ekz-content__lead {
+    .ekz-content__lead-text {
       display: flex;
       flex-direction: column;
       gap: convert-to-rem(10px);
@@ -472,8 +501,14 @@
       }
     }
 
-    .ekz-content__lead {
+    .ekz-content__lead-text {
       padding: convert-to-rem(10px);
+
+      p {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
+        color: var(--color-black);
+        margin: 0;
+      }
 
       @include mobile {
         padding: convert-to-rem(10px) convert-to-rem(12px);
@@ -645,7 +680,13 @@
     width: fit-content;
     max-width: 100%;
 
-    h4 {
+    > div {
+      @include typography($font-family-montserrat, $fw-regular, 22px, 1.4, 0);
+      margin: 0;
+      color: var(--color-black);
+    }
+
+    p {
       @include typography($font-family-montserrat, $fw-regular, 22px, 1.4, 0);
       margin: 0;
       color: var(--color-black);
@@ -653,7 +694,14 @@
 
     strong {
       @include typography($font-family-montserrat, $fw-medium, 22px, 1.4, 0);
-      color: var(--color-accent);
+      color: rgba(230, 192, 163, 1);
+    }
+
+    em {
+      @include typography($font-family-montserrat, $fw-regular, 12px, 1.4, 0);
+      display: block;
+      margin-top: convert-to-rem(4px);
+      color: var(--color-black);
     }
 
     small {
@@ -668,6 +716,8 @@
     min-height: convert-to-rem(220px);
     border-radius: convert-to-rem(12px);
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 
     img {
       width: 100%;

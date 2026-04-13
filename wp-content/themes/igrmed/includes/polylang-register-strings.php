@@ -27,6 +27,7 @@ function igrmed_get_translatable_strings(): array
         'btn_details' => 'Детальніше',
         'btn_details_about_us' => 'Детальніше про нас',
         'btn_view_more_news' => 'Переглянути більше новин',
+        'btn_close' => 'Згорнути',
         
         // FORMS
         'form_contact_title' => 'Контактна форма',

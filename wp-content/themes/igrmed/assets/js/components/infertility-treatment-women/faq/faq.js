@@ -1,4 +1,4 @@
-import { clickOn } from "../../events/click";
+import { clickOn } from "../../../events/click";
 
 clickOn(".js-faq-trigger", (event, target) => {
   const header = target || event.target.closest(".js-faq-trigger");

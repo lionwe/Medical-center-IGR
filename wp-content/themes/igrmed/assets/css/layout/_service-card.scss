@@ -133,4 +133,8 @@
             }
         }
     }
+
+    &--cta {
+        border-radius: 0 0 convert-to-rem(12px) 0;
+    }
 }

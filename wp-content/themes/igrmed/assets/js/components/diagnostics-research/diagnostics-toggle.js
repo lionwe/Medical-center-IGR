@@ -143,13 +143,30 @@ function initDiagnosticsGenderToggle() {
       if (!collapsibleItems.length) return;
 
       const textEl = moreButton.querySelector(".diagnostics-research-diagnostics__list-more-text");
-      const moreLabel = moreButton.dataset.moreLabel || "Всі процедури";
-      const lessLabel = moreButton.dataset.lessLabel || "Згорнути";
+      const moreLabel = moreButton.dataset.moreLabel ;
+      const lessLabel = moreButton.dataset.lessLabel ;
       const isExpanded = moreButton.getAttribute("aria-expanded") === "true";
 
-      collapsibleItems.forEach((item) => {
-        item.classList.toggle("is-hidden-service", isExpanded);
-      });
+      if (!isExpanded) {
+        collapsibleItems.forEach((item, index) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(20px)';
+          item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          item.classList.remove("is-hidden-service");
+          
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          }, index * 100);
+        });
+      } else {
+        collapsibleItems.forEach((item) => {
+          item.classList.add("is-hidden-service");
+          item.style.opacity = '';
+          item.style.transform = '';
+          item.style.transition = '';
+        });
+      }
 
       moreButton.setAttribute("aria-expanded", String(!isExpanded));
       if (textEl) {

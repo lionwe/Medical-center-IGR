@@ -89,4 +89,7 @@ $read_time = sprintf(igrmed__('blog_reading_time'), $minutes);
         ]); ?>
     </div>
 
+
+    
+
 </article>

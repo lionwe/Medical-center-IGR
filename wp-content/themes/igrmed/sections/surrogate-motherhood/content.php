@@ -117,11 +117,7 @@ if ($has_program) {
                                 data-loaded="<?php echo $index === 0 ? 'true' : 'false'; ?>"
                                 <?php echo $index !== 0 ? 'hidden' : ''; ?>>
                                 <?php if ($index === 0) : ?>
-                                <?php if (!empty($tab['tab_content_title'])) : ?>
-                                <h3 class="surrogate-motherhood-content__tab-title">
-                                    <?php echo esc_html($tab['tab_content_title']); ?>
-                                </h3>
-                                <?php endif; ?>
+                               
                                 <?php if (!empty($tab['tab_content_text'])) : ?>
                                 <div class="surrogate-motherhood-content__tab-text">
                                     <?php echo wp_kses_post($tab['tab_content_text']); ?>
