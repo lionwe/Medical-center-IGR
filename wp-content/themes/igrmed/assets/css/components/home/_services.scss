@@ -34,6 +34,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 0;
+        border-radius: convert-to-rem(12px);
 
         .service-card {
             &--cta {
@@ -44,7 +45,6 @@
                 text-align: left;
                 padding: convert-to-rem(34px) convert-to-rem(50px);
                 background-color: var(--color-white);
-                border-radius: convert-to-rem(12px);
 
                 &__content {
                     max-width: convert-to-rem(460px);
@@ -89,14 +89,9 @@
             grid-template-columns: repeat(2, 1fr);
 
             // Ensure service cards have no radius
-            .service-card {
-                border-radius: 0;
-            }
+            
 
-            // Radius only on bottom for CTA on mobile
-            .service-card--cta {
-                border-radius: 0 0 convert-to-rem(12px) convert-to-rem(12px);
-            }
+           
         }
     }
 }

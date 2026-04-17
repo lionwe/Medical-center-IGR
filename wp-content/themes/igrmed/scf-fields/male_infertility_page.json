@@ -101,7 +101,7 @@
             },
             {
                 "key": "field_inf_causes_subtitle",
-                "label": "Підзаголовок\/Вступ",
+                "label": "Підзаголовок/Вступ",
                 "name": "causes_subtitle",
                 "aria-label": "",
                 "type": "textarea",
@@ -469,44 +469,21 @@
                 "label": "Список методів",
                 "name": "methods_list",
                 "aria-label": "",
-                "type": "repeater",
+                "type": "wysiwyg",
                 "instructions": "",
-                "required": false,
-                "conditional_logic": false,
+                "required": 0,
+                "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
                     "class": "",
                     "id": ""
                 },
-                "layout": "block",
-                "button_label": "Додати метод",
-                "min": 0,
-                "max": 0,
-                "rows_per_page": 20,
-                "collapsed": "",
-                "sub_fields": [
-                    {
-                        "key": "field_inf_method_item",
-                        "label": "Текст пункту",
-                        "name": "text",
-                        "aria-label": "",
-                        "type": "wysiwyg",
-                        "instructions": "",
-                        "required": false,
-                        "conditional_logic": false,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "tabs": "visual",
-                        "toolbar": "basic",
-                        "media_upload": 0,
-                        "default_value": "",
-                        "delay": 0,
-                        "parent_repeater": "field_inf_methods_list"
-                    }
-                ]
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
             }
         ],
         "location": [

@@ -1,11 +1,11 @@
 [
     {
-        "key": "group_infertility_women_page",
-        "title": "Сторінка: Безпліддя у жінок",
+        "key": "group_69b3f8979e230",
+        "title": "About",
         "fields": [
             {
-                "key": "field_tab_hero_inf_women",
-                "label": "Hero секція",
+                "key": "field_69b3f8975e856",
+                "label": "Hero",
                 "name": "",
                 "aria-label": "",
                 "type": "tab",
@@ -17,24 +17,51 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 0
             },
             {
-                "key": "field_inf_women_hero_bg",
-                "label": "Фон Hero (десктоп)",
-                "name": "hero_bg_desktop",
+                "key": "field_69b3f8b653681",
+                "label": "Текст хіро з ліва",
+                "name": "hero_about_left_text",
+                "aria-label": "",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
+            },
+            {
+                "key": "field_69b3f900c7a69",
+                "label": "Фото на хіро",
+                "name": "hero_about_img",
                 "aria-label": "",
                 "type": "image",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50",
+                    "width": "",
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "return_format": "url",
                 "library": "all",
                 "min_width": "",
@@ -48,19 +75,21 @@
                 "preview_size": "medium"
             },
             {
-                "key": "field_inf_women_hero_bg_mob",
-                "label": "Фон Hero (мобільний)",
-                "name": "hero_bg_mobile",
+                "key": "field_69b7c862fa3a3",
+                "label": "Фон головна сторінка",
+                "name": "hero_about_bg",
                 "aria-label": "",
                 "type": "image",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50",
+                    "width": "",
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "return_format": "url",
                 "library": "all",
                 "min_width": "",
@@ -74,8 +103,8 @@
                 "preview_size": "medium"
             },
             {
-                "key": "field_tab_examinations",
-                "label": "Обстеження",
+                "key": "field_69b3fec992721",
+                "label": "Факти",
                 "name": "",
                 "aria-label": "",
                 "type": "tab",
@@ -87,16 +116,18 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 0
             },
             {
-                "key": "field_inf_women_exam_title",
-                "label": "Заголовок блоку обстежень",
-                "name": "examinations_title",
+                "key": "field_69b3fede92722",
+                "label": "Тайтл + сабтайтл",
+                "name": "facts_title",
                 "aria-label": "",
-                "type": "text",
+                "type": "wysiwyg",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -105,16 +136,38 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "Які обстеження потрібні?",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
             },
             {
-                "key": "field_inf_women_exam_list",
-                "label": "Список обстежень",
-                "name": "examinations_list",
+                "key": "field_69b3feeea3528",
+                "label": "Кнопка",
+                "name": "facts_botton",
+                "aria-label": "",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
+                "return_format": "array",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_69b407510b09b",
+                "label": "Карточки фактів",
+                "name": "facts_cards",
                 "aria-label": "",
                 "type": "repeater",
                 "instructions": "",
@@ -125,20 +178,22 @@
                     "class": "",
                     "id": ""
                 },
-                "layout": "block",
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
+                "layout": "table",
                 "pagination": 0,
                 "min": 0,
-                "max": 0,
+                "max": 10,
                 "collapsed": "",
-                "button_label": "Додати обстеження",
+                "button_label": "Додати рядок",
                 "rows_per_page": 20,
                 "sub_fields": [
                     {
-                        "key": "field_inf_women_exam_name",
-                        "label": "Назва обстеження",
-                        "name": "name",
+                        "key": "field_69b407790b09c",
+                        "label": "Текст карточка",
+                        "name": "text",
                         "aria-label": "",
-                        "type": "text",
+                        "type": "wysiwyg",
                         "instructions": "",
                         "required": 0,
                         "conditional_logic": 0,
@@ -147,41 +202,21 @@
                             "class": "",
                             "id": ""
                         },
+                        "wpml_cf_preferences": 2,
+                        "translations": "translate",
                         "default_value": "",
-                        "maxlength": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "parent_repeater": "field_inf_women_exam_list"
-                    },
-                    {
-                        "key": "field_inf_women_exam_desc",
-                        "label": "Опис обстеження",
-                        "name": "description",
-                        "aria-label": "",
-                        "type": "textarea",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "maxlength": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "parent_repeater": "field_inf_women_exam_list",
-                        "rows": 3,
-                        "new_lines": ""
+                        "allow_in_bindings": 0,
+                        "tabs": "all",
+                        "toolbar": "full",
+                        "media_upload": 1,
+                        "delay": 0,
+                        "parent_repeater": "field_69b407510b09b"
                     }
                 ]
             },
             {
-                "key": "field_tab_advantages_preg",
-                "label": "Переваги вагітності",
+                "key": "field_69b411a804e08",
+                "label": "Галерея",
                 "name": "",
                 "aria-label": "",
                 "type": "tab",
@@ -193,34 +228,16 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 0
             },
             {
-                "key": "field_inf_women_adv_title",
-                "label": "Заголовок переваг",
-                "name": "advantages_title",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "Переваги лікування у нас",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_inf_women_adv_list",
-                "label": "Список переваг",
-                "name": "advantages_list",
+                "key": "field_69b411b304e09",
+                "label": "Слайдер",
+                "name": "gallery_items",
                 "aria-label": "",
                 "type": "repeater",
                 "instructions": "",
@@ -231,28 +248,32 @@
                     "class": "",
                     "id": ""
                 },
-                "layout": "block",
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
+                "layout": "table",
                 "pagination": 0,
                 "min": 0,
                 "max": 0,
                 "collapsed": "",
-                "button_label": "Додати перевагу",
+                "button_label": "Додати рядок",
                 "rows_per_page": 20,
                 "sub_fields": [
                     {
-                        "key": "field_inf_women_adv_icon",
-                        "label": "Іконка",
-                        "name": "icon",
+                        "key": "field_69b411dc27fce",
+                        "label": "img",
+                        "name": "img",
                         "aria-label": "",
                         "type": "image",
                         "instructions": "",
                         "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
-                            "width": "30",
+                            "width": "",
                             "class": "",
                             "id": ""
                         },
+                        "wpml_cf_preferences": 3,
+                        "translations": "copy_once",
                         "return_format": "url",
                         "library": "all",
                         "min_width": "",
@@ -263,12 +284,12 @@
                         "max_size": "",
                         "mime_types": "",
                         "allow_in_bindings": 0,
-                        "preview_size": "thumbnail",
-                        "parent_repeater": "field_inf_women_adv_list"
+                        "preview_size": "medium",
+                        "parent_repeater": "field_69b411b304e09"
                     },
                     {
-                        "key": "field_inf_women_adv_text",
-                        "label": "Текст переваги",
+                        "key": "field_69b4124ef5863",
+                        "label": "text",
                         "name": "text",
                         "aria-label": "",
                         "type": "wysiwyg",
@@ -276,16 +297,19 @@
                         "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
-                            "width": "70",
+                            "width": "",
                             "class": "",
                             "id": ""
                         },
+                        "wpml_cf_preferences": 2,
+                        "translations": "translate",
                         "default_value": "",
+                        "allow_in_bindings": 0,
                         "tabs": "all",
-                        "toolbar": "basic",
-                        "media_upload": 0,
+                        "toolbar": "full",
+                        "media_upload": 1,
                         "delay": 0,
-                        "parent_repeater": "field_inf_women_adv_list"
+                        "parent_repeater": "field_69b411b304e09"
                     }
                 ]
             }
@@ -293,9 +317,9 @@
         "location": [
             [
                 {
-                    "param": "post_template",
+                    "param": "page_template",
                     "operator": "==",
-                    "value": "single-infertility-women.php"
+                    "value": "pages/about.php"
                 }
             ]
         ],

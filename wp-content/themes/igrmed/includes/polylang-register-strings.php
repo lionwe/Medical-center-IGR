@@ -28,23 +28,29 @@ function igrmed_get_translatable_strings(): array
         'btn_details_about_us' => 'Детальніше про нас',
         'btn_view_more_news' => 'Переглянути більше новин',
         'btn_close' => 'Згорнути',
-        
-        // FORMS
-        'form_contact_title' => 'Контактна форма',
-        'form_first_name' => 'Ваше Ім\'я*',
-        'form_last_name' => 'Ваше Прізвище*',
-        'form_phone' => 'Телефон*',
-        'form_email' => 'Email*',
-        'form_message' => 'Повідомлення',
-        'form_privacy' => 'Я погоджуюсь з політикою конфіденційності',
-        'form_success_message' => 'Дякуємо! Ваше повідомлення надіслано.',
-        'form_error_message' => 'Помилка! Будь ласка, спробуйте ще раз.',
-        
+     // Form
+'form_title' => 'Запис на консультацію',
+'form_desc' => 'Залишіть ваші дані, і ми з вами зв\'яжемось',
+
+'form_name_label' => 'Ім’я',
+'form_name_holder' => 'Ваше ім’я',
+
+'form_last_label' => 'Прізвище',
+'form_last_holder' => 'Ваше прізвище',
+
+'form_phone_label' => 'Номер телефону',
+'form_phone_holder' => '+38 (___) ___--',
+
+'form_submit_btn' => 'Надіслати',
+
+'form_sending' => 'Відправка...',
+'form_success_title' => 'Дякуємо!',
+'form_success_desc' => 'Ми отримали вашу заявку і зв\'яжемося з вами найближчим часом.',
         // FOOTER
-        'footer_about_title' => 'Про клініку',
         'footer_services_title' => 'Послуги',
         'footer_contacts_title' => 'Зв\'язатися з нами',
         'footer_social_title' => 'Ми в соцмережах',
+        'footer_copyright' => ' 2024 IGR Medical. Всі права захищені.',
         'footer_copyright' => '© 2024 IGR Medical. Всі права захищені.',
         'footer_privacy_policy' => 'Політика конфіденційності',
         'footer_terms_of_use' => 'Умови використання',

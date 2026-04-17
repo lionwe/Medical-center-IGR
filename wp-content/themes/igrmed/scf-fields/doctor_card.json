@@ -1,15 +1,15 @@
 [
     {
-        "key": "group_blog_card",
-        "title": "Блог — картка",
+        "key": "group_doctor_card",
+        "title": "Дані лікаря",
         "fields": [
             {
-                "key": "field_blog_card_image",
-                "label": "Зображення для картки блогу",
-                "name": "blog_card_image",
+                "key": "field_69b135fcccbe5",
+                "label": "Фото лікаря (відображається на карточці у слайдері)",
+                "name": "doctor_photo",
                 "aria-label": "",
                 "type": "image",
-                "instructions": "Завантажте зображення для картки (краще WebP). Це зображення буде виводитись у списку замість головного зображення поста.",
+                "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -17,7 +17,7 @@
                     "class": "",
                     "id": ""
                 },
-                "return_format": "array",
+                "return_format": "url",
                 "library": "all",
                 "min_width": "",
                 "min_height": "",
@@ -25,9 +25,30 @@
                 "max_width": "",
                 "max_height": "",
                 "max_size": "",
-                "mime_types": "webp, jpg, jpeg, png",
+                "mime_types": "",
                 "allow_in_bindings": 0,
                 "preview_size": "medium"
+            },
+            {
+                "key": "field_69b1738e8d5bf",
+                "label": "Спеціалізація",
+                "name": "doctor_spec",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
             }
         ],
         "location": [
@@ -35,7 +56,7 @@
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "blog"
+                    "value": "doctors"
                 }
             ]
         ],

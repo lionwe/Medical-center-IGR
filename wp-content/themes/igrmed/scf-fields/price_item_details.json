@@ -7,23 +7,45 @@
                 "key": "field_price_item_direction",
                 "label": "Напрямок",
                 "name": "price_item_direction",
+                "aria-label": "",
                 "type": "post_object",
                 "instructions": "Виберіть напрямок, до якого належить ця послуга (наприклад: Гінекологія)",
                 "required": 1,
-                "post_type": ["services"],
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "services"
+                ],
                 "return_format": "id",
                 "multiple": 0,
                 "allow_null": 0,
-                "ui": 1
+                "ui": 1,
+                "taxonomy": [],
+                "bidirectional_target": []
             },
             {
                 "key": "field_price_item_value",
                 "label": "Ціна",
                 "name": "price_item_value",
+                "aria-label": "",
                 "type": "text",
                 "instructions": "Введіть ціну",
                 "required": 1,
-                "placeholder": "500"
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placeholder": 500,
+                "default_value": "",
+                "maxlength": "",
+                "prepend": "",
+                "append": ""
             }
         ],
         "location": [
@@ -35,6 +57,15 @@
                 }
             ]
         ],
-        "active": true
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": [],
+        "active": true,
+        "description": "",
+        "show_in_rest": false,
+        "display_title": ""
     }
 ]

@@ -1,6 +1,6 @@
 <?php
 
-$form_shortcode = (string) get_field('form_shortcode', 'option');
+$form_shortcode = (string) get_field('cta_form', 'option');
 $home_page_id = getHomePageID();
 
 // Empty Fields Rule: if there is no shortcode, do not render the section.

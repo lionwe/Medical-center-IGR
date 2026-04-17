@@ -17,6 +17,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 0
@@ -35,6 +37,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "default_value": "Сурогатне материнство",
                 "maxlength": "",
                 "placeholder": "",
@@ -55,6 +59,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "tabs": "all",
                 "toolbar": "full",
                 "media_upload": 0,
@@ -75,6 +81,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 0
@@ -86,19 +94,22 @@
                 "aria-label": "",
                 "type": "repeater",
                 "instructions": "Додайте інформацію для перемикачів (Координаційний, Медичний, Юридичний супровід тощо)",
-                "required": false,
-                "conditional_logic": false,
+                "required": 0,
+                "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "layout": "block",
-                "button_label": "Додати таб",
+                "pagination": 0,
                 "min": 0,
                 "max": 0,
-                "rows_per_page": 20,
                 "collapsed": "",
+                "button_label": "Додати таб",
+                "rows_per_page": 20,
                 "sub_fields": [
                     {
                         "key": "field_surr_tab_icon",
@@ -114,6 +125,8 @@
                             "class": "",
                             "id": ""
                         },
+                        "wpml_cf_preferences": 3,
+                        "translations": "copy_once",
                         "return_format": "url",
                         "preview_size": "thumbnail",
                         "library": "all",
@@ -140,6 +153,8 @@
                             "class": "",
                             "id": ""
                         },
+                        "wpml_cf_preferences": 2,
+                        "translations": "translate",
                         "default_value": "",
                         "maxlength": "",
                         "placeholder": "",
@@ -148,44 +163,26 @@
                         "parent_repeater": "field_surr_tabs_repeater"
                     },
                     {
-                        "key": "field_surr_tab_content_title",
-                        "label": "Заголовок всередині таба",
-                        "name": "tab_content_title",
-                        "aria-label": "",
-                        "type": "text",
-                        "instructions": "Наприклад: Координаційний супровід програми",
-                        "required": false,
-                        "conditional_logic": false,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "maxlength": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "parent_repeater": "field_surr_tabs_repeater"
-                    },
-                    {
-                        "key": "field_surr_tab_content_text",
-                        "label": "Основний текст таба",
+                        "key": "field_69da8e8f36835",
+                        "label": "Текст у табі",
                         "name": "tab_content_text",
                         "aria-label": "",
                         "type": "wysiwyg",
                         "instructions": "",
-                        "required": false,
-                        "conditional_logic": false,
+                        "required": 0,
+                        "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
                             "class": "",
                             "id": ""
                         },
-                        "tabs": "all",
-                        "toolbar": "basic",
-                        "media_upload": 0,
+                        "wpml_cf_preferences": 2,
+                        "translations": "translate",
                         "default_value": "",
+                        "allow_in_bindings": 0,
+                        "tabs": "all",
+                        "toolbar": "full",
+                        "media_upload": 1,
                         "delay": 0,
                         "parent_repeater": "field_surr_tabs_repeater"
                     }
@@ -205,6 +202,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 0
@@ -223,6 +222,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "default_value": "Програма сурогатного материнства",
                 "maxlength": "",
                 "placeholder": "",
@@ -243,6 +244,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "layout": "table",
                 "button_label": "Додати крок",
                 "min": 0,
@@ -264,6 +267,8 @@
                             "class": "",
                             "id": ""
                         },
+                        "wpml_cf_preferences": 2,
+                        "translations": "translate",
                         "rows": 3,
                         "default_value": "",
                         "new_lines": "",
@@ -287,6 +292,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "return_format": "url",
                 "preview_size": "medium",
                 "library": "all",
@@ -312,6 +319,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "default_value": "",
                 "allow_in_bindings": 0,
                 "tabs": "all",

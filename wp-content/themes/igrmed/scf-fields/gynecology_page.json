@@ -1,10 +1,10 @@
 [
     {
-        "key": "group_pregnancy_care_page",
-        "title": "Сторінка: Ведення вагітності",
+        "key": "group_gynecology_page",
+        "title": "Сторінка: Гінекологія",
         "fields": [
             {
-                "key": "field_tab_intro_preg",
+                "key": "field_tab_intro_gyn",
                 "label": "1. Вступна частина",
                 "name": "",
                 "aria-label": "",
@@ -22,8 +22,8 @@
                 "selected": 0
             },
             {
-                "key": "field_preg_intro_title",
-                "label": "Заголовок блоку",
+                "key": "field_gyn_intro_title",
+                "label": "Заголовок сторінки",
                 "name": "intro_title",
                 "aria-label": "",
                 "type": "text",
@@ -35,15 +35,15 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "Ведення вагітності",
+                "default_value": "Гінекологічна допомога",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
             },
             {
-                "key": "field_preg_intro_content",
-                "label": "Основний текст",
+                "key": "field_gyn_intro_content",
+                "label": "Вступний текст",
                 "name": "intro_content",
                 "aria-label": "",
                 "type": "wysiwyg",
@@ -62,8 +62,33 @@
                 "delay": 0
             },
             {
-                "key": "field_tab_advantages_preg",
-                "label": "2. Переваги",
+                "key": "field_gyn_intro_image",
+                "label": "Зображення (праворуч)",
+                "name": "intro_image",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": 0,
+                "min_height": 0,
+                "min_size": 0,
+                "max_width": 0,
+                "max_height": 0,
+                "max_size": 0,
+                "mime_types": ""
+            },
+            {
+                "key": "field_tab_services_gyn",
+                "label": "2. Послуги",
                 "name": "",
                 "aria-label": "",
                 "type": "tab",
@@ -80,9 +105,9 @@
                 "selected": 0
             },
             {
-                "key": "field_preg_advantages_title",
+                "key": "field_gyn_services_title",
                 "label": "Заголовок блоку",
-                "name": "advantages_title",
+                "name": "services_title",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -93,16 +118,16 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "Переваги ведення вагітності",
+                "default_value": "Наші послуги",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
             },
             {
-                "key": "field_preg_advantages_repeater",
-                "label": "Список переваг",
-                "name": "advantages_list",
+                "key": "field_gyn_services_repeater",
+                "label": "Список послуг",
+                "name": "services_list",
                 "aria-label": "",
                 "type": "repeater",
                 "instructions": "",
@@ -113,24 +138,50 @@
                     "class": "",
                     "id": ""
                 },
-                "layout": "block",
-                "button_label": "Додати перевагу",
+                "layout": "table",
+                "button_label": "Додати послугу",
                 "min": 0,
                 "max": 0,
                 "rows_per_page": 20,
                 "collapsed": "",
                 "sub_fields": [
                     {
-                        "key": "field_preg_adv_item_title",
-                        "label": "Підзаголовок (у плашці)",
-                        "name": "title",
+                        "key": "field_gyn_service_icon",
+                        "label": "Іконка",
+                        "name": "icon",
                         "aria-label": "",
-                        "type": "text",
-                        "instructions": "Наприклад: Індивідуальний супровід під час ведення вагітності",
+                        "type": "image",
+                        "instructions": "",
                         "required": false,
                         "conditional_logic": false,
                         "wrapper": {
-                            "width": "",
+                            "width": "20",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "url",
+                        "preview_size": "thumbnail",
+                        "library": "all",
+                        "min_width": 0,
+                        "min_height": 0,
+                        "min_size": 0,
+                        "max_width": 0,
+                        "max_height": 0,
+                        "max_size": 0,
+                        "mime_types": "",
+                        "parent_repeater": "field_gyn_services_repeater"
+                    },
+                    {
+                        "key": "field_gyn_service_title",
+                        "label": "Назва послуги",
+                        "name": "title",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "80",
                             "class": "",
                             "id": ""
                         },
@@ -139,14 +190,14 @@
                         "placeholder": "",
                         "prepend": "",
                         "append": "",
-                        "parent_repeater": "field_preg_advantages_repeater"
+                        "parent_repeater": "field_gyn_services_repeater"
                     },
                     {
-                        "key": "field_preg_adv_item_text",
-                        "label": "Текст переваги",
+                        "key": "field_gyn_service_text",
+                        "label": "Опис послуги",
                         "name": "text",
                         "aria-label": "",
-                        "type": "wysiwyg",
+                        "type": "textarea",
                         "instructions": "",
                         "required": false,
                         "conditional_logic": false,
@@ -155,18 +206,18 @@
                             "class": "",
                             "id": ""
                         },
-                        "tabs": "all",
-                        "toolbar": "full",
-                        "media_upload": 0,
+                        "rows": 3,
                         "default_value": "",
-                        "delay": 0,
-                        "parent_repeater": "field_preg_advantages_repeater"
+                        "new_lines": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "parent_repeater": "field_gyn_services_repeater"
                     }
                 ]
             },
             {
-                "key": "field_tab_procedures_preg",
-                "label": "3. Процедури діагностики",
+                "key": "field_tab_procedures_gyn",
+                "label": "3. Процедури",
                 "name": "",
                 "aria-label": "",
                 "type": "tab",
@@ -183,7 +234,7 @@
                 "selected": 0
             },
             {
-                "key": "field_preg_procedures_title",
+                "key": "field_gyn_proc_title",
                 "label": "Заголовок блоку",
                 "name": "procedures_title",
                 "aria-label": "",
@@ -196,15 +247,15 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "Процедури діагностики при веденні вагітності",
+                "default_value": "Процедури та захворювання",
                 "maxlength": "",
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
             },
             {
-                "key": "field_preg_procedures_repeater",
-                "label": "Картки процедур",
+                "key": "field_gyn_proc_list",
+                "label": "Сітка процедур",
                 "name": "procedures_list",
                 "aria-label": "",
                 "type": "repeater",
@@ -216,7 +267,7 @@
                     "class": "",
                     "id": ""
                 },
-                "layout": "table",
+                "layout": "block",
                 "button_label": "Додати процедуру",
                 "min": 0,
                 "max": 0,
@@ -224,9 +275,9 @@
                 "collapsed": "",
                 "sub_fields": [
                     {
-                        "key": "field_preg_proc_item_title",
-                        "label": "Назва процедури",
-                        "name": "title",
+                        "key": "field_gyn_proc_item_name",
+                        "label": "Назва процедури/захворювання",
+                        "name": "name",
                         "aria-label": "",
                         "type": "text",
                         "instructions": "",
@@ -242,133 +293,9 @@
                         "placeholder": "",
                         "prepend": "",
                         "append": "",
-                        "parent_repeater": "field_preg_procedures_repeater"
-                    },
-                    {
-                        "key": "field_preg_proc_item_link",
-                        "label": "Посилання (Докладніше)",
-                        "name": "link",
-                        "aria-label": "",
-                        "type": "link",
-                        "instructions": "",
-                        "required": false,
-                        "conditional_logic": false,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "return_format": "array",
-                        "parent_repeater": "field_preg_procedures_repeater"
+                        "parent_repeater": "field_gyn_proc_list"
                     }
                 ]
-            },
-            {
-                "key": "field_tab_doctors_preg",
-                "label": "4. Лікарі",
-                "name": "",
-                "aria-label": "",
-                "type": "tab",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "placement": "top",
-                "endpoint": 0,
-                "selected": 0
-            },
-            {
-                "key": "field_preg_doctors_title",
-                "label": "Заголовок блоку",
-                "name": "doctors_title",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "Лікарі, які ведуть лікування",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_preg_doctors_intro",
-                "label": "Вступний текст",
-                "name": "doctors_intro",
-                "aria-label": "",
-                "type": "textarea",
-                "instructions": "",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "rows": 3,
-                "default_value": "",
-                "new_lines": "",
-                "maxlength": "",
-                "placeholder": ""
-            },
-            {
-                "key": "field_preg_doctors_relationship",
-                "label": "Вибір лікарів",
-                "name": "doctors_list",
-                "aria-label": "",
-                "type": "relationship",
-                "instructions": "Оберіть лікарів, які будуть відображатися в слайдері",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "doctors"
-                ],
-                "filters": [
-                    "search",
-                    "taxonomy"
-                ],
-                "return_format": "object",
-                "taxonomy": [],
-                "min": 0,
-                "max": 0,
-                "elements": [],
-                "bidirectional_target": []
-            },
-            {
-                "key": "field_preg_doctors_bg",
-                "label": "Фон слайдера",
-                "name": "doctors_bg",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "Оберіть фонове зображення для слайдера лікарів",
-                "required": false,
-                "conditional_logic": false,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "all",
-                "min_size": "",
-                "max_size": "",
-                "mime_types": "jpg,jpeg,png,webp",
-                "preview_size": "medium"
             }
         ],
         "location": [
@@ -376,7 +303,7 @@
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "single-pregnancy-management.php"
+                    "value": "single-gynecology.php"
                 }
             ]
         ],
