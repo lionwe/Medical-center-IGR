@@ -36,3 +36,11 @@ if (document.querySelector(".js-doctors-swiper")) {
     });
 }
 
+if (document.querySelector(".js-reviews-swiper")) {
+    import("./reviews-swiper").then(({ default: ReviewsSwiper }) => {
+        new ReviewsSwiper();
+    }).catch((error) => {
+        console.error("Failed to load reviews swiper:", error);
+    });
+}
+

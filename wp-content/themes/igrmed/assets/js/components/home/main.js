@@ -10,11 +10,3 @@ if (document.querySelector(".why-choose-us")) {
         console.error("Failed to load why-choose-us module:", error);
     });
 }
-
-if (document.querySelector(".google-reviews")) {
-    import("./google-reviews").then(({ default: GoogleReviewsControls }) => {
-        new GoogleReviewsControls();
-    }).catch((error) => {
-        console.error("Failed to load google-reviews module:", error);
-    });
-}
