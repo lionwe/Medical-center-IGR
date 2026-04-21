@@ -57,7 +57,6 @@ function initDiagnosticsGenderToggle() {
         const isOpen = trigger.classList.contains("is-open");
         item.classList.toggle("is-open", isOpen);
         content.classList.toggle("is-open", isOpen);
-        content.style.maxHeight = isOpen ? "none" : "0px";
       });
     });
 
@@ -67,30 +66,11 @@ function initDiagnosticsGenderToggle() {
   const openAccordionContent = (item, content) => {
     item.classList.add("is-open");
     content.classList.add("is-open");
-    content.style.maxHeight = `${content.scrollHeight}px`;
-
-    const onEnd = () => {
-      if (item.classList.contains("is-open")) {
-        content.style.maxHeight = "none";
-      }
-      content.removeEventListener("transitionend", onEnd);
-    };
-
-    content.addEventListener("transitionend", onEnd);
   };
 
   const closeAccordionContent = (item, content) => {
     item.classList.remove("is-open");
     content.classList.remove("is-open");
-
-    if (content.style.maxHeight === "none" || !content.style.maxHeight) {
-      content.style.maxHeight = `${content.scrollHeight}px`;
-    }
-
-    content.offsetHeight;
-    requestAnimationFrame(() => {
-      content.style.maxHeight = "0px";
-    });
   };
 
   const bindAccordion = (accordion) => {
@@ -171,10 +151,6 @@ function initDiagnosticsGenderToggle() {
       moreButton.setAttribute("aria-expanded", String(!isExpanded));
       if (textEl) {
         textEl.textContent = isExpanded ? moreLabel : lessLabel;
-      }
-
-      if (content.classList.contains("is-open") && content.style.maxHeight !== "none") {
-        content.style.maxHeight = `${content.scrollHeight}px`;
       }
 
       requestAnimationFrame(() => syncListLinesColumnEnds(content));

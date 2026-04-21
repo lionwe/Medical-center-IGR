@@ -35,12 +35,10 @@ if (document.querySelector(".js-doctors-swiper")) {
         console.error("Failed to load doctors swiper:", error);
     });
 }
-
 if (document.querySelector(".js-reviews-swiper")) {
-    import("./reviews-swiper").then(({ default: ReviewsSwiper }) => {
-        new ReviewsSwiper();
+    import("./reviews-slider").then(({ default: ReviewsSlider }) => {  // ← назва файлу
+        new ReviewsSlider();
     }).catch((error) => {
-        console.error("Failed to load reviews swiper:", error);
+        console.error("Failed to load reviews slider:", error);
     });
 }
-
