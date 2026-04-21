@@ -79,7 +79,8 @@ $success_content = is_string($success_content) ? trim($success_content) : '';
 $candidates_title = trim((string) get_field('candidates_title'));
 $candidates_subtitle = get_field('candidates_subtitle');
 $candidates_subtitle = is_string($candidates_subtitle) ? trim($candidates_subtitle) : '';
-$candidates_list = $extract_text_rows(get_field('candidates_list'), ['text']);
+$candidates_content = get_field('candidates_list');
+$candidates_content = is_string($candidates_content) ? trim($candidates_content) : '';
 
 $programs_title = trim((string) get_field('programs_title'));
 $programs_rows = get_field('programa');
@@ -147,7 +148,7 @@ $has_indications = $indications_subtitle !== '' || !empty($indications_list);
 $has_contra = $contra_intro !== '' || !empty($contra_list);
 $has_stages = $stages_intro !== '' || !empty($stages_list);
 $has_success = $success_intro !== '' || $success_content !== '';
-$has_candidates = $candidates_subtitle !== '' || !empty($candidates_list);
+$has_candidates = $candidates_subtitle !== '' || $candidates_content !== '';
 $has_programs = !empty($programs_list);
 
 $sections = [];
@@ -345,13 +346,9 @@ if (empty($sections)) {
                                     <?php echo esc_html($candidates_subtitle); ?>
                                 </p>
                             <?php endif; ?>
-                            <?php if (!empty($candidates_list)): ?>
-                                <div class="ekz-content__list">
-                                    <?php foreach ($candidates_list as $item): ?>
-                                        <article class="ekz-content__list-item">
-                                            <?php echo wp_kses_post($item); ?>
-                                        </article>
-                                    <?php endforeach; ?>
+                            <?php if ($candidates_content !== ''): ?>
+                                <div class="ekz-content__lead-text">
+                                    <?php echo wp_kses_post($candidates_content); ?>
                                 </div>
                             <?php endif; ?>
                         </div>

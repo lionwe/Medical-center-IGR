@@ -94,6 +94,11 @@
     }
   }
 
+
+  &__section--when &__body {
+    padding-inline: 0;
+  }
+
   &__section--intro {
     position: relative;
     isolation: isolate;
@@ -165,43 +170,50 @@
     }
   }
 
-  &__reasons-list {
+  &__when-list {
     margin: 0;
     padding: 0;
-    list-style: none;
-    counter-reset: reasons-counter;
+    counter-reset: when-counter;
     display: grid;
     gap: convert-to-rem(10px);
-  }
 
-  &__reasons-list li {
-    counter-increment: reasons-counter;
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    align-items: center;
-    gap: clamp(12px, 2.4vw, 34px);
-    padding: convert-to-rem(8px) convert-to-rem(7px);
-    border: convert-to-rem(1px) solid var(--color-gray-205);
-    border-radius: convert-to-rem(12px);
-  }
-
-  &__reasons-list li::before {
-    content: counter(reasons-counter);
-    @include typography($font-family-montserrat, $fw-semibold, (32px, 42px), 1.2, 0);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: convert-to-rem(53px);
-    height: convert-to-rem(50px);
-    padding: convert-to-rem(8px) convert-to-rem(7px);
-    border-radius: convert-to-rem(8px);
-    background: var(--color-card-badge-bg);
-    color: var(--color-white);
-
-    @include mobile {
-      width: convert-to-rem(40px);
-      height: convert-to-rem(40px);
+    ul {
+      margin: 0;
       padding: 0;
+      list-style: none;
+      display: grid;
+      gap: convert-to-rem(10px);
+    }
+
+    li {
+      counter-increment: when-counter;
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      align-items: center;
+      gap: clamp(12px, 2.4vw, 34px);
+      padding: convert-to-rem(8px) convert-to-rem(7px);
+      border: convert-to-rem(1px) solid var(--color-gray-205);
+      border-radius: convert-to-rem(12px);
+
+      &::before {
+        content: counter(when-counter);
+        @include typography($font-family-montserrat, $fw-semibold, (32px, 42px), 1.2, 0);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: convert-to-rem(53px);
+        height: convert-to-rem(50px);
+        padding: convert-to-rem(8px) convert-to-rem(7px);
+        border-radius: convert-to-rem(8px);
+        background: var(--color-card-badge-bg);
+        color: var(--color-white);
+
+        @include mobile {
+          width: convert-to-rem(40px);
+          height: convert-to-rem(40px);
+          padding: 0;
+        }
+      }
     }
   }
 
