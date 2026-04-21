@@ -84,6 +84,42 @@
     }
   }
 
+  &__section-body--methods {
+        padding: 20px 0;
+
+    h3 {
+      @include typography($font-family-montserrat, $fw-semibold, 15px, 1.2, 0);
+      display: flex;
+      align-items: center;
+      padding: convert-to-rem(8px) convert-to-rem(12px);
+      border-radius: convert-to-rem(12px);
+      background: var(--color-card-badge-bg);
+      margin-bottom: convert-to-rem(4px);
+    }
+
+    > :where(p, ul, ol) {
+      margin: 0;
+    }
+
+    > :where(p, ul, ol) + :where(p, ul, ol) {
+      margin-top: convert-to-rem(8px);
+    }
+
+    ul {
+      list-style: disc outside;
+      padding-left: convert-to-rem(20px);
+    }
+
+    ol {
+      list-style: decimal outside;
+      padding-left: convert-to-rem(20px);
+    }
+
+    li + li {
+      margin-top: convert-to-rem(4px);
+    }
+  }
+
   &__section-body--stages {
     padding: 20px 0;
   }

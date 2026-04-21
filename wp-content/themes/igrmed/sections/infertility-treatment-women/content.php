@@ -90,8 +90,7 @@ $stages_bg_url = $extract_image_url(get_field('treatment_bg'));
 $stages_bg_mobile_url = $extract_image_url(get_field('treatment_bg_mob'));
 
 $methods_title = trim((string) get_field('methods_title'));
-$methods_rows = get_field('methods_list');
-$methods = [];
+$methods = get_field('methods_list');
 
 $advantages_title = trim((string) get_field('advantages_title'));
 $advantages_rows = get_field('advantages_list');
@@ -117,36 +116,7 @@ if (is_array($advantages_rows)) {
     }
 }
 
-if (is_array($methods_rows)) {
-    foreach ($methods_rows as $row) {
-        if (is_string($row)) {
-            $text = trim($row);
-            if ($text !== '') {
-                $methods[] = [
-                    'title' => '',
-                    'content' => $text,
-                ];
-            }
-            continue;
-        }
 
-        if (!is_array($row)) {
-            continue;
-        }
-
-        $title = trim((string) ($row['title'] ?? $row['item_title'] ?? $row['name'] ?? ''));
-        $content = trim((string) ($row['content'] ?? $row['item_content'] ?? $row['text'] ?? ''));
-
-        if ($title === '' && $content === '') {
-            continue;
-        }
-
-        $methods[] = [
-            'title' => $title,
-            'content' => $content,
-        ];
-    }
-}
 
 $has_intro = $intro_content !== '';
 $has_reasons = $reasons_subtitle !== '' || !empty($reasons_items);
@@ -302,19 +272,10 @@ if (empty($sections)) {
                                 <?php echo esc_html($methods_title); ?>
                             </h2>
                         </div>
-                        <div class="infertility-treatment-women__section-body">
+                        <div class="infertility-treatment-women__section-body infertility-treatment-women__section-body--methods">
                             <?php if (!empty($methods)): ?>
                                 <div class="infertility-treatment-women__methods-list">
-                                    <?php foreach ($methods as $method): ?>
-                                        <article class="infertility-treatment-women__method-item">
-                                            <?php if ($method['title'] !== ''): ?>
-                                                <h3><?php echo esc_html($method['title']); ?></h3>
-                                            <?php endif; ?>
-                                            <?php if ($method['content'] !== ''): ?>
-                                                <?php echo wp_kses_post(wpautop($method['content'])); ?>
-                                            <?php endif; ?>
-                                        </article>
-                                    <?php endforeach; ?>
+                                    <?php echo wp_kses_post($methods); ?>
                                 </div>
                             <?php endif; ?>
                         </div>
