@@ -60,7 +60,6 @@
 
   &__section--symptoms &__section-title {
     width: auto;
-    max-width: convert-to-rem(220px);
     margin: 0;
     padding: 0;
     background: transparent;
@@ -81,6 +80,45 @@
 
     @include mobile {
       padding: convert-to-rem(16px) 0;
+    }
+  }
+
+  &__section-body--methods {
+        padding: convert-to-rem(20px) 0;
+
+    h3 {
+      @include typography($font-family-montserrat, $fw-semibold, 15px, 1.2, 0);
+      display: flex;
+      align-items: center;
+      padding: convert-to-rem(8px) convert-to-rem(12px);
+      border-radius: convert-to-rem(12px);
+      background: var(--color-card-badge-bg);
+      margin-bottom: convert-to-rem(4px);
+      width: fit-content;
+    }
+
+    > :where(p, ul, ol) {
+      margin: 0;
+    }
+
+    > :where(p, ul, ol) + :where(p, ul, ol) {
+      margin-top: convert-to-rem(8px);
+    }
+
+    ul {
+      list-style: disc outside;
+      padding-left: convert-to-rem(20px);
+      margin-left: 10px;
+    }
+
+    ol {
+      list-style: decimal outside;
+      padding-left: convert-to-rem(20px);
+      margin-left: 0;
+    }
+
+    li + li {
+      margin-top: convert-to-rem(4px);
     }
   }
 

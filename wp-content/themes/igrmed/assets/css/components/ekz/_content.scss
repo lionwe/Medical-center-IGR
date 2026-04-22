@@ -165,7 +165,7 @@
     strong,
     b {
       font-weight: $fw-semibold;
-      color: var(--color-primary-dark);
+      color: var(--color-black);
     }
 
     ul,
@@ -517,6 +517,48 @@
   }
 
   &__section--candidates {
+    .ekz-content__lead-text {
+      padding: convert-to-rem(10px);
+      background-color: var(--color-white);
+      border-radius: convert-to-rem(12px);
+
+      p {
+        @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
+        color: var(--color-black);
+        margin: 0;
+
+        @include mobile {
+          @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+        }
+      }
+
+      > :where(p, ul, ol) {
+        margin: 0;
+      }
+
+      > :where(p, ul, ol) + :where(p, ul, ol) {
+        margin-top: convert-to-rem(8px);
+      }
+
+      ul {
+        list-style: disc outside;
+        padding-left: convert-to-rem(20px);
+      }
+
+      ol {
+        list-style: decimal outside;
+        padding-left: convert-to-rem(20px);
+      }
+
+      li + li {
+        margin-top: convert-to-rem(4px);
+      }
+
+      @include mobile {
+        padding: convert-to-rem(10px) convert-to-rem(12px);
+      }
+    }
+
     .ekz-content__list-item {
       display: grid;
       grid-template-columns: max-content 1fr;

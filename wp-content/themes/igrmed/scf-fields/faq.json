@@ -52,7 +52,7 @@
             },
             {
                 "key": "field_69bd42bd0b074",
-                "label": "Список питань\/відповідей",
+                "label": "Список питань/відповідей",
                 "name": "faq_global_list",
                 "aria-label": "",
                 "type": "repeater",

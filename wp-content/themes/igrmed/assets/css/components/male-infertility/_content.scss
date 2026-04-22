@@ -151,7 +151,6 @@
 
   &__section--when &__title {
     width: auto;
-    max-width: convert-to-rem(220px);
   }
 
   &__symptoms-grid {
@@ -268,6 +267,10 @@
       z-index: 1;
       padding: 0;
       gap: convert-to-rem(30px);
+
+      &.male-infertility-content__body--stages {
+        padding: convert-to-rem(20px) 0;
+      }
 
       @include mobile {
         gap: convert-to-rem(20px);

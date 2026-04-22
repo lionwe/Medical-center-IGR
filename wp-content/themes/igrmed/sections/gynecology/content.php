@@ -44,14 +44,15 @@ $advantages_content = get_field('advantages_content');
 $advantages_content = is_string($advantages_content) ? trim($advantages_content) : '';
 
 $when_title = trim((string) get_field('when_title'));
-$when_list = $extract_text_rows(get_field('when_list'), ['text', 'item', 'title', 'name']);
+$when_list = get_field('when_list');
+$when_list = is_string($when_list) ? trim($when_list) : '';
 
 $procedures_title = trim((string) get_field('procedures_title'));
 $procedures_list = $extract_text_rows(get_field('procedures_list'), ['name', 'text', 'item', 'title']);
 
 $has_intro = $intro_content !== '';
 $has_advantages = $advantages_content !== '';
-$has_when = !empty($when_list);
+$has_when = $when_list !== '';
 $has_procedures = !empty($procedures_list);
 
 $sections = [];
@@ -114,19 +115,17 @@ if (empty($sections) && trim((string) get_post_field('post_content', get_the_ID(
                 <?php endif; ?>
 
                 <?php if ($has_when): ?>
-                    <div id="gy-when" class="gynecology-content__section">
+                    <div id="gy-when" class="gynecology-content__section gynecology-content__section--when">
                         <div class="gynecology-content__title-wrap">
                             <h2 class="gynecology-content__title">
                                 <?php echo esc_html($when_title !== '' ? $when_title : igrmed__('section_when_visit')); ?>
                             </h2>
                         </div>
                         <div class="gynecology-content__body">
-                            <?php if (!empty($when_list)): ?>
-                                <ul class="gynecology-content__reasons-list">
-                                    <?php foreach ($when_list as $item): ?>
-                                        <li><?php echo esc_html($item); ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
+                            <?php if ($when_list !== ''): ?>
+                                <div class="gynecology-content__when-list">
+                                    <?php echo wp_kses_post($when_list); ?>
+                                </div>
                             <?php endif; ?>
                         </div>
                     </div>

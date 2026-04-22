@@ -77,7 +77,7 @@
                     <?php endif; ?>
 
                     <?php if ($footer_main_title): ?>
-                        <div class="footer__main-title"><?php igrmed_e('footer_about_title'); ?></div>
+                        <div class="footer__main-title"><?php echo esc_html($footer_main_title); ?></div>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

@@ -17,6 +17,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 1
@@ -35,6 +37,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "default_value": "",
                 "maxlength": "",
                 "allow_in_bindings": 0,
@@ -56,10 +60,12 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "default_value": "",
                 "maxlength": "",
                 "allow_in_bindings": 0,
-                "placeholder": "11",
+                "placeholder": 11,
                 "prepend": "",
                 "append": ""
             },
@@ -77,6 +83,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "default_value": "",
                 "maxlength": "",
                 "allow_in_bindings": 0,
@@ -98,6 +106,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "default_value": "",
                 "allow_in_bindings": 0,
                 "placeholder": "https://www.facebook.com/..."
@@ -116,6 +126,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "default_value": "",
                 "allow_in_bindings": 0,
                 "placeholder": "https://www.instagram.com/..."
@@ -134,6 +146,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 0
@@ -152,6 +166,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "default_value": "",
                 "allow_in_bindings": 0,
                 "tabs": "all",
@@ -173,6 +189,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 2,
+                "translations": "translate",
                 "default_value": "",
                 "allow_in_bindings": 0,
                 "tabs": "all",
@@ -194,6 +212,8 @@
                     "class": "",
                     "id": ""
                 },
+                "wpml_cf_preferences": 3,
+                "translations": "copy_once",
                 "return_format": "array",
                 "library": "all",
                 "min": "",

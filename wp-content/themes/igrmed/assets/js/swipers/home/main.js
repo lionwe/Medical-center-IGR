@@ -35,4 +35,12 @@ if (document.querySelector(".js-doctors-swiper")) {
         console.error("Failed to load doctors swiper:", error);
     });
 }
-
+if (document.querySelector(".js-reviews-swiper")) {
+    console.log('[DEBUG] Found .js-reviews-swiper selector, loading module');
+    import("./reviews-swiper").then(({ default: ReviewsSwiper }) => {
+        console.log('[DEBUG] ReviewsSwiper module loaded, initializing');
+        new ReviewsSwiper();
+    }).catch((error) => {
+        console.error("Failed to load reviews swiper:", error);
+    });
+}
