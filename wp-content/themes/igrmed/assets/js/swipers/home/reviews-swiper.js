@@ -3,14 +3,18 @@ import { Navigation, Autoplay } from 'swiper/modules';
 
 export default class ReviewsSwiper {
     constructor() {
+        console.log('[DEBUG] ReviewsSwiper constructor called');
         this.wrapper = document.querySelector('.js-reviews-swiper');
+        console.log('[DEBUG] Wrapper found:', !!this.wrapper);
         if (this.wrapper) {
             this.init();
         }
     }
 
     init() {
-        new Swiper(this.wrapper, {
+        console.log('[DEBUG] ReviewsSwiper init() called');
+        console.log('[DEBUG] Swiper CSS check:', document.querySelector('link[href*="swiper"]') ? 'loaded' : 'NOT loaded');
+        const swiper = new Swiper(this.wrapper, {
             modules: [Navigation, Autoplay],
             slidesPerView: 1,
             spaceBetween: 20,
@@ -41,5 +45,7 @@ export default class ReviewsSwiper {
                 },
             },
         });
+        console.log('[DEBUG] Swiper instance created:', swiper);
+        console.log('[DEBUG] Swiper slides count:', swiper.slides.length);
     }
 }

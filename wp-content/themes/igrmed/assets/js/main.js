@@ -89,8 +89,11 @@ const components = [
     loader: () => import(/* webpackChunkName: "comp-popups" */ "./popups/main"),
   },
   {
-    selector: ".swiper, .pregnancy-doctors, .advantages-preg, .licenses-certificates",
-    loader: () => import(/* webpackChunkName: "comp-swipers" */ "./swipers/main"),
+    selector: ".swiper, .pregnancy-doctors, .advantages-preg, .licenses-certificates, .js-reviews-swiper",
+    loader: () => {
+      console.log('[DEBUG] Loading swipers chunk');
+      return import(/* webpackChunkName: "comp-swipers" */ "./swipers/main");
+    },
   },
   {
     selector: ".pregnancy-management-swiper, #pregnancy-management",
