@@ -42,6 +42,13 @@ const components = [
       ),
   },
   {
+    selector: "#ekz-programs",
+    loader: () =>
+      import(
+        /* webpackChunkName: "comp-ekz-programs" */ "./components/ekz/programs-swiper"
+      ),
+  },
+  {
     selector: "#single-doctor",
     loader: () =>
       import(/* webpackChunkName: "comp-doctor" */ "./components/single-doctor/main"),
@@ -90,10 +97,7 @@ const components = [
   },
   {
     selector: ".swiper, .pregnancy-doctors, .advantages-preg, .licenses-certificates, .js-reviews-swiper",
-    loader: () => {
-      console.log('[DEBUG] Loading swipers chunk');
-      return import(/* webpackChunkName: "comp-swipers" */ "./swipers/main");
-    },
+    loader: () => import(/* webpackChunkName: "comp-swipers" */ "./swipers/main"),
   },
   {
     selector: ".pregnancy-management-swiper, #pregnancy-management",

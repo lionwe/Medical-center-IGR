@@ -29,7 +29,7 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    gap: convert-to-rem(60px);
+    gap: Clamp(43px, 50px);
 
     @include mobile {
       gap: convert-to-rem(14px);

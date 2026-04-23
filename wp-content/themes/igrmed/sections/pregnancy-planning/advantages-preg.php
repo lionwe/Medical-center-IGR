@@ -1,7 +1,7 @@
 <?php
 /**
  * Section: Advantages Preg
- * Location: Infertility Women page
+ * Location: Pregnancy Planning page
  */
 
 $title = trim((string) get_field('advantages-preg_title'));

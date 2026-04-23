@@ -364,9 +364,12 @@ if (empty($sections)) {
                         </div>
                         <div class="ekz-content__section-body">
                             <?php if (!empty($programs_list)): ?>
-                                <div class="ekz-content__programs">
-                                    <?php foreach ($programs_list as $program): ?>
-                                        <article class="ekz-content__program-card">
+                                <div class="ekz-content__programs-slider-wrapper">
+                                    <div class="swiper js-ekz-programs-slider ekz-content__programs">
+                                        <div class="swiper-wrapper">
+                                            <?php foreach ($programs_list as $program): ?>
+                                                <div class="swiper-slide">
+                                                    <article class="ekz-content__program-card">
                                             <div class="ekz-content__program-content">
                                                 <?php if ($program['title'] !== ''): ?>
                                                     <h3 class="ekz-content__program-title">
@@ -403,9 +406,31 @@ if (empty($sections)) {
                                                     ?>
                                                 </div>
                                             <?php endif; ?>
-                                        </article>
-                                    <?php endforeach; ?>
+                                                </article>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
+
+                                <div class="ekz-content__programs-nav">
+                                    <?php
+                                    get_template_part('templates/button', null, [
+                                        'type' => 'carousel',
+                                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-prev.svg',
+                                        'class' => 'ekz-content__programs-prev js-ekz-programs-prev',
+                                        'attributes' => ['aria-label' => 'Попередній'],
+                                    ]);
+                                    ?>
+                                    <?php
+                                    get_template_part('templates/button', null, [
+                                        'type' => 'carousel',
+                                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg',
+                                        'class' => 'ekz-content__programs-next js-ekz-programs-next',
+                                        'attributes' => ['aria-label' => 'Наступний'],
+                                    ]);
+                                    ?>
+                                </div>
+                            </div>
                             <?php endif; ?>
                         </div>
                     </div>

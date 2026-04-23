@@ -14,7 +14,7 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    gap: convert-to-rem(50px);
+    gap: Clamp(43px, 50px);
 
     @include mobile {
       gap: convert-to-rem(32px);
@@ -81,6 +81,10 @@
     @include mobile {
       padding: convert-to-rem(16px) 0;
     }
+  }
+
+  &__section--symptoms &__section-body {
+    padding: convert-to-rem(20px) 0 0 0;
   }
 
   &__section-body--methods {
@@ -194,6 +198,7 @@
     padding: convert-to-rem(6px) Clamp(10px, 23px);
     overflow: hidden;
     justify-content: center;
+    min-height: convert-to-rem(95px);
   }
 
   &__symptoms-card strong {
