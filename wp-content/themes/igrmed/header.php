@@ -260,8 +260,14 @@
                                             class="header__cta-text"><?php igrmed_e('btn_contact_us'); ?></span>
                                         <span class="header__cta-icon">
                                             <span class="header__cta-icon-circle" aria-hidden="true"></span>
-                                            <img class="header__cta-icon-arrow" src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg'); ?>"
-                                                alt="">
+                                            <?php
+                                            get_picture([
+                                                'name' => 'svg/contact-arrow.svg',
+                                                'alt' => 'Contact arrow icon',
+                                                'class' => 'header__cta-icon-arrow',
+                                                'lazy' => false,
+                                            ]);
+                                            ?>
                                         </span>
                                     </a>
                                 </div>
@@ -314,8 +320,14 @@
                         <span class="header__cta-text"><?php igrmed_e('btn_contact_us'); ?></span>
                         <span class="header__cta-icon">
                             <span class="header__cta-icon-circle" aria-hidden="true"></span>
-                            <img class="header__cta-icon-arrow" src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/contact-arrow.svg'); ?>"
-                                alt="">
+                            <?php
+                            get_picture([
+                                'name' => 'svg/contact-arrow.svg',
+                                'alt' => 'Contact arrow icon',
+                                'class' => 'header__cta-icon-arrow',
+                                'lazy' => false,
+                            ]);
+                            ?>
                         </span>
                     </a>
                     <div class="header__mobile-menu-info">

@@ -9,6 +9,12 @@ $intro_content = is_string($intro_content) ? trim($intro_content) : '';
 
 $stages_title = trim((string) get_field('stages_title'));
 $stages_image = get_field('stages_image');
+$stages_image_alt = '';
+if (is_array($stages_image) && !empty($stages_image['url'])) {
+    $stages_image_alt = $stages_image['alt'];
+} elseif (is_numeric($stages_image)) {
+    $stages_image_alt = get_post_meta((int) $stages_image, '_wp_attachment_image_alt', true);
+}
 $stages_list = get_field('stages_list');
 $stages_cards = [];
 
@@ -136,7 +142,15 @@ if (empty($sections)) {
                                 <?php endif; ?>
                                 <?php if ($stages_image): ?>
                                     <div class="egg-donor-content__stages-image">
-                                        <img src="<?php echo esc_url($stages_image); ?>" alt="">
+                                        <?php
+                                        $img_url = is_array($stages_image) ? $stages_image['url'] : $stages_image;
+                                        get_picture([
+                                            'src' => $img_url,
+                                            'alt' => $stages_image_alt,
+                                            'class' => '',
+                                            'lazy' => true,
+                                        ]);
+                                        ?>
                                     </div>
                                 <?php endif; ?>
                             </div>

@@ -27,7 +27,14 @@ if ($bg && isset($bg['url'])) {
                     <div class="swiper-wrapper">
                         <?php foreach ($gallery as $image): ?>
                             <div class="swiper-slide licenses-certificates__slide">
-                                <img src="<?php echo esc_url($image['sizes']['large'] ?? $image['url']); ?>" alt="<?php echo esc_attr($image['alt'] ?: $title); ?>" class="licenses-certificates__img" loading="lazy">
+                                <?php
+                                get_picture([
+                                    'src' => $image['sizes']['large'] ?? $image['url'],
+                                    'alt' => $image['alt'],
+                                    'class' => 'licenses-certificates__img',
+                                    'lazy' => true,
+                                ]);
+                                ?>
                             </div>
                         <?php endforeach; ?>
                     </div>

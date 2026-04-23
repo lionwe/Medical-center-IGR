@@ -11,19 +11,29 @@ $footer_form_shortcode = (string) get_field('footer_form_shortcode', 'option');
 $address_text = wp_strip_all_tags(str_replace(['<br>', '<br/>', '<br />'], ' ', $footer_contacts ?: ''));
 $map_src      = 'https://maps.google.com/maps?q=' . urlencode($address_text) . '&t=m&z=14&output=embed&iwloc=near';
 
-// Extract phone icon URL
+// Extract phone icon data
 $icon_phone_url = '';
+$icon_phone_alt = '';
 if (is_array($icon_phone) && !empty($icon_phone['url'])) {
     $icon_phone_url = $icon_phone['url'];
+    $icon_phone_alt = $icon_phone['alt'];
 } elseif (is_numeric($icon_phone)) {
     $icon_phone_url = wp_get_attachment_url((int) $icon_phone);
+    $icon_phone_alt = get_post_meta((int) $icon_phone, '_wp_attachment_image_alt', true);
 } elseif (is_string($icon_phone)) {
     $icon_phone_url = $icon_phone;
 }
 ?>
 <footer class="footer">
     <div class="footer__bg">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/footer-bg.svg" alt="" aria-hidden="true">
+        <?php
+        get_picture([
+            'src' => get_template_directory_uri() . '/assets/img/svg/footer-bg.svg',
+            'alt' => 'Footer background',
+            'class' => '',
+            'lazy' => false,
+        ]);
+        ?>
     </div>
     <div class="container footer__container">
         <div class="footer__top">
@@ -41,7 +51,14 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
                         <?php if ($phone_1): ?>
                             <div class="footer__phone">
                                 <?php if ($icon_phone_url): ?>
-                                    <img src="<?php echo esc_url($icon_phone_url); ?>" alt="" class="footer__phone-icon" width="28" height="28">
+                                    <?php
+                                    get_picture([
+                                        'src' => $icon_phone_url,
+                                        'alt' => $icon_phone_alt,
+                                        'class' => 'footer__phone-icon',
+                                        'lazy' => false,
+                                    ]);
+                                    ?>
                                 <?php endif; ?>
                                 <a href="<?php echo esc_attr($phone_1['url'] ?? '#'); ?>"><?php echo esc_html($phone_1['title'] ?? ''); ?></a>
                             </div>
@@ -50,7 +67,14 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
                         <?php if ($phone_2): ?>
                             <div class="footer__phone">
                                 <?php if ($icon_phone_url): ?>
-                                    <img src="<?php echo esc_url($icon_phone_url); ?>" alt="" class="footer__phone-icon" width="28" height="28">
+                                    <?php
+                                    get_picture([
+                                        'src' => $icon_phone_url,
+                                        'alt' => $icon_phone_alt,
+                                        'class' => 'footer__phone-icon',
+                                        'lazy' => false,
+                                    ]);
+                                    ?>
                                 <?php endif; ?>
                                 <a href="<?php echo esc_attr($phone_2['url'] ?? '#'); ?>"><?php echo esc_html($phone_2['title'] ?? ''); ?></a>
                             </div>
@@ -139,7 +163,14 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
             <?php if ($footer_main_title || $footer_logo): ?>
                 <div class="footer__bottom-title-row">
                     <?php if ($footer_logo): ?>
-                        <img src="<?php echo esc_url($footer_logo['url']); ?>" alt="" class="footer__logo-bg" width="553" height="308" aria-hidden="true" loading="lazy">
+                        <?php
+                        get_picture([
+                            'src' => $footer_logo['url'],
+                            'alt' => $footer_logo['alt'],
+                            'class' => 'footer__logo-bg',
+                            'lazy' => true,
+                        ]);
+                        ?>
                     <?php endif; ?>
 
                     <?php if ($footer_main_title): ?>

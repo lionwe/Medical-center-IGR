@@ -228,7 +228,19 @@ if (empty($sections)) {
                                             <article class="male-infertility-content__stage-item">
                                                 <?php if ($stage['icon'] !== ''): ?>
                                                     <span class="male-infertility-content__stage-icon-wrap" aria-hidden="true">
-                                                        <img src="<?php echo esc_url($stage['icon']); ?>" alt="" class="male-infertility-content__stage-icon" loading="lazy">
+                                                        <?php
+                                                        $icon_url = is_array($stage['icon']) ? $stage['icon']['url'] : $stage['icon'];
+                                                        $icon_alt = is_array($stage['icon']) ? $stage['icon']['alt'] : '';
+                                                        if (is_numeric($stage['icon'])) {
+                                                            $icon_alt = get_post_meta((int) $stage['icon'], '_wp_attachment_image_alt', true);
+                                                        }
+                                                        get_picture([
+                                                            'src' => $icon_url,
+                                                            'alt' => $icon_alt,
+                                                            'class' => 'male-infertility-content__stage-icon',
+                                                            'lazy' => true,
+                                                        ]);
+                                                        ?>
                                                     </span>
                                                 <?php endif; ?>
                                                 <div class="male-infertility-content__stage-content">

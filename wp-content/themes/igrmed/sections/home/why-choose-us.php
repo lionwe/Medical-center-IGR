@@ -66,7 +66,14 @@ if (!$title && !$list) {
                             <?php endif; ?>
 
                             <button type="button" class="why-choose-us__play-btn js-video-play" aria-label="<?php esc_attr_e('Play video', 'igrmed'); ?>">
-                                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/play.svg'); ?>" alt="Play" width="31" height="33">
+                                <?php
+                                get_picture([
+                                    'name' => 'svg/play.svg',
+                                    'alt' => 'Play',
+                                    'class' => '',
+                                    'lazy' => false,
+                                ]);
+                                ?>
                             </button>
                         </div>
                     </div>

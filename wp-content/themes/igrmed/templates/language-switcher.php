@@ -45,7 +45,14 @@ $aria_label = __('Language switcher', 'igr-theme');
         aria-label="<?php echo esc_attr($aria_label); ?>">
         <span class="header__lang-trigger-label"><?php echo esc_html($current_label); ?></span>
         <span class="header__lang-icon" aria-hidden="true">
-            <img src="<?php echo esc_url($arrow_url); ?>" alt="" width="9" height="5" decoding="async">
+            <?php
+            get_picture([
+                'name' => 'svg/lang-switcher-arrow.svg',
+                'alt' => 'Language switcher arrow',
+                'class' => '',
+                'lazy' => false,
+            ]);
+            ?>
         </span>
     </button>
     <div class="header__lang-dropdown" aria-hidden="true">

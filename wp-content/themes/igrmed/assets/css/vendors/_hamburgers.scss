@@ -5,7 +5,7 @@
   --_open: 1000ms;
   --_close: 1000ms;
   width: 100vw;
-  height: 100vh;
+  height: 100lvh;
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -37,7 +37,7 @@ body.mobile-menu-open {
     position: fixed;
     inset: 0;
     width: 100vw;
-    height: 100dvh;
+    height: 100lvh;
     z-index: 1;
     display: none;
     align-items: center;

@@ -72,8 +72,14 @@
             <?php if ($footer_main_title || $footer_logo): ?>
                 <div class="footer__bottom-title-row">
                     <?php if ($footer_logo): ?>
-                        <img src="<?php echo esc_url($footer_logo['url']); ?>" alt="" class="footer__logo-bg" width="553"
-                            height="308" aria-hidden="true" loading="lazy">
+                        <?php
+                        get_picture([
+                            'src' => $footer_logo['url'],
+                            'alt' => $footer_logo['alt'],
+                            'class' => 'footer__logo-bg',
+                            'lazy' => true,
+                        ]);
+                        ?>
                     <?php endif; ?>
 
                     <?php if ($footer_main_title): ?>

@@ -29,7 +29,14 @@ if ($title === '') {
         </div>
 
         <div class="photo-banner__image-wrap" aria-hidden="true">
-            <img class="photo-banner__image" src="<?php echo esc_url($image_url); ?>" alt="" loading="lazy">
+            <?php
+            get_picture([
+                'name' => 'baby.webp',
+                'alt' => 'Photo banner image',
+                'class' => 'photo-banner__image',
+                'lazy' => true,
+            ]);
+            ?>
         </div>
     </div>
 </section>

@@ -102,8 +102,19 @@ if ($has_program) {
                                 data-tab="<?php echo esc_attr($tab['tab_type'] ?? 'tab_' . $index); ?>">
                                 <?php if (!empty($tab['tab_icon'])) : ?>
                                 <span class="surrogate-motherhood-content__tab-icon-wrap">
-                                    <img src="<?php echo esc_url($tab['tab_icon']); ?>" alt=""
-                                        class="surrogate-motherhood-content__tab-icon">
+                                    <?php
+                                    $tab_icon_url = is_array($tab['tab_icon']) ? $tab['tab_icon']['url'] : $tab['tab_icon'];
+                                    $tab_icon_alt = is_array($tab['tab_icon']) ? $tab['tab_icon']['alt'] : '';
+                                    if (is_numeric($tab['tab_icon'])) {
+                                        $tab_icon_alt = get_post_meta((int) $tab['tab_icon'], '_wp_attachment_image_alt', true);
+                                    }
+                                    get_picture([
+                                        'src' => $tab_icon_url,
+                                        'alt' => $tab_icon_alt,
+                                        'class' => 'surrogate-motherhood-content__tab-icon',
+                                        'lazy' => true,
+                                    ]);
+                                    ?>
                                 </span>
                                 <?php endif; ?>
                                 <span><?php echo esc_html($tab['tab_nav_title'] ?? ''); ?></span>
@@ -117,7 +128,6 @@ if ($has_program) {
                                 data-loaded="<?php echo $index === 0 ? 'true' : 'false'; ?>"
                                 <?php echo $index !== 0 ? 'hidden' : ''; ?>>
                                 <?php if ($index === 0) : ?>
-                               
                                 <?php if (!empty($tab['tab_content_text'])) : ?>
                                 <div class="surrogate-motherhood-content__tab-text">
                                     <?php echo wp_kses_post($tab['tab_content_text']); ?>
@@ -139,8 +149,19 @@ if ($has_program) {
                                 data-tab="<?php echo esc_attr($tab['tab_type'] ?? 'tab_' . $index); ?>">
                                 <?php if (!empty($tab['tab_icon'])) : ?>
                                 <span class="surrogate-motherhood-content__tab-icon-wrap">
-                                    <img src="<?php echo esc_url($tab['tab_icon']); ?>" alt=""
-                                        class="surrogate-motherhood-content__tab-icon">
+                                    <?php
+                                    $tab_icon_url = is_array($tab['tab_icon']) ? $tab['tab_icon']['url'] : $tab['tab_icon'];
+                                    $tab_icon_alt = is_array($tab['tab_icon']) ? $tab['tab_icon']['alt'] : '';
+                                    if (is_numeric($tab['tab_icon'])) {
+                                        $tab_icon_alt = get_post_meta((int) $tab['tab_icon'], '_wp_attachment_image_alt', true);
+                                    }
+                                    get_picture([
+                                        'src' => $tab_icon_url,
+                                        'alt' => $tab_icon_alt,
+                                        'class' => 'surrogate-motherhood-content__tab-icon',
+                                        'lazy' => true,
+                                    ]);
+                                    ?>
                                 </span>
                                 <?php endif; ?>
                                 <span><?php echo esc_html($tab['tab_nav_title'] ?? ''); ?></span>
@@ -213,7 +234,7 @@ if ($has_program) {
                         <div class="surrogate-motherhood-content__program-image">
                             <?php get_picture([
                                         'src'   => $program_image_url,
-                                        'alt'   => is_array($program_image) ? ($program_image['alt'] ?? '') : '',
+                                        'alt'   => is_array($program_image) ? $program_image['alt'] : '',
                                         'class' => 'surrogate-motherhood-content__program-img',
                                     ]); ?>
                         </div>
