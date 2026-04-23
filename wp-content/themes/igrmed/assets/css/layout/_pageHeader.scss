@@ -31,30 +31,6 @@ $_header-cta-gradient: linear-gradient(180deg,
   }
 
   // Mobile burger menu panel (header.php: .header__mobile-menu[data-mobile-menu])
-  &__mobile-menu {
-    display: none;
-
-    &.is-open {
-      display: block;
-    }
-
-    @include mobile {
-      position: fixed;
-      inset: 0;
-      // Prefer modern viewport units on mobile browsers.
-      height: 100lvh;
-      max-height: 100lvh;
-      // Fallbacks for older browsers.
-      min-height: 100vh;
-
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
-
-      background: rgba(13, 19, 25, 0.9);
-      padding: convert-to-rem(16px);
-    }
-  }
 
   &__wrapper {
     position: relative;
