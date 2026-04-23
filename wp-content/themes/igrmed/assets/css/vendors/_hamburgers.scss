@@ -25,15 +25,10 @@
   }
 }
 
-body:has(.backdrop[open]) {
-  overflow: hidden;
-}
-
-body.noOverflow {
-  overflow: hidden;
-}
-
-html.noOverflow {
+body:has(.backdrop[open]),
+body.noOverflow,
+html.noOverflow,
+body.mobile-menu-open {
   overflow: hidden;
 }
 
@@ -43,7 +38,6 @@ html.noOverflow {
     inset: 0;
     width: 100vw;
     height: 100dvh;
-    min-height: 100vh;
     z-index: 1;
     display: none;
     align-items: center;
@@ -79,15 +73,10 @@ html.noOverflow {
       padding: 0;
     }
 
-    &-nav {
-      display: flex;
-      justify-content: center;
-    }
-
     &-cta {
       order: 2;
       margin: 0;
-      color: var(--color-white) !important;
+      color: var(--color-white);
     }
 
     &-info {
@@ -199,14 +188,14 @@ html.noOverflow {
         padding: 0;
         width: min(convert-to-rem(320px), 100%);
         flex-direction: column;
-        align-items: center !important;
+        align-items: center;
         gap: 0;
 
         > .menu-item {
           width: 100%;
           padding-right: 0;
           padding-bottom: 0;
-          padding: convert-to-rem(20px) convert-to-rem(12px) 24px convert-to-rem(12px);
+          padding: convert-to-rem(12px) convert-to-rem(8px) convert-to-rem(12px) convert-to-rem(8px);
           border-right: none;
           border-bottom: 1px solid rgba(255, 255, 255, 0.35);
           text-align: center;
@@ -216,13 +205,10 @@ html.noOverflow {
           }
         }
 
-        > .menu-item:last-child {
-          padding-bottom: 24px !important;
-        }
 
         > .menu-item > a {
           display: block;
-          text-align: center !important;
+          text-align: center;
           color: var(--color-white);
           text-decoration: none;
           @include typography($font-family-montserrat, $fw-regular, 14px, 14px);
@@ -239,7 +225,7 @@ html.noOverflow {
         }
 
         > .menu-item--nav-directions {
-          padding: convert-to-rem(20px) convert-to-rem(12px) convert-to-rem(24px) convert-to-rem(12px);
+      padding: convert-to-rem(12px) convert-to-rem(8px) convert-to-rem(12px) convert-to-rem(8px); // ← було 20px / 24px
           border-radius: 0;
           justify-content: center;
 
@@ -259,9 +245,9 @@ html.noOverflow {
         > .menu-item--nav-directions:focus,
         > .menu-item--nav-directions:focus-within,
         > .menu-item--nav-directions.is-open {
-          background: transparent !important;
-          background-color: transparent !important;
-          box-shadow: none !important;
+          background: transparent;
+          background-color: transparent;
+          box-shadow: none;
         }
 
         > .menu-item--nav-directions > a,
@@ -270,9 +256,9 @@ html.noOverflow {
         > .menu-item--nav-directions > a:focus,
         > .menu-item--nav-directions > a:focus-visible,
         > .menu-item--nav-directions > a:visited {
-          background: transparent !important;
-          background-color: transparent !important;
-          box-shadow: none !important;
+          background: transparent;
+          background-color: transparent;
+          box-shadow: none;
         }
 
         .menu-item-has-children {
@@ -291,11 +277,10 @@ html.noOverflow {
           width: convert-to-rem(280px);
           max-width: none;
           box-sizing: border-box;
-          background: var(--color-white) !important;
-          background-color: var(--color-white) !important;
+          background: var(--color-white);
           border-radius: convert-to-rem(10px);
           box-shadow: 0 convert-to-rem(4px) convert-to-rem(50px) 0 rgba(0, 0, 0, 0.5);
-          z-index: 10;
+          z-index: 1030;
         }
 
         .menu-item-has-children.is-open > .sub-menu {
@@ -319,10 +304,9 @@ html.noOverflow {
           display: block;
           width: 100%;
           box-sizing: border-box;
-          padding: convert-to-rem(10px) convert-to-rem(8px);
-          text-align: left !important;
+          padding: convert-to-rem(6px) convert-to-rem(8px);
+          text-align: left;
           color: var(--color-text-main);
-          border-radius: convert-to-rem(8px);
 
           &:hover {
             background: rgba(202, 213, 218, 1);

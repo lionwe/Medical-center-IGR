@@ -10,7 +10,7 @@ $_header-cta-gradient: linear-gradient(180deg,
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10110;
+  z-index: 1010;
   transition:
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.22s ease-out;
@@ -24,7 +24,7 @@ $_header-cta-gradient: linear-gradient(180deg,
   @include mobile {
     right: 0;
     isolation: isolate;
-    z-index: 2147483647;
+    z-index: 1020;
     transition:
       transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
       opacity 0.32s ease-out;
@@ -36,13 +36,13 @@ $_header-cta-gradient: linear-gradient(180deg,
     position: relative;
     z-index: 3;
     padding: convert-to-rem(4px) convert-to-rem(11px) 0 convert-to-rem(38px);
-    background-color: var(--color-white-07) !important;
+    background-color: var(--color-white-07);
     border-radius: 0 0 22px 22px;
     box-shadow: 0 convert-to-rem(4px) convert-to-rem(4px) 0 var(--color-black-012);
     transition: background-color 0.3s ease;
 
     .header.is-scrolled & {
-      background-color: var(--color-white) !important;
+      background-color: var(--color-white);
     }
 
     @include mobile {
@@ -498,7 +498,7 @@ $_header-cta-gradient: linear-gradient(180deg,
       box-shadow: 0 convert-to-rem(4px) convert-to-rem(24px) rgba(0, 0, 0, 0.12);
       max-height: convert-to-rem(400px);
       overflow-y: auto;
-      z-index: 100;
+      z-index: 1030;
       display: none;
 
       &.is-visible {
@@ -623,7 +623,7 @@ $_header-cta-gradient: linear-gradient(180deg,
     right: 0;
     min-width: 100%;
     overflow: hidden;
-    z-index: 0;
+    z-index: 1030;
     display: none;
     opacity: 0;
     border-radius: convert-to-rem(12px);
@@ -700,7 +700,7 @@ $_header-cta-gradient: linear-gradient(180deg,
 
   &__lang.show-options &__lang-dropdown {
     display: block;
-    z-index: 10020;
+    z-index: 1030;
   }
 
   &__lang.anim-options &__lang-dropdown {
@@ -869,7 +869,7 @@ $_header-cta-gradient: linear-gradient(180deg,
   &__search-popup {
     position: fixed;
     inset: 0;
-    z-index: 2147483647;
+    z-index: 1040;
     display: none;
     align-items: flex-start;
     justify-content: center;
@@ -891,6 +891,7 @@ $_header-cta-gradient: linear-gradient(180deg,
     position: absolute;
     inset: 0;
     background: rgba(13, 19, 25, 0.9);
+    z-index: 1000;
   }
 
   &__search-popup-container {
@@ -1091,34 +1092,12 @@ $_header-cta-gradient: linear-gradient(180deg,
   }
 
   @include mobile {
-    flex-direction: column;
-    align-items: stretch;
-    margin-right: 0;
-    padding-right: 0;
-
-    .menu-item {
-      padding-right: 0;
-      padding-bottom: convert-to-rem(12px);
-      border-right: none;
-      border-bottom: 1px solid var(--color-gray-light);
-
-      &:last-child {
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-    }
-
-    a {
-      text-align: left;
-      padding: convert-to-rem(8px) 0;
-      display: block;
-    }
+    display: none;
   }
 }
 
 // Chevron after “Напрямки” (class menu-item--nav-directions from functions.php or manual in Menus)
-.header__menu .nav-list>.menu-item--nav-directions>a,
-.header__mobile-menu-nav .nav-list>.menu-item--nav-directions>a {
+.header__menu .nav-list>.menu-item--nav-directions>a {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
@@ -1138,6 +1117,31 @@ $_header-cta-gradient: linear-gradient(180deg,
     width: convert-to-rem(9px);
     height: convert-to-rem(5px);
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5' fill='none'%3E%3Cpath d='M7.65 0.5L4.075 4.35L0.5 0.5' stroke='%230C0B0B' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+}
+
+// Mobile menu chevron styling
+.header__mobile-menu-nav .nav-list>.menu-item--nav-directions>a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: convert-to-rem(6px);
+  padding: convert-to-rem(4px);
+  border-radius: 0;
+  background: transparent;
+  transition: background 0.2s ease;
+
+  &::after {
+    content: "";
+    flex-shrink: 0;
+    width: convert-to-rem(9px);
+    height: convert-to-rem(5px);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5' viewBox='0 0 9 5' fill='none'%3E%3Cpath d='M7.65 0.5L4.075 4.35L0.5 0.5' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+    transition: transform 0.2s ease;
+  }
+
+  &.is-open > a::after {
+    transform: rotate(180deg);
   }
 }
 
@@ -1180,11 +1184,11 @@ $_header-cta-gradient: linear-gradient(180deg,
     list-style: none;
     margin: 0;
     background: var(--color-white);
-    border-radius: convert-to-rem(10px);
     box-shadow: 0 convert-to-rem(4px) convert-to-rem(50px) 0 rgba(0, 0, 0, 0.5);
     padding: convert-to-rem(14px) convert-to-rem(10px);
-    z-index: 9999;
+    z-index: 1030;
     opacity: 0;
+    border-radius: convert-to-rem(12px);
     visibility: hidden;
     pointer-events: none;
     transition:
@@ -1193,7 +1197,7 @@ $_header-cta-gradient: linear-gradient(180deg,
       transform 0.3s ease;
   }
 
-  // First-level panel centered under its parent item (matches centered nav labels)
+  // First-level panel centerxqed under its parent item (matches centered nav labels)
   >.menu-item-has-children>.sub-menu {
     top: calc(100% + convert-to-rem(10px));
     left: 50%;

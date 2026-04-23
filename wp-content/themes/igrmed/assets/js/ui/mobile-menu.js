@@ -18,6 +18,7 @@ const initMobileMenu = () => {
 
     document.documentElement.classList.add("noOverflow");
     document.body.classList.add("noOverflow");
+    document.body.classList.add("fixed-position");
 
     document.body.style.position = "fixed";
     document.body.style.top = `-${y}px`;
@@ -35,6 +36,7 @@ const initMobileMenu = () => {
 
     document.documentElement.classList.remove("noOverflow");
     document.body.classList.remove("noOverflow");
+    document.body.classList.remove("fixed-position");
 
     document.body.style.position = "";
     document.body.style.top = "";

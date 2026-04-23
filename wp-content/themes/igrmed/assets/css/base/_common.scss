@@ -25,9 +25,12 @@
   }
 }
 
-
 main {
   display: grid;
   gap: var(--_section-gap);
   grid-auto-rows: max-content;
+}
+
+.fixed-position {
+  position: fixed;
 }
