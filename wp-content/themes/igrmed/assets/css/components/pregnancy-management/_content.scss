@@ -24,7 +24,7 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    gap: convert-to-rem(60px);
+    gap: Clamp(43px, 50px);
 
     @include mobile {
       gap: convert-to-rem(14px);
@@ -71,6 +71,10 @@
     align-items: center;
     margin: 0;
     color: var(--color-white);
+
+    @include mobile {
+      @include typography($font-family-montserrat, $fw-semibold, (16px, 18px), 1.2, 0);
+    }
   }
 
   &__body {

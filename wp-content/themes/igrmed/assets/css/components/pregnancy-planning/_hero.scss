@@ -1,7 +1,7 @@
 @use "../../utils/mixins" as *;
 @use "../../base/variables" as *;
 
-.infertility-women-hero {
+.pregnancy-planning-hero {
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 100% 441px;
@@ -53,7 +53,7 @@
     width: convert-to-rem(1435px);
     height: convert-to-rem(1199px);
     transform: translate(-50%, -50%);
-    background-image: url("../img/svg/infertility-women-hero-bg.svg");
+    background-image: url("../img/svg/pregnancy-planning-hero-bg.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

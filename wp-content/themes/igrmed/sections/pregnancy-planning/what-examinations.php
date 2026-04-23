@@ -1,7 +1,7 @@
 <?php
 /**
  * Section: What Examinations
- * Location: Infertility Women page
+ * Location: Pregnancy Planning page
  */
 
 $section_title = trim((string) get_field('title_what-examinations'));

@@ -20,7 +20,7 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    gap: convert-to-rem(60px);
+    gap: Clamp(43px, 50px);
 
     @include mobile {
       gap: convert-to-rem(14px);
@@ -555,7 +555,7 @@
       }
 
       @include mobile {
-        padding: convert-to-rem(10px) convert-to-rem(12px);
+        padding: 0;
       }
     }
 
@@ -584,6 +584,38 @@
       @include mobile {
         padding: 0;
       }
+    }
+
+    @include mobile {
+      .ekz-content__programs-slider-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: convert-to-rem(10px);
+      }
+
+      .ekz-content__programs {
+        overflow: hidden;
+
+        .swiper-wrapper {
+          display: flex;
+        }
+
+        .swiper-slide {
+          width: auto;
+          flex: 0 0 auto;
+        }
+      }
+
+      .ekz-content__programs-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: convert-to-rem(10px);
+      }
+    }
+
+    .ekz-content__programs-nav {
+      display: none;
     }
   }
 

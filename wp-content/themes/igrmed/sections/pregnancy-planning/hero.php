@@ -10,23 +10,23 @@ if ($title_pregnant === '') {
 }
 ?>
 
-<section id="infertility-women-hero" class="infertility-women-hero" <?php echo $hero_style; ?>>
+<section id="pregnancy-planning-hero" class="pregnancy-planning-hero" <?php echo $hero_style; ?>>
     <div class="container">
         <?php get_template_part('templates/breadcrumbs'); ?>
         <?php get_template_part('templates/gradient-banner'); ?>
 
-        <div class="infertility-women-hero__wrapper">
-            <div class="infertility-women-hero__bg" aria-hidden="true">
-                <div class="infertility-women-hero__bg-desktop" aria-hidden="true"></div>
+        <div class="pregnancy-planning-hero__wrapper">
+            <div class="pregnancy-planning-hero__bg" aria-hidden="true">
+                <div class="pregnancy-planning-hero__bg-desktop" aria-hidden="true"></div>
             </div>
-            <div class="infertility-women-hero__left">
-                <div class="infertility-women-hero__left-title"><?php echo wp_kses_post($title_pregnant); ?>
+            <div class="pregnancy-planning-hero__left">
+                <div class="pregnancy-planning-hero__left-title"><?php echo wp_kses_post($title_pregnant); ?>
                 </div>
             </div>
 
-            <div class="infertility-women-hero__right">
+            <div class="pregnancy-planning-hero__right">
                 <?php if ($right_text_pregnant !== ''): ?>
-                    <div class="infertility-women-hero__text"><?php echo wp_kses_post($right_text_pregnant); ?>
+                    <div class="pregnancy-planning-hero__text"><?php echo wp_kses_post($right_text_pregnant); ?>
                     </div>
                 <?php endif; ?>
             </div>
