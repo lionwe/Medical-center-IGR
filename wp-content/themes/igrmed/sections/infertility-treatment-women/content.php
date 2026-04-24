@@ -245,7 +245,19 @@ if (empty($sections)) {
                                             <article class="infertility-treatment-women__stage-item">
                                                 <?php if ($stage['icon'] !== ''): ?>
                                                     <span class="infertility-treatment-women__stage-icon-wrap" aria-hidden="true">
-                                                        <img src="<?php echo esc_url($stage['icon']); ?>" alt="" class="infertility-treatment-women__stage-icon" loading="lazy">
+                                                        <?php
+                                                        $icon_url = is_array($stage['icon']) ? $stage['icon']['url'] : $stage['icon'];
+                                                        $icon_alt = is_array($stage['icon']) ? $stage['icon']['alt'] : '';
+                                                        if (is_numeric($stage['icon'])) {
+                                                            $icon_alt = get_post_meta((int) $stage['icon'], '_wp_attachment_image_alt', true);
+                                                        }
+                                                        get_picture([
+                                                            'src' => $icon_url,
+                                                            'alt' => $icon_alt,
+                                                            'class' => 'infertility-treatment-women__stage-icon',
+                                                            'lazy' => true,
+                                                        ]);
+                                                        ?>
                                                     </span>
                                                 <?php endif; ?>
                                                 <div class="infertility-treatment-women__stage-content">

@@ -13,13 +13,16 @@ $doctors_list  = is_array($doctors_list) ? array_filter($doctors_list, function(
     return !empty($doctor_id);
 }) : [];
 
-// Отримуємо URL фону
+// Отримуємо URL та alt фону
 $bg_url = '';
+$bg_alt = '';
 if ($doctors_bg) {
     if (is_array($doctors_bg) && !empty($doctors_bg['url'])) {
         $bg_url = $doctors_bg['url'];
+        $bg_alt = $doctors_bg['alt'] ?? '';
     } elseif (is_numeric($doctors_bg)) {
         $bg_url = wp_get_attachment_image_url((int) $doctors_bg, 'full');
+        $bg_alt = get_post_meta((int) $doctors_bg, '_wp_attachment_image_alt', true);
     } elseif (is_string($doctors_bg) && $doctors_bg !== '') {
         $bg_url = $doctors_bg;
     }
@@ -30,7 +33,17 @@ if (empty($doctors_list)) {
 }
 ?>
 
-<div class="pregnancy-doctors" id="preg-doctors"<?php if ($doctors_bg): ?> style="background-image: url('<?php echo esc_url($bg_url); ?>');"<?php endif; ?>>
+<div class="pregnancy-doctors" id="preg-doctors">
+    <?php if ($bg_url !== ''): ?>
+        <?php
+        get_picture([
+            'src' => $bg_url,
+            'alt' => $bg_alt,
+            'class' => 'pregnancy-doctors__bg',
+            'lazy' => true,
+        ]);
+        ?>
+    <?php endif; ?>
     <div class="container">
         <div class="pregnancy-doctors__wrapper">
             <?php if ($doctors_title !== ''): ?>
@@ -90,6 +103,7 @@ if (empty($doctors_list)) {
                                             'src'   => $doctor_photo_url,
                                             'alt'   => $doctor_name,
                                             'class' => 'pregnancy-doctors__slide-image',
+                                            'lazy' => true,
                                         ]);
                                         ?>
 

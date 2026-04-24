@@ -117,7 +117,15 @@ $contact_label = igrmed__('btn_contact_us');
 
                 <div class="doctor-hero__image-wrapper">
                     <?php if ($doctor_photo): ?>
-                        <?php echo wp_get_attachment_image($doctor_photo, 'full', false, ['class' => 'doctor-hero__image', 'alt' => $doctor_name]); ?>
+                        <?php
+                        $doctor_photo_alt = get_post_meta((int) $doctor_photo, '_wp_attachment_image_alt', true);
+                        get_picture([
+                            'src' => wp_get_attachment_image_url($doctor_photo, 'full'),
+                            'alt' => $doctor_photo_alt,
+                            'class' => 'doctor-hero__image',
+                            'lazy' => false,
+                        ]);
+                        ?>
                     <?php endif; ?>
 
                     <?php if ($doctor_schedule): ?>
@@ -210,7 +218,15 @@ $contact_label = igrmed__('btn_contact_us');
                                 <?php foreach ($doctor_certificates as $cert): ?>
                                     <?php if (isset($cert['ID'])): ?>
                                         <div class="doctor-hero__certificate-item">
-                                            <?php echo wp_get_attachment_image($cert['ID'], 'medium', false, ['class' => 'doctor-hero__certificate-img']); ?>
+                                            <?php
+                                            $cert_alt = get_post_meta((int) $cert['ID'], '_wp_attachment_image_alt', true);
+                                            get_picture([
+                                                'src' => wp_get_attachment_image_url($cert['ID'], 'medium'),
+                                                'alt' => $cert_alt,
+                                                'class' => 'doctor-hero__certificate-img',
+                                                'lazy' => true,
+                                            ]);
+                                            ?>
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>

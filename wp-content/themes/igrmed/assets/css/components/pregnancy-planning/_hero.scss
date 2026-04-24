@@ -2,9 +2,23 @@
 @use "../../base/variables" as *;
 
 .pregnancy-planning-hero {
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: 100% 441px;
+  position: relative;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
 
   &__wrapper {
     position: relative;
@@ -16,7 +30,7 @@
     @include gradient-border(
       convert-to-rem(22px),
       convert-to-rem(1px),
-      linear-gradient(180deg, #f2f2f2 0%, #818181 41.42%, #ffffff 100%)
+      linear-gradient(180deg, var(--color-gradient-border-start) 0%, var(--color-gradient-border-middle) 41.42%, var(--color-gradient-border-end) 100%)
     );
     padding: convert-to-rem(30px) convert-to-rem(36px);
     background: rgba(255, 255, 255, 0.6);

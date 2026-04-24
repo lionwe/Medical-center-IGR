@@ -8,9 +8,6 @@
     padding-top: convert-to-rem(28px);
   }
 
-  // ==========================
-  // BASE
-  // ==========================
 
   &__layout {
     width: 100%;
@@ -19,8 +16,7 @@
   }
 
   &__section--intro {
-    background: linear-gradient(90deg, #4776BA 90.42%, #FFFFFF 100%);
-    z-index: 10000;
+    background: linear-gradient(90deg, var(--color-primary-light) 90.42%, var(--color-white) 100%);
   }
 
   &__content {
@@ -105,12 +101,9 @@
     }
   }
 
-  // ==========================
-  // INTRO SECTION (same as pregnancy)
-  // ==========================
 
   &__section--intro {
-    background: linear-gradient(90deg, #4776BA 47.22%, #FFFFFF 114.79%);
+    background: linear-gradient(90deg, var(--color-primary-light) 47.22%, var(--color-white) 114.79%);
     border-radius: convert-to-rem(12px);
     color: var(--color-white);
     padding: convert-to-rem(20px) 10px;
@@ -130,9 +123,6 @@
     }
   }
 
-  // ==========================
-  // STAGES SECTION
-  // ==========================
 
   &__section--stages {
     position: relative;
@@ -254,7 +244,7 @@
     width: convert-to-rem(2px);
     height: 70%;
     align-self: center;
-    background: linear-gradient(180deg, #316393 0%, #0F1E2D 100%);
+    background: linear-gradient(180deg, var(--color-primary-light) 0%, var(--color-navy-900) 100%);
     border-radius: convert-to-rem(32px);
   }
 
@@ -265,9 +255,6 @@
     flex: 1 1 auto;
   }
 
-  // ==========================
-  // REQUIREMENTS SECTION
-  // ==========================
 
   &__section--requirements {
     position: relative;
@@ -371,9 +358,6 @@
     color: var(--color-black);
   }
 
-  // ==========================
-  // COMPENSATION SECTION
-  // ==========================
 
   &__compensation-text-wrap {
     display: flex;
@@ -398,7 +382,7 @@
     flex: 0 0 auto;
     width: convert-to-rem(2px);
     height: 80%;
-    background: linear-gradient(180deg, #316393 0%, #0F1E2D 100%);
+    background: linear-gradient(180deg, var(--color-primary-light) 0%, var(--color-navy-900) 100%);
     border-radius: convert-to-rem(32px);
 
     @include mobile {
@@ -414,10 +398,6 @@
       @include typography($font-family-montserrat, $fw-regular, 16px, 1.2, 0);
     }
   }
-
-  // ==========================
-  // EDITOR
-  // ==========================
 
   &__editor {
     margin-top: convert-to-rem(40px);

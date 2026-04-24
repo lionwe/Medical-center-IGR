@@ -4,129 +4,113 @@
 .about-gallery {
   padding-block: convert-to-rem(40px);
 
-  &__slider {
+  &__slider-wrapper {
+    max-width: 100%;
     position: relative;
+    padding: convert-to-rem(20px) 0;
     overflow: hidden;
-    height: convert-to-rem(500px);
-
-    .swiper-wrapper {
-      align-items: flex-end;
-    }
-
-    @include mobile {
-      height: auto;
-    }
   }
 
-  &__top {
+  &__slider-controls {
     position: absolute;
-    top: 0;
+    top: convert-to-rem(20px);
     right: 0;
-    z-index: 5;
-    width: convert-to-rem(680px);
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: convert-to-rem(20px);
-    pointer-events: none;
-
-    @include mobile {
-      position: static;
-      width: 100%;
-      margin-bottom: convert-to-rem(12px);
-      align-items: flex-start;
-      pointer-events: auto;
-    }
+    gap: convert-to-rem(10px);
+    z-index: 20;
   }
 
-  &__top-text {
-    flex: 1;
-    min-width: 0;
+  &__slide-text {
+    position: absolute;
+    left: calc(100% + convert-to-rem(20px));
+    top: 0;
+    width: convert-to-rem(680px);
+    opacity: 0;
     pointer-events: none;
-    opacity: 1;
-    transform: translateX(0);
-    will-change: transform, opacity;
+    color: var(--color-white);
+    @include typography($font-family-montserrat, $fw-medium, 70px, 1, 0);
 
-    &.is-animating {
-      animation: about-gallery-text-slide-in 0.45s ease;
-    }
-
-    h2 {
+    h3 {
       @include typography($font-family-montserrat, $fw-medium, 70px, 1, 0);
       color: var(--color-gray-light-04);
-      margin: 0;
+      margin-bottom: convert-to-rem(8px);
     }
 
     p {
       @include typography($font-family-montserrat, $fw-medium, 22px, 1, 0);
       color: var(--color-primary-dark);
-      margin: 0;
-    }
-
-    @include mobile {
-      display: block;
-
-      h2 {
-        @include typography($font-family-montserrat, $fw-medium, 36px, 1, 0);
-      }
-
-      p {
-        @include typography($font-family-montserrat, $fw-medium, 16px, 1.2, 0);
-      }
     }
   }
 
-  &__slider-nav {
-    display: flex;
-    align-items: center;
-    gap: convert-to-rem(8px);
+  &__slide.active &__slide-text {
+    opacity: 1;
     pointer-events: auto;
+    transition: opacity 0s ease-in-out;
+  }
+
+  &__btn {
+    background-color: var(--color-gray-dark);
+    color: var(--color-white);
+    border: none;
+    width: convert-to-rem(48px);
+    height: convert-to-rem(48px);
+    cursor: pointer;
+    font-size: convert-to-rem(20px);
+    border-radius: convert-to-rem(8px);
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      background-color: var(--color-gray-light);
+      color: var(--color-navy-900);
+    }
+
+    &:not(:disabled):active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__slider-viewport {
+    width: 100%;
+  }
+
+  &__slider-track {
+    display: flex;
+    gap: convert-to-rem(20px);
+    align-items: flex-end;
+    height: convert-to-rem(500px);
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
   }
 
   &__slide {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: convert-to-rem(12px);
-    height: 100%;
-    position: relative;
-    flex-shrink: 0;
     width: convert-to-rem(330px);
-    transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    height: convert-to-rem(300px);
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    border-radius: convert-to-rem(16px);
+    will-change: width, height;
+    backface-visibility: hidden;
 
-    &.swiper-slide-active {
+    &.active {
       width: convert-to-rem(680px);
-    }
-
-    @include mobile {
-      width: 100%;
-      height: auto;
-      transition: none;
-
-      &.swiper-slide-active {
-        width: 100%;
-      }
+      height: convert-to-rem(500px);
     }
   }
 
   &__image-wrap {
+    width: 100%;
+    height: 100%;
     border-radius: convert-to-rem(16px);
     overflow: hidden;
-    background: var(--color-white-05);
-    aspect-ratio: 11 / 10;
-    transition: aspect-ratio 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-
-    .swiper-slide-active & {
-      aspect-ratio: 68 / 50;
-    }
-
-    @include mobile {
-      aspect-ratio: 1 / 1;
-
-      .swiper-slide-active & {
-        aspect-ratio: 1 / 1;
-      }
-    }
   }
 
   &__image {
@@ -136,19 +120,47 @@
     object-fit: cover;
   }
 
-  &__text {
-    display: none;
+  @include mobile {
+    &__slider-wrapper {
+      padding: convert-to-rem(70px) 0 convert-to-rem(20px) 0;
+    }
+
+    &__slider-controls {
+      position: absolute;
+      top: convert-to-rem(10px);
+      right: 0;
+      display: flex;
+      gap: convert-to-rem(10px);
+      z-index: 20;
+      align-items: center;
+    }
+
+    &__slider-track {
+      height: convert-to-rem(350px);
+      align-items: center;
+    }
+
+    &__slide,
+    &__slide.active {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__slide-text {
+      position: absolute;
+      left: 0;
+      top: convert-to-rem(-60px);
+      width: calc(100% - convert-to-rem(120px));
+
+      h3 {
+        @include typography($font-family-montserrat, $fw-medium, 28px, 1, 0);
+        color: var(--color-white-08);
+        margin-bottom: convert-to-rem(4px);
+      }
+
+      p {
+        @include typography($font-family-montserrat, $fw-medium, 14px, 1, 0);
+      }
+    }
   }
 }
-
-@keyframes about-gallery-text-slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(convert-to-rem(30px));
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-

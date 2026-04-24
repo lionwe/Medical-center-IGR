@@ -55,7 +55,15 @@ $icon_arrow_svg = '<svg width="19" height="9" viewBox="0 0 19 9" fill="none" xml
 
 <section class="faq-section" id="faq-section">
     <div class="container">
-        <div class="faq-section__inner" style="background-image: url('<?php echo esc_url($bg_image); ?>');">
+        <div class="faq-section__inner">
+            <?php
+            get_picture([
+                'name' => 'svg/footer-bg.svg',
+                'alt' => '',
+                'class' => 'faq-section__bg',
+                'lazy' => true,
+            ]);
+            ?>
 
             <div class="faq-section__layout">
                 <div class="faq-section__left-col">

@@ -30,12 +30,26 @@ if ($title === '') {
             </div>
 
             <div class="overflow-banner__image-wrap mobile-only" aria-hidden="true">
-                <img class="overflow-banner__image" src="<?php echo esc_url($image_url); ?>" alt="" loading="lazy">
+                <?php
+                get_picture([
+                    'name' => 'ba5c6331bea41bf283dc73f4555c3659-removebg-preview 1.webp',
+                    'alt' => 'Overflow banner image',
+                    'class' => 'overflow-banner__image',
+                    'lazy' => true,
+                ]);
+                ?>
             </div>
         </div>
 
         <div class="overflow-banner__image-wrap desktop-only" aria-hidden="true">
-            <img class="overflow-banner__image" src="<?php echo esc_url($image_url); ?>" alt="" loading="lazy">
+            <?php
+            get_picture([
+                'name' => 'ba5c6331bea41bf283dc73f4555c3659-removebg-preview 1.webp',
+                'alt' => 'Overflow banner image',
+                'class' => 'overflow-banner__image',
+                'lazy' => true,
+            ]);
+            ?>
         </div>
     </div>
 </section>

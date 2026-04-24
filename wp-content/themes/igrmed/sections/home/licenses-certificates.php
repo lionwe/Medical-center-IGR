@@ -7,13 +7,25 @@ if (!$title && !$gallery) {
     return;
 }
 
-$bg_style = '';
+$bg_url = '';
+$bg_alt = '';
 if ($bg && isset($bg['url'])) {
-    $bg_style = 'style="background-image: url(' . esc_url($bg['url']) . ');"';
+    $bg_url = $bg['url'];
+    $bg_alt = $bg['alt'] ?? '';
 }
 ?>
 
-<section class="licenses-certificates" <?php echo $bg_style; ?>>
+<section class="licenses-certificates">
+    <?php if ($bg_url !== ''): ?>
+        <?php
+        get_picture([
+            'src' => $bg_url,
+            'alt' => $bg_alt,
+            'class' => 'licenses-certificates__bg',
+            'lazy' => true,
+        ]);
+        ?>
+    <?php endif; ?>
     <div class="container">
         <?php if ($title): ?>
             <div class="licenses-certificates__header">
@@ -27,7 +39,14 @@ if ($bg && isset($bg['url'])) {
                     <div class="swiper-wrapper">
                         <?php foreach ($gallery as $image): ?>
                             <div class="swiper-slide licenses-certificates__slide">
-                                <img src="<?php echo esc_url($image['sizes']['large'] ?? $image['url']); ?>" alt="<?php echo esc_attr($image['alt'] ?: $title); ?>" class="licenses-certificates__img" loading="lazy">
+                                <?php
+                                get_picture([
+                                    'src' => $image['sizes']['large'] ?? $image['url'],
+                                    'alt' => $image['alt'],
+                                    'class' => 'licenses-certificates__img',
+                                    'lazy' => true,
+                                ]);
+                                ?>
                             </div>
                         <?php endforeach; ?>
                     </div>

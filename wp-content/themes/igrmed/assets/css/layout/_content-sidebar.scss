@@ -16,7 +16,7 @@
   align-self: stretch;
   position: relative;
   top: auto;
-  z-index: 10000;
+  z-index: 1000;
   margin-bottom: 0;
   width: 100%;
   max-width: convert-to-rem(373px);
@@ -25,7 +25,7 @@
     display: block;
     position: sticky;
     top: convert-to-rem(84px);
-    z-index: 20;
+    z-index: 1001;
     margin-bottom: convert-to-rem(16px);
     width: 85%;
     margin-inline: auto;

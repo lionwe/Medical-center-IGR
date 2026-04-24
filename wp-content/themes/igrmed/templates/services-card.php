@@ -38,12 +38,14 @@ $hover_bg = get_template_directory_uri() . '/assets/img/service-card-hover-bg.we
 
     <?php if ($icon) : ?>
         <div class="service-card__icon">
-            <img
-                src="<?php echo esc_url($icon['url']); ?>"
-                alt="<?php echo esc_attr($icon['alt'] ?: $title); ?>"
-                width="<?php echo (int) $icon['width']; ?>"
-                height="<?php echo (int) $icon['height']; ?>"
-                loading="lazy">
+            <?php
+            get_picture([
+                'src' => $icon['url'],
+                'alt' => $icon['alt'],
+                'class' => '',
+                'lazy' => true,
+            ]);
+            ?>
         </div>
     <?php endif; ?>
 

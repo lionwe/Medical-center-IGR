@@ -7,10 +7,17 @@
  */
 
 $hero_bg_url = get_template_directory_uri() . '/assets/img/bread-crumbs.webp';
-$hero_style = ' style="background-image: url(' . esc_url($hero_bg_url) . ');"';
 ?>
 
-<section class="blog-archive-hero" <?php echo $hero_style; ?>>
+<section class="blog-archive-hero">
+    <?php
+    get_picture([
+        'name' => 'bread-crumbs.webp',
+        'alt' => '',
+        'class' => 'blog-archive-hero__bg',
+        'lazy' => false,
+    ]);
+    ?>
     <div class="container">
         <?php get_template_part('templates/breadcrumbs'); ?>
         <?php

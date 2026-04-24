@@ -5,11 +5,34 @@ add_filter('upload_mimes', 'svg_upload_allow');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 add_action('pre_get_posts', 'igrmed_blog_posts_per_page');
 add_filter('script_loader_tag', 'igrmed_defer_scripts', 10, 2);
+add_action('wp_head', 'add_font_preconnect', 1);
 
 require get_template_directory() . '/includes/post-types.php';
 require get_template_directory() . '/includes/ajax-handler.php';
 require get_template_directory() . '/includes/helpers.php';
 require get_template_directory() . '/includes/polylang-register-strings.php';
+
+/**
+ * Add font preconnect and preload for Google Fonts
+ */
+function add_font_preconnect() {
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
+    echo '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">';
+    echo '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>';
+    echo '<style>body { font-family: system-ui, -apple-system, sans-serif; }</style>';
+
+    // Preload hero background image for LCP
+    if (is_front_page()) {
+        $hero_bg = get_field('home_hero_bg');
+        if ($hero_bg && is_array($hero_bg)) {
+            $hero_bg_url = $hero_bg['url'] ?? '';
+            if ($hero_bg_url) {
+                echo '<link rel="preload" href="' . esc_url($hero_bg_url) . '" as="image">';
+            }
+        }
+    }
+}
 
 /**
  * Get SVG content from assets
@@ -51,7 +74,7 @@ function igrmed_enqueue_assets(): void
     wp_enqueue_style(
         'igrmed-main-style',
         $dist_uri . '/css/main.bundle.css',
-        ['igrmed-google-fonts'],
+        [],
         $css_ver
     );
 
@@ -225,7 +248,10 @@ function get_picture($args = [])
     $class = $args['class'] ? 'class="' . esc_attr($args['class']) . '"' : '';
     $loading = $args['lazy'] ? 'loading="lazy"' : '';
 
-    if ($is_asset) {
+    // Check if it's an SVG file - render directly without picture wrapper
+    $is_svg = strtolower(pathinfo($img_src, PATHINFO_EXTENSION)) === 'svg';
+
+    if ($is_asset && !$is_svg) {
         $path_parts = pathinfo($args['name']);
         $webp_name = $path_parts['filename'] . '.webp';
         $webp_src = get_template_directory_uri() . "/assets/img/" . $webp_name;

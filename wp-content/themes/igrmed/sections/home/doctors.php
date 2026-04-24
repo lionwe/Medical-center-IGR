@@ -49,6 +49,7 @@ if (empty($doctors_posts)) {
                 'src' => $doctors_bg_url,
                 'alt' => '',
                 'class' => 'doctors__bg-image',
+                'lazy' => true,
             ]);
             ?>
         </div>
@@ -121,6 +122,7 @@ if (empty($doctors_posts)) {
                                             'src' => $doctor_photo_url,
                                             'alt' => $doctor_name,
                                             'class' => 'doctors__slide-image',
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                         <?php if ($doctor_link !== ''): ?>

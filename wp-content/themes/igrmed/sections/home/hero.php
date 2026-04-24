@@ -88,16 +88,26 @@ foreach ($social_fields as $social => $config) {
 }
 
 $hero_bg_url = '';
+$hero_bg_alt = '';
 if (is_string($hero_bg) && $hero_bg !== '') {
     $hero_bg_url = $hero_bg;
 } elseif (is_array($hero_bg) && !empty($hero_bg['url'])) {
     $hero_bg_url = (string) $hero_bg['url'];
+    $hero_bg_alt = $hero_bg['alt'] ?? '';
 }
 
 $icon_clock_2_val = get_field('icon_clock_2', 'option');
 $icon_calendar_val = get_field('icon_calendar', 'option');
 $hero_icon_clock_url = is_array($icon_clock_2_val) && !empty($icon_clock_2_val['url']) ? $icon_clock_2_val['url'] : (is_numeric($icon_clock_2_val) ? wp_get_attachment_url((int) $icon_clock_2_val) : ($icon_clock_2_val ?: ''));
 $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_val['url']) ? $icon_calendar_val['url'] : (is_numeric($icon_calendar_val) ? wp_get_attachment_url((int) $icon_calendar_val) : ($icon_calendar_val ?: ''));
+$hero_icon_clock_alt = is_array($icon_clock_2_val) ? $icon_clock_2_val['alt'] : '';
+$hero_icon_calendar_alt = is_array($icon_calendar_val) ? $icon_calendar_val['alt'] : '';
+if (is_numeric($icon_clock_2_val)) {
+    $hero_icon_clock_alt = get_post_meta((int) $icon_clock_2_val, '_wp_attachment_image_alt', true);
+}
+if (is_numeric($icon_calendar_val)) {
+    $hero_icon_calendar_alt = get_post_meta((int) $icon_calendar_val, '_wp_attachment_image_alt', true);
+}
 
 ?>
 
@@ -107,7 +117,7 @@ $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_
             <?php
             get_picture([
                 'src' => $hero_bg_url,
-                'alt' => '',
+                'alt' => $hero_bg_alt,
                 'class' => 'hero__bg-image',
                 'lazy' => false,
             ]);
@@ -191,8 +201,14 @@ $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_
                                                     <span class="hero__card-meta-icon hero__card-meta-icon--calendar"
                                                         aria-hidden="true">
                                                         <?php if ($hero_icon_calendar_url !== ''): ?>
-                                                            <img src="<?php echo esc_url($hero_icon_calendar_url); ?>" alt="" width="19"
-                                                                height="15">
+                                                            <?php
+                                                            get_picture([
+                                                                'src' => $hero_icon_calendar_url,
+                                                                'alt' => $hero_icon_calendar_alt,
+                                                                'class' => '',
+                                                                'lazy' => false,
+                                                            ]);
+                                                            ?>
                                                         <?php else: ?>
                                                             <svg width="19" height="15" viewBox="0 0 19 15" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
@@ -214,8 +230,14 @@ $hero_icon_calendar_url = is_array($icon_calendar_val) && !empty($icon_calendar_
                                                 <span class="hero__card-meta hero__card-meta--read-time">
                                                     <span class="hero__card-meta-icon hero__card-meta-icon--clock" aria-hidden="true">
                                                         <?php if ($hero_icon_clock_url !== ''): ?>
-                                                            <img src="<?php echo esc_url($hero_icon_clock_url); ?>" alt="" width="22"
-                                                                height="22">
+                                                            <?php
+                                                            get_picture([
+                                                                'src' => $hero_icon_clock_url,
+                                                                'alt' => $hero_icon_clock_alt,
+                                                                'class' => '',
+                                                                'lazy' => false,
+                                                            ]);
+                                                            ?>
                                                         <?php else: ?>
                                                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">

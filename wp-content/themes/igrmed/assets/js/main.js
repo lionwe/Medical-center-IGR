@@ -5,6 +5,9 @@
 // Critical CSS
 import "../css/main.scss";
 
+// Preloader (must load immediately)
+import "./components/preloader";
+
 // Immediate Utilities & UI
 import "./utils";
 import "./events/load"; // Import load helper early to sync state
@@ -104,6 +107,13 @@ const components = [
     loader: () =>
       import(
         /* webpackChunkName: "comp-pregnancy-swiper" */ "./swipers/pregnancy-management/main"
+      ),
+  },
+  {
+    selector: ".about-gallery",
+    loader: () =>
+      import(
+        /* webpackChunkName: "comp-about-gallery" */ "./swipers/about/main"
       ),
   },
 ];

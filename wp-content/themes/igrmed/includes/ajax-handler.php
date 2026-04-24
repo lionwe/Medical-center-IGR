@@ -426,13 +426,19 @@ function igrmed_render_diagnostics_accordion(array $items): string
                         <?php echo esc_html($row['title']); ?>
                     </span>
                     <span class="diagnostics-research-diagnostics__accordion-icon" aria-hidden="true">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/diagnostics-polygon.svg'); ?> "
-                            alt="" width="19" height="9">
+                        <?php
+                        get_picture([
+                            'name' => 'svg/diagnostics-polygon.svg',
+                            'alt' => '',
+                            'class' => '',
+                            'lazy' => false,
+                        ]);
+                        ?>
                     </span>
                 </button>
 
                 <div class="diagnostics-research-diagnostics__accordion-content">
-                    <div class="content">
+                    <div class="diagnostics-research-diagnostics__accordion-content-inner">
                         <?php echo igrmed_render_diagnostics_content($row); ?>
                     </div>
                 </div>

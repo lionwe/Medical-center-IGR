@@ -1,6 +1,5 @@
 <?php
 $hero_bg_url = get_template_directory_uri() . '/assets/img/bread-crumbs.webp';
-$hero_style = ' style="background-image: url(' . esc_url($hero_bg_url) . ');"';
 $title_pregnant = trim((string) get_field('title_pregnant'));
 $right_text_pregnant = (string) get_field('right_text_pregnant');
 
@@ -10,7 +9,15 @@ if ($title_pregnant === '') {
 }
 ?>
 
-<section id="pregnancy-planning-hero" class="pregnancy-planning-hero" <?php echo $hero_style; ?>>
+<section id="pregnancy-planning-hero" class="pregnancy-planning-hero">
+    <?php
+    get_picture([
+        'name' => 'bread-crumbs.webp',
+        'alt' => '',
+        'class' => 'pregnancy-planning-hero__bg',
+        'lazy' => false,
+    ]);
+    ?>
     <div class="container">
         <?php get_template_part('templates/breadcrumbs'); ?>
         <?php get_template_part('templates/gradient-banner'); ?>

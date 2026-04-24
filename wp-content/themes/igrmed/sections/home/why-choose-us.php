@@ -5,13 +5,15 @@
  * Description: Section "Why choose us" for Home page
  */
 
+$home_id = getHomePageID();
+
 /** Empty Fields Rule check */
-$bg_image   = get_field('why_choose_us_bg');
-$title      = get_field('why_choose_us_title');
-$list       = get_field('why_choose_us_list');
-$media_type = get_field('why_choose_us_media_type'); // 'video' or 'image'
-$video      = get_field('why_choose_us_video');
-$image      = get_field('why_choose_us_image');
+$bg_image   = get_field('why_choose_us_bg', $home_id);
+$title      = get_field('why_choose_us_title', $home_id);
+$list       = get_field('why_choose_us_list', $home_id);
+$media_type = get_field('why_choose_us_media_type', $home_id); // 'video' or 'image'
+$video      = get_field('why_choose_us_video', $home_id);
+$image      = get_field('why_choose_us_image', $home_id);
 
 // Render only if we have minimum required content
 if (!$title && !$list) {
@@ -19,7 +21,17 @@ if (!$title && !$list) {
 }
 ?>
 
-<section class="why-choose-us" <?php if ($bg_image): ?>style="background-image: url('<?php echo esc_url($bg_image['url']); ?>');" <?php endif; ?>>
+<section class="why-choose-us">
+    <?php if ($bg_image): ?>
+        <?php
+        get_picture([
+            'src' => $bg_image['url'],
+            'alt' => $bg_image['alt'],
+            'class' => 'why-choose-us__bg',
+            'lazy' => true,
+        ]);
+        ?>
+    <?php endif; ?>
     <div class="container">
 
         <?php if ($title): ?>
@@ -53,12 +65,12 @@ if (!$title && !$list) {
             <div class="why-choose-us__media-col">
                 <?php if ($media_type === 'video' && $video): ?>
                     <div class="why-choose-us__video-wrapper js-video-container">
-                        <video class="why-choose-us__video js-video" loop muted playsinline>
+                        <video class="why-choose-us__video js-video" loop muted playsinline preload="none">
                             <source src="<?php echo esc_url($video['url']); ?>" type="video/mp4">
                         </video>
 
                         <div class="why-choose-us__overlay js-video-overlay">
-                            <?php $video_text = get_field('why_choose_us_video_text'); ?>
+                            <?php $video_text = get_field('why_choose_us_video_text', $home_id); ?>
                             <?php if ($video_text): ?>
                                 <div class="why-choose-us__overlay-text">
                                     <?php echo wp_kses_post($video_text); ?>
@@ -66,15 +78,29 @@ if (!$title && !$list) {
                             <?php endif; ?>
 
                             <button type="button" class="why-choose-us__play-btn js-video-play" aria-label="<?php esc_attr_e('Play video', 'igrmed'); ?>">
-                                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/svg/play.svg'); ?>" alt="Play" width="31" height="33">
+                                <?php
+                                get_picture([
+                                    'name' => 'svg/play.svg',
+                                    'alt' => 'Play',
+                                    'class' => '',
+                                    'lazy' => false,
+                                ]);
+                                ?>
                             </button>
                         </div>
                     </div>
                 <?php elseif ($media_type === 'image' && $image): ?>
                     <div class="why-choose-us__image-wrapper">
-                        <?php echo wp_get_attachment_image($image['ID'], 'large', false, ['class' => 'why-choose-us__image']); ?>
+                        <?php
+                        get_picture([
+                            'src' => $image['sizes']['large'] ?? $image['url'],
+                            'alt' => $image['alt'],
+                            'class' => 'why-choose-us__image',
+                            'lazy' => true,
+                        ]);
+                        ?>
 
-                        <?php $video_text = get_field('why_choose_us_video_text'); ?>
+                        <?php $video_text = get_field('why_choose_us_video_text', $home_id); ?>
                         <?php if ($video_text): ?>
                             <div class="why-choose-us__overlay js-video-overlay why-choose-us__overlay--static">
                                 <div class="why-choose-us__overlay-text">

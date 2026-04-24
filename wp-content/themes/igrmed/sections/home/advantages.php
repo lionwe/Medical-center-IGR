@@ -81,15 +81,14 @@ if (! $content && empty($list) && empty($numbers)) {
                     <div class="advantages__item">
                         <?php if ($icon) : ?>
                             <div class="advantages__item-icon">
-                                <?php echo wp_get_attachment_image(
-                                    absint($icon['ID']),
-                                    'thumbnail',
-                                    false,
-                                    [
-                                        'alt'   => esc_attr($icon['alt'] ?? ''),
-                                        'class' => 'advantages__item-img',
-                                    ]
-                                ); ?>
+                                <?php
+                                get_picture([
+                                    'src' => $icon['sizes']['thumbnail'] ?? $icon['url'],
+                                    'alt' => $icon['alt'],
+                                    'class' => 'advantages__item-img',
+                                    'lazy' => true,
+                                ]);
+                                ?>
                             </div>
                         <?php endif; ?>
 
@@ -117,15 +116,14 @@ if (! $content && empty($list) && empty($numbers)) {
                             <div class="advantages__item">
                                 <?php if ($icon) : ?>
                                     <div class="advantages__item-icon">
-                                        <?php echo wp_get_attachment_image(
-                                            absint($icon['ID']),
-                                            'thumbnail',
-                                            false,
-                                            [
-                                                'alt'   => esc_attr($icon['alt'] ?? ''),
-                                                'class' => 'advantages__item-img',
-                                            ]
-                                        ); ?>
+                                        <?php
+                                        get_picture([
+                                            'src' => $icon['sizes']['thumbnail'] ?? $icon['url'],
+                                            'alt' => $icon['alt'],
+                                            'class' => 'advantages__item-img',
+                                            'lazy' => true,
+                                        ]);
+                                        ?>
                                     </div>
                                 <?php endif; ?>
 

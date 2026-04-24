@@ -26,17 +26,34 @@ $is_primary_split = !empty($args['primary_split']) && in_array($type, ['primary'
 $carousel_group = $args['carousel_group'] ?? null;
 
 // Get icon from ACF options or direct URL.
+$icon_alt = '';
 if (!$icon_url && $icon_name) {
     $field_name = 'icon_' . $icon_name;
     $icon_val = get_field($field_name, 'option');
 
     if (is_array($icon_val)) {
         $icon_url = $icon_val['url'] ?? null;
+        $icon_alt = $icon_val['alt'] ?? '';
     } elseif (is_numeric($icon_val)) {
         $icon_url = wp_get_attachment_url((int) $icon_val);
+        $icon_alt = get_post_meta((int) $icon_val, '_wp_attachment_image_alt', true) ?? '';
     } else {
         $icon_url = $icon_val ?: null;
     }
+}
+
+// If icon_url passed directly, check if it's from ACF
+if ($icon_url && !$icon_alt && strpos($icon_url, get_template_directory_uri()) === false) {
+    // Might be an ACF image URL, try to get alt
+    $attachment_id = attachment_url_to_postid($icon_url);
+    if ($attachment_id) {
+        $icon_alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true) ?? '';
+    }
+}
+
+// Fallback alt for theme asset icons
+if ($icon_url && !$icon_alt && strpos($icon_url, get_template_directory_uri()) !== false) {
+    $icon_alt = 'Button icon';
 }
 
 if ($type === 'carousel' && is_array($carousel_group) && !empty($carousel_group)) {
@@ -120,10 +137,17 @@ if ($is_primary_split) {
                 <?php if ($icon_url): ?>
                     <?php if ($use_img_icon): ?>
                         <span class="btn__icon btn__icon--img">
-                            <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+                            <?php
+                            get_picture([
+                                'src' => $icon_url,
+                                'alt' => $icon_alt,
+                                'class' => 'btn__icon-image',
+                                'lazy' => false,
+                            ]);
+                            ?>
                         </span>
                     <?php else: ?>
-                        <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+                        <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');" role="img" aria-label="<?php echo esc_attr($icon_alt ?: 'Button icon'); ?>"></span>
                     <?php endif; ?>
                 <?php endif; ?>
             </span>
@@ -135,10 +159,17 @@ if ($is_primary_split) {
                 <?php if ($icon_url): ?>
                     <?php if ($use_img_icon): ?>
                         <span class="btn__icon btn__icon--img">
-                            <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+                            <?php
+                            get_picture([
+                                'src' => $icon_url,
+                                'alt' => $icon_alt,
+                                'class' => 'btn__icon-image',
+                                'lazy' => false,
+                            ]);
+                            ?>
                         </span>
                     <?php else: ?>
-                        <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+                        <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');" role="img" aria-label="<?php echo esc_attr($icon_alt ?: 'Button icon'); ?>"></span>
                     <?php endif; ?>
                 <?php endif; ?>
             </span>
@@ -161,10 +192,17 @@ if ($is_primary_split) {
 
         <?php if ($use_img_icon): ?>
             <span class="btn__icon btn__icon--img">
-                <img class="btn__icon-image" src="<?php echo esc_url($icon_url); ?>" alt="" aria-hidden="true">
+                <?php
+                get_picture([
+                    'src' => $icon_url,
+                    'alt' => $icon_alt ?: 'Button icon',
+                    'class' => 'btn__icon-image',
+                    'lazy' => false,
+                ]);
+                ?>
             </span>
         <?php else: ?>
-            <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');"></span>
+            <span class="btn__icon" style="-webkit-mask-image: url('<?php echo esc_url($icon_url); ?>'); mask-image: url('<?php echo esc_url($icon_url); ?>');" role="img" aria-label="<?php echo esc_attr($icon_alt ?: 'Button icon'); ?>"></span>
         <?php endif; ?>
 
         <?php if ($type === 'readmore-v1'): ?>

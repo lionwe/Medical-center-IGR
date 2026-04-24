@@ -215,16 +215,31 @@
     }
 
     &__right {
+        position: relative;
         flex: 1;
         border-radius: convert-to-rem(20px);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
         padding: convert-to-rem(75.5px) convert-to-rem(44px);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
+
+        &__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            pointer-events: none;
+        }
+
+        > * {
+            position: relative;
+            z-index: 1;
+        }
 
         @include mobile {
             padding: convert-to-rem(40px) convert-to-rem(20px);

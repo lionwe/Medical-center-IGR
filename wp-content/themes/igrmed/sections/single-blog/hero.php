@@ -13,6 +13,14 @@ $read_time = sprintf(igrmed__('blog_reading_time'), $minutes);
 
 $icon_calendar = get_field('icon_calendar', 'option');
 $icon_clock = get_field('icon_clock_2', 'option');
+$icon_calendar_alt = is_array($icon_calendar) ? ($icon_calendar['alt'] ?? '') : '';
+$icon_clock_alt = is_array($icon_clock) ? ($icon_clock['alt'] ?? '') : '';
+if (is_numeric($icon_calendar)) {
+    $icon_calendar_alt = get_post_meta((int) $icon_calendar, '_wp_attachment_image_alt', true) ?? '';
+}
+if (is_numeric($icon_clock)) {
+    $icon_clock_alt = get_post_meta((int) $icon_clock, '_wp_attachment_image_alt', true) ?? '';
+}
 ?>
 
 <section class="blog-hero">
@@ -24,8 +32,14 @@ $icon_clock = get_field('icon_clock_2', 'option');
                 <div class="blog-hero__meta-item">
                     <span class="blog-hero__meta-icon-wrapper">
                         <?php if ($icon_calendar && isset($icon_calendar['url'])): ?>
-                            <img src="<?php echo esc_url($icon_calendar['sizes']['thumbnail'] ?? $icon_calendar['url']); ?>"
-                                alt="Calendar" loading="lazy">
+                            <?php
+                            get_picture([
+                                'src' => $icon_calendar['sizes']['thumbnail'] ?? $icon_calendar['url'],
+                                'alt' => $icon_calendar_alt,
+                                'class' => '',
+                                'lazy' => true,
+                            ]);
+                            ?>
                         <?php endif; ?>
                     </span>
                     <span class="blog-hero__meta-text"><?php echo esc_html($date); ?></span>
@@ -36,8 +50,14 @@ $icon_clock = get_field('icon_clock_2', 'option');
                 <div class="blog-hero__meta-item">
                     <span class="blog-hero__meta-icon-wrapper">
                         <?php if ($icon_clock && isset($icon_clock['url'])): ?>
-                            <img src="<?php echo esc_url($icon_clock['sizes']['thumbnail'] ?? $icon_clock['url']); ?>"
-                                alt="Clock" loading="lazy">
+                            <?php
+                            get_picture([
+                                'src' => $icon_clock['sizes']['thumbnail'] ?? $icon_clock['url'],
+                                'alt' => $icon_clock_alt,
+                                'class' => '',
+                                'lazy' => true,
+                            ]);
+                            ?>
                         <?php endif; ?>
                     </span>
                     <span class="blog-hero__meta-text"><?php echo esc_html($read_time); ?></span>

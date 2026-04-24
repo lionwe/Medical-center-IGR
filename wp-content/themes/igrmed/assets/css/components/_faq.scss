@@ -17,12 +17,25 @@
     overflow: hidden;
     border-radius: convert-to-rem(22px);
     padding: convert-to-rem(43px) convert-to-rem(28px);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
     @include mobile {
       padding: convert-to-rem(43px) convert-to-rem(16px);
+    }
+
+    &__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      pointer-events: none;
+    }
+
+    &__layout {
+      position: relative;
+      z-index: 1;
     }
   }
 
