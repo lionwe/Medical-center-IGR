@@ -15,6 +15,7 @@
 
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
+    <?php get_template_part('templates/preloader'); ?>
     <?php
     $header_address = (string) get_field('address_main', 'option');
     $header_phone_1 = get_field('phone_1', 'option');
