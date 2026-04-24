@@ -19,6 +19,18 @@ function add_font_preconnect() {
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
     echo '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">';
+    echo '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>';
+
+    // Preload hero background image for LCP
+    if (is_front_page()) {
+        $hero_bg = get_field('home_hero_bg');
+        if ($hero_bg && is_array($hero_bg)) {
+            $hero_bg_url = $hero_bg['url'] ?? '';
+            if ($hero_bg_url) {
+                echo '<link rel="preload" href="' . esc_url($hero_bg_url) . '" as="image">';
+            }
+        }
+    }
 }
 
 /**
@@ -61,7 +73,7 @@ function igrmed_enqueue_assets(): void
     wp_enqueue_style(
         'igrmed-main-style',
         $dist_uri . '/css/main.bundle.css',
-        ['igrmed-google-fonts'],
+        [],
         $css_ver
     );
 
