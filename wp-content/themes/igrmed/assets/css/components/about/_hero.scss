@@ -10,6 +10,7 @@
     z-index: 0;
     width: 100%;
     height: 100%;
+    max-height: convert-to-rem(440px);
     object-fit: cover;
     object-position: top center;
     pointer-events: none;

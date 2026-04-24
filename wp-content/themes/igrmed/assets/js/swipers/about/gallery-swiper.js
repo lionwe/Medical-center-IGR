@@ -12,11 +12,6 @@ export default class AboutGallerySwiper {
         const prevButton = section.querySelector(".js-about-gallery-prev");
         const nextButton = section.querySelector(".js-about-gallery-next");
         const activeText = section.querySelector(".js-about-gallery-active-text");
-        const applySlidesOffsetAfter = (swiper) => {
-            const offsetAfter = window.innerWidth < 768 ? 0 : 1050;
-            swiper.params.slidesOffsetAfter = offsetAfter;
-            swiper.update();
-        };
 
         const animateTopText = () => {
             if (!activeText) {
@@ -41,7 +36,7 @@ export default class AboutGallerySwiper {
 
         this.swiper = new Swiper(this.wrapper, {
             modules: [Navigation],
-            slidesPerView: "auto",
+            slidesPerView: 3,
             centeredSlides: false,
             watchOverflow: true,
             observer: true,
@@ -50,7 +45,6 @@ export default class AboutGallerySwiper {
             spaceBetween: 20,
             slideToClickedSlide: true,
             slidesPerGroup: 1,
-            slidesOffsetAfter: window.innerWidth < 768 ? 0 : 1050,
             navigation: {
                 prevEl: prevButton,
                 nextEl: nextButton,
@@ -58,14 +52,10 @@ export default class AboutGallerySwiper {
             },
             on: {
                 init(swiper) {
-                    applySlidesOffsetAfter(swiper);
                     updateTopText(swiper);
                 },
                 slideChange(swiper) {
                     updateTopText(swiper);
-                },
-                resize(swiper) {
-                    applySlidesOffsetAfter(swiper);
                 },
             },
         });

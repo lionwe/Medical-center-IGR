@@ -1,5 +1,6 @@
 <?php
-$shortcode = get_field('reviews_shortcode');
+$homepage_id = getHomePageID();
+$shortcode = get_field('reviews_shortcode', $homepage_id);
 
 $feed_id = 0;
 if ($shortcode && preg_match('/id=["\']?(\d+)["\']?/', $shortcode, $matches)) {
@@ -24,7 +25,7 @@ if (empty($reviews)) {
         <div class="reviews__wrapper">
             <div class="reviews__header">
                 <h2 class="reviews__title">
-                    <?php the_field('reviews_title'); ?>
+                    <?php the_field('reviews_title', $homepage_id); ?>
                 </h2>
                 <div class="reviews__navigation">
                     <?php
