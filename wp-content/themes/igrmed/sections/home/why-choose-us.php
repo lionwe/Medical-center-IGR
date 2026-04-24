@@ -63,7 +63,7 @@ if (!$title && !$list) {
             <div class="why-choose-us__media-col">
                 <?php if ($media_type === 'video' && $video): ?>
                     <div class="why-choose-us__video-wrapper js-video-container">
-                        <video class="why-choose-us__video js-video" loop muted playsinline>
+                        <video class="why-choose-us__video js-video" loop muted playsinline preload="none">
                             <source src="<?php echo esc_url($video['url']); ?>" type="video/mp4">
                         </video>
 

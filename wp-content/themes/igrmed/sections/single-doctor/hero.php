@@ -123,7 +123,7 @@ $contact_label = igrmed__('btn_contact_us');
                             'src' => wp_get_attachment_image_url($doctor_photo, 'full'),
                             'alt' => $doctor_photo_alt,
                             'class' => 'doctor-hero__image',
-                            'lazy' => true,
+                            'lazy' => false,
                         ]);
                         ?>
                     <?php endif; ?>

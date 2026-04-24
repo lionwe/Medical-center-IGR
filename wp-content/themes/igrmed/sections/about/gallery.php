@@ -96,6 +96,7 @@ if (empty($slides)) {
                                         'src' => $slide['image_url'],
                                         'alt' => $slide['image_alt'],
                                         'class' => 'about-gallery__image',
+                                        'lazy' => true,
                                     ]);
                                 }
                                 ?>

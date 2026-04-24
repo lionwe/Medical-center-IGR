@@ -80,6 +80,7 @@ if ($title === '') {
                         'src' => $image_url,
                         'alt' => $image_alt,
                         'class' => 'diagnostics-research-hero__img',
+                        'lazy' => false,
                     ]);
                 }
                 ?>

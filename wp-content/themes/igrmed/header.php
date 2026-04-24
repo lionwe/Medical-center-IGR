@@ -113,7 +113,7 @@
                                                                 'src' => $header_address_icon_url,
                                                                 'alt' => '',
                                                                 'class' => 'header__info-icon-image',
-                                                                'lazy' => false,
+                                                                'lazy' => true,
                                                             ]);
                                                             ?>
                                                         </span>
@@ -133,7 +133,7 @@
                                                                 'src' => $header_phone_icon_url,
                                                                 'alt' => '',
                                                                 'class' => 'header__info-icon-image',
-                                                                'lazy' => false,
+                                                                'lazy' => true,
                                                             ]);
                                                             ?>
                                                         </span>
@@ -172,7 +172,7 @@
                                                                 'src' => $header_clock_icon_url,
                                                                 'alt' => '',
                                                                 'class' => 'header__info-icon-image',
-                                                                'lazy' => false,
+                                                                'lazy' => true,
                                                             ]);
                                                             ?>
                                                         </span>
@@ -222,7 +222,7 @@
                                                                 'src' => $header_search_icon_url,
                                                                 'alt' => '',
                                                                 'class' => 'header__search-icon',
-                                                                'lazy' => false,
+                                                                'lazy' => true,
                                                             ]);
                                                             ?>
                                                         <?php endif; ?>
@@ -265,7 +265,7 @@
                                                 'name' => 'svg/contact-arrow.svg',
                                                 'alt' => '',
                                                 'class' => 'header__cta-icon-arrow',
-                                                'lazy' => false,
+                                                'lazy' => true,
                                             ]);
                                             ?>
                                         </span>
@@ -325,7 +325,7 @@
                                 'name' => 'svg/contact-arrow.svg',
                                 'alt' => '',
                                 'class' => 'header__cta-icon-arrow',
-                                'lazy' => false,
+                                'lazy' => true,
                             ]);
                             ?>
                         </span>
@@ -340,7 +340,7 @@
                                             'src' => $header_address_icon_url,
                                             'alt' => '',
                                             'class' => 'header__mobile-menu-info-icon-image',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </span>
@@ -358,7 +358,7 @@
                                             'src' => $header_phone_icon_url,
                                             'alt' => '',
                                             'class' => 'header__mobile-menu-info-icon-image',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </span>
@@ -393,7 +393,7 @@
                                             'src' => $header_clock_icon_url,
                                             'alt' => '',
                                             'class' => 'header__mobile-menu-info-icon-image',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </span>

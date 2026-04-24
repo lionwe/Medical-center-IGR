@@ -34,7 +34,7 @@ if ($title === '') {
                 'name' => 'baby.webp',
                 'alt' => 'Photo banner image',
                 'class' => 'photo-banner__image',
-                'lazy' => true,
+                'lazy' => false,
             ]);
             ?>
         </div>

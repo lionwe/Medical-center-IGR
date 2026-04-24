@@ -68,7 +68,7 @@ if (is_array($contacts_form_bg)) {
                                             'src' => $icon_phone_url,
                                             'alt' => $icon_phone_alt,
                                             'class' => '',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </div>
@@ -92,7 +92,7 @@ if (is_array($contacts_form_bg)) {
                                             'src' => $icon_address_url,
                                             'alt' => $icon_address_alt,
                                             'class' => '',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </div>
@@ -110,7 +110,7 @@ if (is_array($contacts_form_bg)) {
                                             'src' => $icon_mail_url,
                                             'alt' => $icon_mail_alt,
                                             'class' => '',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </div>
@@ -130,7 +130,7 @@ if (is_array($contacts_form_bg)) {
                                     'src' => $icon_clock_url,
                                     'alt' => $icon_clock_alt,
                                     'class' => '',
-                                    'lazy' => false,
+                                    'lazy' => true,
                                 ]);
                                 ?>
                             </div>

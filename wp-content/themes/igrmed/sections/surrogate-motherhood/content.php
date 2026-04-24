@@ -236,6 +236,7 @@ if ($has_program) {
                                         'src'   => $program_image_url,
                                         'alt'   => is_array($program_image) ? $program_image['alt'] : '',
                                         'class' => 'surrogate-motherhood-content__program-img',
+                                        'lazy' => true,
                                     ]); ?>
                         </div>
                         <?php endif; ?>

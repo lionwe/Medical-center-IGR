@@ -31,7 +31,7 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
             'src' => get_template_directory_uri() . '/assets/img/svg/footer-bg.svg',
             'alt' => '',
             'class' => '',
-            'lazy' => false,
+            'lazy' => true,
         ]);
         ?>
     </div>
@@ -57,7 +57,7 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
                                             'src' => $icon_phone_url,
                                             'alt' => '',
                                             'class' => 'footer__phone-icon',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </span>
@@ -75,7 +75,7 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
                                             'src' => $icon_phone_url,
                                             'alt' => '',
                                             'class' => 'footer__phone-icon',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </span>

@@ -103,6 +103,7 @@ if (empty($doctors_list)) {
                                             'src'   => $doctor_photo_url,
                                             'alt'   => $doctor_name,
                                             'class' => 'pregnancy-doctors__slide-image',
+                                            'lazy' => true,
                                         ]);
                                         ?>
 

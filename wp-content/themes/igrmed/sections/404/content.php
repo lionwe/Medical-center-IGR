@@ -16,7 +16,7 @@
             'name' => 'logo-without-text.webp',
             'alt'  => esc_attr__('IGRMed Logo', 'igrmed'),
             'class' => 'error-404__logo-img',
-            'lazy' => false,
+            'lazy' => true,
         ]); ?>
     </div>
     <div class="container">

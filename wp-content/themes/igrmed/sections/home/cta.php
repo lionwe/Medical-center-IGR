@@ -56,6 +56,7 @@ if ($cta_bg_mobile_url === '') {
                     'src'   => $cta_bg_url,
                     'alt'   => $cta_bg_alt,
                     'class' => 'cta__bg-image cta__bg-image--desktop',
+                    'lazy' => true,
                 ]); ?>
             <?php endif; ?>
 
@@ -64,6 +65,7 @@ if ($cta_bg_mobile_url === '') {
                     'src'   => $cta_bg_mobile_url,
                     'alt'   => $cta_bg_mobile_alt,
                     'class' => 'cta__bg-image cta__bg-image--mobile',
+                    'lazy' => true,
                 ]); ?>
             <?php endif; ?>
 

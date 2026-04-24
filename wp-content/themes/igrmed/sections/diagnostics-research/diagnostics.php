@@ -67,7 +67,7 @@ if (empty($women_items) && empty($men_items)) {
                                             'name' => 'svg/diagnostics-polygon.svg',
                                             'alt' => '',
                                             'class' => '',
-                                            'lazy' => false,
+                                            'lazy' => true,
                                         ]);
                                         ?>
                                     </span>

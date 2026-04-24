@@ -42,7 +42,7 @@ if ($hero_about_left_text === '') {
             'src' => $hero_about_bg_url,
             'alt' => $hero_about_bg_alt,
             'class' => 'about-hero__bg',
-            'lazy' => true,
+            'lazy' => false,
         ]);
         ?>
     <?php endif; ?>
@@ -59,6 +59,7 @@ if ($hero_about_left_text === '') {
                     'src' => $hero_about_img_url,
                     'alt' => $hero_about_img_alt,
                     'class' => 'about-hero__img',
+                    'lazy' => false,
                 ]);
             }
             ?>
