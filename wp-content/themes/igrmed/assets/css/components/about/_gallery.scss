@@ -27,30 +27,18 @@
     width: convert-to-rem(680px);
     opacity: 0;
     pointer-events: none;
-    color: white;
-    font-family: Montserrat;
-    font-weight: 500;
-    font-style: Medium;
-    font-size: convert-to-rem(70px);
-    line-height: 100%;
-    letter-spacing: 0%;
+    color: var(--color-white);
+    @include typography($font-family-montserrat, $fw-medium, 70px, 1, 0);
 
     h3 {
-      font-size: convert-to-rem(70px);
-      color: rgba(202, 213, 218, 0.4);
-      font-weight: 500;
-      line-height: 100%;
+      @include typography($font-family-montserrat, $fw-medium, 70px, 1, 0);
+      color: var(--color-gray-light-04);
       margin-bottom: convert-to-rem(8px);
     }
 
     p {
-      font-size: convert-to-rem(22px);
-      color: rgba(26, 59, 103, 1);
-      font-family: Montserrat;
-      font-weight: 500;
-      font-style: Medium;
-      line-height: 100%;
-      letter-spacing: 0%;
+      @include typography($font-family-montserrat, $fw-medium, 22px, 1, 0);
+      color: var(--color-primary-dark);
     }
   }
 
@@ -61,8 +49,8 @@
   }
 
   &__btn {
-    background-color: #636e72;
-    color: white;
+    background-color: var(--color-gray-dark);
+    color: var(--color-white);
     border: none;
     width: convert-to-rem(48px);
     height: convert-to-rem(48px);
@@ -80,8 +68,8 @@
     }
 
     &:not(:disabled):hover {
-      background-color: #b2bec3;
-      color: #2d3436;
+      background-color: var(--color-gray-light);
+      color: var(--color-navy-900);
     }
 
     &:not(:disabled):active {
@@ -132,7 +120,7 @@
     object-fit: cover;
   }
 
-  @media (max-width: 1024px) {
+  @include mobile {
     &__slider-wrapper {
       padding: convert-to-rem(70px) 0 convert-to-rem(20px) 0;
     }
@@ -165,13 +153,13 @@
       width: calc(100% - convert-to-rem(120px));
 
       h3 {
-        font-size: convert-to-rem(28px);
-        color: rgba(255, 255, 255, 0.8);
+        @include typography($font-family-montserrat, $fw-medium, 28px, 1, 0);
+        color: var(--color-white-08);
         margin-bottom: convert-to-rem(4px);
       }
 
       p {
-        font-size: convert-to-rem(14px);
+        @include typography($font-family-montserrat, $fw-medium, 14px, 1, 0);
       }
     }
   }

@@ -30,7 +30,7 @@
     @include gradient-border(
       convert-to-rem(22px),
       convert-to-rem(1px),
-      linear-gradient(180deg, #f2f2f2 0%, #818181 41.42%, #ffffff 100%)
+      linear-gradient(180deg, var(--color-gradient-border-start) 0%, var(--color-gradient-border-middle) 41.42%, var(--color-gradient-border-end) 100%)
     );
     padding: convert-to-rem(30px) convert-to-rem(36px);
     background: rgba(255, 255, 255, 0.6);

@@ -8,7 +8,6 @@
     @include mobile {
         padding-top: convert-to-rem(40px);
         padding-bottom: convert-to-rem(60px);
-        // Встановлюємо відступи секції рівно 3px локально
         --_section-offset: #{convert-to-rem(3px)};
     }
 
@@ -38,13 +37,12 @@
         }
     }
 
-    // ─── Mobile: Horizontal Card Style ───────────────────────────────────────
     @include mobile {
         .blog-card {
             position: relative;
             display: flex;
             flex-direction: row;
-            align-items: flex-start; // Changed from stretch to allow vertical growth
+            align-items: flex-start; 
             width: 100%;
             margin: 0;
             padding: convert-to-rem(16px) convert-to-rem(10px);
@@ -94,13 +92,12 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
-                // Removed overflow: hidden to prevent cutting off text half-way
             }
 
             &__title {
                 @include typography($font-family-montserrat, $fw-medium, 15px, 1.2);
                 margin: 0 0 convert-to-rem(5px) 0;
-                color: #000000;
+                color: var(--color-text-main);
                 position: static;
                 word-break: break-word;
 
@@ -143,7 +140,7 @@
 
                 .blog-card__meta-text {
                     @include typography($font-family-montserrat, $fw-regular, 10px, 1);
-                    color: #000000;
+                    color: var(--color-text-main);
                     text-align: center;
                     white-space: normal;
                 }

@@ -275,7 +275,7 @@
   }
 
   &__num-strip {
-    background: linear-gradient(90deg, #FFFFFF 0%, rgba(75, 121, 187, 0) 100%);
+    background: linear-gradient(90deg, var(--color-white) 0%, rgba(75, 121, 187, 0) 100%);
     display: flex;
     align-items: center;
     padding: 2px 5px;
@@ -290,7 +290,7 @@
     height: convert-to-rem(20px);
     border-radius: 50%;
     color: rgba(255, 255, 255, 0.9);
-    background: #4b79bb;
+    background: var(--color-primary-light);
     @include typography($font-family-montserrat, $fw-regular, (8px), 1, 0);
   }
 
@@ -334,7 +334,7 @@
   // ==========================
 
   &__section--intro {
-    background: linear-gradient(90deg, #4776BA 47.22%, #FFFFFF 114.79%);
+    background: linear-gradient(90deg, var(--color-primary-light) 47.22%, var(--color-white) 114.79%);
     border-radius: convert-to-rem(12px);
     color: var(--color-white);
     padding: convert-to-rem(20px) 10px;

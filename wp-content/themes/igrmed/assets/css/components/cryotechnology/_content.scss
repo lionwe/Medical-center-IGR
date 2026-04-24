@@ -78,7 +78,7 @@
   }
 
   &__num-strip {
-    background: linear-gradient(90deg, #FFFFFF 0%, rgba(75, 121, 187, 0) 100%);
+    background: linear-gradient(90deg, var(--color-white) 0%, rgba(75, 121, 187, 0) 100%);
     display: flex;
     align-items: center;
     padding: 2px 5px;
@@ -93,7 +93,7 @@
     height: convert-to-rem(20px);
     border-radius: 50%;
     color: rgba(255, 255, 255, 0.9);
-    background: #4b79bb;
+    background: var(--color-primary-light);
     @include typography($font-family-montserrat, $fw-regular, (8px), 1, 0);
   }
 
@@ -263,7 +263,7 @@
         align-items: stretch; // Скидаємо center з базової картки
         gap: convert-to-rem(15px);
         border-radius: convert-to-rem(16px);
-        background: linear-gradient(180deg, #4B79BB 0%, rgba(244, 246, 250, 0) 100%);
+        background: linear-gradient(180deg, var(--color-primary-light) 0%, rgba(244, 246, 250, 0) 100%);
         padding: 7px 6px 13px 6px;
       }
     }
