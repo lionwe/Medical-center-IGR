@@ -88,10 +88,12 @@ foreach ($social_fields as $social => $config) {
 }
 
 $hero_bg_url = '';
+$hero_bg_alt = '';
 if (is_string($hero_bg) && $hero_bg !== '') {
     $hero_bg_url = $hero_bg;
 } elseif (is_array($hero_bg) && !empty($hero_bg['url'])) {
     $hero_bg_url = (string) $hero_bg['url'];
+    $hero_bg_alt = $hero_bg['alt'] ?? '';
 }
 
 $icon_clock_2_val = get_field('icon_clock_2', 'option');
@@ -115,7 +117,7 @@ if (is_numeric($icon_calendar_val)) {
             <?php
             get_picture([
                 'src' => $hero_bg_url,
-                'alt' => '',
+                'alt' => $hero_bg_alt,
                 'class' => 'hero__bg-image',
                 'lazy' => false,
             ]);

@@ -107,11 +107,11 @@
                                             <?php if ($header_address !== ''): ?>
                                                 <div class="header__address-block">
                                                     <?php if ($header_address_icon_url !== ''): ?>
-                                                        <span class="header__info-icon">
+                                                        <span class="header__info-icon" aria-hidden="true">
                                                             <?php
                                                             get_picture([
                                                                 'src' => $header_address_icon_url,
-                                                                'alt' => $header_address_icon_alt,
+                                                                'alt' => '',
                                                                 'class' => 'header__info-icon-image',
                                                                 'lazy' => false,
                                                             ]);
@@ -127,11 +127,11 @@
                                             <?php if ($header_phone_1_url !== '' || $header_phone_2_url !== ''): ?>
                                                 <div class="header__phones-block">
                                                     <?php if ($header_phone_icon_url !== ''): ?>
-                                                        <span class="header__info-icon">
+                                                        <span class="header__info-icon" aria-hidden="true">
                                                             <?php
                                                             get_picture([
                                                                 'src' => $header_phone_icon_url,
-                                                                'alt' => $header_phone_icon_alt,
+                                                                'alt' => '',
                                                                 'class' => 'header__info-icon-image',
                                                                 'lazy' => false,
                                                             ]);
@@ -166,11 +166,11 @@
                                             <?php if ($header_schedule !== ''): ?>
                                                 <div class="header__schedule-block">
                                                     <?php if ($header_clock_icon_url !== ''): ?>
-                                                        <span class="header__info-icon">
+                                                        <span class="header__info-icon" aria-hidden="true">
                                                             <?php
                                                             get_picture([
                                                                 'src' => $header_clock_icon_url,
-                                                                'alt' => $header_clock_icon_alt,
+                                                                'alt' => '',
                                                                 'class' => 'header__info-icon-image',
                                                                 'lazy' => false,
                                                             ]);
@@ -258,12 +258,12 @@
                                     <a href="#contact" class="header__cta">
                                         <span
                                             class="header__cta-text"><?php igrmed_e('btn_contact_us'); ?></span>
-                                        <span class="header__cta-icon">
-                                            <span class="header__cta-icon-circle" aria-hidden="true"></span>
+                                        <span class="header__cta-icon" aria-hidden="true">
+                                            <span class="header__cta-icon-circle"></span>
                                             <?php
                                             get_picture([
                                                 'name' => 'svg/contact-arrow.svg',
-                                                'alt' => 'Contact arrow icon',
+                                                'alt' => '',
                                                 'class' => 'header__cta-icon-arrow',
                                                 'lazy' => false,
                                             ]);
@@ -318,12 +318,12 @@
                     </div>
                     <a href="#contact" class="header__cta header__mobile-menu-cta">
                         <span class="header__cta-text"><?php igrmed_e('btn_contact_us'); ?></span>
-                        <span class="header__cta-icon">
-                            <span class="header__cta-icon-circle" aria-hidden="true"></span>
+                        <span class="header__cta-icon" aria-hidden="true">
+                            <span class="header__cta-icon-circle"></span>
                             <?php
                             get_picture([
                                 'name' => 'svg/contact-arrow.svg',
-                                'alt' => 'Contact arrow icon',
+                                'alt' => '',
                                 'class' => 'header__cta-icon-arrow',
                                 'lazy' => false,
                             ]);
@@ -334,11 +334,11 @@
                         <?php if ($header_address !== ''): ?>
                             <div class="header__mobile-menu-info-row">
                                 <?php if ($header_address_icon_url !== ''): ?>
-                                    <span class="header__mobile-menu-info-icon">
+                                    <span class="header__mobile-menu-info-icon" aria-hidden="true">
                                         <?php
                                         get_picture([
                                             'src' => $header_address_icon_url,
-                                            'alt' => $header_address_icon_alt,
+                                            'alt' => '',
                                             'class' => 'header__mobile-menu-info-icon-image',
                                             'lazy' => false,
                                         ]);
@@ -352,11 +352,11 @@
                         <?php if ($header_phone_1_url !== '' || $header_phone_2_url !== ''): ?>
                             <div class="header__mobile-menu-info-row">
                                 <?php if ($header_phone_icon_url !== ''): ?>
-                                    <span class="header__mobile-menu-info-icon">
+                                    <span class="header__mobile-menu-info-icon" aria-hidden="true">
                                         <?php
                                         get_picture([
                                             'src' => $header_phone_icon_url,
-                                            'alt' => $header_phone_icon_alt,
+                                            'alt' => '',
                                             'class' => 'header__mobile-menu-info-icon-image',
                                             'lazy' => false,
                                         ]);
@@ -387,11 +387,11 @@
                         <?php if ($header_schedule !== ''): ?>
                             <div class="header__mobile-menu-info-row">
                                 <?php if ($header_clock_icon_url !== ''): ?>
-                                    <span class="header__mobile-menu-info-icon">
+                                    <span class="header__mobile-menu-info-icon" aria-hidden="true">
                                         <?php
                                         get_picture([
                                             'src' => $header_clock_icon_url,
-                                            'alt' => $header_clock_icon_alt,
+                                            'alt' => '',
                                             'class' => 'header__mobile-menu-info-icon-image',
                                             'lazy' => false,
                                         ]);

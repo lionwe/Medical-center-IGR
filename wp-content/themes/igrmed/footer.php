@@ -25,11 +25,11 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
 }
 ?>
 <footer class="footer">
-    <div class="footer__bg">
+    <div class="footer__bg" aria-hidden="true">
         <?php
         get_picture([
             'src' => get_template_directory_uri() . '/assets/img/svg/footer-bg.svg',
-            'alt' => 'Footer background',
+            'alt' => '',
             'class' => '',
             'lazy' => false,
         ]);
@@ -51,14 +51,16 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
                         <?php if ($phone_1): ?>
                             <div class="footer__phone">
                                 <?php if ($icon_phone_url): ?>
-                                    <?php
-                                    get_picture([
-                                        'src' => $icon_phone_url,
-                                        'alt' => $icon_phone_alt,
-                                        'class' => 'footer__phone-icon',
-                                        'lazy' => false,
-                                    ]);
-                                    ?>
+                                    <span aria-hidden="true">
+                                        <?php
+                                        get_picture([
+                                            'src' => $icon_phone_url,
+                                            'alt' => '',
+                                            'class' => 'footer__phone-icon',
+                                            'lazy' => false,
+                                        ]);
+                                        ?>
+                                    </span>
                                 <?php endif; ?>
                                 <a href="<?php echo esc_attr($phone_1['url'] ?? '#'); ?>"><?php echo esc_html($phone_1['title'] ?? ''); ?></a>
                             </div>
@@ -67,14 +69,16 @@ if (is_array($icon_phone) && !empty($icon_phone['url'])) {
                         <?php if ($phone_2): ?>
                             <div class="footer__phone">
                                 <?php if ($icon_phone_url): ?>
-                                    <?php
-                                    get_picture([
-                                        'src' => $icon_phone_url,
-                                        'alt' => $icon_phone_alt,
-                                        'class' => 'footer__phone-icon',
-                                        'lazy' => false,
-                                    ]);
-                                    ?>
+                                    <span aria-hidden="true">
+                                        <?php
+                                        get_picture([
+                                            'src' => $icon_phone_url,
+                                            'alt' => '',
+                                            'class' => 'footer__phone-icon',
+                                            'lazy' => false,
+                                        ]);
+                                        ?>
+                                    </span>
                                 <?php endif; ?>
                                 <a href="<?php echo esc_attr($phone_2['url'] ?? '#'); ?>"><?php echo esc_html($phone_2['title'] ?? ''); ?></a>
                             </div>

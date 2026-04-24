@@ -3,23 +3,32 @@
 
 .blog-archive-hero {
     position: relative;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center top;
     padding-bottom: convert-to-rem(40px);
     min-height: convert-to-rem(441px);
 
-    @include mobile {
-        background-size: 100% 100%;
-        padding-bottom: convert-to-rem(30px);
-        min-height: convert-to-rem(320px);
+    &__bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        pointer-events: none;
     }
 
     .container {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         min-height: inherit;
         padding-top: convert-to-rem(40px);
+    }
+
+    @include mobile {
+        padding-bottom: convert-to-rem(30px);
+        min-height: convert-to-rem(320px);
     }
 
     .breadcrumbs {

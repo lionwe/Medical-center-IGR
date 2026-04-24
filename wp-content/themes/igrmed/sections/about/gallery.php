@@ -85,16 +85,12 @@ if (empty($slides)) {
                             <div class="about-gallery__image-wrap">
                                 <?php
                                 if ($slide['image_id'] > 0) {
-                                    echo wp_get_attachment_image(
-                                        $slide['image_id'],
-                                        'large',
-                                        false,
-                                        [
-                                            'class' => 'about-gallery__image',
-                                            'alt' => esc_attr($slide['image_alt']),
-                                            'loading' => 'lazy',
-                                        ]
-                                    );
+                                    get_picture([
+                                        'src' => wp_get_attachment_image_url($slide['image_id'], 'large'),
+                                        'alt' => $slide['image_alt'],
+                                        'class' => 'about-gallery__image',
+                                        'lazy' => true,
+                                    ]);
                                 } else {
                                     get_picture([
                                         'src' => $slide['image_url'],

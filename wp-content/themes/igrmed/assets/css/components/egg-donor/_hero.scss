@@ -1,7 +1,7 @@
 @use "../../utils/mixins" as *;
 @use "../../base/variables" as *;
 
-.ekz-hero {
+.egg-donor-hero {
   position: relative;
 
   &__bg {
@@ -18,13 +18,5 @@
   .container {
     position: relative;
     z-index: 1;
-  }
-
-  .photo-banner {
-    margin-bottom: convert-to-rem(20px);
-
-    @include mobile {
-      margin-bottom: 0;
-    }
   }
 }

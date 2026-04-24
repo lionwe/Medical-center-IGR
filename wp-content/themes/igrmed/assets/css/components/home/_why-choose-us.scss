@@ -4,6 +4,7 @@
 .why-choose-us {
     padding-top: convert-to-rem(110px);
     padding-bottom: convert-to-rem(110px);
+    position: relative;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -14,6 +15,22 @@
     }
 
     background-color: var(--color-bg-light);
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        pointer-events: none;
+    }
 
     &__header {
         margin-bottom: convert-to-rem(14px);

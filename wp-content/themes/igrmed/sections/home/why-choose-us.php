@@ -19,7 +19,17 @@ if (!$title && !$list) {
 }
 ?>
 
-<section class="why-choose-us" <?php if ($bg_image): ?>style="background-image: url('<?php echo esc_url($bg_image['url']); ?>');" <?php endif; ?>>
+<section class="why-choose-us">
+    <?php if ($bg_image): ?>
+        <?php
+        get_picture([
+            'src' => $bg_image['url'],
+            'alt' => $bg_image['alt'],
+            'class' => 'why-choose-us__bg',
+            'lazy' => true,
+        ]);
+        ?>
+    <?php endif; ?>
     <div class="container">
 
         <?php if ($title): ?>
@@ -79,7 +89,14 @@ if (!$title && !$list) {
                     </div>
                 <?php elseif ($media_type === 'image' && $image): ?>
                     <div class="why-choose-us__image-wrapper">
-                        <?php echo wp_get_attachment_image($image['ID'], 'large', false, ['class' => 'why-choose-us__image']); ?>
+                        <?php
+                        get_picture([
+                            'src' => $image['sizes']['large'] ?? $image['url'],
+                            'alt' => $image['alt'],
+                            'class' => 'why-choose-us__image',
+                            'lazy' => true,
+                        ]);
+                        ?>
 
                         <?php $video_text = get_field('why_choose_us_video_text'); ?>
                         <?php if ($video_text): ?>

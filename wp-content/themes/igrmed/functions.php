@@ -225,7 +225,10 @@ function get_picture($args = [])
     $class = $args['class'] ? 'class="' . esc_attr($args['class']) . '"' : '';
     $loading = $args['lazy'] ? 'loading="lazy"' : '';
 
-    if ($is_asset) {
+    // Check if it's an SVG file - render directly without picture wrapper
+    $is_svg = strtolower(pathinfo($img_src, PATHINFO_EXTENSION)) === 'svg';
+
+    if ($is_asset && !$is_svg) {
         $path_parts = pathinfo($args['name']);
         $webp_name = $path_parts['filename'] . '.webp';
         $webp_src = get_template_directory_uri() . "/assets/img/" . $webp_name;
