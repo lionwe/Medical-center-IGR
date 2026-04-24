@@ -5,11 +5,21 @@ add_filter('upload_mimes', 'svg_upload_allow');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 add_action('pre_get_posts', 'igrmed_blog_posts_per_page');
 add_filter('script_loader_tag', 'igrmed_defer_scripts', 10, 2);
+add_action('wp_head', 'add_font_preconnect', 1);
 
 require get_template_directory() . '/includes/post-types.php';
 require get_template_directory() . '/includes/ajax-handler.php';
 require get_template_directory() . '/includes/helpers.php';
 require get_template_directory() . '/includes/polylang-register-strings.php';
+
+/**
+ * Add font preconnect and preload for Google Fonts
+ */
+function add_font_preconnect() {
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
+    echo '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">';
+}
 
 /**
  * Get SVG content from assets
