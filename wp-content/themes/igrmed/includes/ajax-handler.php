@@ -438,7 +438,7 @@ function igrmed_render_diagnostics_accordion(array $items): string
                 </button>
 
                 <div class="diagnostics-research-diagnostics__accordion-content">
-                    <div class="content">
+                    <div class="diagnostics-research-diagnostics__accordion-content-inner">
                         <?php echo igrmed_render_diagnostics_content($row); ?>
                     </div>
                 </div>

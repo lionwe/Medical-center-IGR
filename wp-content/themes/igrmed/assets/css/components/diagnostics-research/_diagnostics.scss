@@ -191,13 +191,12 @@
   }
 
   &__accordion-content {
-    padding: 0 convert-to-rem(20px) 0;
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  &__accordion-content.is-open {
+  &__accordion-content-inner {
     padding: convert-to-rem(20px) convert-to-rem(50px) convert-to-rem(32px);
     @include mobile {
       padding: convert-to-rem(20px) convert-to-rem(8px);

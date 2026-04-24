@@ -74,13 +74,13 @@ if (empty($women_items) && empty($men_items)) {
                                 </button>
 
                                 <div class="diagnostics-research-diagnostics__accordion-content">
-
-                                    <?php
-                                    if (function_exists('igrmed_render_diagnostics_content')) {
-                                        echo igrmed_render_diagnostics_content($row);
-                                    }
-                                    ?>
-
+                                    <div class="diagnostics-research-diagnostics__accordion-content-inner">
+                                        <?php
+                                        if (function_exists('igrmed_render_diagnostics_content')) {
+                                            echo igrmed_render_diagnostics_content($row);
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                             </article>
                         <?php endforeach; ?>

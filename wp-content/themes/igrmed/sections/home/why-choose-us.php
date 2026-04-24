@@ -5,13 +5,15 @@
  * Description: Section "Why choose us" for Home page
  */
 
+$home_id = getHomePageID();
+
 /** Empty Fields Rule check */
-$bg_image   = get_field('why_choose_us_bg');
-$title      = get_field('why_choose_us_title');
-$list       = get_field('why_choose_us_list');
-$media_type = get_field('why_choose_us_media_type'); // 'video' or 'image'
-$video      = get_field('why_choose_us_video');
-$image      = get_field('why_choose_us_image');
+$bg_image   = get_field('why_choose_us_bg', $home_id);
+$title      = get_field('why_choose_us_title', $home_id);
+$list       = get_field('why_choose_us_list', $home_id);
+$media_type = get_field('why_choose_us_media_type', $home_id); // 'video' or 'image'
+$video      = get_field('why_choose_us_video', $home_id);
+$image      = get_field('why_choose_us_image', $home_id);
 
 // Render only if we have minimum required content
 if (!$title && !$list) {
@@ -68,7 +70,7 @@ if (!$title && !$list) {
                         </video>
 
                         <div class="why-choose-us__overlay js-video-overlay">
-                            <?php $video_text = get_field('why_choose_us_video_text'); ?>
+                            <?php $video_text = get_field('why_choose_us_video_text', $home_id); ?>
                             <?php if ($video_text): ?>
                                 <div class="why-choose-us__overlay-text">
                                     <?php echo wp_kses_post($video_text); ?>
@@ -98,7 +100,7 @@ if (!$title && !$list) {
                         ]);
                         ?>
 
-                        <?php $video_text = get_field('why_choose_us_video_text'); ?>
+                        <?php $video_text = get_field('why_choose_us_video_text', $home_id); ?>
                         <?php if ($video_text): ?>
                             <div class="why-choose-us__overlay js-video-overlay why-choose-us__overlay--static">
                                 <div class="why-choose-us__overlay-text">

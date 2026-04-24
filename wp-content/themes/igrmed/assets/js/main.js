@@ -109,6 +109,13 @@ const components = [
         /* webpackChunkName: "comp-pregnancy-swiper" */ "./swipers/pregnancy-management/main"
       ),
   },
+  {
+    selector: ".about-gallery",
+    loader: () =>
+      import(
+        /* webpackChunkName: "comp-about-gallery" */ "./swipers/about/main"
+      ),
+  },
 ];
 
 components.forEach(({ selector, loader }) => {

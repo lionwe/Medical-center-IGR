@@ -66,11 +66,13 @@ function initDiagnosticsGenderToggle() {
   const openAccordionContent = (item, content) => {
     item.classList.add("is-open");
     content.classList.add("is-open");
+    content.style.maxHeight = content.scrollHeight + "px";
   };
 
   const closeAccordionContent = (item, content) => {
     item.classList.remove("is-open");
     content.classList.remove("is-open");
+    content.style.maxHeight = null;
   };
 
   const bindAccordion = (accordion) => {
@@ -133,12 +135,17 @@ function initDiagnosticsGenderToggle() {
           item.style.transform = 'translateY(20px)';
           item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
           item.classList.remove("is-hidden-service");
-          
+
           setTimeout(() => {
             item.style.opacity = '1';
             item.style.transform = 'translateY(0)';
           }, index * 100);
         });
+
+        // Recalculate max-height after items are visible
+        setTimeout(() => {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }, collapsibleItems.length * 100 + 50);
       } else {
         collapsibleItems.forEach((item) => {
           item.classList.add("is-hidden-service");
@@ -277,7 +284,13 @@ function initDiagnosticsGenderToggle() {
   bindAccordionsInScope(document);
 
   syncAccordionHeights();
-  window.addEventListener("resize", () => syncListLinesColumnEnds());
+  window.addEventListener("resize", () => {
+    syncListLinesColumnEnds();
+    // Recalculate max-height for open accordions on resize
+    document.querySelectorAll(`${selectors.accordionItem}.is-open ${selectors.accordionContent}`).forEach((content) => {
+      content.style.maxHeight = content.scrollHeight + "px";
+    });
+  });
 }
 
 if (document.readyState === "loading") {
