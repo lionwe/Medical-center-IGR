@@ -38,7 +38,7 @@
 
     &__actions {
         margin-top: convert-to-rem(24px);
-        margin-bottom: convert-to-rem(60px);
+        margin-bottom: convert-to-rem(120px);
     }
 
     &__slider-wrapper {
@@ -50,15 +50,26 @@
 
     &__slider-nav {
         position: absolute;
-        bottom: -35px;
+        bottom: 55px;
         left: 45rem;
         z-index: 10;
+
+        @media screen and (max-width: 992px) {
+            right: 40px;
+            bottom: 80px;
+            left: auto;
+            transform: none;
+        }
     }
 
     &__slider.swiper {
         width: 100%;
         height: convert-to-rem(380px);
         overflow: visible;
+
+        @include mobile {
+            height: convert-to-rem(350px);
+        }
     }
 
     .swiper-wrapper {
@@ -83,6 +94,10 @@
             width: 0 !important;
             padding: 0;
             border: none;
+
+            @include mobile {
+                display: none;
+            }
         }
 
         &--real {
@@ -94,6 +109,16 @@
             height: convert-to-rem(330px);
             z-index: 2;
             box-shadow: 0 convert-to-rem(10px) convert-to-rem(30px) rgba(59, 130, 246, 0.4);
+        }
+
+        @include mobile {
+            width: convert-to-rem(120px);
+            height: convert-to-rem(130px);
+
+            &.custom-active {
+                width: convert-to-rem(233px);
+                height: convert-to-rem(272px);
+            }
         }
     }
 
@@ -157,7 +182,6 @@
                 inset: convert-to-rem(-5px);
                 border-radius: 50%;
                 border: convert-to-rem(0.5px) solid rgba(255, 255, 255, 1);
-                pointer-events: none;
             }
         }
     }
@@ -226,6 +250,10 @@
             visibility: visible;
             pointer-events: auto;
             transform: translate(-50%, 0);
+        }
+
+        .doctors__slide-image-wrap {
+            box-shadow: none;
         }
     }
 }

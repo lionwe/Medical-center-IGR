@@ -55,6 +55,7 @@ if (empty($doctors_posts)) {
         </div>
     <?php endif; ?>
     <div class="container">
+
         <div class="doctors__wrapper">
             <?php if ($doctors_title !== ''): ?>
                 <h2 class="doctors__title">
@@ -77,30 +78,12 @@ if (empty($doctors_posts)) {
                 </div>
             <?php endif; ?>
 
-            <div class="doctors__slider-wrapper">
-                <div class="doctors__slider-nav btn-group--glass-circle">
-                    <?php
-                    get_template_part('templates/button', null, [
-                        'type' => 'carousel-glass',
-                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-carousel-active.svg',
-                        'class' => 'is-prev js-doctors-prev',
-                        'attributes' => ['aria-label' => __('Попередній лікар', 'igrmed')],
-                    ]);
-                    ?>
-                    <?php
-                    get_template_part('templates/button', null, [
-                        'type' => 'carousel-glass',
-                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-carousel-active.svg',
-                        'class' => 'js-doctors-next',
-                        'attributes' => ['aria-label' => __('Наступний лікар', 'igrmed')],
-                    ]);
-                    ?>
-                </div>
-
+            <div class="doctors__slider-clip">
                 <div class="doctors__slider swiper js-doctors-swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide doctors__slide doctors__slide--dummy"></div>
-                        <div class="swiper-slide doctors__slide doctors__slide--dummy"></div>
+                        <!-- Dummy slides for desktop -->
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
 
                         <?php foreach ($doctors_posts as $doctor_post): ?>
                             <?php
@@ -123,7 +106,7 @@ if (empty($doctors_posts)) {
                             }
                             ?>
 
-                            <article class="swiper-slide doctors__slide doctors__slide--real">
+                            <article class="doctors__slide swiper-slide">
                                 <?php if ($doctor_spec !== ''): ?>
                                     <p class="doctors__slide-spec"><?php echo esc_html($doctor_spec); ?></p>
                                 <?php endif; ?>
@@ -159,12 +142,32 @@ if (empty($doctors_posts)) {
                             </article>
                         <?php endforeach; ?>
 
-                        <div class="swiper-slide doctors__slide doctors__slide--dummy"></div>
-                        <div class="swiper-slide doctors__slide doctors__slide--dummy"></div>
-                        <div class="swiper-slide doctors__slide doctors__slide--dummy"></div>
-                        <div class="swiper-slide doctors__slide doctors__slide--dummy"></div>
-                        <div class="swiper-slide doctors__slide doctors__slide--dummy"></div>
+                        <!-- Dummy slides for desktop -->
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
                     </div>
+                </div>
+
+                <div class="doctors__slider-nav btn-group--glass-circle">
+                    <?php
+                    get_template_part('templates/button', null, [
+                        'type' => 'carousel-glass',
+                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-carousel-active.svg',
+                        'class' => 'is-prev js-doctors-prev',
+                        'attributes' => ['aria-label' => __('Попередній лікар', 'igrmed')],
+                    ]);
+                    ?>
+                    <?php
+                    get_template_part('templates/button', null, [
+                        'type' => 'carousel-glass',
+                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-carousel-active.svg',
+                        'class' => 'doctors__next js-doctors-next',
+                        'attributes' => ['aria-label' => __('Наступний лікар', 'igrmed')],
+                    ]);
+                    ?>
                 </div>
             </div>
         </div>

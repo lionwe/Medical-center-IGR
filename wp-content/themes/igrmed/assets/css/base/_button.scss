@@ -257,7 +257,8 @@ $_gradient-border: linear-gradient(180deg,
     }
 
     // Inactive state (disabled)
-    &.swiper-button-disabled {
+    &.swiper-button-disabled,
+    &:disabled {
       width: convert-to-rem(48px);
       height: convert-to-rem(30px);
       border-radius: convert-to-rem(100px);
