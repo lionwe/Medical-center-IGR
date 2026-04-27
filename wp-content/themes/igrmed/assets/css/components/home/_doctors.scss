@@ -38,39 +38,62 @@
 
     &__actions {
         margin-top: convert-to-rem(24px);
+        margin-bottom: convert-to-rem(60px);
     }
 
-    &__slider-clip {
+    &__slider-wrapper {
         position: relative;
-        overflow: visible;
-        margin-top: convert-to-rem(24px);
-        margin-inline: auto;
+        max-width: convert-to-rem(1400px);
+        margin: 0 auto;
+        padding-top: convert-to-rem(60px);
+    }
+
+    &__slider-nav {
+        position: absolute;
+        bottom: -35px;
+        left: 45rem;
+        z-index: 10;
     }
 
     &__slider.swiper {
         width: 100%;
-        height: convert-to-rem(500px);
-        overflow: hidden;
-        @include mobile {
-            height: convert-to-rem(455px);
-        }
+        height: convert-to-rem(380px);
+        overflow: visible;
     }
 
     .swiper-wrapper {
-        align-items: flex-end;
+        align-items: flex-end !important;
     }
 
     &__slide.swiper-slide {
         width: convert-to-rem(213px);
-        height: 100%;
+        height: convert-to-rem(253px);
+        border-radius: convert-to-rem(12px);
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: width 0.4s ease, height 0.4s ease, box-shadow 0.4s ease;
 
-        @include mobile {
-            width: convert-to-rem(119px);
-            transition: none;
+        &--dummy {
+            background: transparent !important;
+            box-shadow: none !important;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            width: 0 !important;
+            padding: 0;
+            border: none;
+        }
+
+        &--real {
+            background: transparent;
+        }
+
+        &.custom-active {
+            width: convert-to-rem(330px);
+            height: convert-to-rem(330px);
+            z-index: 2;
+            box-shadow: 0 convert-to-rem(10px) convert-to-rem(30px) rgba(59, 130, 246, 0.4);
         }
     }
 
@@ -79,18 +102,10 @@
         position: relative;
         border-radius: convert-to-rem(12px);
         overflow: hidden;
-        aspect-ratio: 213 / 253;
         width: 100%;
-        transition:
-            aspect-ratio 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-            height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-            box-shadow 0.3s ease;
+        height: 100%;
+        transition: box-shadow 0.3s ease;
         box-shadow: none;
-
-        @include mobile {
-            aspect-ratio: 119 / 127;
-            height: convert-to-rem(127px);
-        }
     }
 
     &__slide-image {
@@ -201,14 +216,8 @@
         }
     }
 
-    .swiper-slide-active {
-        width: convert-to-rem(330px);
-        opacity: 1;
-
-      
-
+    .custom-active {
         .doctors__slide-excerpt {
-            // FIX: display: -webkit-box тепер тут — line-clamp без нього не працює
             display: -webkit-box;
         }
 
@@ -217,32 +226,6 @@
             visibility: visible;
             pointer-events: auto;
             transform: translate(-50%, 0);
-        }
-
-        .doctors__slide-image-wrap {
-            aspect-ratio: 330 / 330;
-            box-shadow: none;
-
-            @include mobile {
-                height: convert-to-rem(273px);
-            }
-        }
-    }
-
-    &__slider-nav {
-        position: absolute;
-        left: 62%;
-        top: 70%;
-        margin-top: 0;
-        z-index: 2;
-
-        .btn {
-            pointer-events: auto;
-        }
-        @include mobile {
-            left: 80%;
-            top: 90%;
-            transform: translate(-50%, -50%);
         }
     }
 }

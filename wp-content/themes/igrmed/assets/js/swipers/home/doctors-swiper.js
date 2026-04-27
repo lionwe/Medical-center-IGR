@@ -9,48 +9,55 @@ export default class DoctorsSwiper {
         }
     }
 
-    init() {
-        const forceCenter = (swiper) => {
-            requestAnimationFrame(() => {
-                swiper.update();
-                swiper.slideTo(swiper.activeIndex, 0, false);
-            });
-        };
+    updateCustomActiveSlide(swiper) {
+        // 1. Оновлюємо класи
+        swiper.slides.forEach(slide => {
+            slide.classList.remove('custom-active');
+        });
 
+        const targetIndex = swiper.activeIndex + 2;
+
+        if (swiper.slides[targetIndex]) {
+            swiper.slides[targetIndex].classList.add('custom-active');
+        }
+
+        // 2. Блокуємо скрол вперед, якщо дійшли до останнього реального слайду
+        const realSlidesCount = swiper.slides.filter(slide => !slide.classList.contains('doctors__slide--dummy')).length;
+        const maxIndex = realSlidesCount - 1;
+        const nextBtn = document.querySelector('.js-doctors-next');
+
+        if (swiper.activeIndex >= maxIndex) {
+            swiper.allowSlideNext = false;
+            nextBtn.classList.add('swiper-button-disabled');
+        } else {
+            swiper.allowSlideNext = true;
+            nextBtn.classList.remove('swiper-button-disabled');
+        }
+
+        setTimeout(() => {
+            swiper.updateSize();
+        }, 400);
+    }
+
+    init() {
         new Swiper(this.wrapper, {
             modules: [Navigation],
             slidesPerView: 'auto',
-            centeredSlides: true,
-            centerInsufficientSlides: true,
-            spaceBetween: 16,
+            spaceBetween: 15,
             initialSlide: 2,
-            speed: 450,
-            grabCursor: true,
             navigation: {
-                prevEl: '.js-doctors-prev',
                 nextEl: '.js-doctors-next',
+                prevEl: '.js-doctors-prev',
                 disabledClass: 'swiper-button-disabled',
             },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1.5,
-                    centeredSlides: true,
-                    spaceBetween: 10,
-                },
-                768: {
-                    slidesPerView: 'auto',
-                    centeredSlides: true,
-                    spaceBetween: 16,
-                },
-            },
             on: {
-                init(swiper) {
-                    forceCenter(swiper);
+                init: (swiper) => {
+                    this.updateCustomActiveSlide(swiper);
                 },
-                resize(swiper) {
-                    forceCenter(swiper);
-                },
-            },
+                slideChange: (swiper) => {
+                    this.updateCustomActiveSlide(swiper);
+                }
+            }
         });
     }
 }
