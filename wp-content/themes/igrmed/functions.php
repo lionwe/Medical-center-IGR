@@ -25,8 +25,17 @@ function add_font_preconnect() {
     // Preload hero background image for LCP
     if (is_front_page()) {
         $hero_bg = get_field('home_hero_bg');
-        if ($hero_bg && is_array($hero_bg)) {
-            $hero_bg_url = $hero_bg['url'] ?? '';
+        if ($hero_bg) {
+            $hero_bg_url = '';
+
+            if (is_array($hero_bg)) {
+                $hero_bg_url = $hero_bg['url'] ?? '';
+            } elseif (is_numeric($hero_bg)) {
+                $hero_bg_url = wp_get_attachment_url((int) $hero_bg) ?: '';
+            } elseif (is_string($hero_bg)) {
+                $hero_bg_url = $hero_bg;
+            }
+
             if ($hero_bg_url) {
                 echo '<link rel="preload" href="' . esc_url($hero_bg_url) . '" as="image">';
             }
