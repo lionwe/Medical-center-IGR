@@ -60,21 +60,10 @@ $when_title = trim((string) get_field('when_title'));
 $when_list = $extract_text_rows(get_field('when_list'), ['item', 'text', 'title', 'name']);
 
 $stages_title = trim((string) get_field('stages_title'));
-$stages_bg_desc = trim((string) get_field('stages_bg_desc'));
-$stages_bg_url = $extract_image_url(get_field('stages_bg'));
+$stages_bg_url = $extract_image_url(get_field('stages_bg_desc'));
 $stages_bg_mobile_url = $extract_image_url(get_field('stages_bg_mob'));
 
-// Guard: if URL is accidentally entered into description field,
-// do not render it as visible text above the timeline.
-if ($stages_bg_desc !== '' && filter_var($stages_bg_desc, FILTER_VALIDATE_URL)) {
-    $stages_bg_desc = '';
-}
-
-if ($stages_bg_url === '') {
-    $stages_bg_url = 'http://igr-medical.local/wp-content/uploads/2026/03/group-1000001824-1-scaled.webp';
-}
-
-if ($stages_bg_mobile_url === '') {
+if ($stages_bg_mobile_url === '' && $stages_bg_url !== '') {
     $stages_bg_mobile_url = $stages_bg_url;
 }
 $stages_rows = get_field('stages_list');
@@ -105,7 +94,7 @@ $methods_content = is_string($methods_content) ? trim($methods_content) : '';
 $has_intro = $intro_content !== '';
 $has_causes = $causes_subtitle !== '' || !empty($causes_list);
 $has_when = !empty($when_list);
-$has_stages = $stages_bg_desc !== '' || !empty($stages_list);
+$has_stages = $stages_bg_url !== '' || $stages_bg_mobile_url !== '' || !empty($stages_list);
 $has_methods = $methods_content !== '';
 
 $sections = [];
@@ -204,11 +193,6 @@ if (empty($sections)) {
                             </h2>
                         </div>
                         <div class="male-infertility-content__body male-infertility-content__body--stages">
-                            <?php if ($stages_bg_desc !== ''): ?>
-                                <strong class="male-infertility-content__subtitle">
-                                    <?php echo esc_html($stages_bg_desc); ?>
-                                </strong>
-                            <?php endif; ?>
                             <?php if (!empty($stages_list) || $stages_bg_url !== '' || $stages_bg_mobile_url !== ''): ?>
                                 <div
                                     class="male-infertility-content__stages-bg"
@@ -220,7 +204,7 @@ if (empty($sections)) {
                                     if ($stages_bg_mobile_url !== '') {
                                         $stages_bg_styles[] = '--mi-stages-bg-mobile: url(' . esc_url($stages_bg_mobile_url) . ')';
                                     }
-                                    echo !empty($stages_bg_styles) ? 'style="' . esc_attr(implode('; ', $stages_bg_styles)) . '"' : '';
+                                    echo !empty($stages_bg_styles) ? 'style="' . implode('; ', array_map('esc_attr', $stages_bg_styles)) . '"' : '';
                                     ?>
                                 >
                                     <div class="male-infertility-content__stages-layout">

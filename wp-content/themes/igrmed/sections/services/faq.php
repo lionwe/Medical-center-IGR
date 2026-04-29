@@ -4,20 +4,8 @@
  * Location: Service pages
  */
 
-$extract_image_url = static function ($image): string {
-    if (is_array($image)) {
-        return trim((string) ($image['url'] ?? ''));
-    }
-
-    if (is_numeric($image)) {
-        return (string) wp_get_attachment_url((int) $image);
-    }
-
-    return trim((string) $image);
-};
-
 $title = trim((string) get_field('faq_title'));
-$bg_image = $extract_image_url(get_field('faq_bg_image'));
+$bg_image = get_field('faq_bg_image');
 $faq_rows = get_field('faq_global_list');
 $faq_list = [];
 
@@ -46,25 +34,12 @@ if (empty($faq_list)) {
     return;
 }
 
-if ($bg_image === '') {
-    $bg_image = get_template_directory_uri() . '/assets/img/svg/footer-bg.svg';
-}
-
 $icon_arrow_svg = '<svg width="19" height="9" viewBox="0 0 19 9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M9.09375 8.25L18.187 0H0.000483513L9.09375 8.25Z" fill="black"/></svg>';
 ?>
 
 <section class="faq-section" id="faq-section">
     <div class="container">
-        <div class="faq-section__inner">
-            <?php
-            get_picture([
-                'name' => 'svg/footer-bg.svg',
-                'alt' => '',
-                'class' => 'faq-section__bg',
-                'lazy' => true,
-            ]);
-            ?>
-
+        <div class="faq-section__inner" <?php if ($bg_image !== ''): ?>style="background-image: url('<?php echo esc_url($bg_image); ?>');"<?php endif; ?>>
             <div class="faq-section__layout">
                 <div class="faq-section__left-col">
                     <div class="faq-section__header-group">

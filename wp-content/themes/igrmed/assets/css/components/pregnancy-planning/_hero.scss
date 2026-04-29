@@ -3,6 +3,11 @@
 
 .pregnancy-planning-hero {
   position: relative;
+  overflow: hidden;
+
+  @include desktop {
+    max-height: convert-to-rem(700px);
+  }
 
   &__bg {
     position: absolute;

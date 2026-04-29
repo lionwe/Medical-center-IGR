@@ -236,7 +236,12 @@ if (empty($sections)) {
                                 if ($stages_bg_mobile_url !== '') {
                                     $stages_bg_styles[] = '--itw-stages-bg-mobile: url(' . esc_url($stages_bg_mobile_url) . ')';
                                 }
-                                echo !empty($stages_bg_styles) ? 'style="' . esc_attr(implode('; ', $stages_bg_styles)) . '"' : '';
+                                // DEBUG: Check if background images are loaded
+                                if (empty($stages_bg_styles)) {
+                                    echo 'data-debug="no-bg-images"';
+                                } else {
+                                    echo 'style="' . esc_attr(implode('; ', $stages_bg_styles)) . '"';
+                                }
                                 ?>
                             >
                                 <div class="infertility-treatment-women__stages-layout">

@@ -26,13 +26,9 @@ export default class DoctorsSwiper {
         this.isMobile = window.innerWidth < 768;
         this.nextBtn = document.querySelector('.js-doctors-next');
 
-        // Фікс #2: використовуємо значення збережене в constructor(),
-        // а не перечитуємо з DOM — після першого видалення dummy slides
-        // querySelector поверне null і offset буде хибно 0.
         this.offset = this._hasDummySlides && !this.isMobile ? 2 : 0;
 
         if (this.isMobile) {
-            // Видаляємо dummy slides тільки якщо вони ще є в DOM.
             this.wrapper.querySelectorAll('.doctors__slide--dummy').forEach(slide => slide.remove());
         }
 

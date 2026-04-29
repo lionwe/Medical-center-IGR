@@ -1,2 +1,1 @@
-
-import "./collapse";
+import './procedures-more';

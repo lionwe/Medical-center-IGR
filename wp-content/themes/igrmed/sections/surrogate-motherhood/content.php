@@ -43,16 +43,10 @@ if (!$has_intro && !$has_tabs && !$has_program) {
 
 $sections = [];
 
-if ($has_intro) {
+if ($has_intro || $has_tabs) {
     $sections[] = [
         'id'    => 'surrogate-intro',
         'title' => $intro_title,
-    ];
-}
-if ($has_tabs) {
-    $sections[] = [
-        'id'    => 'surrogate-tabs',
-        'title' => '',
     ];
 }
 if ($has_program) {

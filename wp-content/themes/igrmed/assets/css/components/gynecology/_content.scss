@@ -1,7 +1,7 @@
 @use "../../utils/mixins" as *;
 @use "../../base/variables" as *;
 
-.gynecology-content {
+.gyn-content {
   padding-top: convert-to-rem(40px);
 
   @include mobile {
@@ -41,7 +41,7 @@
     }
   }
 
-  &__title-wrap {
+  &__section-title-wrap {
     width: fit-content;
     max-width: 100%;
     margin-bottom: convert-to-rem(-1px);
@@ -60,13 +60,15 @@
     }
   }
 
-  &__title {
+  &__section-title {
     @include typography($font-family-montserrat, $fw-semibold, (16px, 24px), 1.2, 0);
+    display: inline-flex;
+    align-items: center;
     margin: 0;
     color: var(--color-white);
   }
 
-  &__body {
+  &__section-body {
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -76,8 +78,6 @@
     border-radius: 0 convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px);
     padding: convert-to-rem(24px) convert-to-rem(30px);
     overflow-wrap: anywhere;
-@include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
-    color: var(--color-black);
 
     :where(p, li) {
       @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
@@ -86,66 +86,9 @@
     @include mobile {
       padding: 0;
       gap: convert-to-rem(16px);
-      @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
 
       :where(p, li) {
         @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
-      }
-    }
-  }
-
-
-  &__section--when &__body {
-    padding-inline: 0;
-  }
-
-  &__section--intro {
-    position: relative;
-    isolation: isolate;
-    overflow: visible;
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 30%;
-      right: 30%;
-      width: 100%;
-      height: convert-to-rem(1030px);
-      transform: translate(50%, -50%);
-      pointer-events: none;
-      z-index: -1;
-      background-image: url("../img/svg/universal-pink-blob.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-    }
-
-    .gynecology-content__lead {
-      position: relative;
-      z-index: 1;
-      
-      :where(p, li) {
-        @include typography($font-family-montserrat, $fw-semibold, 15px, 22px, 0);
-      }
-    }
-
-    @include mobile {
-      &::after {
-        display: none;
-      }
-      
-      .gynecology-content__body {
-        padding: 0;
-        gap: 0;
-      }
-    }
-  }
-
-  &__section--advantages {
-    @include mobile {
-      .gynecology-content__body {
-        padding: 0;
-        gap: 0;
       }
     }
   }
@@ -154,9 +97,8 @@
     display: grid;
     gap: convert-to-rem(10px);
 
-    > p:first-of-type {
-      @include typography($font-family-montserrat, $fw-regular, 16px, 22px, 0);
-      display: inline;
+    :where(p) {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 22px, 0);
       color: var(--color-black);
       margin: 0;
 
@@ -165,59 +107,57 @@
       }
     }
 
+    :where(p:last-child) {
+      margin-bottom: 0;
+    }
+
+    :where(ul, ol) {
+      margin: 0;
+      padding-left: convert-to-rem(20px);
+    }
+
+    li + li {
+      margin-top: convert-to-rem(4px);
+    }
+
     @include mobile {
       gap: 0;
     }
   }
 
-  &__when-list {
-    margin: 0;
-    padding: 0;
-    counter-reset: when-counter;
-    display: grid;
-    gap: convert-to-rem(10px);
-
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: convert-to-rem(10px);
-    }
-
-    li {
-      counter-increment: when-counter;
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      align-items: center;
-      gap: clamp(12px, 2.4vw, 34px);
-      padding: convert-to-rem(8px) convert-to-rem(7px);
-      border: convert-to-rem(1px) solid var(--color-gray-205);
-      border-radius: convert-to-rem(12px);
-
-      &::before {
-        content: counter(when-counter);
-        @include typography($font-family-montserrat, $fw-semibold, (32px, 42px), 1.2, 0);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: convert-to-rem(53px);
-        height: convert-to-rem(50px);
-        padding: convert-to-rem(8px) convert-to-rem(7px);
-        border-radius: convert-to-rem(8px);
-        background: var(--color-card-badge-bg);
-        color: var(--color-white);
-
-        @include mobile {
-          width: convert-to-rem(40px);
-          height: convert-to-rem(40px);
-          padding: 0;
-        }
+  &__section--intro,
+  &__section--advantages {
+    @include mobile {
+      .gyn-content__section-body {
+        padding: 0;
+        gap: 0;
       }
     }
   }
 
-  &__procedures-list {
+  &__section--when {
+    .gyn-content__section-body {
+      padding: convert-to-rem(24px) 0;
+    }
+
+    @include mobile {
+      .gyn-content__section-body {
+        padding: 0;
+      }
+    }
+  }
+
+  &__section--procedures {
+    .gyn-content__section-body {
+      padding: convert-to-rem(24px) 0;
+
+      @include mobile {
+        padding: 0;
+      }
+    }
+  }
+
+  &__list-blocks {
     display: grid;
     grid-template-columns: repeat(4, max-content);
     grid-auto-rows: 1fr;
@@ -226,53 +166,62 @@
     margin: 0;
     padding: 0;
 
+    li {
+      @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
+      width: convert-to-rem(213px);
+      max-width: 100%;
+      min-height: convert-to-rem(90px);
+      height: 100%;
+      border-radius: convert-to-rem(12px);
+      padding: convert-to-rem(20px) convert-to-rem(15px) convert-to-rem(14px) convert-to-rem(16px);
+      border: convert-to-rem(1px) solid rgba(217, 217, 217, 1);
+      background: rgba(255, 255, 255, 1);
+      box-sizing: border-box;
+
+      &.is-hidden-service {
+        display: none;
+      }
+    }
+
     @include mobile {
       width: 100%;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      justify-content: stretch;
+      grid-auto-rows: convert-to-rem(90px);
+
+      li {
+        width: 100%;
+        max-width: none;
+        height: convert-to-rem(90px);
+        min-height: unset;
+        padding: 0 convert-to-rem(28px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: none;
+        border: none;
+      }
     }
   }
 
-  &__procedures-item {
-    @include typography($font-family-montserrat, $fw-regular, 15px, 1.2, 0);
-    width: 100%;
-    min-height: convert-to-rem(90px);
-    border-radius: convert-to-rem(12px);
-    padding: convert-to-rem(20px) convert-to-rem(15px) convert-to-rem(14px) convert-to-rem(16px);
-    border: convert-to-rem(1px) solid var(--color-gray-217);
-    background: var(--color-background-light);
-    box-sizing: border-box;
-
-    @include mobile {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      padding: convert-to-rem(14px) convert-to-rem(21px);
-    }
+  &__list-blocks-more-item {
+    padding: convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(16px) !important;
   }
 
-  &__procedures-item.is-hidden-service {
-    display: none;
-  }
-
-  &__procedures-item.gynecology-content__list-more-item {
-    padding: convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(12px) convert-to-rem(16px);
-  }
 
   &__list-more {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0;
+    gap: convert-to-rem(10px);
     width: 100%;
     height: 100%;
-    padding: 0;
-    border: 0;
     background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
     color: inherit;
     text-align: left;
-    cursor: pointer;
-    @include typography($font-family-montserrat, $fw-regular, 12px, 1, 0);
   }
 
   &__list-more-text {
@@ -288,7 +237,6 @@
     height: convert-to-rem(20px);
     border: convert-to-rem(0.5px) solid var(--color-primary-dark);
     border-radius: convert-to-rem(100px);
-    box-sizing: border-box;
 
     svg {
       display: block;
@@ -296,15 +244,55 @@
       height: convert-to-rem(8px);
       flex-shrink: 0;
     }
-
-    .gynecology-content__list-more[aria-expanded="true"] & {
-      svg {
-        transform: rotate(180deg);
-      }
-    }
   }
 
-  &__editor {
-    margin-top: convert-to-rem(40px);
+  &__reasons-content {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: reasons-counter;
+      display: grid;
+      gap: convert-to-rem(10px);
+
+      li {
+        counter-increment: reasons-counter;
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        align-items: center;
+        gap: clamp(12px, 2.4vw, 34px);
+        padding: convert-to-rem(8px) convert-to-rem(7px);
+        border: convert-to-rem(1px) solid var(--color-gray-205);
+        border-radius: convert-to-rem(12px);
+
+        @include typography($font-family-montserrat, $fw-regular, 16px, 1.5, 0);
+        color: var(--color-black);
+
+        @include mobile {
+          @include typography($font-family-montserrat, $fw-regular, (14px, 15px), 22px, 0);
+          gap: convert-to-rem(12px);
+        }
+
+        &::before {
+          content: counter(reasons-counter);
+          @include typography($font-family-montserrat, $fw-semibold, (32px, 42px), 1.2, 0);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: convert-to-rem(53px);
+          height: convert-to-rem(50px);
+          padding: convert-to-rem(8px) convert-to-rem(7px);
+          border-radius: convert-to-rem(8px);
+          background: var(--color-card-badge-bg);
+          color: var(--color-white);
+
+          @include mobile {
+            width: convert-to-rem(40px);
+            height: convert-to-rem(40px);
+            padding: 0;
+          }
+        }
+      }
+    }
   }
 }
