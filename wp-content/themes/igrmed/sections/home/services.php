@@ -10,6 +10,10 @@ $home_page_id = getHomePageID();
 $title = get_field('home_services_title', $home_page_id);
 $posts = get_field('home_services_posts', $home_page_id);
 
+if (!is_array($posts)) {
+    $posts = [];
+}
+
 if (!$title && !$posts) {
     return;
 }
@@ -37,9 +41,14 @@ if (!$title && !$posts) {
                     $cta_text = get_field('home_services_cta_text', $home_page_id);
                     $cta_button = get_field('home_services_cta_button', $home_page_id);
 
+                    if (!is_array($cta_button)) {
+                        $cta_button = [];
+                    }
+
                     if ($cta_text || ($cta_button && !empty($cta_button['url']))) :
                         $cta_button_url = $cta_button['url'] ?? '';
-$cta_button_title = igrmed__('btn_contact_us');
+                        $cta_button_title = igrmed__('btn_contact_us');
+
                         $cta_button_target = $cta_button['target'] ?? '_self';
                 ?>
                         <div class="service-card service-card--cta" <?php echo $cta_button_url ? 'data-href="' . esc_url($cta_button_url) . '"' : ''; ?>>
