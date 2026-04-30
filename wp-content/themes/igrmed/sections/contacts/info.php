@@ -142,17 +142,7 @@ if (is_array($contacts_form_bg)) {
                 </div>
             </div>
 
-            <div class="contacts-info__right">
-                <?php if ($form_bg_url !== ''): ?>
-                    <?php
-                    get_picture([
-                        'src' => $form_bg_url,
-                        'alt' => $form_bg_alt,
-                        'class' => 'contacts-info__right-bg',
-                        'lazy' => true,
-                    ]);
-                    ?>
-                <?php endif; ?>
+            <div class="contacts-info__right"<?php if ($form_bg_url !== ''): ?> style="background-image: url('<?php echo esc_url($form_bg_url); ?>');"<?php endif; ?>>
                 <?php if ($contacts_form_block): ?>
                     <div class="contacts-info__form-intro">
                         <?php echo wp_kses_post($contacts_form_block); ?>
