@@ -24,14 +24,14 @@ const components = [
   },
   {
     selector:
-      "#infertility-treatment-women, #egg-donor, #ekz, #cryotechnology, #pregnancy-management, #male-infertility, #surrogate-motherhood",
+      "#infertility-treatment-women, #egg-donor, #ekz, #cryotechnology, #pregnancy-management, #male-infertility, #surrogate-motherhood, #gynecology",
     loader: () =>
       import(
         /* webpackChunkName: "comp-infertility" */ "./components/infertility-treatment-women/main"
       ),
   },
   {
-    selector: "#gynecology",
+    selector: ".js-gyn-procedures-more",
     loader: () =>
       import(
         /* webpackChunkName: "comp-gynecology" */ "./components/gynecology/main"

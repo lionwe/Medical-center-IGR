@@ -16,6 +16,19 @@ $icon       = get_field('service_icon', $post->ID);
 $title      = get_the_title($post);
 $permalink  = get_permalink($post);
 
+$icon_url = '';
+$icon_alt = '';
+
+if (is_array($icon)) {
+    $icon_url = $icon['url'] ?? '';
+    $icon_alt = $icon['alt'] ?? '';
+} elseif (is_numeric($icon)) {
+    $icon_url = wp_get_attachment_url((int) $icon) ?: '';
+    $icon_alt = get_post_meta((int) $icon, '_wp_attachment_image_alt', true) ?: '';
+} elseif (is_string($icon)) {
+    $icon_url = $icon;
+}
+
 if (!$title) {
     return;
 }
@@ -36,12 +49,12 @@ $hover_bg = get_template_directory_uri() . '/assets/img/service-card-hover-bg.we
     data-href="<?php echo esc_url($permalink); ?>"
     style="--service-card-hover-bg: url('<?php echo esc_url($hover_bg); ?>')">
 
-    <?php if ($icon) : ?>
+    <?php if ($icon_url !== '') : ?>
         <div class="service-card__icon">
             <?php
             get_picture([
-                'src' => $icon['url'],
-                'alt' => $icon['alt'],
+                'src' => $icon_url,
+                'alt' => $icon_alt,
                 'class' => '',
                 'lazy' => true,
             ]);

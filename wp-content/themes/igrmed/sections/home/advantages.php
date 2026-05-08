@@ -9,7 +9,15 @@ $content = get_field('advantages_content', get_the_ID());
 $list    = get_field('advantages_list', get_the_ID());
 $numbers = get_field('advantages_numbers', get_the_ID());
 
-if (! $content && empty($list) && empty($numbers)) {
+if (!is_array($list)) {
+    $list = [];
+}
+
+if (!is_array($numbers)) {
+    $numbers = [];
+}
+
+if (!$content && empty($list) && empty($numbers)) {
     return;
 }
 ?>

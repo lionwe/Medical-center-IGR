@@ -1,5 +1,6 @@
 <?php
 $hero_bg_url = get_template_directory_uri() . '/assets/img/bread-crumbs.webp';
+$hero_style = ' style="background-image: url(' . esc_url($hero_bg_url) . ');"';
 $title = trim((string) get_field('diagnostics-research_title'));
 $types_rows = get_field('diagnostics-research_types');
 $image = get_field('diagnostics-research_img');
@@ -37,15 +38,7 @@ if ($title === '') {
 }
 ?>
 
-<section id="diagnostics-research-hero" class="diagnostics-research-hero">
-    <?php
-    get_picture([
-        'name' => 'bread-crumbs.webp',
-        'alt' => '',
-        'class' => 'diagnostics-research-hero__bg',
-        'lazy' => false,
-    ]);
-    ?>
+<section id="diagnostics-research-hero" class="diagnostics-research-hero"<?php echo $hero_style; ?>>
     <div class="container">
         <?php get_template_part('templates/breadcrumbs'); ?>
         <?php get_template_part('templates/gradient-banner'); ?>

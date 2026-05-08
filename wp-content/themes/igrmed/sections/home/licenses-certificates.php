@@ -3,15 +3,24 @@ $title   = get_field('licenses_title');
 $gallery = get_field('licenses_gallery');
 $bg      = get_field('licenses_bg');
 
+if (!is_array($gallery)) {
+    $gallery = [];
+}
+
 if (!$title && !$gallery) {
     return;
 }
 
 $bg_url = '';
 $bg_alt = '';
-if ($bg && isset($bg['url'])) {
+if (is_array($bg) && !empty($bg['url'])) {
     $bg_url = $bg['url'];
     $bg_alt = $bg['alt'] ?? '';
+} elseif (is_numeric($bg)) {
+    $bg_url = wp_get_attachment_url((int) $bg) ?: '';
+    $bg_alt = get_post_meta((int) $bg, '_wp_attachment_image_alt', true) ?: '';
+} elseif (is_string($bg)) {
+    $bg_url = $bg;
 }
 ?>
 

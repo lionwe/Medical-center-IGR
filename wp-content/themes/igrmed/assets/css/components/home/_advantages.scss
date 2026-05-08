@@ -108,6 +108,16 @@
 
         @include mobile {
             display: block !important;
+
+            .swiper-wrapper {
+                display: flex;
+                align-items: stretch;
+            }
+
+            .swiper-slide {
+                height: auto;
+                display: flex;
+            }
         }
     }
 

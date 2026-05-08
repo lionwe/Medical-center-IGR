@@ -1,0 +1,156 @@
+[
+    {
+        "key": "group_price_page",
+        "title": "Сторінка Прайс",
+        "fields": [
+            {
+                "key": "field_price_list_tab",
+                "label": "Прайс-лист",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_price_list",
+                "label": "Категорії послуг",
+                "name": "price_list",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "field_price_category_title",
+                "min": 0,
+                "max": 0,
+                "layout": "block",
+                "button_label": "Додати категорію",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_price_category_title",
+                        "label": "Назва категорії",
+                        "name": "title",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "Назва категорії послуг",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "parent_repeater": "field_price_list"
+                    },
+                    {
+                        "key": "field_price_category_items",
+                        "label": "Послуги",
+                        "name": "items",
+                        "aria-label": "",
+                        "type": "repeater",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "collapsed": "field_price_service_name",
+                        "min": 0,
+                        "max": 0,
+                        "layout": "table",
+                        "button_label": "Додати послугу",
+                        "rows_per_page": 20,
+                        "sub_fields": [
+                            {
+                                "key": "field_price_service_name",
+                                "label": "Назва послуги",
+                                "name": "service_name",
+                                "aria-label": "",
+                                "type": "text",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "70",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "maxlength": "",
+                                "parent_repeater": "field_price_category_items"
+                            },
+                            {
+                                "key": "field_price_service_price",
+                                "label": "Ціна",
+                                "name": "price",
+                                "aria-label": "",
+                                "type": "text",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "30",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": 1000,
+                                "prepend": "",
+                                "append": "",
+                                "maxlength": "",
+                                "parent_repeater": "field_price_category_items"
+                            }
+                        ],
+                        "parent_repeater": "field_price_list"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "pages/price.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Поля для сторінки з прайс-листом",
+        "show_in_rest": 0,
+        "display_title": "",
+        "pll_display_field_instructions": 1
+    }
+]

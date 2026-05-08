@@ -341,7 +341,7 @@
   &__stage-content {
     display: flex;
     flex-direction: column;
-    gap:Clamp(2px, 12px);
+    gap: Clamp(2px, 12px);
     min-width: 0;
 
     @include mobile {

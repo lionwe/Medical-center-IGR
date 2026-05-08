@@ -102,6 +102,17 @@ if ($text === '' && empty($items)) {
                     </div>
                 </div>
             </div>
+
+            <div class="advantages-preg__action advantages-preg__action--mob">
+                <?php
+                get_template_part('templates/button', null, [
+                    'text' => 'Зв’язатись з нами',
+                    'link' => '#сta',
+                    'type' => 'tertiary',
+                    'icon_url' => get_template_directory_uri() . '/assets/img/svg/contact-arrow-up-right.svg',
+                ]);
+                ?>
+            </div>
         </div>
     </div>
 </section>

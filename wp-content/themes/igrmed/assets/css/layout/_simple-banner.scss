@@ -2,14 +2,11 @@
 @use "../base/variables" as *;
 
 .simple-banner {
-  margin-top: convert-to-rem(24px);
-  margin-bottom: convert-to-rem(27px);
   width: 100%;
 
   // Common styles for sections containing simple-banner
   &-section {
     position: relative;
-    padding-top: convert-to-rem(60px);
     padding-bottom: convert-to-rem(36px);
     background-size: cover;
     background-position: center;

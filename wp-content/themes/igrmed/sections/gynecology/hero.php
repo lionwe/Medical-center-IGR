@@ -2,12 +2,12 @@
 $hero_bg_url = get_template_directory_uri() . '/assets/img/bread-crumbs.webp';
 ?>
 
-<section id="gynecology-hero" class="gynecology-hero infertility-treatment-women-hero">
+<section id="gyn-hero" class="gyn-hero">
     <?php
     get_picture([
         'name' => 'bread-crumbs.webp',
         'alt' => '',
-        'class' => 'gynecology-hero__bg',
+        'class' => 'gyn-hero__bg',
         'lazy' => false,
     ]);
     ?>

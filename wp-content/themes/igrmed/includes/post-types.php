@@ -5,10 +5,9 @@
  *
  * Project: IGR Medical Center
  * Registered CPTs:
- * 1. Directions (Напрямки - slug: services)  → taxonomy: service_category
- * 2. Price Items (Послуги - slug: price_items)
- * 3. Doctors    (Лікарі)                    → taxonomy: doctor_specialty
- * 4. Blog       (Блог)                      → taxonomy: blog_category
+ * 1. Price Items (Послуги - slug: price_items)
+ * 2. Doctors    (Лікарі)                    → taxonomy: doctor_specialty
+ * 3. Blog       (Блог)                      → taxonomy: blog_category
  */
 
 if (!defined('ABSPATH')) {
@@ -20,19 +19,6 @@ if (!defined('ABSPATH')) {
  */
 function igrmed_register_taxonomies(): void
 {
-    // service_category → Directions (services)
-    register_taxonomy('service_category', 'services', [
-        'labels' => [
-            'name' => __('Категорії напрямків', 'igrmed'),
-            'singular_name' => __('Категорія напрямку', 'igrmed'),
-        ],
-        'hierarchical' => true,
-        'public' => true,
-        'show_ui' => true,
-        'show_in_nav_menus' => true,
-        'show_admin_column' => true,
-        'rewrite' => ['slug' => 'service-category', 'with_front' => false],
-    ]);
 
     // doctor_specialty → Doctors
     register_taxonomy('doctor_specialty', 'doctors', [
@@ -66,40 +52,7 @@ add_action('init', 'igrmed_register_taxonomies', 5);
 function igrmed_register_cpts(): void
 {
     // --------------------------------------------------------
-    // 1. Directions (Напрямки)
-    // --------------------------------------------------------
-    $labels_directions = [
-        'name' => _x('Напрямки', 'Post Type General Name', 'igrmed'),
-        'singular_name' => _x('Напрямок', 'Post Type Singular Name', 'igrmed'),
-        'menu_name' => __('Напрямки', 'igrmed'),
-        'all_items' => __('Всі напрямки', 'igrmed'),
-        'add_new' => __('Додати напрямок', 'igrmed'),
-        'add_new_item' => __('Додати новий напрямок', 'igrmed'),
-        'edit_item' => __('Редагувати напрямок', 'igrmed'),
-        'view_item' => __('Переглянути напрямок', 'igrmed'),
-        'search_items' => __('Шукати напрямки', 'igrmed'),
-        'not_found' => __('Напрямків не знайдено', 'igrmed'),
-    ];
-
-    register_post_type('services', [
-        'labels' => $labels_directions,
-        'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'page-attributes'],
-        'taxonomies' => ['service_category'],
-        'public' => true,
-        'hierarchical' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'show_in_nav_menus' => true,
-        'show_in_admin_bar' => true,
-        'menu_position' => 4,
-        'menu_icon' => 'dashicons-category',
-        'has_archive' => true,
-        'rewrite' => ['slug' => 'directions', 'with_front' => false],
-        'show_in_rest' => true, // Включимо для перевірки, чи це вплине
-    ]);
-
-    // --------------------------------------------------------
-    // 2. Price Items (Послуги для прайсу)
+    // 1. Price Items (Послуги для прайсу)
     // --------------------------------------------------------
     $labels_price_items = [
         'name' => _x('Послуги (Прайс)', 'Post Type General Name', 'igrmed'),
@@ -124,7 +77,7 @@ function igrmed_register_cpts(): void
     ]);
 
     // --------------------------------------------------------
-    // 3. Doctors (Лікарі)
+    // 2. Doctors (Лікарі)
     // --------------------------------------------------------
     $labels_doctors = [
         'name' => _x('Лікарі', 'Post Type General Name', 'igrmed'),
@@ -145,7 +98,7 @@ function igrmed_register_cpts(): void
     ]);
 
     // --------------------------------------------------------
-    // 4. Blog (Блог)
+    // 3. Blog (Блог)
     // --------------------------------------------------------
     $labels_blog = [
         'name' => _x('Блог', 'Post Type General Name', 'igrmed'),

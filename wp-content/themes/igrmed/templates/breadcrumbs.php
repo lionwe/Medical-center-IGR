@@ -71,7 +71,7 @@ if (is_tax(['service_category', 'doctor_specialty', 'blog_category'])) {
 
         $add_crumb($term->name);
     }
-} elseif (is_post_type_archive(['blog', 'services', 'doctors'])) {
+} elseif (is_post_type_archive(['blog', 'doctors'])) {
     $post_type = get_query_var('post_type');
     if (is_array($post_type)) {
         $post_type = reset($post_type);
@@ -97,7 +97,7 @@ if (is_tax(['service_category', 'doctor_specialty', 'blog_category'])) {
 } elseif (is_single() && !is_attachment()) {
     $post_type = (string) get_post_type();
 
-    if (in_array($post_type, ['blog', 'services', 'doctors'], true)) {
+    if (in_array($post_type, ['blog', 'doctors'], true)) {
         [$archive_title, $archive_url] = $get_cpt_archive($post_type);
         $add_crumb($archive_title, $archive_url);
     } elseif ($post_type === 'post') {

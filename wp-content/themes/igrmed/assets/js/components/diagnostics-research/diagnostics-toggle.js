@@ -130,6 +130,9 @@ function initDiagnosticsGenderToggle() {
       const isExpanded = moreButton.getAttribute("aria-expanded") === "true";
 
       if (!isExpanded) {
+        // Start expanding accordion immediately to match item animations
+        content.style.maxHeight = content.scrollHeight + collapsibleItems.length * 60 + "px";
+
         collapsibleItems.forEach((item, index) => {
           item.style.opacity = '0';
           item.style.transform = 'translateY(20px)';
@@ -139,13 +142,13 @@ function initDiagnosticsGenderToggle() {
           setTimeout(() => {
             item.style.opacity = '1';
             item.style.transform = 'translateY(0)';
-          }, index * 100);
+          }, index * 80);
         });
 
-        // Recalculate max-height after items are visible
+        // Recalculate max-height after items finish animating for precise fit
         setTimeout(() => {
           content.style.maxHeight = content.scrollHeight + "px";
-        }, collapsibleItems.length * 100 + 50);
+        }, collapsibleItems.length * 80 + 100);
       } else {
         collapsibleItems.forEach((item) => {
           item.classList.add("is-hidden-service");

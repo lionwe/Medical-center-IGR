@@ -6,17 +6,49 @@
  * @package IGRMed
  */
 
-$full_price_data = igrmed_get_price_data();
+$price_list = get_field('price_list');
+
+$full_price_data = [];
+if (!empty($price_list)) {
+    foreach ($price_list as $category_index => $category) {
+        if (empty($category['title']) || empty($category['items'])) {
+            continue;
+        }
+
+        $category_data = [
+            'category_id'   => $category_index + 1,
+            'category_name' => $category['title'],
+            'directions'    => []
+        ];
+
+        $directions = [];
+        foreach ($category['items'] as $item) {
+            if (empty($item['service_name']) || empty($item['price'])) {
+                continue;
+            }
+
+            $directions[] = [
+                'name'  => $item['service_name'],
+                'items' => [
+                    [
+                        'title' => $item['service_name'],
+                        'price' => $item['price'],
+                    ]
+                ],
+            ];
+        }
+
+        if (!empty($directions)) {
+            $category_data['directions'] = $directions;
+            $full_price_data[] = $category_data;
+        }
+    }
+}
 
 // Empty Fields Rule: If no price data, the section is not rendered at all.
 if (empty($full_price_data)) {
     return;
 }
-
-$categories = get_terms([
-    'taxonomy'   => 'service_category',
-    'hide_empty' => true,
-]);
 
 $search_icon = get_field('icon_search', 'option');
 ?>
@@ -37,42 +69,6 @@ $search_icon = get_field('icon_search', 'option');
                             ]);
                             ?>
                         </span>
-                    <?php endif; ?>
-                </div>
-
-                <div class="price-list__category-select js-price-category" data-selected-category="all">
-                    <div class="price-list__category-trigger js-price-category-trigger">
-                        <span class="price-list__category-label"><?php echo esc_html(igrmed__('services_all')); ?></span>
-                        <div class="price-list__category-arrow-wrap">
-                            <?php echo igrmed_get_svg('chevron-white'); ?>
-                        </div>
-                    </div>
-
-                    <?php if (!empty($categories) && !is_wp_error($categories)): ?>
-                        <div class="price-list__dropdown js-price-dropdown">
-                            <ul class="price-list__dropdown-list">
-                                <li class="price-list__dropdown-item">
-                                    <button type="button" class="price-list__dropdown-link" data-category-id="all">
-                                        <?php echo esc_html(igrmed__('services_all')); ?>
-                                    </button>
-                                    <div class="price-list__dropdown-separator"></div>
-                                </li>
-                                <?php foreach ($categories as $index => $cat): ?>
-                                    <?php
-                                    // Rule 3: Use Polylang-compatible function if available, though get_terms result usually contains correct translation already if Polylang is active and set up.
-                                    $cat_id = $cat->term_id;
-                                    ?>
-                                    <li class="price-list__dropdown-item">
-                                        <button type="button" class="price-list__dropdown-link" data-category-id="<?php echo esc_attr($cat_id); ?>">
-                                            <?php echo esc_html($cat->name); ?>
-                                        </button>
-                                        <?php if ($index < count($categories) - 1): ?>
-                                            <div class="price-list__dropdown-separator"></div>
-                                        <?php endif; ?>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
                     <?php endif; ?>
                 </div>
             </header>

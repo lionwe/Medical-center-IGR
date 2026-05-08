@@ -81,6 +81,10 @@ if (empty($doctors_posts)) {
             <div class="doctors__slider-clip">
                 <div class="doctors__slider swiper js-doctors-swiper">
                     <div class="swiper-wrapper">
+                        <!-- Dummy slides for desktop -->
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+
                         <?php foreach ($doctors_posts as $doctor_post): ?>
                             <?php
                             $doctor_id = $doctor_post->ID;
@@ -137,6 +141,13 @@ if (empty($doctors_posts)) {
                                 <?php endif; ?>
                             </article>
                         <?php endforeach; ?>
+
+                        <!-- Dummy slides for desktop -->
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
+                        <article class="doctors__slide swiper-slide doctors__slide--dummy"></article>
                     </div>
                 </div>
 

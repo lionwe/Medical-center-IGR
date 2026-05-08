@@ -365,10 +365,8 @@ if (empty($sections)) {
                         <div class="ekz-content__section-body">
                             <?php if (!empty($programs_list)): ?>
                                 <div class="ekz-content__programs-slider-wrapper">
-                                    <div class="swiper js-ekz-programs-slider ekz-content__programs">
-                                        <div class="swiper-wrapper">
+<div class=" js-ekz-programs-slider ekz-content__programs js-programs-container">                                        <div class="swiper-wrapper">
                                             <?php foreach ($programs_list as $program): ?>
-                                                <div class="swiper-slide">
                                                     <article class="ekz-content__program-card">
                                             <div class="ekz-content__program-content">
                                                 <?php if ($program['title'] !== ''): ?>
@@ -412,24 +410,7 @@ if (empty($sections)) {
                                     </div>
                                 </div>
 
-                                <div class="ekz-content__programs-nav">
-                                    <?php
-                                    get_template_part('templates/button', null, [
-                                        'type' => 'carousel',
-                                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-prev.svg',
-                                        'class' => 'ekz-content__programs-prev js-ekz-programs-prev',
-                                        'attributes' => ['aria-label' => 'Попередній'],
-                                    ]);
-                                    ?>
-                                    <?php
-                                    get_template_part('templates/button', null, [
-                                        'type' => 'carousel',
-                                        'icon_url' => get_template_directory_uri() . '/assets/img/svg/arrow-next.svg',
-                                        'class' => 'ekz-content__programs-next js-ekz-programs-next',
-                                        'attributes' => ['aria-label' => 'Наступний'],
-                                    ]);
-                                    ?>
-                                </div>
+                                
                             </div>
                             <?php endif; ?>
                         </div>
