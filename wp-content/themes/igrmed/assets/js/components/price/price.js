@@ -5,21 +5,14 @@ import { load } from "../../events/load";
 
 class PriceList {
     constructor() {
-        this.container = document.querySelector('.js-price-category');
-        if (!this.container) return;
+        this.categoryGroups = document.querySelectorAll('.price-list__category-group');
+        this.searchInput = document.querySelector('.price-list__search-input');
+        this.emptyMessage = document.querySelector('.js-price-empty');
 
         this.init();
     }
 
     init() {
-        this.trigger = this.container.querySelector('.js-price-category-trigger');
-        this.label = this.container.querySelector('.price-list__category-label');
-        this.dropdownLinks = document.querySelectorAll('.price-list__dropdown-link');
-        this.categoryGroups = document.querySelectorAll('.price-list__category-group');
-        this.searchInput = document.querySelector('.price-list__search-input');
-        this.emptyMessage = document.querySelector('.js-price-empty');
-
-        this.initCategoryDropdown();
         this.initAccordions();
         this.initFilters();
 
@@ -36,64 +29,7 @@ class PriceList {
         }
     }
 
-    initCategoryDropdown() {
-        if (!this.trigger) return;
-
-        const CLOSE_DELAY_MS = 800;
-        let closeTimerId = null;
-        const clearCloseTimer = () => {
-            if (closeTimerId) {
-                window.clearTimeout(closeTimerId);
-                closeTimerId = null;
-            }
-        };
-        const scheduleClose = () => {
-            clearCloseTimer();
-            closeTimerId = window.setTimeout(() => {
-                this.container.classList.remove('is-open');
-                this.trigger.setAttribute('aria-expanded', 'false');
-                closeTimerId = null;
-            }, CLOSE_DELAY_MS);
-        };
-        
-        this.trigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            clearCloseTimer();
-            const isOpen = this.container.classList.toggle('is-open');
-            this.trigger.setAttribute('aria-expanded', isOpen);
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!this.container.contains(e.target)) {
-                this.container.classList.remove('is-open');
-                this.trigger.setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        // Hover delay close (desktop): prevents flicker when moving into dropdown.
-        this.container.addEventListener('mouseenter', clearCloseTimer);
-        this.container.addEventListener('mouseleave', () => {
-            if (this.container.classList.contains('is-open')) {
-                scheduleClose();
-            }
-        });
-
-        this.dropdownLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                const catId = link.getAttribute('data-category-id');
-                const catName = link.innerText;
-
-                this.container.setAttribute('data-selected-category', catId);
-                this.label.innerText = catName;
-                this.container.classList.remove('is-open');
-                this.trigger.setAttribute('aria-expanded', 'false');
-                clearCloseTimer();
-
-                this.filterPriceList();
-            });
-        });
-    }
-
+    
     initAccordions() {
         const accordions = document.querySelectorAll('.js-price-accordion');
         accordions.forEach(acc => {
@@ -172,15 +108,11 @@ class PriceList {
     }
 
     filterPriceList() {
-        const selectedId = this.container.getAttribute('data-selected-category') || 'all';
         const searchTerm = this.searchInput ? this.searchInput.value.toLowerCase().trim() : '';
 
         let totalVisible = 0;
 
         this.categoryGroups.forEach(group => {
-            const groupId = group.getAttribute('data-category-id');
-            const matchesCategory = (selectedId === 'all' || selectedId === groupId);
-
             let matchesSearch = false;
             const directionAccordions = group.querySelectorAll('.price-list__direction-accordion');
 
@@ -218,7 +150,7 @@ class PriceList {
                 }
             });
 
-            if (matchesCategory && matchesSearch) {
+            if (matchesSearch) {
                 group.style.display = '';
                 totalVisible++;
             } else {
