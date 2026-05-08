@@ -11,7 +11,7 @@ $hero_button_target = '_self';
 
 if (is_array($hero_button)) {
     $hero_button_url = $hero_button['url'] ?? '';
-$hero_button_label = igrmed__('btn_details_about_us');
+    $hero_button_label = $hero_button['title'] ?? igrmed__('btn_details_about_us');
     $hero_button_target = $hero_button['target'] ?? '_self';
 }
 

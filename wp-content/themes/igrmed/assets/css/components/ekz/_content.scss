@@ -595,33 +595,44 @@
 
       .ekz-content__programs {
         overflow: hidden;
-
-        .swiper-wrapper {
-          display: flex;
-        }
-
-        .swiper-slide {
-          width: auto;
-          flex: 0 0 auto;
-        }
       }
 
       .ekz-content__programs-nav {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: convert-to-rem(10px);
       }
-    }
 
-    .ekz-content__programs-nav {
-      display: none;
+      .swiper-pagination {
+        display: flex;
+        align-items: center;
+        gap: convert-to-rem(8px);
+
+        &-bullet {
+          width: convert-to-rem(8px);
+          height: convert-to-rem(8px);
+          border-radius: 50%;
+          background: var(--color-primary-dark-03);
+          opacity: 1;
+          transition: all 0.3s ease;
+
+          &-active {
+            width: convert-to-rem(24px);
+            border-radius: convert-to-rem(4px);
+            background: var(--color-accent);
+          }
+        }
+      }
     }
   }
 
   &__programs {
     display: grid;
-    gap: convert-to-rem(12px);
+    grid-template-columns: 1fr;
+    gap: convert-to-rem(80px);
+
   }
 
   &__program-card {
@@ -640,7 +651,8 @@
       display: flex;
       flex-direction: column;
       background-image: none;
-      background-color: rgba(221, 228, 240, 0.3);
+      background-color: var(--color-white-06);
+      gap: convert-to-rem(12px);
     }
   }
 
@@ -783,6 +795,22 @@
       display: block;
       margin-top: convert-to-rem(4px);
       color: var(--color-black);
+    }
+
+    @include mobile {
+      width: 100%;
+      
+      > div {
+        @include typography($font-family-montserrat, $fw-regular, 18px, 1.4, 0);
+      }
+
+      p {
+        @include typography($font-family-montserrat, $fw-regular, 18px, 1.4, 0);
+      }
+
+      strong {
+        @include typography($font-family-montserrat, $fw-medium, 18px, 1.4, 0);
+      }
     }
   }
 
