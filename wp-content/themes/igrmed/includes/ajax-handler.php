@@ -577,7 +577,7 @@ function igrmed_live_search(): void
     $exact_val     = "'" . esc_sql($s) . "'";
 
     // Searchable post types
-    $post_types = ['services', 'price_items', 'doctors', 'blog', 'page'];
+    $post_types = ['price_items', 'doctors', 'blog', 'page'];
     $types_in = implode(',', array_map(function ($t) {
         return "'" . esc_sql($t) . "'";
     }, $post_types));
@@ -632,13 +632,6 @@ function igrmed_live_search(): void
             $post_type = $row->post_type;
             $post_type_obj = get_post_type_object($post_type);
             $label = $post_type_obj ? $post_type_obj->labels->singular_name : $post_type;
-
-            if ($post_type === 'services') {
-                $terms = get_the_terms($post_id, 'service_category');
-                if (!empty($terms) && !is_wp_error($terms)) {
-                    $label = $terms[0]->name;
-                }
-            }
 
             $permalink = get_permalink($post_id);
             $title     = esc_html($row->post_title);
