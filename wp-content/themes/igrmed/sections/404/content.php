@@ -14,7 +14,7 @@
     <div class="error-404__logo">
         <?php get_picture([
             'name' => 'logo-without-text.webp',
-            'alt'  => esc_attr__('IGRMed Logo', 'igrmed'),
+            'alt' => esc_attr__('IGRMed Logo', 'igrmed'),
             'class' => 'error-404__logo-img',
             'lazy' => true,
         ]); ?>
