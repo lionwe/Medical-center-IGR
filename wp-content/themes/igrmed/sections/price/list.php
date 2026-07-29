@@ -6,7 +6,9 @@
  * @package IGRMed
  */
 
+// Use Advanced Custom Fields to get price list data
 $price_list = get_field('price_list');
+
 
 $full_price_data = [];
 if (!empty($price_list)) {
@@ -22,19 +24,24 @@ if (!empty($price_list)) {
         ];
 
         $directions = [];
+        $category_items = [];
+        
         foreach ($category['items'] as $item) {
             if (empty($item['service_name']) || empty($item['price'])) {
                 continue;
             }
 
+            $category_items[] = [
+                'title' => $item['service_name'],
+                'price' => $item['price'],
+            ];
+        }
+        
+        // Create a single direction for the category with all items
+        if (!empty($category_items)) {
             $directions[] = [
-                'name'  => $item['service_name'],
-                'items' => [
-                    [
-                        'title' => $item['service_name'],
-                        'price' => $item['price'],
-                    ]
-                ],
+                'name'  => $category['title'], // Use category title as direction name
+                'items' => $category_items,
             ];
         }
 
@@ -45,8 +52,22 @@ if (!empty($price_list)) {
     }
 }
 
-// Empty Fields Rule: If no price data, the section is not rendered at all.
+
+// Empty Fields Rule: If no price data, show a message instead of not rendering
 if (empty($full_price_data)) {
+    ?>
+    <section id="price-list" class="price-list">
+        <div class="container">
+            <div class="price-list__wrapper">
+                <div class="price-list__content">
+                    <div class="price-list__empty">
+                        <?php echo esc_html(igrmed__('no_price_data_available') ?: 'На даний момент прайс-лист недоступний. Будь ласка, зверніться до адміністратора.'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php
     return;
 }
 
@@ -95,7 +116,7 @@ $search_icon = get_field('icon_search', 'option');
                                     </div>
                                 </button>
 
-                                <div class="accordeon js-price-accordion-accordeon" <?php echo $is_first ? 'open style="display: block;"' : 'style="display: none;"'; ?>>
+                                <div class="accordeon js-price-accordion-accordeon" <?php if ($is_first) echo 'open style="display: block;"'; else echo 'style="display: none;"'; ?>>
                                     <div class="content">
                                         <div class="price-list__direction-content-inner">
                                             <div class="price-list__items">

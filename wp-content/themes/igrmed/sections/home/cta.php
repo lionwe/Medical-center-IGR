@@ -10,7 +10,7 @@ if (trim($form_shortcode) === '') {
     return;
 }
 
-$resolve_image_url = static function ($value): string {
+$resolve_image_url = static function ($xvalue): string {
     if (is_numeric($value)) {
         $url = wp_get_attachment_image_url((int) $value, 'full');
         return $url ? (string) $url : '';
